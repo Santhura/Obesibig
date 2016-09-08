@@ -81,9 +81,13 @@ public class CellScript : MonoBehaviour
     }
     
 
-    void OnCollisionEnter(Collision other)
+    void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.tag == targetTagName)
+        // drops health as long cell is touching the organ
+        other.gameObject.GetComponent<OrganHealthScript>().health -= other.gameObject.GetComponent<OrganHealthScript>().decreasement * Time.deltaTime; 
+
+        // if organs health drop to 0 destroy organ
+        if (other.gameObject.GetComponent<OrganHealthScript>().health <= 0)
         {
             isTargetDead = true;
             Instantiate(organParticle, other.transform.position, Quaternion.identity);
