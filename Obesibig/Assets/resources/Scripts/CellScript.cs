@@ -5,27 +5,31 @@ public class CellScript : MonoBehaviour
 {
 
     private float speed = 2.5f;               // the speed of a cell
-    private GameObject[] target;            // all organ gameobjects positions
+    private GameObject[] target;             // all organ gameobjects positions
     GameObject closest;
 
     [SerializeField]
-    private bool isRandomTarget;            // Does it choose a random target
-    private GameObject realRandomTarget;    // the real target when it chooses a random target
+    private bool isRandomTarget;             // Does it choose a random target
+    private GameObject realRandomTarget;     // the real target when it chooses a random target
 
-    private bool isTargetDead;              // check to see if target is dead
+    private bool isTargetDead;               // check to see if target is dead
+
+    [SerializeField]
+    private string targetTagName = "Organ";  // The target tag name
+
+    public GameObject organParticle;
 
     // Use this for initialization
     void Start()
     {
-        target = GameObject.FindGameObjectsWithTag("Organ");
+        target = GameObject.FindGameObjectsWithTag(targetTagName);
         isTargetDead = false;
         if (isRandomTarget)
             realRandomTarget = RandomTarget();
-
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isTargetDead)
         {
@@ -38,7 +42,6 @@ public class CellScript : MonoBehaviour
             else
                 transform.position = Vector3.MoveTowards(transform.position, realRandomTarget.transform.position, speed * Time.deltaTime);
         }
-        Debug.Log(target.Length);
     }
 
 
@@ -48,7 +51,7 @@ public class CellScript : MonoBehaviour
     /// <returns> closest target (organ) </returns>
     GameObject FindClosestTarget()
     {
-        target = GameObject.FindGameObjectsWithTag("Organ");
+        target = GameObject.FindGameObjectsWithTag(targetTagName);
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
         foreach (GameObject gameObject in target)
@@ -67,21 +70,23 @@ public class CellScript : MonoBehaviour
     /// <summary>
     /// return a random organ object.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> target to move to </returns>
     GameObject RandomTarget()
     {
         GameObject[] rTargets;
-        rTargets = GameObject.FindGameObjectsWithTag("Organ");
+        rTargets = GameObject.FindGameObjectsWithTag(targetTagName);
         GameObject realTarget;
         realTarget = rTargets[Random.Range(0, rTargets.Length)];
         return realTarget;
     }
+    
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Organ")
+        if (other.gameObject.tag == targetTagName)
         {
             isTargetDead = true;
+            Instantiate(organParticle, other.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
         }
     }
