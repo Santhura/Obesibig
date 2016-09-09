@@ -14,8 +14,13 @@ public class ButtonManager : MonoBehaviour {
         Application.Quit();
     }
 
-    public void addType()
+    public void GoLab()
     {
+        Application.LoadLevel(1);
+    }
 
+    public void GoMenu()
+    {
+        Application.LoadLevel(0);
     }
 }
