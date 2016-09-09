@@ -4,9 +4,9 @@ using System.Collections;
 public class CellScript : MonoBehaviour
 {
 
-    private float speed = 2.5f;               // the speed of a cell
+    private float speed = 2.5f;              // the speed of a cell
     private GameObject[] target;             // all organ gameobjects positions
-    GameObject closest;
+    GameObject closest;                      // Is the closest object for the cell
 
     [SerializeField]
     private bool isRandomTarget;             // Does it choose a random target
@@ -19,7 +19,7 @@ public class CellScript : MonoBehaviour
 
     public GameObject organParticle;         // show particle when organ dies
 
-    private GameObject[] allCells;
+    private GameObject[] allCells;           // check how many cells there are
 
     // Use this for initialization
     void Start()
