@@ -17,25 +17,38 @@ public class CellScript : MonoBehaviour
     [SerializeField]
     private string targetTagName = "Organ";  // The target tag name
 
-    public GameObject organParticle;
+    public GameObject organParticle;         // show particle when organ dies
+
+    private GameObject[] allCells;
 
     // Use this for initialization
     void Start()
     {
+        allCells = GameObject.FindGameObjectsWithTag("Cell");
         target = GameObject.FindGameObjectsWithTag(targetTagName);
         isTargetDead = false;
         if (isRandomTarget)
             realRandomTarget = RandomTarget();
     }
 
+    void Update()
+    {
+        // when first random target is dead, stop with the randomtarget.
+        if (isTargetDead)
+        {
+            for (int i = 0; i < allCells.Length; i++)
+            {
+                allCells[i].GetComponent<CellScript>().isRandomTarget = false;
+            }
+            isTargetDead = false;
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isTargetDead)
-        {
-            isRandomTarget = false;
-        }
-        if (target.Length > 0)
+        // move to random target or closest target, as long as there are targets
+        if (target.Length > 0 || target != null)
         {
             if (!isRandomTarget)
                 transform.position = Vector3.MoveTowards(transform.position, FindClosestTarget().transform.position, speed * Time.deltaTime);
@@ -80,18 +93,28 @@ public class CellScript : MonoBehaviour
         return realTarget;
     }
     
-
+    /// <summary>
+    /// When cell is touching organ decrease health of organ. untill it's dead
+    /// </summary>
+    /// <param name="other"></param>
     void OnCollisionStay(Collision other)
     {
         // drops health as long cell is touching the organ
-        other.gameObject.GetComponent<OrganHealthScript>().health -= other.gameObject.GetComponent<OrganHealthScript>().decreasement * Time.deltaTime; 
-
-        // if organs health drop to 0 destroy organ
-        if (other.gameObject.GetComponent<OrganHealthScript>().health <= 0)
+        if (other.gameObject.tag == targetTagName)
         {
-            isTargetDead = true;
-            Instantiate(organParticle, other.transform.position, Quaternion.identity);
-            Destroy(other.gameObject);
+            if (other.gameObject.GetComponent<OrganHealthScript>() != null)
+                other.gameObject.GetComponent<OrganHealthScript>().health -= other.gameObject.GetComponent<OrganHealthScript>().decreasement * Time.deltaTime;
+
+            // if organs health drop to 0 destroy organ
+            if (other.gameObject != null)
+            {
+                if (other.gameObject.GetComponent<OrganHealthScript>().health <= 0)
+                {
+                    isTargetDead = true;
+                    Instantiate(organParticle, other.transform.position, Quaternion.identity);
+                    Destroy(other.gameObject);
+                }
+            }
         }
     }
 }
