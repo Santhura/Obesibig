@@ -5,7 +5,6 @@ public class Grow : MonoBehaviour {
 
     int size = 0;
     Color col;
-    Vector3 initialScale = new Vector3(0.06f, 0.06f, 1f);
     Vector3 scaleUp = new Vector3(0.0005f, 0.0005f, 0.0f);
 
     // Use this for initialization

@@ -90,7 +90,7 @@ public class TapScreen : MonoBehaviour {
                 //Do something with the touches
                 //}
             }
-        }
         #endif*/
+        }
     }
 }
