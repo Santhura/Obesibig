@@ -22,8 +22,9 @@ public class SuperCellScript : MonoBehaviour {
         timer -= Time.deltaTime;
         if (timer > 0)
         {
-            if(FindClosestTarget() != null)
-                transform.position = Vector3.MoveTowards(transform.position, FindClosestTarget().transform.position, speed * Time.deltaTime);
+            if (target.Length > 0 || target != null)
+                if(FindClosestTarget() != null)
+                    transform.position = Vector3.MoveTowards(transform.position, FindClosestTarget().transform.position, speed * Time.deltaTime);
         }
         else
             Destroy(gameObject);
