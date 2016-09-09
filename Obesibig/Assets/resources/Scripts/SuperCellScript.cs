@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SuperCellScript : MonoBehaviour {
 
-    private float speed = 1f;                // the speed of a supercell
+    private float speed = 1.5f;                // the speed of a supercell
     private GameObject[] target;             // all cells gameobjects positions
     GameObject closest;                      // Is the closest object for the supercell
 
@@ -21,7 +21,10 @@ public class SuperCellScript : MonoBehaviour {
 	void Update () {
         timer -= Time.deltaTime;
         if (timer > 0)
-            transform.position = Vector3.MoveTowards(transform.position, FindClosestTarget().transform.position, speed * Time.deltaTime);
+        {
+            if(FindClosestTarget() != null)
+                transform.position = Vector3.MoveTowards(transform.position, FindClosestTarget().transform.position, speed * Time.deltaTime);
+        }
         else
             Destroy(gameObject);
 
