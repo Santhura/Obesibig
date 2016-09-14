@@ -13,6 +13,7 @@ public class TapScreen : MonoBehaviour {
     void Start()
     {
         newGame = true;
+        Time.timeScale = 0;
     }
 
     void Update()
@@ -28,7 +29,7 @@ public class TapScreen : MonoBehaviour {
             {
                 ray = new Ray(pos, Vector3.back);
                 Debug.DrawRay(pos, Vector3.back, Color.green);
-                Physics.Raycast(ray, out hit);
+                //Physics.Raycast(ray, out hit);
                 //Debug.Log(hit.collider);
                 if (Physics.Raycast(ray, out hit))
                 {
@@ -38,6 +39,8 @@ public class TapScreen : MonoBehaviour {
                         {
                             GameObject.Destroy(child.gameObject);
                         }
+                        if (Time.timeScale == 0)
+                        Time.timeScale = 1;
 
                         newGame = false;
                     }
@@ -49,10 +52,14 @@ public class TapScreen : MonoBehaviour {
                 pulse.transform.position = pos;
                 pulse.transform.SetParent(transform);
 
+                ray = new Ray(pos, Vector3.back);
+                Debug.DrawRay(pos, Vector3.back, Color.green);
+
                 if (Physics.Raycast(ray, out hit))
                 {
-                    if (hit.collider.tag == "target")
+                    if (hit.collider.tag == "Cell")
                     {
+                        Debug.Log("Cell touched");
                         GameObject.Destroy(hit.collider.gameObject);
                     }
                 }

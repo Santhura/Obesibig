@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class TumorScript : MonoBehaviour {
     
@@ -9,6 +10,8 @@ public class TumorScript : MonoBehaviour {
     private bool growTumor = true;
     private bool startDamp = false;
     private bool stopGrowth = true;
+    float waitTime = 1.0f;
+    float completeTime = 5.0f;
 
     public int tumorHealth = 100;
 
@@ -21,14 +24,15 @@ public class TumorScript : MonoBehaviour {
 	void Start () {
         speed = speed / 100000f;
         increase = new Vector3(speed, speed, 0);
-        CreateCancerCell();
+      //  CreateCancerCell();
     }
 	
 	// Update is called once per frame
 	void Update () {
-
+        MakeCell();
         Debug.Log("The size of tumor is " + tumorSize);
 
+        if (Time.timeScale != 0)
         CheckTumorSize();
         
         //Kill tumor
@@ -109,14 +113,20 @@ public class TumorScript : MonoBehaviour {
     public void CreateCancerCell()
     {
         //The bigger the size of the tumor the more cells it will create.
-        StartCoroutine(MakeCell(5.0F));
+        //StartCoroutine(MakeCell(1.0F));
         
     }
 
-    IEnumerator MakeCell(float waitTime)
+    void MakeCell()
     {
-        yield return new WaitForSeconds(waitTime);
-        Instantiate(Cellprefab, gameObject.transform.position, Quaternion.identity);
+        if (waitTime <= 0)
+        {
+            Instantiate(Cellprefab, gameObject.transform.position, Quaternion.identity);
+            waitTime = 0.75f;
+        }
+        else
+        {
+            waitTime -= Time.deltaTime;
+        }
     }
-
 }
