@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class CellScript : MonoBehaviour
 {
@@ -37,8 +36,6 @@ public class CellScript : MonoBehaviour
         // when first random target is dead, stop with the randomtarget.
         if (isTargetDead)
         {
-            allCells = GameObject.FindGameObjectsWithTag("Cell");
-
             for (int i = 0; i < allCells.Length; i++)
             {
                 allCells[i].GetComponent<CellScript>().isRandomTarget = false;
@@ -51,16 +48,12 @@ public class CellScript : MonoBehaviour
     void FixedUpdate()
     {
         // move to random target or closest target, as long as there are targets
-        if (target.Length > 0 /*|| target != null*/)
+        if (target.Length > 0 || target != null)
         {
             if (!isRandomTarget)
                 transform.position = Vector3.MoveTowards(transform.position, FindClosestTarget().transform.position, speed * Time.deltaTime);
             else
                 transform.position = Vector3.MoveTowards(transform.position, realRandomTarget.transform.position, speed * Time.deltaTime);
-        }
-        else
-        {
-            SceneManager.LoadScene("StartScreenScene");
         }
     }
 
@@ -119,8 +112,7 @@ public class CellScript : MonoBehaviour
                 {
                     isTargetDead = true;
                     Instantiate(organParticle, other.transform.position, Quaternion.identity);
-                    // Destroy(other.gameObject);
-                    other.gameObject.SetActive(false);
+                    Destroy(other.gameObject);
                 }
             }
         }
