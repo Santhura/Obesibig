@@ -5,11 +5,13 @@ using UnityEngine.UI;
 public class StaminaScript : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
         //Stamina decreases over time.
         DrainStamina();
 	}

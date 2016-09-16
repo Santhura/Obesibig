@@ -4,19 +4,17 @@ using UnityEngine.UI;
 
 public class BaconScript : MonoBehaviour {
 
-    public Text txt_baconAmount;    //UI element displaying the amount of bacon collected.
-    public Image bar_stamina;       //UI element displaying the amount of stamina.
-
-    private int baconAmount;        //To keep track of the amount of collected bacon in code.
+    public Image pnl_score;           //UI element for displaying the total score (of bacon).
+    public Image bar_stamina;         //UI element displaying the amount of stamina.
 
 	// Use this for initialization.
-	void Start () {
-        baconAmount = 0;
+	void Start () 
+    {
 	}
 	
 	// Update is called once per frame.
-	void Update () {
-	
+	void Update ()
+    {
 	}
 
     void OnCollisionEnter(Collision col)
@@ -25,9 +23,8 @@ public class BaconScript : MonoBehaviour {
         //Destroy the bacon object.
         if (col.gameObject.tag == "Player")
         {
-            baconAmount++;
             bar_stamina.GetComponent<StaminaScript>().AddStamina();
-            txt_baconAmount.text = baconAmount.ToString();
+            pnl_score.GetComponent<ScoreScript>().AddBacon();
 
             Destroy(gameObject);
         }
