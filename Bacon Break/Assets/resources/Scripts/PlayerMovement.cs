@@ -43,15 +43,14 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (hold)
             {
-                Debug.Log("Hit " + hitInfo.transform.position);
-                Debug.Log("works");
+                Vector3 screenPos = Camera.main.WorldToScreenPoint(hitInfo.transform.position);
+                float relativePos = screenPos.x - Input.mousePosition.x;
+                //Debug.Log("target is " + temp + " pixels from the mouse");
 
-                // get object point on screen
-                // check if mouse position is to the left or the right of the object on release
-                if (transform.position.x > -6)
+                if (relativePos > 10 && transform.position.x > -6)
                     transform.Translate(-6, 0, 0);
-                //if (transform.position.x < 6)
-                //    transform.Translate(6, 0, 0);
+                else if (relativePos < -10 && transform.position.x < 6)
+                    transform.Translate(6, 0, 0);
             }
             hold = false;
         }
