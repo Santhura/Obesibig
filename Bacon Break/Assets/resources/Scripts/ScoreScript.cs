@@ -46,7 +46,7 @@ public class ScoreScript : MonoBehaviour {
     }
 
     //Display score panel.
-    void ShowScore()
+    public void ShowScore()
     {
         gameObject.GetComponent<CanvasGroup>().alpha = 1f;
     }
