@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour {
 
@@ -26,5 +27,11 @@ public class ButtonScript : MonoBehaviour {
         Time.timeScale = 1;
         GameObject.Find("pnl_score").GetComponent<CanvasGroup>().alpha = 0f;
         GameObject.Find("pnl_score").transform.FindChild("btn_resume").GetComponent<Button>().interactable = false;
+    }
+
+    public void ExitGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
 }
