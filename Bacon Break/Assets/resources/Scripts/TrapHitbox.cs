@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TrapHitbox : MonoBehaviour {
     void OnTriggerEnter(Collider other)
@@ -7,7 +8,8 @@ public class TrapHitbox : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("HIT");
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
+            SceneManager.LoadScene(0);
         }
     }
 

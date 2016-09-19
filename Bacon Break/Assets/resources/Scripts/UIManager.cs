@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour {
     /// </summary>
     public void PlayButton()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
 
