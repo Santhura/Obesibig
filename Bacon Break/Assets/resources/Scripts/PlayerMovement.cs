@@ -11,7 +11,8 @@ using System.Collections;
         - when theres suddenly 5 instead of 2 lanes slowly center the camera on the new center of the lanes.
 */
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
     public float speed = 0.3f;
     public bool swipe = false;
@@ -20,19 +21,21 @@ public class PlayerMovement : MonoBehaviour {
     int step = 6;
 
     // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         transform.parent.Translate(0, 0, speed * Time.deltaTime);
 
         if (swipe)
             swipeControls();
         else
             simpelControls();
-	}
+    }
 
     void swipeControls()
     {
@@ -85,6 +88,6 @@ public class PlayerMovement : MonoBehaviour {
             return false;
         else
             return true;
-            //nothing was next to your gameObject within 10m.
+        //nothing was next to your gameObject within 10m.
     }
 }
