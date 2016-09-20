@@ -13,7 +13,7 @@ public class MoveForward : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Vertical"))
         {
             this.transform.position += transform.forward * Time.deltaTime * movementSpeed;
         }
