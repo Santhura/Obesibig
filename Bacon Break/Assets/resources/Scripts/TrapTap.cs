@@ -7,6 +7,7 @@ public class TrapTap : MonoBehaviour
 
     public bool canUnleash = false;
     bool unleash;
+    public GameObject destroyThis;
 
     Rigidbody rb;
     // Use this for initialization
@@ -26,7 +27,7 @@ public class TrapTap : MonoBehaviour
     void OnMouseDown()
     {
         if (!movementStoppable && !canUnleash)
-            Destroy(this.gameObject);
+            Destroy(destroyThis);
 
         if (movementStoppable)
             rb.isKinematic = true;

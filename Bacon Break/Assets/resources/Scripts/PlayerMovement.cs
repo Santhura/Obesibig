@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(0, 0, speed * Time.deltaTime);
+        transform.parent.Translate(0, 0, speed * Time.deltaTime);
 
         if (swipe)
             swipeControls();
