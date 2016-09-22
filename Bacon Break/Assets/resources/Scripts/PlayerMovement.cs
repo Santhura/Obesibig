@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/*
-    To do:
-
+/* To do:
     - Make the player jump instead of teleport between lanes.
 
     - Make the camera follow the player on the Y axis, except for the jumping animation.
@@ -16,8 +14,11 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 0.3f; // character speed on Z axis
-    public float switchSpeed = 0.5f; // character switch lane speed on X axis
+
+    public float switchSpeed = 3f; // character switch lane speed on X axis
     int step = 6; // total laneswitch step size
+    float totalMovement; // used to store the total distance travelled on the x axis when switching lanes
+    int switchDirection; // direction in witch to switch lanes
 
     public bool swipe = true; // enable swipe controls for mobile phone or disable them for debugging A/D keys
                               // note: make sure to dissable the swipe boolean before building the project
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        totalMovement = step;
     }
 
     // Update is called once per frame
@@ -46,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
             swipeControls();
         else
             simpleControls();
+
+        // switch lane update
+        smoothLaneTransition();
     }
 
     // used to swipe the players between lanes
@@ -84,9 +88,6 @@ public class PlayerMovement : MonoBehaviour
                 posRight = new Vector3(15, transform.position.y, transform.position.z);
                 posLeft = new Vector3(-15, transform.position.y, transform.position.z);
 
-                //Vector3 screenPos = Camera.main.WorldToScreenPoint(hitInfo.transform.position);
-                //float relativePos = screenPos.x - Input.mousePosition.x;
-
                 // calculate distance between the touched/clicked position and the reference points
                 Vector3 temp1 = Camera.main.WorldToScreenPoint(posLeft);
                 float dist1 = Vector3.Distance(Input.mousePosition/*theTouch.position*/, temp1);
@@ -96,10 +97,17 @@ public class PlayerMovement : MonoBehaviour
 
                 // check if the distance to one point is small enough to simulate a swipe movement and then move the player
                 // canMove is used to make sue that there arent any walls next to the player before moving there
-                if (dist1 < 250 && canMove(-1))
-                    transform.Translate(-step, 0, 0);
-                else if (dist2 < 250 && canMove(1))
-                    transform.Translate(step, 0, 0);
+                if (dist1 < 250 && canMove(-1) && totalMovement == step)
+                {
+                    totalMovement = 0;
+                    switchDirection = -1;
+                }
+                //transform.Translate(-step, 0, 0);
+                else if (dist2 < 250 && canMove(1) && totalMovement == step)
+                {
+                    totalMovement = 0;
+                    switchDirection = 1;
+                }
             }
             // release hold onto the player
             hold = false;
@@ -110,10 +118,16 @@ public class PlayerMovement : MonoBehaviour
     // note: ment for debugging purposes only, move with A and D keys
     void simpleControls()
     {
-        if (Input.GetKeyDown("a") && canMove(-1))
-            transform.Translate(-6, 0, 0);
-        if (Input.GetKeyDown("d") && canMove(1))
-            transform.Translate(6, 0, 0);
+        if (Input.GetKeyDown("a") && canMove(-1) && totalMovement == step)
+        {
+            totalMovement = 0;
+            switchDirection = -1;
+        }
+        else if (Input.GetKeyDown("d") && canMove(1) && totalMovement == step)
+        {
+            totalMovement = 0;
+            switchDirection = 1;
+        }
     }
 
     // used to detect walls next to the player
@@ -131,5 +145,27 @@ public class PlayerMovement : MonoBehaviour
         else
             return true;
             // no wall was next to the player within range.
+    }
+
+    // used for smooth lane transitioning
+    void smoothLaneTransition()
+    {
+        // check if the total distance plus the speed doesnt exceed the maximum step size
+        if (totalMovement + switchSpeed < step)
+        {
+            // translate the parent object to move at set speed in a direction
+            transform.parent.Translate(switchDirection * switchSpeed, 0, 0);
+            // keep track of the total amount of distance travelled
+            totalMovement += switchSpeed;
+        }
+        // if it does exceed the step size but didnt exactly travelled the step size
+        else if (totalMovement != step)
+        {
+            // translate the parent with the remaining distance 
+            transform.parent.Translate(switchDirection * (step - totalMovement), 0, 0);
+            // set total distance travelled to be the total step size
+            totalMovement = step;
+        }
+
     }
 }
