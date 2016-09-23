@@ -19,17 +19,19 @@ public class PlayerMovement : MonoBehaviour
     bool hold = false;
     RaycastHit hitInfo;
     int step = 6;
+    public static bool isAbleToMove;
 
     // Use this for initialization
     void Start()
     {
-
+        isAbleToMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.parent.Translate(0, 0, speed * Time.deltaTime);
+        if(isAbleToMove)
+            transform.parent.Translate(0, 0, speed * Time.deltaTime);
 
         if (swipe)
             swipeControls();
