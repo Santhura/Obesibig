@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Time.timeSinceLevelLoad);
+
         if(isAbleToMove)
             transform.parent.Translate(0, 0, speed * Time.deltaTime);
 
