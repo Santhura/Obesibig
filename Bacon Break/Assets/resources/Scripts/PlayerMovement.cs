@@ -13,8 +13,8 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float touchSensivity = 1;
     public float speed = 0.3f; // character speed on Z axis
-
     public float switchSpeed = 3f; // character switch lane speed on X axis
     int step = 6; // total laneswitch step size
     float totalMovement; // used to store the total distance travelled on the x axis when switching lanes
@@ -90,20 +90,19 @@ public class PlayerMovement : MonoBehaviour
                 secondHitInfo = new RaycastHit();
                 bool secondHit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition/*theTouch.position*/), out secondHitInfo);
 
-                // distance of the first and second hit on the X axis from the player
-                float distance = hitInfo.transform.position.x - hitInfo.point.x;
-                float distance2 = secondHitInfo.transform.position.x - secondHitInfo.point.x;
+                // position of the first hit minus the second hit on the X axis from the player to calculate the distance
+                float distance3 = hitInfo.point.x - secondHitInfo.point.x;
 
                 // check if the position of the first point is before the player and the second one after the player to simulate swiping behaviour
                 // canMove is used to make sue that there arent any walls next to the player before moving there
                 // totalMovement checks if the player has left the laneswitching animation
-                if (distance < 1 && distance2 > 2.5f && canMove(-1) && totalMovement == step)
+                if (distance3 > touchSensivity && canMove(-1) && totalMovement == step)
                 {
                     totalMovement = 0;
                     switchDirection = -1;
                 }
 
-                else if (distance > -1 && distance2 < -2.5f && canMove(1) && totalMovement == step)
+                else if (distance3 < -touchSensivity && canMove(1) && totalMovement == step)
                 {
                     totalMovement = 0;
                     switchDirection = 1;
