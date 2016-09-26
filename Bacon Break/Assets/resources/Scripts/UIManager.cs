@@ -20,7 +20,8 @@ public class UIManager : MonoBehaviour {
     /// </summary>
     public void PlayButton()
     {
-        SceneManager.LoadScene(3);
+        PlayerMovement.isAbleToMove = true;
+        SceneManager.LoadScene(4);
     }
 
 

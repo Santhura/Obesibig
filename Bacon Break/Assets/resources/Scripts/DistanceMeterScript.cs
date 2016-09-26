@@ -31,7 +31,9 @@ public class DistanceMeterScript : MonoBehaviour
         //Aw yiss you have reached the end point so gudd.
         if (col.gameObject.tag == "Endpoint")
         {
-            Time.timeScale = 0f;
+            WinOrLoseScript.hasWon = true;
+            PlayerMovement.isAbleToMove = false;
+            //Time.timeScale = 0f;
         }
     }
 }

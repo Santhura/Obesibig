@@ -20,7 +20,7 @@ public class BaconScript : MonoBehaviour {
     {
 	}
 
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
         //Add bacon points and stamina when the player collides with the bacon object.
         //Destroy the bacon object.
