@@ -57,16 +57,19 @@ public class ObjectMarking : MonoBehaviour {
         //Rotate the bridge
         //DrawBridge closing.
         if (triggerBridgeA)
-        {
-            //increase fall down speed
-            speedx -= 0.05f;
-            gameObject.transform.Rotate(new Vector3(speedx, speedy, speedz));
-
+        { 
             //stop rotating
-            if (transform.localRotation.x >= 0.001)
+            if (transform.rotation.x > 0)
             {
+                //increase fall down speed
+                speedx += 0.05f;
+                gameObject.transform.Rotate(new Vector3(speedx, speedy, speedz));
+            }
+            else
+            {
+                Debug.Log("asdf");
                 triggerBridgeA = false;
-                speedx = -0.1f;
+                speedx = 0f;
             }
         }
 
