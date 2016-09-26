@@ -35,7 +35,6 @@ public class ObjectMarking : MonoBehaviour {
     void Update()
     {
     
-        Debug.Log("Tapped " + tapped);
         if (Input.GetMouseButtonUp(0) && confirmed)
         {
             tapped++;
@@ -43,10 +42,6 @@ public class ObjectMarking : MonoBehaviour {
             if (tapped == 3)
             {
                 //activate object
-                //bridgeOpenerScript.triggerBridgeA = true;
-
-                //bOS = childComponents.gameObject.GetComponent<BridgeOpener>();
-                //bOS.triggerBridgeA = true;
                 triggerBridgeA = true;
 
                 //reset tapped variable
@@ -55,10 +50,8 @@ public class ObjectMarking : MonoBehaviour {
         }
 
         //Rotate the bridge
-        //DrawBridge closing.
         if (triggerBridgeA)
-        { 
-            //stop rotating
+        {
             if (transform.rotation.x > 0)
             {
                 //increase fall down speed
@@ -67,7 +60,6 @@ public class ObjectMarking : MonoBehaviour {
             }
             else
             {
-                Debug.Log("asdf");
                 triggerBridgeA = false;
                 speedx = 0f;
             }
