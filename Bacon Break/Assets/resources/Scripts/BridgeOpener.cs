@@ -15,21 +15,7 @@ public class BridgeOpener : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //DrawBridge closing.
-        if (triggerBridgeA)
-        {
-            //increase fall down speed
-            speedx += -0.05f;
-            this.transform.Rotate(new Vector3(speedx, speedy, speedz));
-            Debug.Log(this.gameObject.transform.localRotation.x);
 
-            //stop rotating
-            if (this.transform.localRotation.x <= -0.001)
-            {  
-                triggerBridgeA = false;
-                speedx = -0.1f;
-            }
-        }
         
 	}
 }
