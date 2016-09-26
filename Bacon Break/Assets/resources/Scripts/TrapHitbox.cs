@@ -7,9 +7,10 @@ public class TrapHitbox : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("HIT");
             //Destroy(other.gameObject);
-            SceneManager.LoadScene(0);
+            //SceneManager.LoadScene(0);
+            WinOrLoseScript.isDead = true;
+            PlayerMovement.isAbleToMove = false;
         }
     }
 

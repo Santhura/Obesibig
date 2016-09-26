@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     int step = 6; // total laneswitch step size
     float totalMovement; // used to store the total distance travelled on the x axis when switching lanes
     int switchDirection; // direction in witch to switch lanes
+    public static bool isAbleToMove;
 
     public bool swipe = true; // enable swipe controls for mobile phone or disable them for debugging A/D keys
                               // note: make sure to dissable the swipe boolean before building the project
@@ -34,14 +35,14 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        totalMovement = step;
+        isAbleToMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // movement speed on Z axis
-        transform.parent.Translate(0, 0, speed * Time.deltaTime);
+        if(isAbleToMove)
+            transform.parent.Translate(0, 0, speed * Time.deltaTime);
 
         // switch control scheme for phone or pc debugging
         if (swipe)
@@ -76,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        
+
         // left mouse button release
         if (Input.GetMouseButtonUp(0))
         // release touchpad
@@ -101,12 +102,12 @@ public class PlayerMovement : MonoBehaviour
                     totalMovement = 0;
                     switchDirection = -1;
                 }
-                
+
                 else if (distance > -1 && distance2 < -2.5f && canMove(1) && totalMovement == step)
                 {
                     totalMovement = 0;
                     switchDirection = 1;
-                }
+            }
             }
             // release hold onto the player
             hold = false;
