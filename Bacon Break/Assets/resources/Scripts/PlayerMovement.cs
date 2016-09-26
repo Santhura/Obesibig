@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     bool hold = false; // check if the mouse is holding the player after a mouseclick
 
     RaycastHit hitInfo; // raycast target information containing the player
+    RaycastHit secondHitInfo;
 
     // Distance reference points for the swipe release
     Vector3 posRight;
@@ -84,26 +85,24 @@ public class PlayerMovement : MonoBehaviour
             // if the mousebutton hadnt released before after having clicked on the player
             if (hold)
             {
-                // reference points for swipe direction
-                posRight = new Vector3(15, transform.position.y, transform.position.z);
-                posLeft = new Vector3(-15, transform.position.y, transform.position.z);
+                // second raycast to check if the player has swiped over the player
+                secondHitInfo = new RaycastHit();
+                bool secondHit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition/*theTouch.position*/), out secondHitInfo);
 
-                // calculate distance between the touched/clicked position and the reference points
-                Vector3 temp1 = Camera.main.WorldToScreenPoint(posLeft);
-                float dist1 = Vector3.Distance(Input.mousePosition/*theTouch.position*/, temp1);
+                // distance of the first and second hit on the X axis from the player
+                float distance = hitInfo.transform.position.x - hitInfo.point.x;
+                float distance2 = secondHitInfo.transform.position.x - secondHitInfo.point.x;
 
-                Vector3 temp2 = Camera.main.WorldToScreenPoint(posRight);
-                float dist2 = Vector3.Distance(Input.mousePosition/*theTouch.position*/, temp2);
-
-                // check if the distance to one point is small enough to simulate a swipe movement and then move the player
+                // check if the position of the first point is before the player and the second one after the player to simulate swiping behaviour
                 // canMove is used to make sue that there arent any walls next to the player before moving there
-                if (dist1 < 250 && canMove(-1) && totalMovement == step)
+                // totalMovement checks if the player has left the laneswitching animation
+                if (distance < 1 && distance2 > 2.5f && canMove(-1) && totalMovement == step)
                 {
                     totalMovement = 0;
                     switchDirection = -1;
                 }
-                //transform.Translate(-step, 0, 0);
-                else if (dist2 < 250 && canMove(1) && totalMovement == step)
+                
+                else if (distance > -1 && distance2 < -2.5f && canMove(1) && totalMovement == step)
                 {
                     totalMovement = 0;
                     switchDirection = 1;
