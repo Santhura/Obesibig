@@ -12,4 +12,6 @@ public class MoveObjectScript : MonoBehaviour {
 	void Update () {
 	
 	}
+
+
 }
