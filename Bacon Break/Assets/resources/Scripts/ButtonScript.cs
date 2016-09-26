@@ -3,35 +3,56 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class ButtonScript : MonoBehaviour {
+public class ButtonScript : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    private static Button[] pauseButtons = new Button[2];
+
+    void Awake()
+    {
+        pauseButtons[0] = GameObject.Find("btn_resume").GetComponent<Button>();
+        pauseButtons[1] = GameObject.Find("Back To menu").GetComponent<Button>();
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+        InteractablePauseButtons(false);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public void PauseGame()
     {
         Time.timeScale = 0;
         GameObject.Find("pnl_score").GetComponent<ScoreScript>().ShowScore();
-        GameObject.Find("pnl_score").transform.FindChild("btn_resume").GetComponent<Button>().interactable = true;
+        InteractablePauseButtons(true);
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1;
         GameObject.Find("pnl_score").GetComponent<CanvasGroup>().alpha = 0f;
-        GameObject.Find("pnl_score").transform.FindChild("btn_resume").GetComponent<Button>().interactable = false;
+        InteractablePauseButtons(false);
     }
 
     public void ExitGame()
     {
         Time.timeScale = 1;
+        InteractablePauseButtons(false);
         SceneManager.LoadScene(0);
+    }
+
+    private void InteractablePauseButtons(bool isInteractable)
+    {
+        for (int i = 0; i < pauseButtons.Length; i++)
+        {
+            pauseButtons[i].interactable = isInteractable;
+        }
     }
 }
