@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     int switchDirection; // direction in witch to switch lanes
     public static bool isAbleToMove;
 
+    public bool controlWithButtons;
     public bool swipe = true; // enable swipe controls for mobile phone or disable them for debugging A/D keys
                               // note: make sure to dissable the swipe boolean before building the project
     bool hold = false; // check if the mouse is holding the player after a mouseclick
@@ -124,6 +125,23 @@ public class PlayerMovement : MonoBehaviour
             switchDirection = -1;
         }
         else if (Input.GetKeyDown("d") && canMove(1) && totalMovement == step)
+        {
+            totalMovement = 0;
+            switchDirection = 1;
+        }
+    }
+
+    public void MoveCharLeft()
+    {
+        if (controlWithButtons)
+        {
+            totalMovement = 0;
+            switchDirection = -1;
+        }
+    }
+    public void MoveCharRight()
+    {
+        if (controlWithButtons)
         {
             totalMovement = 0;
             switchDirection = 1;
