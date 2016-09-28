@@ -3,9 +3,10 @@ using System.Collections;
 
 public class LoadLevel : MonoBehaviour {
     public string thisLevel;
-    GameObject loadLevel;
+    private GameObject loadLevel;
+
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         thisLevel = PlayerPrefs.GetString("level");
         LoadMyLevel();
       
