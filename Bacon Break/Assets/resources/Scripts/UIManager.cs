@@ -21,9 +21,13 @@ public class UIManager : MonoBehaviour {
     public void PlayButton()
     {
         PlayerMovement.isAbleToMove = true;
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
 
     /// <summary>
     /// Quit the game
