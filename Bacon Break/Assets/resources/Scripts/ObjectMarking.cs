@@ -3,17 +3,13 @@ using System.Collections;
 
 public class ObjectMarking : MonoBehaviour {
 
-    private float speedx, speedy, speedz = 0;
-    private float angle = 00.0f;
+    private float speedx, speedz = 0;
     private bool triggerBridgeA = false;
 
     Renderer rend;
     bool confirmed, selected;
     private int tapped = 0;
 
-    private string selection;
-    BridgeOpener bridgeOpenerScript;
-    BridgeOpener bOS;
     Transform childComponents;
 
     // Use this for initialization
@@ -25,7 +21,6 @@ public class ObjectMarking : MonoBehaviour {
         //bridgeOpenerScript = childComponents.transform.GetComponent<BridgeOpener>();
 
         speedx = -0.1f;
-        selection = "Nothing Selected yet";
         confirmed = false;
         selected = false;
         rend = GetComponent<Renderer>();
@@ -56,7 +51,7 @@ public class ObjectMarking : MonoBehaviour {
             {
                 //increase fall down speed
                 speedx += 0.05f;
-                gameObject.transform.Rotate(new Vector3(speedx, speedy, speedz));
+                gameObject.transform.Rotate(new Vector3(speedx, 0.0f, speedz));
             }
             else
             {
@@ -96,21 +91,10 @@ public class ObjectMarking : MonoBehaviour {
         //confirms selecting by highlighting it yellow
         if (Input.GetMouseButtonDown(0) && !confirmed)
         {
-            //ConfirmSelection();
-            //tapped++;
-
             //highlight selected object with yellow
             rend.material.SetColor("_Color", Color.green);
 
-            // get name back what card it is.
-            selection = gameObject.name;
-            //print(selection);
-
             //do something with that the previouse step
-
-            
-            //reset selection variable.
-            selection = "Nothing selected";
         }
 
         if (Input.GetMouseButtonUp(0) && !confirmed)
