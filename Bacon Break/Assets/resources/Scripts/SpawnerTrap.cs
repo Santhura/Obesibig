@@ -9,7 +9,7 @@ public class SpawnerTrap : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Vector3 thisPos = this.transform.position;
+        //Vector3 thisPos = this.transform.position;
     }
 
     // Update is called once per frame
