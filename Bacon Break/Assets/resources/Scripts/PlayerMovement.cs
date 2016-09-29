@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         isAbleToMove = true;
-        transform.position = new Vector3(GameObject.Find("Start_Point").transform.position.x, 0, GameObject.Find("Start_Point").transform.position.z);
+        transform.position = new Vector3(GameObject.Find("Start_Point").transform.position.x, 3, GameObject.Find("Start_Point").transform.position.z);
     }
 
     // Update is called once per frame
