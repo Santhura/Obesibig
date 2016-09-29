@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         isAbleToMove = true;
+        transform.position = new Vector3(GameObject.Find("Start_Point").transform.position.x, 0, GameObject.Find("Start_Point").transform.position.z);
     }
 
     // Update is called once per frame
@@ -133,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
     bool canMove(float dir)
     {
         // raycast on the X axis in the direction which the player whishes to move towards
-        float dist = 10;
+        float dist = 5;
         Vector3 rayDir = new Vector3(dir, 0, 0);
         RaycastHit hit;
 
