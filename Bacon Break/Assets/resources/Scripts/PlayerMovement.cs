@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     public static bool isAbleToMove;
 
+    public bool controlWithButtons;
     public bool swipe = true; // enable swipe controls for mobile phone or disable them for debugging A/D keys
                               // note: make sure to dissable the swipe boolean before building the project
     bool hold = false; // check if the mouse is holding the player after a mouseclick
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         isAbleToMove = true;
+        transform.position = new Vector3(GameObject.Find("Start_Point").transform.position.x, 0, GameObject.Find("Start_Point").transform.position.z);
     }
 
     // Update is called once per frame
@@ -235,11 +237,28 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void MoveCharLeft()
+    {
+        if (controlWithButtons)
+        {
+            totalMovement = 0;
+            switchDirection = -1;
+        }
+    }
+    public void MoveCharRight()
+    {
+        if (controlWithButtons)
+        {
+            totalMovement = 0;
+            switchDirection = 1;
+        }
+    }
+
     // used to detect walls next to the player
     bool canMove(float dir)
     {
         // raycast on the X axis in the direction which the player whishes to move towards
-        float dist = 10;
+        float dist = 5;
         Vector3 rayDir = new Vector3(dir, 0, 0);
         RaycastHit hit;
 
