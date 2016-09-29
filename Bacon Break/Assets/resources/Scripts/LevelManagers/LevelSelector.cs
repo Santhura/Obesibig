@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
   make sure the level has a unique name otherwise this will probably glitch. the best way would be as follows: Level*thenumberofthelevel*. E.G: Level3 */
 public class LevelSelector : MonoBehaviour {
     public GameObject myLevel;
+    public string myScene;
 	// Use this for initialization
     public void SelectLevel()
     {
         PlayerPrefs.SetString("level", myLevel.name);
-        SceneManager.LoadScene("TutorialScene");
+        SceneManager.LoadScene(myScene);
     }
 }
