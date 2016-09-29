@@ -1,24 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/* To do:
-    - Make the player jump instead of teleport between lanes.
-
-    - Make the camera follow the player on the Y axis, except for the jumping animation.
-    - This is so that the player can fall to a lower or move to a higher lane on the Y axis.
-
-    - Make the camera center on the road, however do this smoothly, for example:
-        > when theres suddenly 5 instead of 2 lanes slowly center the camera on the new center of the lanes.
-*/
-
 public class PlayerMovement : MonoBehaviour
 {
-    public float touchSensivity = 1;
+    public float touchSensivity = 5f;
     public float speed = 0.3f; // character speed on Z axis
-    public float switchSpeed = 3f; // character switch lane speed on X axis
+
+    public float switchSpeed = 1f; // character switch lane speed on X axis
     int step = 6; // total laneswitch step size
-    float totalMovement; // used to store the total distance travelled on the x axis when switching lanes
-    int switchDirection; // direction in witch to switch lanes
+    float totalMovement = 0; // used to store the total distance travelled on the x axis when switching lanes
+    int switchDirection = 0; // direction in witch to switch lanes
+    float toBeMoved = 0;
+    int moveDelay = 10;
+    int oldDirection;
+
     public static bool isAbleToMove;
 
     public bool swipe = true; // enable swipe controls for mobile phone or disable them for debugging A/D keys
@@ -45,10 +40,10 @@ public class PlayerMovement : MonoBehaviour
             transform.parent.Translate(0, 0, speed * Time.deltaTime);
 
         // switch control scheme for phone or pc debugging
-        if (swipe)
+        //if (swipe)
             swipeControls();
-        else
-            simpleControls();
+        //else
+        //    simpleControls();
 
         // switch lane update
         smoothLaneTransition();
@@ -57,59 +52,140 @@ public class PlayerMovement : MonoBehaviour
     // used to swipe the players between lanes
     void swipeControls()
     {
-        //var theTouch = Input.GetTouch(0); // all curent touch information
-
-        // left mousebutton click
-        if (Input.GetMouseButtonDown(0))
-        // touch input
-        //if (theTouch.phase == TouchPhase.Began)
+        if (Input.touchCount > 0)
         {
-            // send ray from mouse position after mouseclick
-            hitInfo = new RaycastHit();
-            bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition/*theTouch.position*/), out hitInfo);
-            if (hit)
+            var theTouch = Input.GetTouch(0); // all curent touch information
+            moveDelay--;
+
+            // left mousebutton click
+            //if (Input.GetMouseButtonDown(0))
+            // touch input
+            switch (theTouch.phase)
             {
-                // check if you have clicked on the player
-                if (hitInfo.transform.gameObject.tag == "Player")
+                //if (theTouch.phase == TouchPhase.Began)
+                case TouchPhase.Began:
                 {
-                    // hold stays true as long as the mousebutton is held
-                    hold = true;
-                }
-            }
-        }
-
-        // left mouse button release
-        if (Input.GetMouseButtonUp(0))
-        // release touchpad
-        //if (theTouch.phase == TouchPhase.Ended)
-        {
-            // if the mousebutton hadnt released before after having clicked on the player
-            if (hold)
-            {
-                // second raycast to check if the player has swiped over the player
-                secondHitInfo = new RaycastHit();
-                bool secondHit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition/*theTouch.position*/), out secondHitInfo);
-
-                // position of the first hit minus the second hit on the X axis from the player to calculate the distance
-                float distance3 = hitInfo.point.x - secondHitInfo.point.x;
-
-                // check if the position of the first point is before the player and the second one after the player to simulate swiping behaviour
-                // canMove is used to make sue that there arent any walls next to the player before moving there
-                // totalMovement checks if the player has left the laneswitching animation
-                if (distance3 > touchSensivity && canMove(-1) && totalMovement == step)
-                {
-                    totalMovement = 0;
-                    switchDirection = -1;
+                    // send ray from mouse position after mouseclick
+                    hitInfo = new RaycastHit();
+                    bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(/*Input.mousePosition*/theTouch.position), out hitInfo);
+                    if (hit)
+                    {
+                        // check if you have clicked on the player
+                        if (hitInfo.transform.gameObject.tag == "Player")
+                        {
+                            // hold stays true as long as the mousebutton is held
+                            hold = true;
+                        }
+                    }
+                    break;
                 }
 
-                else if (distance3 < -touchSensivity && canMove(1) && totalMovement == step)
+                case TouchPhase.Moved:
                 {
-                    totalMovement = 0;
-                    switchDirection = 1;
+                    // if the mousebutton has not yet been released after clicking on the swipebox
+                    if (hold)
+                    {
+                        // second raycast to check if the player has swiped over the swipebox
+                        secondHitInfo = new RaycastHit();
+                        bool secondHit = Physics.Raycast(Camera.main.ScreenPointToRay(/*Input.mousePosition*/theTouch.position), out secondHitInfo);
+
+                        // position of the first hit minus the second hit on the X axis from the player in order to calculate the distance
+                        float distance3 = hitInfo.point.x - secondHitInfo.point.x;
+
+                        // check if the position of the first point is before the player and the second one after the player to simulate a swiping behaviour
+                        // canMove is used to make sure that there arent any walls next to the player before moving there
+                        if (distance3 > touchSensivity && canMove(-1))
+                        {
+                            if (switchDirection == 0)
+                            {
+                                toBeMoved = step;
+                                totalMovement = 0;
+                            }
+                            /*else if (switchDirection == -1)
+                            {
+                                //toBeMoved += step;
+                            }*/
+                            else if (switchDirection == 1)
+                            {
+                                totalMovement = totalMovement % step;
+                                totalMovement = step - totalMovement;
+                                toBeMoved = step;
+                            }
+
+                            switchDirection = -1;
+                            hold = false;
+                        }
+                        else if (distance3 < -touchSensivity && canMove(1))
+                        {
+                            if (switchDirection == 0)
+                            {
+                                toBeMoved = step;
+                                totalMovement = 0;
+                            }
+                            /*else if (switchDirection == 1)
+                            {
+                                //toBeMoved += step;
+                            }*/
+                            else if (switchDirection == -1)
+                            {
+                                totalMovement = totalMovement % step;
+                                totalMovement = step - totalMovement;
+                                toBeMoved = step;
+                            }
+
+                            switchDirection = 1;
+                            hold = false;
+                        }
+                    }
+                    else /*if (switchDirection != oldDir /*|| moveDelay <=0*/
+                    {
+                        // send ray from mouse position after mouseclick
+                        hitInfo = new RaycastHit();
+                        bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(/*Input.mousePosition*/theTouch.position), out hitInfo);
+                        if (hit)
+                        {
+                            // check if you have clicked on the player
+                            if (hitInfo.transform.gameObject.tag == "Player")
+                            {
+                                // hold stays true as long as the mousebutton is held
+                                hold = true;
+                            }
+                        }
+                    }
+                    break;
+                }
+
+                //case TouchPhase.Stationary:
+                //{
+                //    if (!hold)
+                //    {
+                //        // send ray from mouse position after mouseclick
+                //        hitInfo = new RaycastHit();
+                //        bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(/*Input.mousePosition*/theTouch.position), out hitInfo);
+                //        if (hit)
+                //        {
+                //            // check if you have clicked on the player
+                //            if (hitInfo.transform.gameObject.tag == "Player")
+                //            {
+                //                // hold stays true as long as the mousebutton is held
+                //                hold = true;
+                //            }
+                //        }
+                //    }
+                //    break;
+                //}
+
+                // left mouse button release
+                //if (Input.GetMouseButtonUp(0))
+                // release touchpad
+                //if (theTouch.phase == TouchPhase.Ended)
+                case TouchPhase.Ended:
+                {
+                    // release hold onto the player
+                    hold = false;
+                    break;
+                }
             }
-            }
-            // release hold onto the player
-            hold = false;
         }
     }
 
@@ -117,14 +193,44 @@ public class PlayerMovement : MonoBehaviour
     // note: ment for debugging purposes only, move with A and D keys
     void simpleControls()
     {
-        if (Input.GetKeyDown("a") && canMove(-1) && totalMovement == step)
+        if (Input.GetKeyDown("a") && canMove(-1))
         {
-            totalMovement = 0;
+            if (switchDirection == 0)
+            {
+                toBeMoved = step;
+                totalMovement = 0;
+            }
+            else if (switchDirection == -1)
+            {
+                toBeMoved += step;
+            }
+            else if (switchDirection == 1)
+            {
+                totalMovement = totalMovement % step;
+                totalMovement = step - totalMovement;
+                toBeMoved = step;
+            }
+
             switchDirection = -1;
         }
-        else if (Input.GetKeyDown("d") && canMove(1) && totalMovement == step)
+        else if (Input.GetKeyDown("d") && canMove(1))
         {
-            totalMovement = 0;
+            if (switchDirection == 0)
+            {
+                toBeMoved = step;
+                totalMovement = 0;
+            }
+            else if (switchDirection == 1)
+            {
+                toBeMoved += step;
+            }
+            else if (switchDirection == -1)
+            {
+                totalMovement = totalMovement % step;
+                totalMovement = step - totalMovement;
+                toBeMoved = step;
+            }
+
             switchDirection = 1;
         }
     }
@@ -150,7 +256,7 @@ public class PlayerMovement : MonoBehaviour
     void smoothLaneTransition()
     {
         // check if the total distance plus the speed doesnt exceed the maximum step size
-        if (totalMovement + switchSpeed < step)
+        if (totalMovement + switchSpeed < toBeMoved)
         {
             // translate the parent object to move at set speed in a direction
             transform.parent.Translate(switchDirection * switchSpeed, 0, 0);
@@ -158,12 +264,18 @@ public class PlayerMovement : MonoBehaviour
             totalMovement += switchSpeed;
         }
         // if it does exceed the step size but didnt exactly travelled the step size
-        else if (totalMovement != step)
+        else if (totalMovement != toBeMoved)
         {
             // translate the parent with the remaining distance 
-            transform.parent.Translate(switchDirection * (step - totalMovement), 0, 0);
+            transform.parent.Translate(switchDirection * (toBeMoved - totalMovement), 0, 0);
             // set total distance travelled to be the total step size
-            totalMovement = step;
+            totalMovement = 0;
+            switchDirection = 0;
+        }
+        else
+        {
+            totalMovement = 0;
+            switchDirection = 0;
         }
 
     }
