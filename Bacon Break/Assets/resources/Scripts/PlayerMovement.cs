@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float touchSensivity = 5f;
+    float touchSensivity = 1f;
     public float speed = 0.3f; // character speed on Z axis
 
     public float switchSpeed = 1f; // character switch lane speed on X axis
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         isAbleToMove = true;
-        transform.position = new Vector3(GameObject.Find("Start_Point").transform.position.x, 3, GameObject.Find("Start_Point").transform.position.z);
+        transform.position = new Vector3(GameObject.Find("Start_Point").transform.position.x, GameObject.Find("Start_Point").transform.position.y + 1, GameObject.Find("Start_Point").transform.position.z);
     }
 
     // Update is called once per frame
@@ -139,11 +139,11 @@ public class PlayerMovement : MonoBehaviour
                             hold = false;
                         }
                     }
-                    else /*if (switchDirection != oldDir /*|| moveDelay <=0*/
+                    /*else /*if (switchDirection != oldDir /*|| moveDelay <=0
                     {
                         // send ray from mouse position after mouseclick
                         hitInfo = new RaycastHit();
-                        bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(/*Input.mousePosition*/theTouch.position), out hitInfo);
+                        bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(/*Input.mousePositiontheTouch.position), out hitInfo);
                         if (hit)
                         {
                             // check if you have clicked on the player
@@ -153,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
                                 hold = true;
                             }
                         }
-                    }
+                    }*/
                     break;
                 }
 
