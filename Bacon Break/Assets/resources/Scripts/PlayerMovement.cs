@@ -14,7 +14,8 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     public float touchSensivity = 1;
-    public float speed = 0.3f; // character speed on Z axis
+    float speed = 0.0f; // character speed on Z axis
+    public float baseSpeed = 15f;
     public float switchSpeed = 3f; // character switch lane speed on X axis
     int step = 6; // total laneswitch step size
     float totalMovement; // used to store the total distance travelled on the x axis when switching lanes
@@ -29,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
     RaycastHit hitInfo; // raycast target information containing the player
     RaycastHit secondHitInfo;
 
+    public GameObject theStamina;
+    public StaminaScript stamineScript;
+
     // Distance reference points for the swipe release
     Vector3 posRight;
     Vector3 posLeft;
@@ -36,13 +40,17 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        GameObject theStamina = GameObject.Find("bar_stamina");
+        StaminaScript staminaScript = theStamina.GetComponent<StaminaScript>();
+        
         isAbleToMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isAbleToMove)
+        if (isAbleToMove)
+            speed = baseSpeed + baseSpeed * stamineScript.estimatedSpeed;
             transform.parent.Translate(0, 0, speed * Time.deltaTime);
 
         // switch control scheme for phone or pc debugging
