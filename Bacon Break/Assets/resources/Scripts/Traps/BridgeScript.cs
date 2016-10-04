@@ -4,7 +4,13 @@ using System.Collections;
 public class ObjectMarking : MonoBehaviour {
 
     private float speedx, speedz, rotated = 0;
+    private float speed = 1.0f;
     private bool triggerBridgeA = false;
+    private float lerpTime = 1.0f;
+    private float currentLerpTime = 0f;
+
+    private Vector3 currentRotation = new Vector3(225, 0,180);
+    private Vector3 destinationRotation = new Vector3(-40, 0, 180);
 
     Renderer rend;
     bool confirmed, selected;
@@ -20,26 +26,23 @@ public class ObjectMarking : MonoBehaviour {
         selected = false;
         rend = GetComponent<Renderer>();
 
-        gameObject.transform.Rotate(new Vector3(-45.0f,transform.rotation.y,transform.rotation.z));
+        //Sets the object rotation to its starting angle
+        transform.eulerAngles = currentRotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        rotated = transform.rotation.x;
-        Debug.Log("the rotation of the bridge is now at " + rotated);
+        currentLerpTime += Time.deltaTime;
 
-        if (Input.GetMouseButtonUp(0) && confirmed)
+        if (Input.GetMouseButtonUp(0))
         {
             tapped++;
-            Debug.Log(tapped);
+
             if (tapped == 3)
             {
                 //activate object
                 triggerBridgeA = true;
-
-                //reset tapped variable
-                tapped = 0;  
             }
         }
 
@@ -48,17 +51,14 @@ public class ObjectMarking : MonoBehaviour {
         {
             if (tapped == 3)
             {
-                //increase fall down speed
-                speedx += 0.05f;
-                gameObject.transform.Rotate(new Vector3(-45.0f * Time.deltaTime, 0.0f, speedz));
-                Debug.Log("rotated the bridge");
+                currentRotation = Vector3.Lerp(currentRotation, destinationRotation, Time.deltaTime * speed);
+
+                transform.eulerAngles = currentRotation;
             }
                 else
                 {
-                    //Debug.Log("turned off bridge rotating");
-                    //triggerBridgeA = false;
-                    speedx = 0f;
-                }
+                triggerBridgeA = false;
+            }
         }
 
     }
