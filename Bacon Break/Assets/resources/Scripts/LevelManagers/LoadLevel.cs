@@ -14,6 +14,22 @@ public class LoadLevel : MonoBehaviour {
     void LoadMyLevel()
     {
         loadLevel = (GameObject)Instantiate(Resources.Load("Prefabs/Levels/" + thisLevel));
+
+        //Change main camera position and rotation based on the given settings.------------------------
+        GameObject mainCamera = GameObject.Find("Main Camera");
+
+        if (OptionScript.IsCameraOrthographic())
+        {
+            mainCamera.GetComponent<Camera>().orthographic = true;
+        }
+        else
+        {
+            mainCamera.GetComponent<Camera>().orthographic = false;
+        }
+
+        mainCamera.transform.localPosition = OptionScript.GetCameraPosition();
+        mainCamera.transform.localRotation = Quaternion.Euler(OptionScript.GetCameraRotation());
+        //Change main camera position and rotation based on the given settings.------------------------
     }
 	
 }
