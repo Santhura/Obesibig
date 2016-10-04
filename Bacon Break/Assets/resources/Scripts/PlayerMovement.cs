@@ -6,10 +6,10 @@ public class PlayerMovement : MonoBehaviour
 
     public float touchSensivity = 1;
     float speed = 0.0f; // character speed on Z axis
-    public float baseSpeed = 15f;
+    public float baseSpeed = 20f;
     public float switchSpeed = 3f; // character switch lane speed on X axis
 
-    int step = 6; // total laneswitch step size
+    int step = 9; // total laneswitch step size
     float totalMovement = 0; // used to store the total distance travelled on the x axis when switching lanes
     int switchDirection = 0; // direction in witch to switch lanes
     float toBeMoved = 0;
