@@ -7,7 +7,6 @@ public class OptionScript : MonoBehaviour
     public Dropdown myDropdown;
 
     //Private (static) variables
-    private static int c_index;
     private static Vector3 c_position, c_rotation;
     private static bool isOrthographic;
 
@@ -46,8 +45,6 @@ public class OptionScript : MonoBehaviour
     //Setter: Changes camera settings based on the pressed dropdown item.
     public void SetCameraSetting(int index)
     {
-        c_index = index;
-
         switch (index)
         {
             /* Orthographic camera:
@@ -70,7 +67,7 @@ public class OptionScript : MonoBehaviour
              * - Gives a better view of the level in general
              */
             case 2:
-                c_position = new Vector3(1.95f, 17.0f, -22.5f);
+                c_position = new Vector3(0.0f, 17.0f, -22.5f);
                 c_rotation = new Vector3(32.74f, 0, 0);
                 isOrthographic = false;
                 break;
