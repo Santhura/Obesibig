@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ObjectMarking : MonoBehaviour {
 
-    private float speedx, speedz = 0;
+    private float speedx, speedz, rotated = 0;
     private bool triggerBridgeA = false;
 
     Renderer rend;
@@ -15,25 +15,24 @@ public class ObjectMarking : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        //GameObject bridgeObject = GameObject.Find("RotatorBridge");
-        
-        //childComponents = gameObject.GetComponentInParent<Transform>();
-        //bridgeOpenerScript = childComponents.transform.GetComponent<BridgeOpener>();
-
         speedx = -0.1f;
         confirmed = false;
         selected = false;
         rend = GetComponent<Renderer>();
+
+        gameObject.transform.Rotate(new Vector3(-45.0f,transform.rotation.y,transform.rotation.z));
     }
 
     // Update is called once per frame
     void Update()
     {
-    
+        rotated = transform.rotation.x;
+        Debug.Log("the rotation of the bridge is now at " + rotated);
+
         if (Input.GetMouseButtonUp(0) && confirmed)
         {
             tapped++;
-
+            Debug.Log(tapped);
             if (tapped == 3)
             {
                 //activate object
@@ -47,36 +46,22 @@ public class ObjectMarking : MonoBehaviour {
         //Rotate the bridge
         if (triggerBridgeA)
         {
-            if (transform.rotation.x > 0)
+            if (tapped == 3)
             {
                 //increase fall down speed
                 speedx += 0.05f;
-                gameObject.transform.Rotate(new Vector3(speedx, 0.0f, speedz));
+                gameObject.transform.Rotate(new Vector3(-45.0f * Time.deltaTime, 0.0f, speedz));
+                Debug.Log("rotated the bridge");
             }
-            else
-            {
-                triggerBridgeA = false;
-                speedx = 0f;
-            }
+                else
+                {
+                    //Debug.Log("turned off bridge rotating");
+                    //triggerBridgeA = false;
+                    speedx = 0f;
+                }
         }
 
     }
-
-    /*
-    void OnMouseDown()
-    {
-        tapped++;
-        if (tapped > 3)
-            tapped = 0;
-        else if (tapped == 3)
-        {
-            //open bridge here or set this.bridgeOpenerScript.triggerBridgeA = true;
-            //this.bridgeOpenerScript.triggerBridgeA = true;
-
-            bOS = childComponents.gameObject.GetComponent<BridgeOpener>();
-            bOS.triggerBridgeA = true;
-        }
-    }*/
 
     void OnMouseEnter()
     {
