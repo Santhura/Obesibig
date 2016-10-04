@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ObjectMarking : MonoBehaviour {
+public class BridgeScript : MonoBehaviour {
 
     private float speedx, speedz, rotated = 0;
     private float speed = 1.0f;
