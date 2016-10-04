@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MoveObjectScript : MonoBehaviour {
 
-    float speed = .3f;
+    float speed = .5f;
     private RaycastHit hit;
 	// Use this for initialization
 	void Start () {
