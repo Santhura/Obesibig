@@ -28,6 +28,6 @@ public class StaminaScript : MonoBehaviour {
     {
         //Increase fillAmount to simulate UI stamina gain.
         //(By collecting bacon objects, see "BaconScript").
-        gameObject.GetComponent<Image>().fillAmount += 0.25f;
+        gameObject.GetComponent<Image>().fillAmount += 0.20f;
     }
 }
