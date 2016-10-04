@@ -55,22 +55,29 @@ public class OptionScript : MonoBehaviour
                 c_rotation = new Vector3(43.4f, -27.28f, 4.6f);
                 isOrthographic = true;
                 break;
-            /* Orthographic camera:
+            /* Perspective camera:
+             * - Sort of like the orthographic camera, but then in perspective 
+             * so the player is able to look further ahead.
+             * ... Why did we even choose orthographic in the first place?
              */
             case 1:
-                c_position = new Vector3(35.0f, 40.0f, -18.0f);
-                c_rotation = new Vector3(43.4f, -169.29f, 4.6f);
-                isOrthographic = true;
+                c_position = new Vector3(16.2f, 24.9f, -16.3f);
+                c_rotation = new Vector3(41.4f, -33.9f, 6.0f);
+                isOrthographic = false;
                 break;
             /* Perspective camera:
              * - Seen from the perspective of the pig (sort of);
              * - Gives a better view of the level in general
+             * - You are able to give a good perception of speed (the camera could move slightly backwards)
              */
             case 2:
                 c_position = new Vector3(0.0f, 17.0f, -22.5f);
                 c_rotation = new Vector3(32.74f, 0, 0);
                 isOrthographic = false;
                 break;
+            /*
+             * FEEL FREE TO ADD MORE OPTIONS
+             */
             default:
                 break;
         }
