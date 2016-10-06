@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float touchSensivity = 1;
     float speed = 0.0f; // character speed on Z axis
-    public float baseSpeed = 20f;
+    public float baseSpeed = 10f;
+    public float bonusSpeed = 30.0f;
     public float switchSpeed = 3f; // character switch lane speed on X axis
 
     int step = 9; // total laneswitch step size
@@ -48,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isAbleToMove)
         {
-            speed = baseSpeed + baseSpeed * staminaScript.estimatedSpeed;
+            speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
             transform.parent.Translate(0, 0, speed * Time.deltaTime);
         }
 

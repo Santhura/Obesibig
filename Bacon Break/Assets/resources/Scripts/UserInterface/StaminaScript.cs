@@ -7,7 +7,7 @@ public class StaminaScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        gameObject.GetComponent<Image>().fillAmount /= 1.75f;
+        gameObject.GetComponent<Image>().fillAmount /= 2.5f;
     }
 	
 	// Update is called once per frame
@@ -21,13 +21,13 @@ public class StaminaScript : MonoBehaviour {
     private void DrainStamina()
     {
         //Decrease fillAmount to simulate UI stamina drain.
-        gameObject.GetComponent<Image>().fillAmount -= Time.deltaTime /20;
+        gameObject.GetComponent<Image>().fillAmount -= Time.deltaTime /30;
     }
 
     public void AddStamina()
     {
         //Increase fillAmount to simulate UI stamina gain.
         //(By collecting bacon objects, see "BaconScript").
-        gameObject.GetComponent<Image>().fillAmount += 0.20f;
+        gameObject.GetComponent<Image>().fillAmount += 0.22f;
     }
 }
