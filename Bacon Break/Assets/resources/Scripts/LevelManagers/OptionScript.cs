@@ -12,7 +12,7 @@ public class OptionScript : MonoBehaviour
 
     void Start()
     {
-        //Default camera setting.
+        //Default camera setting. 
         c_position = new Vector3(35.0f, 40.0f, -18.0f);
         c_rotation = new Vector3(35.0f, -35.0f, 6.0f);
         isOrthographic = true;
