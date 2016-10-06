@@ -28,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
     RaycastHit hitInfo; // raycast target information containing the player
     RaycastHit secondHitInfo;
 
-    public GameObject theStamina;
-    public StaminaScript staminaScript;
+    GameObject theStamina;
+    StaminaScript staminaScript;
 
     // Distance reference points for the swipe release
     Vector3 posRight;
@@ -75,12 +75,11 @@ public class PlayerMovement : MonoBehaviour
             // touch input
             switch (theTouch.phase)
             {
-                //if (theTouch.phase == TouchPhase.Began)
                 case TouchPhase.Began:
                 {
                     // send ray from mouse position after mouseclick
                     hitInfo = new RaycastHit();
-                    bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(/*Input.mousePosition*/theTouch.position), out hitInfo);
+                    bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out hitInfo);
                     if (hit)
                     {
                         // check if you have clicked on the player
