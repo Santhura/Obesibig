@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour {
     public void PlayButton()
     {
         PlayerMovement.isAbleToMove = true;
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(1);
     }
 
     public void ReturnToMainMenu()
