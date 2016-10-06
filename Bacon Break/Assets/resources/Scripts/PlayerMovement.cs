@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     int moveDelay = 10;
     int oldDirection;
 
+    public int deathHeight = -30;
+
     public LayerMask mask;
 
     public static bool isAbleToMove;
@@ -52,6 +54,12 @@ public class PlayerMovement : MonoBehaviour
         {
             speed = baseSpeed + baseSpeed * staminaScript.estimatedSpeed;
             transform.Translate(0, 0, speed * Time.deltaTime);
+
+            if (transform.position.y < deathHeight)
+            {
+                WinOrLoseScript.isDead = true;
+                isAbleToMove = false;
+            }
         }
 
         // switch control scheme for phone or pc debugging
