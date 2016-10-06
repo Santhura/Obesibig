@@ -6,10 +6,10 @@ M = moderate level
 H = hard level
 
 Make sure to use the above named letters to sort the levels as follows:
-E.G.: ""difficulty"-"levelname"-"levelnumber"" -> "T-firstlevelwithsawblades-2"
+E.G.: ""difficulty"-"levelnumber"-"levelname"" ->E.G: "T-2-firstlevelwithsawblades"
 
 in ths case, the number is simply to tell the user which level goes before another level.
-right now numbering is not important, as it can be discussed which levels should go first.
+right now numbering is not that important, as it can be discussed which levels should go first, but it is convenient for navigating through the prefabs/levels folder.
 
 
 CREATING:

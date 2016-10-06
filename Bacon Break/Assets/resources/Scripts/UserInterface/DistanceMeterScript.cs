@@ -33,7 +33,7 @@ public class DistanceMeterScript : MonoBehaviour
         {
             WinOrLoseScript.hasWon = true;
             PlayerMovement.isAbleToMove = false;
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
         }
     }
 }
