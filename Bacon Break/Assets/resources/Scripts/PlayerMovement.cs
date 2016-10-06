@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     // send ray from mouse position after mouseclick
                     hitInfo = new RaycastHit();
-                    bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out hitInfo);
+                    bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out hitInfo, mask.value);
                     if (hit)
                     {
                         // check if you have clicked on the player
