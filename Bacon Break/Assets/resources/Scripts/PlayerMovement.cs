@@ -3,13 +3,11 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
+    float touchSensivity = 1f;
+    public float speed = 0.3f; // character speed on Z axis
 
-    public float touchSensivity = 1;
-    float speed = 0.0f; // character speed on Z axis
-    public float baseSpeed = 20f;
-    public float switchSpeed = 3f; // character switch lane speed on X axis
-
-    int step = 9; // total laneswitch step size
+    public float switchSpeed = 1f; // character switch lane speed on X axis
+    int step = 6; // total laneswitch step size
     float totalMovement = 0; // used to store the total distance travelled on the x axis when switching lanes
     int switchDirection = 0; // direction in witch to switch lanes
     float toBeMoved = 0;
@@ -26,9 +24,6 @@ public class PlayerMovement : MonoBehaviour
     RaycastHit hitInfo; // raycast target information containing the player
     RaycastHit secondHitInfo;
 
-    public GameObject theStamina;
-    public StaminaScript staminaScript;
-
     // Distance reference points for the swipe release
     Vector3 posRight;
     Vector3 posLeft;
@@ -36,9 +31,6 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        GameObject theStamina = GameObject.Find("bar_stamina");
-        staminaScript = theStamina.GetComponent<StaminaScript>();
-        
         isAbleToMove = true;
         transform.position = new Vector3(GameObject.Find("Start_Point").transform.position.x, GameObject.Find("Start_Point").transform.position.y + 1, GameObject.Find("Start_Point").transform.position.z);
     }
@@ -46,17 +38,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAbleToMove)
-        {
-            speed = baseSpeed + baseSpeed * staminaScript.estimatedSpeed;
+        if(isAbleToMove)
             transform.parent.Translate(0, 0, speed * Time.deltaTime);
-        }
 
         // switch control scheme for phone or pc debugging
-        if (swipe)
+        //if (swipe)
             swipeControls();
-        else
-            simpleControls();
+        //else
+        //    simpleControls();
 
         // switch lane update
         smoothLaneTransition();
