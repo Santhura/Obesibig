@@ -6,10 +6,16 @@ using UnityEngine.SceneManagement;
 public class LevelSelector : MonoBehaviour {
     public GameObject myLevel;
     public string myScene;
-	// Use this for initialization
+	
+    // Use this for initialization
     public void SelectLevel()
     {
         PlayerPrefs.SetString("level", myLevel.name);
         SceneManager.LoadScene(myScene);
+    }
+
+    public void SetLevelObject(GameObject level)
+    {
+        myLevel = level;
     }
 }
