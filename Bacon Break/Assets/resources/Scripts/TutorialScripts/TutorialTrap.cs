@@ -2,26 +2,12 @@
 using System.Collections;
 
 public class TutorialTrap : MonoBehaviour {
-    public GameObject tutorialObject;
-    public bool unleashThis;
-    public bool unleashNow;
+    public GameObject destroyThis;
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Tutorial")
         {
-            if (unleashThis)
-                unleashNow = true;
-
-            else
-            {
-                Destroy(tutorialObject);
-            }
+            Destroy(destroyThis);
         }
-    }
-
-    void Update()
-    {
-        if (unleashNow)
-            tutorialObject.transform.Translate(Vector3.back * Time.deltaTime * 15, Space.World);
     }
 }
