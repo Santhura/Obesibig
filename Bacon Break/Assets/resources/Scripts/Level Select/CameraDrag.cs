@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraDrag : MonoBehaviour
 {
     public float speed = 0.1f;
+    public GameObject worldBB;
 
     //For mouse
     public float dragSpeed = 2;
@@ -19,7 +20,7 @@ public class CameraDrag : MonoBehaviour
     void Update()
     {
         //Drag camera with touch
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        /*if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             // Get movement of the finger since last frame
             Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
@@ -32,10 +33,10 @@ public class CameraDrag : MonoBehaviour
                 Mathf.Clamp(transform.position.x, 5, 10),
                 transform.position.y,
                 Mathf.Clamp(transform.position.y, -10, 0));
-        }
+        }*/
 
         //Drag camera with mouse (for debug purposes)
-        /*if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             dragOrigin = Input.mousePosition;
             return;
@@ -49,9 +50,9 @@ public class CameraDrag : MonoBehaviour
         transform.Translate(move, Space.World);
 
         transform.position = new Vector3(
-           Mathf.Clamp(transform.position.x, 5, 10),
-           transform.position.y,
-           Mathf.Clamp(transform.position.y, -10, 0));
-         * */
+                Mathf.Clamp(transform.position.x, 10, 10),
+                transform.position.y,
+                Mathf.Clamp(transform.position.y, -10, 0));
+
     }
 }
