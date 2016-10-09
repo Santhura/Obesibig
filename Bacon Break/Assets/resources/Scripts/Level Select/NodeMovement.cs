@@ -28,7 +28,7 @@ public class NodeMovement : MonoBehaviour
         startIndex = 0;
 
         //Activate level information panel of the current node the player is standing on
-        levelNode = GameObject.Find("Node 0");
+        levelNode = GameObject.Find("Level 0");
         levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
         levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
         gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab);
@@ -47,12 +47,12 @@ public class NodeMovement : MonoBehaviour
             Vector3[] path = new Vector3[50];
             path = GetPath(startIndex, endIndex);
 
-            levelNode = GameObject.Find("Node " + (endIndex / 2));
+            levelNode = GameObject.Find("Level " + (endIndex / 2));
             levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
             levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
 
-            iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 10, "easetype", iTween.EaseType.easeInOutSine));
             isMoving = true;
+            iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.linear));
         }
 
         //Move the player to the requested location.
@@ -81,7 +81,7 @@ public class NodeMovement : MonoBehaviour
                         path = GetPath(startIndex, endIndex);
 
                         //Move the object to the specified location using the sub-path.
-                        iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 10, "easetype", iTween.EaseType.easeInOutSine));
+                        iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "easetype", iTween.EaseType.easeInOutSine));
 
                         //Character is on the move.
                         isMoving = true;
