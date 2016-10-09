@@ -40,20 +40,20 @@ public class NodeMovement : MonoBehaviour
     void Update()
     {
         //FOR COMPUTER DEBUG PURPOSES, DO NOT REMOVE.
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            endIndex = 2;
+        /* if (Input.GetKeyUp(KeyCode.Space))
+         {
+             endIndex = 2;
 
-            Vector3[] path = new Vector3[50];
-            path = GetPath(startIndex, endIndex);
+             Vector3[] path = new Vector3[50];
+             path = GetPath(startIndex, endIndex);
 
-            levelNode = GameObject.Find("Level " + (endIndex / 2));
-            levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
-            levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
+             levelNode = GameObject.Find("Level " + (endIndex / 2));
+             levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
+             levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
 
-            isMoving = true;
-            iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.linear));
-        }
+             isMoving = true;
+             iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.linear));
+         }*/
 
         //Move the player to the requested location.
         for (int i = 0; i < Input.touchCount; ++i)
@@ -81,7 +81,7 @@ public class NodeMovement : MonoBehaviour
                         path = GetPath(startIndex, endIndex);
 
                         //Move the object to the specified location using the sub-path.
-                        iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "easetype", iTween.EaseType.easeInOutSine));
+                        iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.easeInOutSine));
 
                         //Character is on the move.
                         isMoving = true;
