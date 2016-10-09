@@ -12,11 +12,12 @@ public class DistanceMeterScript : MonoBehaviour
 	// Use this for initialization
 	void Awake ()
     {
+        
+	}
+	void Start() {
         //Get start and end point and initialize the max slider value.
         startPoint = GameObject.Find("Start_Point");
         endPoint = GameObject.Find("End_Point");
-	}
-	void Start() {
         sldr_distance.maxValue = Vector3.Distance(startPoint.transform.position, endPoint.transform.position) - 2;
 
     }

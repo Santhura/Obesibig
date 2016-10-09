@@ -9,9 +9,12 @@ public class LevelSelector : MonoBehaviour {
 	// Use this for initialization
     public void SelectLevel()
     {
-        UIManager.SwitchScene("TutorialScene");
-        UIManager.SwitchLevels(levelName.name);
-     //   PlayerPrefs.SetString("level", myLevel.name);
-      //  SceneManager.LoadScene(myScene);
+        Time.timeScale = 1;
+        WinOrLoseScript.isDead = false;
+        UIManager.SwitchScene("TutorialScene", levelName.name);
+       // UIManager.SwitchLevels(levelName.name);
+
+        //   PlayerPrefs.SetString("level", myLevel.name);
+        //  SceneManager.LoadScene(myScene);
     }
 }

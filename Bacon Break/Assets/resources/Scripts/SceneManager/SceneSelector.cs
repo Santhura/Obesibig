@@ -5,6 +5,7 @@ public class SceneSelector : MonoBehaviour {
 
     // Load the scene that has to be loaded
     public void SwitchScene(string sceneName) {
-        UIManager.SwitchScene(sceneName);
+        UIManager.SwitchScene(sceneName, null);
+      
     }
 }

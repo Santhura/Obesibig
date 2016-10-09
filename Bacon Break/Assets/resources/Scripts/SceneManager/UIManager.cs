@@ -16,39 +16,24 @@ public class UIManager : MonoBehaviour {
     private delegate void UpdateDelegate();
     private UpdateDelegate[] updateDelegates;
 
+    private static GameObject level;
+    public static string currentLevelName;                 
+
 
     #region public static methods
     /// <summary>
     /// Changes scenes
     /// </summary>
     /// <param name="nextSceneName"></param>
-    public static void SwitchScene(string nextSceneName) {
+    public static void SwitchScene(string nextSceneName, string levelName) {
         if(uiManager != null) {
-            if(uiManager.currentSceneName != nextSceneName) {
+            if (uiManager.currentSceneName != nextSceneName) {
                 uiManager.nextSceneName = nextSceneName;
+                if (levelName != null) {
+                    currentLevelName = levelName;
+                }
             }
         }
-    }
-
-    /// <summary>
-    /// switch between levels that are selected.
-    /// </summary>
-    /// <param name="levelName"></param>
-    public static void SwitchLevels(string levelName) {
-        if (levelName != null) {
-            Instantiate(Resources.Load("Prefabs/Levels/" + levelName));
-        }
-        //Change main camera position and rotation based on the given settings
-        GameObject mainCamera = GameObject.Find("Main Camera");
-
-        if (OptionScript.IsCameraOrthographic()) {
-            mainCamera.GetComponent<Camera>().orthographic = true;
-        } else {
-            mainCamera.GetComponent<Camera>().orthographic = false;
-        }
-
-        mainCamera.transform.localPosition = OptionScript.GetCameraPosition();
-        mainCamera.transform.localRotation = Quaternion.Euler(OptionScript.GetCameraRotation());
     }
     #endregion
 
@@ -144,11 +129,11 @@ public class UIManager : MonoBehaviour {
     //handle anything that needs to happen immediately after loading
     private void UpdateScenePostload() {
         currentSceneName = nextSceneName;
-
         sceneState = SceneState.Ready;
     }
     // handle anything that needs to happen immediately before running
     private void UpdateSceneReady() {
+        System.GC.Collect();
         sceneState = SceneState.Run;
     }
 
@@ -176,7 +161,7 @@ public class UIManager : MonoBehaviour {
 
     public void ReturnToMainMenu()
     {
-        SwitchScene("Main Menu");
+        SwitchScene("Main Menu", null);
     }
 
     /// <summary>
