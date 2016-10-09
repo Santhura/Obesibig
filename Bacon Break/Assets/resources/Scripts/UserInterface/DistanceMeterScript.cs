@@ -10,16 +10,18 @@ public class DistanceMeterScript : MonoBehaviour
     private float distanceTraveled;
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
     {
         //Get start and end point and initialize the max slider value.
         startPoint = GameObject.Find("Start_Point");
         endPoint = GameObject.Find("End_Point");
-        sldr_distance.maxValue = Vector3.Distance(startPoint.transform.position, endPoint.transform.position) - 2;
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () 
+	void Start() {
+        sldr_distance.maxValue = Vector3.Distance(startPoint.transform.position, endPoint.transform.position) - 2;
+
+    }
+    // Update is called once per frame
+    void FixedUpdate () 
     {
         //Update slider value.
         distanceTraveled = Vector3.Distance(transform.position, startPoint.transform.position);
