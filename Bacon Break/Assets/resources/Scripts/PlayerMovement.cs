@@ -17,6 +17,10 @@ public class PlayerMovement : MonoBehaviour
     int moveDelay = 10;
     int oldDirection;
 
+    public int deathHeight = -30;
+
+    public LayerMask mask;
+
     public static bool isAbleToMove;
 
     public bool controlWithButtons;
@@ -27,8 +31,8 @@ public class PlayerMovement : MonoBehaviour
     RaycastHit hitInfo; // raycast target information containing the player
     RaycastHit secondHitInfo;
 
-    public GameObject theStamina;
-    public StaminaScript staminaScript;
+    GameObject theStamina;
+    StaminaScript staminaScript;
 
     // Distance reference points for the swipe release
     Vector3 posRight;
@@ -49,6 +53,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isAbleToMove)
         {
+            speed = baseSpeed + baseSpeed * staminaScript.estimatedSpeed;
+            transform.Translate(0, 0, speed * Time.deltaTime);
+
+            if (transform.position.y < deathHeight)
+            {
+                WinOrLoseScript.isDead = true;
+                isAbleToMove = false;
+            }
             speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
             transform.parent.Translate(0, 0, speed * Time.deltaTime);
         }
@@ -71,17 +83,14 @@ public class PlayerMovement : MonoBehaviour
             var theTouch = Input.GetTouch(0); // all curent touch information
             moveDelay--;
 
-            // left mousebutton click
-            //if (Input.GetMouseButtonDown(0))
             // touch input
             switch (theTouch.phase)
             {
-                //if (theTouch.phase == TouchPhase.Began)
                 case TouchPhase.Began:
                 {
                     // send ray from mouse position after mouseclick
                     hitInfo = new RaycastHit();
-                    bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(/*Input.mousePosition*/theTouch.position), out hitInfo);
+                    bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out hitInfo, mask.value);
                     if (hit)
                     {
                         // check if you have clicked on the player
@@ -101,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
                     {
                         // second raycast to check if the player has swiped over the swipebox
                         secondHitInfo = new RaycastHit();
-                        bool secondHit = Physics.Raycast(Camera.main.ScreenPointToRay(/*Input.mousePosition*/theTouch.position), out secondHitInfo);
+                        bool secondHit = Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out secondHitInfo, mask.value);
 
                         // position of the first hit minus the second hit on the X axis from the player in order to calculate the distance
                         float distance3 = hitInfo.point.x - secondHitInfo.point.x;
@@ -115,10 +124,7 @@ public class PlayerMovement : MonoBehaviour
                                 toBeMoved = step;
                                 totalMovement = 0;
                             }
-                            /*else if (switchDirection == -1)
-                            {
-                                //toBeMoved += step;
-                            }*/
+
                             else if (switchDirection == 1)
                             {
                                 totalMovement = totalMovement % step;
@@ -136,10 +142,7 @@ public class PlayerMovement : MonoBehaviour
                                 toBeMoved = step;
                                 totalMovement = 0;
                             }
-                            /*else if (switchDirection == 1)
-                            {
-                                //toBeMoved += step;
-                            }*/
+
                             else if (switchDirection == -1)
                             {
                                 totalMovement = totalMovement % step;
@@ -151,48 +154,9 @@ public class PlayerMovement : MonoBehaviour
                             hold = false;
                         }
                     }
-                    /*else /*if (switchDirection != oldDir /*|| moveDelay <=0
-                    {
-                        // send ray from mouse position after mouseclick
-                        hitInfo = new RaycastHit();
-                        bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(/*Input.mousePositiontheTouch.position), out hitInfo);
-                        if (hit)
-                        {
-                            // check if you have clicked on the player
-                            if (hitInfo.transform.gameObject.tag == "Player")
-                            {
-                                // hold stays true as long as the mousebutton is held
-                                hold = true;
-                            }
-                        }
-                    }*/
                     break;
                 }
 
-                //case TouchPhase.Stationary:
-                //{
-                //    if (!hold)
-                //    {
-                //        // send ray from mouse position after mouseclick
-                //        hitInfo = new RaycastHit();
-                //        bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(/*Input.mousePosition*/theTouch.position), out hitInfo);
-                //        if (hit)
-                //        {
-                //            // check if you have clicked on the player
-                //            if (hitInfo.transform.gameObject.tag == "Player")
-                //            {
-                //                // hold stays true as long as the mousebutton is held
-                //                hold = true;
-                //            }
-                //        }
-                //    }
-                //    break;
-                //}
-
-                // left mouse button release
-                //if (Input.GetMouseButtonUp(0))
-                // release touchpad
-                //if (theTouch.phase == TouchPhase.Ended)
                 case TouchPhase.Ended:
                 {
                     // release hold onto the player
@@ -290,7 +254,7 @@ public class PlayerMovement : MonoBehaviour
         if (totalMovement + switchSpeed < toBeMoved)
         {
             // translate the parent object to move at set speed in a direction
-            transform.parent.Translate(switchDirection * switchSpeed, 0, 0);
+            transform.Translate(switchDirection * switchSpeed, 0, 0);
             // keep track of the total amount of distance travelled
             totalMovement += switchSpeed;
         }
@@ -298,7 +262,7 @@ public class PlayerMovement : MonoBehaviour
         else if (totalMovement != toBeMoved)
         {
             // translate the parent with the remaining distance 
-            transform.parent.Translate(switchDirection * (toBeMoved - totalMovement), 0, 0);
+            transform.Translate(switchDirection * (toBeMoved - totalMovement), 0, 0);
             // set total distance travelled to be the total step size
             totalMovement = 0;
             switchDirection = 0;
