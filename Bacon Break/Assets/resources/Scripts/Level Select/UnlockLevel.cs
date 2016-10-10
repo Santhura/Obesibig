@@ -23,22 +23,22 @@ public class UnlockLevel : MonoBehaviour
     }
 
     //Reveal the path to the next level and unlock it.
-    public void UnlockNextLevel(int curLevelIndex)
+    public void UnlockNextLevel(int nextLevelIndex)
     {
-        curLevel = GameObject.Find("Level " + curLevelIndex);
-        nextLevel = GameObject.Find("Level " + (curLevelIndex + 1));
+        //curLevel = GameObject.Find("Level " + curLevelIndex);
+        nextLevel = GameObject.Find("Level " + nextLevelIndex);
 
         StartCoroutine(RevealPath());
-        
+
         nextLevel.GetComponent<LevelPrefab>().Unlock();
     }
 
     //Nice enumerator to make the path appear one piece at a time.
     IEnumerator RevealPath()
     {
-        for (int i = 0; i < curLevel.transform.childCount; i++)
+        for (int i = 0; i < nextLevel.transform.childCount; i++)
         {
-            curLevel.transform.GetChild(i).gameObject.SetActive(true);
+            nextLevel.transform.GetChild(i).gameObject.SetActive(true);
             yield return new WaitForSeconds(0.1f);
         }
     }

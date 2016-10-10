@@ -14,9 +14,12 @@ public class LevelInfo : MonoBehaviour
     private Button btn_play;                //Play a level!
     private Vector2 screenspaceWorld;       //Get world corners in screen space.
     private float buttonSize;
+    private int levelIndex;
 
     void Awake()
     {
+        Time.timeScale = 1.0f;
+
         txt_levelName = pnl_levelInfo.transform.GetChild(0).GetComponent<Text>();
         btn_play = pnl_levelInfo.transform.GetChild(1).GetComponent<Button>();
     }
@@ -24,6 +27,7 @@ public class LevelInfo : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //PlayerPrefs.DeleteAll();
         buttonSize = btn_play.GetComponent<RectTransform>().rect.height;
 
         clampOffsetX = 20;
@@ -33,12 +37,28 @@ public class LevelInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerPrefs.GetInt("Unlock") == 1)
+        {
+            //Unlock level with index.
+            GameObject level = GameObject.Find("Level " + PlayerPrefs.GetInt("LevelIndex"));
+            GameObject gameManager = GameObject.Find("Game Manager");
+            gameManager.GetComponent<UnlockLevel>().UnlockNextLevel(PlayerPrefs.GetInt("LevelIndex") + 1);
+            level.GetComponent<LevelPrefab>().Unlock();
 
+            //Zet big op levelnode;
+            GameObject.FindWithTag("Player").transform.position = level.transform.position;
+
+            //Zet score;
+
+            PlayerPrefs.SetInt("Unlock", 0);
+        }
     }
 
     //TODO:: Add prefab name
-    public void SetLevelInformation(Vector3 panelPosition, string levelName, GameObject levelPrefab)
+    public void SetLevelInformation(Vector3 panelPosition, string levelName, GameObject levelPrefab, int levelIndex)
     {
+        this.levelIndex = levelIndex;
+
         //Set information panel to the levelnode's position
         Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, panelPosition);
         pnl_levelInfo.transform.position = screenPoint;
@@ -48,7 +68,7 @@ public class LevelInfo : MonoBehaviour
 
         //Set level name and prefab
         txt_levelName.text = levelName;
-        btn_play.GetComponent<LevelSelector>().SetLevelObject(levelPrefab);
+        btn_play.GetComponent<LevelSelector>().SetLevelObject(levelPrefab, levelIndex);
 
         pnl_levelInfo.SetActive(true);
     }
@@ -71,7 +91,6 @@ public class LevelInfo : MonoBehaviour
         //Panel space below the screen.
         if (min.y < canvasRect.offsetMin.y)
         {
-            Debug.Log(buttonSize);
             pnl_levelInfo.transform.position += new Vector3(0, Mathf.Abs(canvasRect.offsetMin.y - min.y) + clampOffsetY, 0);
         }
 
