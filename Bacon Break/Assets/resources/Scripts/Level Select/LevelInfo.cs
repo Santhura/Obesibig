@@ -13,6 +13,7 @@ public class LevelInfo : MonoBehaviour
     private Text txt_levelName;             //For displaying the name of the level
     private Button btn_play;                //Play a level!
     private Vector2 screenspaceWorld;       //Get world corners in screen space.
+    private float buttonSize;
 
     void Awake()
     {
@@ -23,8 +24,10 @@ public class LevelInfo : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        buttonSize = btn_play.GetComponent<RectTransform>().rect.height;
+
         clampOffsetX = 20;
-        clampOffsetY = 20;       
+        clampOffsetY = 20;
     }
 
     // Update is called once per frame
@@ -68,6 +71,7 @@ public class LevelInfo : MonoBehaviour
         //Panel space below the screen.
         if (min.y < canvasRect.offsetMin.y)
         {
+            Debug.Log(buttonSize);
             pnl_levelInfo.transform.position += new Vector3(0, Mathf.Abs(canvasRect.offsetMin.y - min.y) + clampOffsetY, 0);
         }
 
