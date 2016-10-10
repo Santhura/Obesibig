@@ -14,8 +14,6 @@ public class PlayerMovement : MonoBehaviour
     float totalMovement = 0; // used to store the total distance travelled on the x axis when switching lanes
     int switchDirection = 0; // direction in witch to switch lanes
     float toBeMoved = 0;
-    int moveDelay = 10;
-    int oldDirection;
 
     public int deathHeight = -30;
 
@@ -53,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isAbleToMove)
         {
-            speed = baseSpeed + baseSpeed * staminaScript.estimatedSpeed;
+            speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
             transform.Translate(0, 0, speed * Time.deltaTime);
 
             if (transform.position.y < deathHeight)
@@ -61,8 +59,6 @@ public class PlayerMovement : MonoBehaviour
                 WinOrLoseScript.isDead = true;
                 isAbleToMove = false;
             }
-            speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
-            transform.parent.Translate(0, 0, speed * Time.deltaTime);
         }
 
         // switch control scheme for phone or pc debugging
@@ -81,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.touchCount > 0)
         {
             var theTouch = Input.GetTouch(0); // all curent touch information
-            moveDelay--;
 
             // touch input
             switch (theTouch.phase)
