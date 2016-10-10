@@ -53,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isAbleToMove)
         {
-<<<<<<< HEAD
             speed = baseSpeed + baseSpeed * staminaScript.estimatedSpeed;
             transform.Translate(0, 0, speed * Time.deltaTime);
 
@@ -62,10 +61,8 @@ public class PlayerMovement : MonoBehaviour
                 WinOrLoseScript.isDead = true;
                 isAbleToMove = false;
             }
-=======
             speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
             transform.parent.Translate(0, 0, speed * Time.deltaTime);
->>>>>>> Development
         }
 
         // switch control scheme for phone or pc debugging
