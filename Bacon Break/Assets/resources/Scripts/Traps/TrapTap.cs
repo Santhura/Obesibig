@@ -8,7 +8,6 @@ public class TrapTap : MonoBehaviour
     public bool canUnleash = false;
     bool unleash;
     public GameObject destroyThis;
-    public GameObject unleashThis;
 
     Rigidbody rb;
     // Use this for initialization
@@ -22,7 +21,7 @@ public class TrapTap : MonoBehaviour
     {
         if (unleash)
         {
-            unleashThis.transform.Translate(Vector3.back * Time.deltaTime * 20, Space.World);
+            transform.Translate(Vector3.back * Time.deltaTime * 15, Space.World);
         }
     }
     void OnMouseDown()

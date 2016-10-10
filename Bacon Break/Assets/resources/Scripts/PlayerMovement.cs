@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float touchSensivity = 1;
     float speed = 0.0f; // character speed on Z axis
-    public float baseSpeed = 20f;
+    public float baseSpeed = 10f;
+    public float bonusSpeed = 30.0f;
     public float switchSpeed = 3f; // character switch lane speed on X axis
 
     int step = 9; // total laneswitch step size
@@ -52,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isAbleToMove)
         {
+<<<<<<< HEAD
             speed = baseSpeed + baseSpeed * staminaScript.estimatedSpeed;
             transform.Translate(0, 0, speed * Time.deltaTime);
 
@@ -60,6 +62,10 @@ public class PlayerMovement : MonoBehaviour
                 WinOrLoseScript.isDead = true;
                 isAbleToMove = false;
             }
+=======
+            speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
+            transform.parent.Translate(0, 0, speed * Time.deltaTime);
+>>>>>>> Development
         }
 
         // switch control scheme for phone or pc debugging

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class TapTutorial : MonoBehaviour {
-    public float movementSpeed = 100.0f;
+    float movementSpeed = 100.0f;
     // Use this for initialization
     void Start () {
 	
