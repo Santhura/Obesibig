@@ -29,6 +29,8 @@ public class CameraDrag : MonoBehaviour
         width = height * Camera.main.aspect;
 
         btn_refocus.onClick.AddListener(RefocusCamera);
+
+        RefocusCamera();
     }
 
     // Update is called once per frame
@@ -46,7 +48,7 @@ public class CameraDrag : MonoBehaviour
         }
 
         //Drag camera with mouse (for debug purposes)
-        /* if (Input.GetMouseButtonDown(0))
+         /*if (Input.GetMouseButtonDown(0))
          {
              dragOrigin = Input.mousePosition;
              return;
@@ -58,8 +60,8 @@ public class CameraDrag : MonoBehaviour
          Vector3 move = new Vector3(pos.x * -dragSpeed, 0, pos.y * -dragSpeed);
 
          transform.Translate(move, Space.World);
-         ClampCamera();*/
-
+         ClampCamera();
+         */
     }
 
     public void RefocusCamera()

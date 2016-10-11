@@ -25,7 +25,7 @@ public class NodeMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //PlayerPrefs.DeleteAll();
+       // PlayerPrefs.DeleteAll();
         player = GameObject.FindWithTag("Player");
         isMoving = false;
 
@@ -83,11 +83,9 @@ public class NodeMovement : MonoBehaviour
             {
                 if (hit.collider.tag == "Node")
                 {
-                    //Use start and end index to get a sub-path the character can traverse.
-                    levelNode = hit.transform.gameObject;
-
-                    if (PlayerPrefs.HasKey(levelNode.name + "_unlocked"))
+                    if (PlayerPrefs.HasKey(hit.collider.name + "_unlocked"))
                     {
+                        levelNode = hit.transform.gameObject;
                         levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
                         levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
 
@@ -122,10 +120,9 @@ public class NodeMovement : MonoBehaviour
                     if (hit.collider.tag == "Node")
                     {
                         //Use start and end index to get a sub-path the character can traverse.
-                        levelNode = hit.transform.gameObject;
-
-                        if (PlayerPrefs.HasKey(levelNode.name + "_unlocked"))
+                        if (PlayerPrefs.HasKey(hit.collider.name + "_unlocked"))
                         {
+                            levelNode = hit.transform.gameObject;
                             levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
                             levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
 
@@ -197,6 +194,26 @@ public class NodeMovement : MonoBehaviour
         }
 
         return subPath;
+    }
+
+    public void MoveToNextLevel(GameObject currentLevel, GameObject nextLevel)
+    {
+        levelNode = nextLevel;
+        levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
+        levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
+
+        startIndex = int.Parse(currentLevel.name.Substring(levelNode.name.Length - 2)) * 2;
+        endIndex = int.Parse(nextLevel.name.Substring(levelNode.name.Length - 2)) * 2;
+
+        //Move the object to the specified location using the sub-path between startindex and endindex.
+        Vector3[] path = new Vector3[Mathf.Abs(endIndex - startIndex) + 1];
+        path = GetPath(startIndex, endIndex);
+        iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.easeInOutSine));
+
+        //Set level index to the new level number.
+        PlayerPrefs.SetInt("LevelIndex", endIndex / 2);
+
+        isMoving = true;
     }
 
     bool isNodeVisible(int levelIndex)
