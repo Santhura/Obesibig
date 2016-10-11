@@ -14,7 +14,8 @@ public class TrapHitbox : MonoBehaviour {
                 GetComponents<Collider>()[i].enabled = false;
             }
             PlayerMovement.isAbleToMove = false;
-            CameraShake.deathParticle.SetActive(true);
+            //CameraShake.deathParticle.SetActive(true);
+            WinOrLoseScript.isDead = true;
         }
     }
 

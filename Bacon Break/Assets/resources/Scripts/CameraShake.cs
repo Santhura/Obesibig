@@ -23,8 +23,8 @@ public class CameraShake : MonoBehaviour {
     public static GameObject deathParticle;         // show the death particle system
 
     void Awake() {
-        deathParticle = GameObject.Find("Pig_death_Particle");
-        deathParticle.SetActive(false);
+   //     deathParticle = GameObject.Find("Pig_death_Particle");
+    //    deathParticle.SetActive(false);
         isHit = false;
         if (camTransform == null) {
             camTransform = GetComponent(typeof(Transform)) as Transform;
