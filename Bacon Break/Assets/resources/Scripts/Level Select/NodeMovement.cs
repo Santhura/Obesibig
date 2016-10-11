@@ -11,6 +11,7 @@ public class NodeMovement : MonoBehaviour
     //Pubs
     public Vector3[] nodes;                     //Masterlist of iTween nodes
     public GameObject pnl_level;                //Set active/inactive
+    public GameObject pnl_refocus;              //If the player drags the screen too far away from the player, the option to refocus appears.
 
     //Privates ( ;) )
     private Vector3[] subPath;                  //Sub-path coordinates, used for character movement between level nodes
@@ -57,21 +58,18 @@ public class NodeMovement : MonoBehaviour
     // Update is called once per frame.
     void Update()
     {
-        //FOR COMPUTER DEBUG PURPOSES, DO NOT REMOVE.
-        /*if (Input.GetKeyUp(KeyCode.Space))
+        //If the node the pig is standing on is no longer visible,
+        //Activate the refocus panel and deactivate the level information panel.
+        if (isNodeVisible(PlayerPrefs.GetInt("LevelIndex")))
         {
-            endIndex = 2;
-
-            Vector3[] path = new Vector3[50];
-            path = GetPath(startIndex, endIndex);
-
-            levelNode = GameObject.Find("Level " + (endIndex / 2));
-            levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
-            levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
-
-            isMoving = true;
-            iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.linear));
-        }*/
+            pnl_level.SetActive(true);
+            pnl_refocus.SetActive(false);
+        }
+        else
+        {
+            pnl_level.SetActive(false);
+            pnl_refocus.SetActive(true);
+        }
 
         //Can only start movement when the character isn't already moving.
         /*if (Input.GetMouseButtonUp(0) && !isMoving)
@@ -150,6 +148,12 @@ public class NodeMovement : MonoBehaviour
         //Check if the character has reached the specified node.
         if (isMoving)
         {
+            //Focus on piggy when it walks out of the camera view.
+            if (!player.GetComponentInChildren<Renderer>().isVisible)
+            {
+                Camera.main.GetComponent<CameraDrag>().RefocusCamera();
+            }
+
             pnl_level.SetActive(false);
 
             if (Mathf.Abs(Vector3.Distance(player.transform.position, nodes[endIndex])) <= 0.5f)
@@ -158,6 +162,15 @@ public class NodeMovement : MonoBehaviour
                 gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, endIndex / 2);
                 isMoving = false;
             }
+        }
+        else
+        {
+            //Force the level information panel's position to be the same as the node position;
+            //(If this isn't done, the panel will move with you whenever you drag the map around).
+            Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, levelNode.transform.position);
+            pnl_level.transform.position = screenPoint;
+
+            GameObject.Find("Game Manager").GetComponent<LevelInfo>().ClampPanel();
         }
     }
 
@@ -184,5 +197,17 @@ public class NodeMovement : MonoBehaviour
         }
 
         return subPath;
+    }
+
+    bool isNodeVisible(int levelIndex)
+    {
+        GameObject level = GameObject.Find("Level " + levelIndex);
+
+        if (level.GetComponent<LevelPrefab>().isVisible)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
