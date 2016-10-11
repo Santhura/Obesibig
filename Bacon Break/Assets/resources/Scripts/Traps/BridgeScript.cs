@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BridgeScript : MonoBehaviour {
-
-    private float speedx, speedz, rotated = 0;
+public class BridgeScript : MonoBehaviour 
+{
     private float speed = 1.0f;
     private bool triggerBridgeA = false;
-    private float lerpTime = 1.0f;
     private float currentLerpTime = 0f;
 
     private Vector3 currentRotation = new Vector3(225, 0,180);
@@ -21,7 +19,6 @@ public class BridgeScript : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        speedx = -0.1f;
         confirmed = false;
         selected = false;
         rend = GetComponent<Renderer>();
