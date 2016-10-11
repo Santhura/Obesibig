@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour {
     /// </summary>
     /// <param name="nextSceneName"></param>
     public static void SwitchScene(string nextSceneName, string levelName) {
+        Time.timeScale = 1.0f;
         if(uiManager != null) {
             if (uiManager.currentSceneName != nextSceneName) {
                 uiManager.nextSceneName = nextSceneName;
