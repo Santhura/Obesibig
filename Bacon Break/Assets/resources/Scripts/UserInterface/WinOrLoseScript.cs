@@ -57,7 +57,7 @@ public class WinOrLoseScript : MonoBehaviour {
             //  LoseAndWin_Panel.alpha = 1;
             winOrLose_Text.text = "The pig is slaughtered";
             retunToMenu_Button.interactable = true;
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
         }
 	}
     
