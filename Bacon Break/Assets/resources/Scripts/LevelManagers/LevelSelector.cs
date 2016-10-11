@@ -22,7 +22,6 @@ public class LevelSelector : MonoBehaviour
     public void SetLevelObject(GameObject level, int levelIndex)
     {
         levelName = level;
-        Debug.Log(levelIndex);
         PlayerPrefs.SetInt("LevelIndex", levelIndex);
     }
 

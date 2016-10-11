@@ -13,8 +13,6 @@ public class LevelInfo : MonoBehaviour
     private Text txt_levelName;             //For displaying the name of the level
     private Button btn_play;                //Play a level!
     private Vector2 screenspaceWorld;       //Get world corners in screen space.
-    private float buttonSize;
-    private int levelIndex;
 
     void Awake()
     {
@@ -28,8 +26,6 @@ public class LevelInfo : MonoBehaviour
     void Start()
     {
         //PlayerPrefs.DeleteAll();
-        buttonSize = btn_play.GetComponent<RectTransform>().rect.height;
-
         clampOffsetX = 20;
         clampOffsetY = 20;
     }
@@ -57,8 +53,6 @@ public class LevelInfo : MonoBehaviour
     //TODO:: Add prefab name
     public void SetLevelInformation(Vector3 panelPosition, string levelName, GameObject levelPrefab, int levelIndex)
     {
-        this.levelIndex = levelIndex;
-
         //Set information panel to the levelnode's position
         Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, panelPosition);
         pnl_levelInfo.transform.position = screenPoint;
