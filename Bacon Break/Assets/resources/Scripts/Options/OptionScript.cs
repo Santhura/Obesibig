@@ -13,8 +13,8 @@ public class OptionScript : MonoBehaviour
     void Start()
     {
         //Default camera setting. 
-        c_position = new Vector3(35.0f, 40.0f, -18.0f);
-        c_rotation = new Vector3(35.0f, -35.0f, 6.0f);
+        c_position = new Vector3(34.39f, 33.25f, -21.13f);
+        c_rotation = new Vector3(35.393f, -48.488f, -1.854f);
         isOrthographic = true;
 
         //Create listener.
@@ -51,8 +51,8 @@ public class OptionScript : MonoBehaviour
              * - The view we normally have, sort of isometric/2.5D view.
              */
             case 0:
-                c_position = new Vector3(35.0f, 40.0f, -18.0f);
-                c_rotation = new Vector3(43.4f, -27.28f, 4.6f);
+                c_position = new Vector3(34.39f, 33.25f, -21.13f);
+                c_rotation = new Vector3(35.393f, -48.488f, -1.854f);
                 isOrthographic = true;
                 break;
             /* Perspective camera:
@@ -61,8 +61,8 @@ public class OptionScript : MonoBehaviour
              * ... Why did we even choose orthographic in the first place?
              */
             case 1:
-                c_position = new Vector3(16.2f, 24.9f, -16.3f);
-                c_rotation = new Vector3(41.4f, -33.9f, 6.0f);
+                c_position = new Vector3(7.9f, 10.22f, 1.44f);
+                c_rotation = new Vector3(43.05f, -47.5f, 5.832f);
                 isOrthographic = false;
                 break;
             /* Perspective camera:
@@ -71,7 +71,7 @@ public class OptionScript : MonoBehaviour
              * - You are able to give a good perception of speed (the camera could move slightly backwards)
              */
             case 2:
-                c_position = new Vector3(0.0f, 17.0f, -22.5f);
+                c_position = new Vector3(0.0f, 7.0f, -5f);
                 c_rotation = new Vector3(32.74f, 0, 0);
                 isOrthographic = false;
                 break;
