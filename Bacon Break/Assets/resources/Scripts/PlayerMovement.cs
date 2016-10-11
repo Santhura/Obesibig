@@ -22,8 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public static bool isAbleToMove;
 
     public bool controlWithButtons;
-    public bool swipe = true; // enable swipe controls for mobile phone or disable them for debugging A/D keys
-                              // note: make sure to dissable the swipe boolean before building the project
+
     bool hold = false; // check if the mouse is holding the player after a mouseclick
 
     RaycastHit hitInfo; // raycast target information containing the player
@@ -62,10 +61,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // switch control scheme for phone or pc debugging
-        if (swipe)
-            swipeControls();
-        else
-            simpleControls();
+#if UNITY_EDITOR
+        simpleControls();
+#else
+        swipeControls();
+#endif
 
         // switch lane update
         smoothLaneTransition();
@@ -105,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
                     {
                         // second raycast to check if the player has swiped over the swipebox
                         secondHitInfo = new RaycastHit();
-                        bool secondHit = Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out secondHitInfo, mask.value);
+                        Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out secondHitInfo, mask.value);
 
                         // position of the first hit minus the second hit on the X axis from the player in order to calculate the distance
                         float distance3 = hitInfo.point.x - secondHitInfo.point.x;
