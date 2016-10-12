@@ -52,14 +52,7 @@ public class WinOrLoseScript : MonoBehaviour {
         }
         else if(isDead) // display losing screen
         {
-            StartCoroutine(WaitForDeathScreen(2));         
-            panel_winLose.SetActive(true);
-
-            //  LoseAndWin_Panel.alpha = 1;
-            winOrLose_Text.text = "The pig is slaughtered";
-            retunToMenu_Button.interactable = true;
-            PlayerPrefs.SetInt("Unlock", 0);
-            Time.timeScale = 0;
+            StartCoroutine(WaitForDeathScreen(2)); 
         }
 	}
     
@@ -91,6 +84,7 @@ public class WinOrLoseScript : MonoBehaviour {
         yield return new WaitForSeconds(time);
         panel_winLose.SetActive(true);
         winOrLose_Text.text = "The pig is slaughtered";
+        PlayerPrefs.SetInt("Unlock", 0);
         retunToMenu_Button.interactable = true;
         Time.timeScale = 0;
     }
