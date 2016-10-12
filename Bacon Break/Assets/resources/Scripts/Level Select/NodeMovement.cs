@@ -39,6 +39,9 @@ public class NodeMovement : MonoBehaviour
             levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
             levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
             gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, 0);
+
+            //Set player pos
+            player.transform.position = levelNode.transform.position;
         }
         else
         {
