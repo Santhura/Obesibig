@@ -31,4 +31,15 @@ the middle lane is X = -678
 the right lane is X = -669
 Please stay on these values for X whne placing 1-lane-sized objects (this excludes moving sawtraps & objects placed outside lanes)
 
-Written&updates by: Manuel Martin
+
+NEW:
+because of terrible merges some traps have been broken, they are easy to fix:
+1 - go to your level and in the search bar (top left in your hierarchy), type "wall", find all the children of any spikedwall with that name and do the following:
+  - change the tag to "Wall" on said children. and then change the boxcollider.y of the children to 2. the boxcollider should be 1,2,1.
+2 - go t your level and check if all loose saw traps correspond to the current prefab. the parent should contain a boxcollider with trigger checked and a traptrap.cs script.
+  - also check the child named "sawblade", make sure it has the traphitbox.cs and make sure it does NOT contain traptap.cs.
+3 - Make suree the scale of your traps corresponds with the new, working prefabs. for example: the sawblade would be 5,6,6.
+4 - you're done, make sure to do this on all your levels.
+
+
+Written & updated by: Manuel Martin
