@@ -21,6 +21,12 @@ public class NodeMovement : MonoBehaviour
     private GameObject levelNode;               //For accessing the node of the level (for position purposes)
     private GameObject levelPrefab;             //For setting the MyLevel object (for level loading)
     private string levelName;                   //The name of the level.
+    private int i;
+
+    void Awake()
+    {
+        i = 0;
+    }
 
     // Use this for initialization
     void Start()
@@ -30,7 +36,7 @@ public class NodeMovement : MonoBehaviour
         isMoving = false;
 
         //Activate level information panel of the current node the player is standing on
-        if (!PlayerPrefs.HasKey("LevelIndex"))
+        if (!PlayerPrefs.HasKey("LevelIndex") && Camera.main.isActiveAndEnabled)
         {
             //Start index of the iTween path.
             startIndex = 0;
@@ -71,7 +77,16 @@ public class NodeMovement : MonoBehaviour
         else
         {
             pnl_level.SetActive(false);
-            pnl_refocus.SetActive(true);
+            if (i > 2)
+            {
+                pnl_refocus.SetActive(true);
+            }
+        }
+
+        i++;
+        if (i > 2)
+        {
+            i = 3;
         }
 
         //Use the mouse in the editor, use swipe in build.
