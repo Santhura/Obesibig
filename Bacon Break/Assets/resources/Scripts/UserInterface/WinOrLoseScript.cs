@@ -44,11 +44,22 @@ public class WinOrLoseScript : MonoBehaviour {
             panel_winLose.SetActive(true);
             winOrLose_Text.text = "You have completed the level!!";
             retunToMenu_Button.interactable = true;
+
+            //Unlock next level
+            PlayerPrefs.SetInt("Unlock", 1);
+
             Time.timeScale = 0;
         }
         else if(isDead) // display losing screen
         {
             StartCoroutine(WaitForDeathScreen(2));         
+            panel_winLose.SetActive(true);
+
+            //  LoseAndWin_Panel.alpha = 1;
+            winOrLose_Text.text = "The pig is slaughtered";
+            retunToMenu_Button.interactable = true;
+            PlayerPrefs.SetInt("Unlock", 0);
+            Time.timeScale = 0;
         }
 	}
     
