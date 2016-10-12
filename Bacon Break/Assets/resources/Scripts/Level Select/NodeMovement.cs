@@ -11,6 +11,7 @@ public class NodeMovement : MonoBehaviour
     //Pubs
     public Vector3[] nodes;                     //Masterlist of iTween nodes
     public GameObject pnl_level;                //Set active/inactive
+    public GameObject pnl_refocus;              //If the player drags the screen too far away from the player, the option to refocus appears.
 
     //Privates ( ;) )
     private Vector3[] subPath;                  //Sub-path coordinates, used for character movement between level nodes
@@ -20,16 +21,22 @@ public class NodeMovement : MonoBehaviour
     private GameObject levelNode;               //For accessing the node of the level (for position purposes)
     private GameObject levelPrefab;             //For setting the MyLevel object (for level loading)
     private string levelName;                   //The name of the level.
+    private int i;
+
+    void Awake()
+    {
+        i = 0;
+    }
 
     // Use this for initialization
     void Start()
     {
-        //PlayerPrefs.DeleteAll();
+        // PlayerPrefs.DeleteAll();
         player = GameObject.FindWithTag("Player");
         isMoving = false;
 
         //Activate level information panel of the current node the player is standing on
-        if (!PlayerPrefs.HasKey("LevelIndex"))
+        if (!PlayerPrefs.HasKey("LevelIndex") && Camera.main.isActiveAndEnabled)
         {
             //Start index of the iTween path.
             startIndex = 0;
@@ -38,6 +45,9 @@ public class NodeMovement : MonoBehaviour
             levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
             levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
             gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, 0);
+
+            //Set player pos
+            player.transform.position = levelNode.transform.position;
         }
         else
         {
@@ -57,65 +67,73 @@ public class NodeMovement : MonoBehaviour
     // Update is called once per frame.
     void Update()
     {
-        //FOR COMPUTER DEBUG PURPOSES, DO NOT REMOVE.
-        /*if (Input.GetKeyUp(KeyCode.Space))
+        //If the node the pig is standing on is no longer visible,
+        //Activate the refocus panel and deactivate the level information panel.
+        if (isNodeVisible(PlayerPrefs.GetInt("LevelIndex")))
         {
-            endIndex = 2;
-
-            Vector3[] path = new Vector3[50];
-            path = GetPath(startIndex, endIndex);
-
-            levelNode = GameObject.Find("Level " + (endIndex / 2));
-            levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
-            levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
-
-            isMoving = true;
-            iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.linear));
-        }*/
-
-        //Can only start movement when the character isn't already moving.
-        /*if (Input.GetMouseButtonUp(0) && !isMoving)
+            pnl_level.SetActive(true);
+            pnl_refocus.SetActive(false);
+        }
+        else
         {
-            //Construct a ray from the current touch coordinates.
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            //Check if node is tapped and move the character to that node.
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            pnl_level.SetActive(false);
+            if (i > 2)
             {
-                if (hit.collider.tag == "Node")
-                {
-                    //Use start and end index to get a sub-path the character can traverse.
-                    levelNode = hit.transform.gameObject;
-
-                    if (PlayerPrefs.HasKey(levelNode.name + "_unlocked"))
-                    {
-                        levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
-                        levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
-
-                        endIndex = int.Parse(levelNode.name.Substring(levelNode.name.Length - 2)) * 2;
-
-                        Vector3[] path = new Vector3[Mathf.Abs(endIndex - startIndex) + 1];
-                        path = GetPath(startIndex, endIndex);
-
-                        //Move the object to the specified location using the sub-path.
-                        iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.easeInOutSine));
-
-                        //Character is on the move.
-                        isMoving = true;
-                    }
-                }
+                pnl_refocus.SetActive(true);
             }
-        }*/
+        }
 
-        //Move the player to the requested location.
-        for (int i = 0; i < Input.touchCount; ++i)
+        i++;
+        if (i > 2)
         {
-            //Can only start movement when the character isn't already moving.
-            if (Input.GetTouch(i).phase == TouchPhase.Began && !isMoving)
+            i = 3;
+        }
+
+        //Use the mouse in the editor, use swipe in build.
+        #if UNITY_EDITOR
+             Controls("Mouse");
+        #else
+             Controls("Swipe");
+        #endif
+
+        //Check if the character has reached the specified node.
+        if (isMoving)
+        {
+            //Focus on piggy when it walks out of the camera view.
+            if (!player.GetComponentInChildren<Renderer>().isVisible)
+            {
+                Camera.main.GetComponent<CameraDrag>().RefocusCamera();
+            }
+
+            pnl_level.SetActive(false);
+
+            if (Mathf.Abs(Vector3.Distance(player.transform.position, nodes[endIndex])) <= 0.5f)
+            {
+                startIndex = endIndex;
+                gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, endIndex / 2);
+                isMoving = false;
+            }
+        }
+        else
+        {
+            //Force the level information panel's position to be the same as the node position;
+            //(If this isn't done, the panel will move with you whenever you drag the map around).
+            Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, levelNode.transform.position);
+            pnl_level.transform.position = screenPoint;
+
+            GameObject.Find("Game Manager").GetComponent<LevelInfo>().ClampPanel();
+        }
+    }
+
+    //Move the player to the requested location.
+    void Controls(string controlType)
+    {
+        if (controlType == "Mouse")
+        {
+            if (Input.GetMouseButtonUp(0) && !isMoving)
             {
                 //Construct a ray from the current touch coordinates.
-                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
                 //Check if node is tapped and move the character to that node.
@@ -123,11 +141,9 @@ public class NodeMovement : MonoBehaviour
                 {
                     if (hit.collider.tag == "Node")
                     {
-                        //Use start and end index to get a sub-path the character can traverse.
-                        levelNode = hit.transform.gameObject;
-
-                        if (PlayerPrefs.HasKey(levelNode.name + "_unlocked"))
+                        if (PlayerPrefs.HasKey(hit.collider.name + "_unlocked"))
                         {
+                            levelNode = hit.transform.gameObject;
                             levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
                             levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
 
@@ -146,17 +162,43 @@ public class NodeMovement : MonoBehaviour
                 }
             }
         }
-
-        //Check if the character has reached the specified node.
-        if (isMoving)
+        else if (controlType == "Swipe")
         {
-            pnl_level.SetActive(false);
-
-            if (Mathf.Abs(Vector3.Distance(player.transform.position, nodes[endIndex])) <= 0.5f)
+            for (int i = 0; i < Input.touchCount; ++i)
             {
-                startIndex = endIndex;
-                gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, endIndex / 2);
-                isMoving = false;
+                //Can only start movement when the character isn't already moving.
+                if (Input.GetTouch(i).phase == TouchPhase.Began && !isMoving)
+                {
+                    //Construct a ray from the current touch coordinates.
+                    Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
+                    RaycastHit hit;
+
+                    //Check if node is tapped and move the character to that node.
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                    {
+                        if (hit.collider.tag == "Node")
+                        {
+                            //Use start and end index to get a sub-path the character can traverse.
+                            if (PlayerPrefs.HasKey(hit.collider.name + "_unlocked"))
+                            {
+                                levelNode = hit.transform.gameObject;
+                                levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
+                                levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
+
+                                endIndex = int.Parse(levelNode.name.Substring(levelNode.name.Length - 2)) * 2;
+
+                                Vector3[] path = new Vector3[Mathf.Abs(endIndex - startIndex) + 1];
+                                path = GetPath(startIndex, endIndex);
+
+                                //Move the object to the specified location using the sub-path.
+                                iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.easeInOutSine));
+
+                                //Character is on the move.
+                                isMoving = true;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -184,5 +226,37 @@ public class NodeMovement : MonoBehaviour
         }
 
         return subPath;
+    }
+
+    public void MoveToNextLevel(GameObject currentLevel, GameObject nextLevel)
+    {
+        levelNode = nextLevel;
+        levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
+        levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
+
+        startIndex = int.Parse(currentLevel.name.Substring(levelNode.name.Length - 2)) * 2;
+        endIndex = int.Parse(nextLevel.name.Substring(levelNode.name.Length - 2)) * 2;
+
+        //Move the object to the specified location using the sub-path between startindex and endindex.
+        Vector3[] path = new Vector3[Mathf.Abs(endIndex - startIndex) + 1];
+        path = GetPath(startIndex, endIndex);
+        iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.easeInOutSine));
+
+        //Set level index to the new level number.
+        PlayerPrefs.SetInt("LevelIndex", endIndex / 2);
+
+        isMoving = true;
+    }
+
+    bool isNodeVisible(int levelIndex)
+    {
+        GameObject level = GameObject.Find("Level " + levelIndex);
+
+        if (level.GetComponent<LevelPrefab>().isVisible)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

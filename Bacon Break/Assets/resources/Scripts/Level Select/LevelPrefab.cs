@@ -5,6 +5,7 @@ public class LevelPrefab : MonoBehaviour
 {
     public GameObject levelPrefab;
     private int unlocked;
+    public bool isVisible;
     
     void Start() 
     {
@@ -30,4 +31,15 @@ public class LevelPrefab : MonoBehaviour
         unlocked = PlayerPrefs.GetInt(gameObject.name + "_unlocked");
         return unlocked;
     }
+
+    void OnBecameInvisible()
+    {
+        this.isVisible = false;
+    }
+
+    void OnBecameVisible()
+    {
+        this.isVisible = true;
+    }
+
 }

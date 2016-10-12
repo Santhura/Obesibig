@@ -16,19 +16,17 @@ public class UnlockLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.R))
-        {
-            UnlockNextLevel(0);
-        }
     }
 
     //Reveal the path to the next level and unlock it.
     public void UnlockNextLevel(int nextLevelIndex)
     {
-        //curLevel = GameObject.Find("Level " + curLevelIndex);
+        curLevel = GameObject.Find("Level " + (nextLevelIndex - 1));
         nextLevel = GameObject.Find("Level " + nextLevelIndex);
 
         StartCoroutine(RevealPath());
+
+        GameObject.Find("Game Manager").GetComponent<NodeMovement>().MoveToNextLevel(curLevel, nextLevel);
 
         nextLevel.GetComponent<LevelPrefab>().Unlock();
     }
@@ -39,7 +37,7 @@ public class UnlockLevel : MonoBehaviour
         for (int i = 0; i < nextLevel.transform.childCount; i++)
         {
             nextLevel.transform.GetChild(i).gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }

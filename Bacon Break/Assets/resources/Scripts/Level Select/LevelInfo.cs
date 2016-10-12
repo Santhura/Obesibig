@@ -45,7 +45,10 @@ public class LevelInfo : MonoBehaviour
             GameObject.FindWithTag("Player").transform.position = level.transform.position;
 
             //Zet score;
+            /*
+             */
 
+            //Level is unlocked, set unlock to false again.
             PlayerPrefs.SetInt("Unlock", 0);
         }
     }
@@ -67,7 +70,7 @@ public class LevelInfo : MonoBehaviour
         pnl_levelInfo.SetActive(true);
     }
 
-    private void ClampPanel()
+    public void ClampPanel()
     {
         //Get minimum values of the panel (left, bottom)
         Vector2 min = pnl_levelInfo.GetComponent<RectTransform>().anchorMin;
