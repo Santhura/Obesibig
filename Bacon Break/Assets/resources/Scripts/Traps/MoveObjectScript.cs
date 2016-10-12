@@ -27,11 +27,12 @@ public class MoveObjectScript : MonoBehaviour {
         //OnMouseDrag();
     }
 
-    
-    void OnMouseDrag() {
-        rend.material.color -= Color.yellow * Time.deltaTime;
-        Debug.Log("dragging");
-    }
+
+    /* void OnMouseDrag() {
+         rend.material.color -= Color.yellow * Time.deltaTime;
+         Debug.Log("dragging");
+     }
+     */
 
     private void swipeObjectControls()
     {
