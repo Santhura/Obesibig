@@ -17,11 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     public int deathHeight = -30;
 
-    public LayerMask trapMask;
-
     public static bool isAbleToMove;
 
-    public bool controlWithButtons;
+    //public bool controlWithButtons;
 
     bool hold = false; // check if the mouse is holding the player after a mouseclick
 
@@ -212,7 +210,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void MoveCharLeft()
+    /*public void MoveCharLeft()
     {
         if (controlWithButtons)
         {
@@ -227,7 +225,7 @@ public class PlayerMovement : MonoBehaviour
             totalMovement = 0;
             switchDirection = 1;
         }
-    }
+    }*/
 
     // used to detect walls next to the player
     bool canMove(float dir)
