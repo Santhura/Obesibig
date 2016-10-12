@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     public int deathHeight = -30;
 
-    public LayerMask mask;
+    public LayerMask trapMask;
 
     public static bool isAbleToMove;
 
@@ -25,15 +25,14 @@ public class PlayerMovement : MonoBehaviour
 
     bool hold = false; // check if the mouse is holding the player after a mouseclick
 
-    RaycastHit hitInfo; // raycast target information containing the player
-    RaycastHit secondHitInfo;
+    RaycastHit hitInfo; // this raycasts target information contain info if the player has hit a trap
 
     GameObject theStamina;
     StaminaScript staminaScript;
 
     // Distance reference points for the swipe release
-    Vector3 posRight;
-    Vector3 posLeft;
+    Vector3 pos1;
+    Vector3 pos2;
 
     // Use this for initialization
     void Start()
@@ -58,17 +57,17 @@ public class PlayerMovement : MonoBehaviour
                 WinOrLoseScript.isDead = true;
                 isAbleToMove = false;
             }
+
+            // switch control scheme for phone or pc debugging
+            #if UNITY_EDITOR
+                simpleControls();
+            #else
+                swipeControls();
+            #endif
+
+            // switch lane update
+            smoothLaneTransition();
         }
-
-        // switch control scheme for phone or pc debugging
-#if UNITY_EDITOR
-        simpleControls();
-#else
-        swipeControls();
-#endif
-
-        // switch lane update
-        smoothLaneTransition();
     }
 
     // used to swipe the players between lanes
@@ -85,15 +84,21 @@ public class PlayerMovement : MonoBehaviour
                 {
                     // send ray from mouse position after mouseclick
                     hitInfo = new RaycastHit();
-                    bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out hitInfo, mask.value);
-                    if (hit)
+
+                    if (Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out hitInfo))
                     {
-                        // check if you have clicked on the player
-                        if (hitInfo.transform.gameObject.tag == "Player")
+                        if (hitInfo.transform.gameObject.tag != "Trap")
                         {
+                            pos1 = Camera.main.ScreenToWorldPoint(new Vector3(theTouch.position.x, theTouch.position.y, 0));
                             // hold stays true as long as the mousebutton is held
                             hold = true;
                         }
+                    }
+                    else
+                    {
+                        pos1 = Camera.main.ScreenToWorldPoint(new Vector3(theTouch.position.x, theTouch.position.y, 0));
+                        // hold stays true as long as the mousebutton is held
+                        hold = true;
                     }
                     break;
                 }
@@ -104,11 +109,10 @@ public class PlayerMovement : MonoBehaviour
                     if (hold)
                     {
                         // second raycast to check if the player has swiped over the swipebox
-                        secondHitInfo = new RaycastHit();
-                        Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out secondHitInfo, mask.value);
+                        pos2 = Camera.main.ScreenToWorldPoint(new Vector3(theTouch.position.x, theTouch.position.y, 0));
 
                         // position of the first hit minus the second hit on the X axis from the player in order to calculate the distance
-                        float distance3 = hitInfo.point.x - secondHitInfo.point.x;
+                        float distance3 = pos1.x - pos2.x;
 
                         // check if the position of the first point is before the player and the second one after the player to simulate a swiping behaviour
                         // canMove is used to make sure that there arent any walls next to the player before moving there
