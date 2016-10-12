@@ -7,7 +7,6 @@ public class SplitMeshIntoTriangles : MonoBehaviour {
     private float explosionRadius;
 
     IEnumerator SplitMesh() {
-
         // get all the meshen vertices/ normals and uvs
         SkinnedMeshRenderer smr = GetComponentInChildren<SkinnedMeshRenderer>();
         MeshFilter mf = GetComponent<MeshFilter>();
@@ -45,6 +44,7 @@ public class SplitMeshIntoTriangles : MonoBehaviour {
                 go.transform.position = transform.position;
                 go.transform.rotation = transform.rotation;
                 go.transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, 0);
+                go.transform.localScale = new Vector3(3, 3, 3);
                 go.AddComponent<MeshRenderer>().material = smr.materials[submesh];
                 go.AddComponent<MeshFilter>().mesh = mesh;
                 go.AddComponent<BoxCollider>();
