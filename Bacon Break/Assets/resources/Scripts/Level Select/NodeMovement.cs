@@ -25,7 +25,7 @@ public class NodeMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-       // PlayerPrefs.DeleteAll();
+        // PlayerPrefs.DeleteAll();
         player = GameObject.FindWithTag("Player");
         isMoving = false;
 
@@ -71,76 +71,12 @@ public class NodeMovement : MonoBehaviour
             pnl_refocus.SetActive(true);
         }
 
-        //Can only start movement when the character isn't already moving.
-        /*if (Input.GetMouseButtonUp(0) && !isMoving)
-        {
-            //Construct a ray from the current touch coordinates.
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            //Check if node is tapped and move the character to that node.
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            {
-                if (hit.collider.tag == "Node")
-                {
-                    if (PlayerPrefs.HasKey(hit.collider.name + "_unlocked"))
-                    {
-                        levelNode = hit.transform.gameObject;
-                        levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
-                        levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
-
-                        endIndex = int.Parse(levelNode.name.Substring(levelNode.name.Length - 2)) * 2;
-
-                        Vector3[] path = new Vector3[Mathf.Abs(endIndex - startIndex) + 1];
-                        path = GetPath(startIndex, endIndex);
-
-                        //Move the object to the specified location using the sub-path.
-                        iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.easeInOutSine));
-
-                        //Character is on the move.
-                        isMoving = true;
-                    }
-                }
-            }
-        }*/
-
-        //Move the player to the requested location.
-        for (int i = 0; i < Input.touchCount; ++i)
-        {
-            //Can only start movement when the character isn't already moving.
-            if (Input.GetTouch(i).phase == TouchPhase.Began && !isMoving)
-            {
-                //Construct a ray from the current touch coordinates.
-                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
-                RaycastHit hit;
-
-                //Check if node is tapped and move the character to that node.
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-                {
-                    if (hit.collider.tag == "Node")
-                    {
-                        //Use start and end index to get a sub-path the character can traverse.
-                        if (PlayerPrefs.HasKey(hit.collider.name + "_unlocked"))
-                        {
-                            levelNode = hit.transform.gameObject;
-                            levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
-                            levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
-
-                            endIndex = int.Parse(levelNode.name.Substring(levelNode.name.Length - 2)) * 2;
-
-                            Vector3[] path = new Vector3[Mathf.Abs(endIndex - startIndex) + 1];
-                            path = GetPath(startIndex, endIndex);
-
-                            //Move the object to the specified location using the sub-path.
-                            iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.easeInOutSine));
-
-                            //Character is on the move.
-                            isMoving = true;
-                        }
-                    }
-                }
-            }
-        }
+        //Use the mouse in the editor, use swipe in build.
+        #if UNITY_EDITOR
+             Controls("Mouse");
+        #else
+             Controls("Swipe");
+        #endif
 
         //Check if the character has reached the specified node.
         if (isMoving)
@@ -168,6 +104,84 @@ public class NodeMovement : MonoBehaviour
             pnl_level.transform.position = screenPoint;
 
             GameObject.Find("Game Manager").GetComponent<LevelInfo>().ClampPanel();
+        }
+    }
+
+    //Move the player to the requested location.
+    void Controls(string controlType)
+    {
+        if (controlType == "Mouse")
+        {
+            if (Input.GetMouseButtonUp(0) && !isMoving)
+            {
+                //Construct a ray from the current touch coordinates.
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                //Check if node is tapped and move the character to that node.
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                {
+                    if (hit.collider.tag == "Node")
+                    {
+                        if (PlayerPrefs.HasKey(hit.collider.name + "_unlocked"))
+                        {
+                            levelNode = hit.transform.gameObject;
+                            levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
+                            levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
+
+                            endIndex = int.Parse(levelNode.name.Substring(levelNode.name.Length - 2)) * 2;
+
+                            Vector3[] path = new Vector3[Mathf.Abs(endIndex - startIndex) + 1];
+                            path = GetPath(startIndex, endIndex);
+
+                            //Move the object to the specified location using the sub-path.
+                            iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.easeInOutSine));
+
+                            //Character is on the move.
+                            isMoving = true;
+                        }
+                    }
+                }
+            }
+        }
+        else if (controlType == "Swipe")
+        {
+            for (int i = 0; i < Input.touchCount; ++i)
+            {
+                //Can only start movement when the character isn't already moving.
+                if (Input.GetTouch(i).phase == TouchPhase.Began && !isMoving)
+                {
+                    //Construct a ray from the current touch coordinates.
+                    Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
+                    RaycastHit hit;
+
+                    //Check if node is tapped and move the character to that node.
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                    {
+                        if (hit.collider.tag == "Node")
+                        {
+                            //Use start and end index to get a sub-path the character can traverse.
+                            if (PlayerPrefs.HasKey(hit.collider.name + "_unlocked"))
+                            {
+                                levelNode = hit.transform.gameObject;
+                                levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
+                                levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
+
+                                endIndex = int.Parse(levelNode.name.Substring(levelNode.name.Length - 2)) * 2;
+
+                                Vector3[] path = new Vector3[Mathf.Abs(endIndex - startIndex) + 1];
+                                path = GetPath(startIndex, endIndex);
+
+                                //Move the object to the specified location using the sub-path.
+                                iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.easeInOutSine));
+
+                                //Character is on the move.
+                                isMoving = true;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

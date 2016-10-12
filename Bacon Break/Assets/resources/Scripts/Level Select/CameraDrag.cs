@@ -36,32 +36,45 @@ public class CameraDrag : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Drag camera with touch
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
-        {
-            // Get movement of the finger since last frame
-            Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-            transform.Translate(touchDeltaPosition.x * -speed, 0, touchDeltaPosition.y * -speed, Space.World);
+        //Use the mouse in the editor, use swipe in build.
+    #if UNITY_EDITOR
+        Controls("Mouse");
+    #else
+        Controls("Swipe");
+    #endif
 
-            //Clamp camera so it won't go over the edges of the map
+    }
+
+    public void Controls(string controlType)
+    {
+        if (controlType == "Mouse")
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                dragOrigin = Input.mousePosition;
+                return;
+            }
+
+            if (!Input.GetMouseButton(0)) return;
+
+            Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
+            Vector3 move = new Vector3(pos.x * -dragSpeed, 0, pos.y * -dragSpeed);
+
+            transform.Translate(move, Space.World);
             ClampCamera();
         }
+        else if (controlType == "Swipe")
+        {
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+            {
+                // Get movement of the finger since last frame
+                Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+                transform.Translate(touchDeltaPosition.x * -speed, 0, touchDeltaPosition.y * -speed, Space.World);
 
-        //Drag camera with mouse (for debug purposes)
-         /*if (Input.GetMouseButtonDown(0))
-         {
-             dragOrigin = Input.mousePosition;
-             return;
-         }
-
-         if (!Input.GetMouseButton(0)) return;
-
-         Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-         Vector3 move = new Vector3(pos.x * -dragSpeed, 0, pos.y * -dragSpeed);
-
-         transform.Translate(move, Space.World);
-         ClampCamera();
-         */
+                //Clamp camera so it won't go over the edges of the map
+                ClampCamera();
+            }
+        }
     }
 
     public void RefocusCamera()
