@@ -34,7 +34,8 @@ public class TriggerTutorial : MonoBehaviour {
         if (other.gameObject.tag == "Player") //colliding with the player will start the tutorial
         {
             if (slow)
-            Time.timeScale = 0.25f; //slow down time to make the player aware of the tutorial
+            Time.timeScale = 0.2f; //slow down time to make the player aware of the tutorial
+
             if (tutorialObject)
             tutorialObject.SetActive(true); //set the finger cursor active to start the tutorial
 

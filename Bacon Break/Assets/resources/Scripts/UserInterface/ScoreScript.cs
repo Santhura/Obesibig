@@ -6,11 +6,18 @@ public class ScoreScript : MonoBehaviour {
 
     public Text txt_baconAmount;    //UI element displaying the amount of bacon collected.
     public Text txt_baconScore;     //UI element (of the score panel) displaying the amount of bacon collected.
+    public Text txt_coinAmount;     //UI element displaying the amount of coins collected
 
     private int baconAmount;        //To keep track of the amount of collected bacon in code.
+    public int coinAmount;          //To keep track of the amount of collected coins in the code.
+                                    // Use this for initialization
+void Awake()
+    {
+        coinAmount = PlayerPrefs.GetInt("myCoins");
+        txt_coinAmount.text = coinAmount.ToString();
+    }
 
-	// Use this for initialization
-	void Start () 
+    void Start () 
     {
         baconAmount = 0;
         gameObject.GetComponent<CanvasGroup>().alpha = 0f;
@@ -43,6 +50,15 @@ public class ScoreScript : MonoBehaviour {
 
         txt_baconAmount.text = baconAmount.ToString();
         txt_baconScore.text = "x " + baconAmount.ToString();
+    }
+
+    public void AddCoin()
+    {
+        coinAmount++;
+
+        txt_coinAmount.text = coinAmount.ToString();
+
+        PlayerPrefs.SetInt("myCoins", coinAmount);
     }
 
     //Display score panel.
