@@ -31,7 +31,7 @@ public class NodeMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        // PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         player = GameObject.FindWithTag("Player");
         isMoving = false;
 

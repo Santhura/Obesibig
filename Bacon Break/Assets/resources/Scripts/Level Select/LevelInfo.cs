@@ -35,7 +35,8 @@ public class LevelInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerPrefs.GetInt("Unlock") == 1)
+        //Check if level exists before unlocking it.
+        if (PlayerPrefs.GetInt("Unlock") == 1 && GameObject.Find("Level " + (PlayerPrefs.GetInt("LevelIndex") + 1)) != null)
         {
             //Unlock level with index.
             GameObject level = GameObject.Find("Level " + PlayerPrefs.GetInt("LevelIndex"));
@@ -51,6 +52,10 @@ public class LevelInfo : MonoBehaviour
              */
 
             //Level is unlocked, set unlock to false again.
+            PlayerPrefs.SetInt("Unlock", 0);
+        }
+        else
+        {
             PlayerPrefs.SetInt("Unlock", 0);
         }
     }
