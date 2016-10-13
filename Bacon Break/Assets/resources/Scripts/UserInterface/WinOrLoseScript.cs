@@ -19,6 +19,7 @@ public class WinOrLoseScript : MonoBehaviour {
     private Text winOrLose_Text;                // Display if you have won or losed
     private Button retunToMenu_Button;          // When in lose screen, button has to return to main menu.
     private GameObject panel_winLose;
+    public HighscoreManager displayScore;
 
     public static bool hasWon;                  // check if the player has won.
     public static bool isDead;                  // check if the player is dead.
@@ -28,7 +29,8 @@ public class WinOrLoseScript : MonoBehaviour {
         hasWon = false;
         // LoseAndWin_Panel = GameObject.Find("LoseAndWin_Panel").GetComponent<CanvasGroup>();
         panel_winLose = GameObject.Find("LoseAndWin_Panel");
-         winOrLose_Text = GameObject.Find("Text_WinOrLose").GetComponent<Text>();
+        displayScore = GameObject.Find("Score Manager").GetComponent<HighscoreManager>();
+        winOrLose_Text = GameObject.Find("Text_WinOrLose").GetComponent<Text>();
         retunToMenu_Button = GameObject.Find("Button_ReturnToMenu").GetComponent<Button>();
     //    LoseAndWin_Panel.alpha = 0;
         retunToMenu_Button.interactable = false;
@@ -45,6 +47,7 @@ public class WinOrLoseScript : MonoBehaviour {
 	    if(hasWon) // Display winning screen
         {
             panel_winLose.SetActive(true);
+            displayScore.TriggerScore();
             //  LoseAndWin_Panel.alpha = 1;
             winOrLose_Text.text = "You have completed the level!!";
             retunToMenu_Button.interactable = true;
