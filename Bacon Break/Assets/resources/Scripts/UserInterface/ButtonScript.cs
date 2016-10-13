@@ -12,7 +12,7 @@ public class ButtonScript : MonoBehaviour
     void Awake()
     {
         pauseButtons[0] = GameObject.Find("btn_resume").GetComponent<Button>();
-        pauseButtons[1] = GameObject.Find("Back To menu").GetComponent<Button>();
+        pauseButtons[1] = GameObject.Find("Back To Level select").GetComponent<Button>();
     }
 
     // Use this for initialization

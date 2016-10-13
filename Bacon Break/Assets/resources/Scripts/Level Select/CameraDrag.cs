@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CameraDrag : MonoBehaviour
 {
-    public float speed = 0.5f;
+    public float speed = 0.8f;
     public GameObject worldBB;
     public GameObject player;
     public GameObject pnl_level;
