@@ -59,14 +59,7 @@ public class WinOrLoseScript : MonoBehaviour {
         }
         else if(isDead) // display losing screen
         {
-            panel_winLose.SetActive(true);
-//            StartCoroutine(WaitForDeathScreen(2));
-
-            //  LoseAndWin_Panel.alpha = 1;
-            winOrLose_Text.text = "The pig is slaughtered";
-            retunToMenu_Button.interactable = true;
-            PlayerPrefs.SetInt("Unlock", 0);
-            Time.timeScale = 0;
+            StartCoroutine(WaitForDeathScreen(2));
         }
 	}
     
