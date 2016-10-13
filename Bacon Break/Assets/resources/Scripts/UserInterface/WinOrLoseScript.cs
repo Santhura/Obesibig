@@ -60,6 +60,7 @@ public class WinOrLoseScript : MonoBehaviour {
         else if(isDead) // display losing screen
         {
             panel_winLose.SetActive(true);
+//            StartCoroutine(WaitForDeathScreen(2));
 
             //  LoseAndWin_Panel.alpha = 1;
             winOrLose_Text.text = "The pig is slaughtered";
@@ -89,5 +90,20 @@ public class WinOrLoseScript : MonoBehaviour {
     {
         DisableAll();
         SceneManager.LoadScene(0);
+    }
+
+    /// <summary>
+    /// Wait for couple seconds to show death screen
+    /// </summary>
+    /// <param name="time"></param>
+    /// <returns></returns>
+    IEnumerator WaitForDeathScreen(float time)
+    {
+        yield return new WaitForSeconds(time);
+        panel_winLose.SetActive(true);
+        winOrLose_Text.text = "The pig is slaughtered";
+        PlayerPrefs.SetInt("Unlock", 0);
+        retunToMenu_Button.interactable = true;
+        Time.timeScale = 0;
     }
 }
