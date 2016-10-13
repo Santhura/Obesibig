@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
                     if (Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out hitInfo))
                     {
-                        if (hitInfo.transform.gameObject.tag != "Trap")
+                        if (hitInfo.transform.gameObject.tag != "Trap" || hitInfo.transform.gameObject.tag != "MoveBridge")
                         {
                             pos1 = Camera.main.ScreenToWorldPoint(new Vector3(theTouch.position.x, theTouch.position.y, 0));
                             // hold stays true as long as the mousebutton is held
