@@ -36,7 +36,7 @@ public class NodeMovement : MonoBehaviour
         isMoving = false;
 
         //Activate level information panel of the current node the player is standing on
-        if (!PlayerPrefs.HasKey("LevelIndex") && Camera.main.isActiveAndEnabled)
+        if (!PlayerPrefs.HasKey("LevelIndex"))
         {
             //Start index of the iTween path.
             startIndex = 0;
@@ -45,9 +45,6 @@ public class NodeMovement : MonoBehaviour
             levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
             levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
             gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, 0, PlayerPrefs.GetInt(levelNode.name + "_score"));
-
-            //Set player pos
-            player.transform.position = levelNode.transform.position;
         }
         else
         {
@@ -58,10 +55,11 @@ public class NodeMovement : MonoBehaviour
             levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
             levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
             gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, PlayerPrefs.GetInt("LevelIndex"), PlayerPrefs.GetInt(levelNode.name + "_score"));
-
-            //Set player pos
-            player.transform.position = levelNode.transform.position;
         }
+
+        //Set player pos
+        player.transform.position = levelNode.transform.position;
+
     }
 
     // Update is called once per frame.
@@ -100,10 +98,10 @@ public class NodeMovement : MonoBehaviour
         if (isMoving)
         {
             //Focus on piggy when it walks out of the camera view.
-            if (!player.GetComponentInChildren<Renderer>().isVisible)
-            {
+            //if (!player.GetComponentInChildren<Renderer>().isVisible)
+            //{
                 Camera.main.GetComponent<CameraDrag>().RefocusCamera();
-            }
+           // }
 
             pnl_level.SetActive(false);
 
