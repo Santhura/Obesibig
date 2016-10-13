@@ -27,7 +27,7 @@ public class WinOrLoseScript : MonoBehaviour {
         hasWon = false;
         panel_winLose = GameObject.Find("LoseAndWin_Panel");
          winOrLose_Text = GameObject.Find("Text_WinOrLose").GetComponent<Text>();
-        retunToMenu_Button = GameObject.Find("Button_ReturnToMenu").GetComponent<Button>();
+        retunToMenu_Button = GameObject.Find("Button_ReturnToLevelSelect").GetComponent<Button>();
         retunToMenu_Button.interactable = false;
         panel_winLose.SetActive(false);
     }
