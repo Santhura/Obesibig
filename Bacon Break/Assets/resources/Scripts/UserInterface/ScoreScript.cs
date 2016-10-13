@@ -8,7 +8,7 @@ public class ScoreScript : MonoBehaviour {
     public Text txt_baconScore;     //UI element (of the score panel) displaying the amount of bacon collected.
     public Text txt_coinAmount;     //UI element displaying the amount of coins collected
 
-    private int baconAmount;        //To keep track of the amount of collected bacon in code.
+    public int baconAmount;        //To keep track of the amount of collected bacon in code.
     public int coinAmount;          //To keep track of the amount of collected coins in the code.
                                     // Use this for initialization
 void Awake()

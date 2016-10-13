@@ -5,6 +5,7 @@ public class TrapTap : MonoBehaviour
 {
     public bool movementStoppable = false;
 
+    public HighscoreManager addScore;
     public bool canUnleash = false;
     bool unleash;
     public GameObject destroyThis;
@@ -14,6 +15,7 @@ public class TrapTap : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        addScore = GameObject.Find("Score Manager").GetComponent<HighscoreManager>();
         rb = this.GetComponent<Rigidbody>();
     }
 
@@ -28,13 +30,21 @@ public class TrapTap : MonoBehaviour
     void OnMouseDown()
     {
         if (!movementStoppable && !canUnleash)
+        {
+            addScore.trapsDestroyedAmount += 1;
+
+            transform.tag = "Untagged";
             Destroy(destroyThis);
+        }
 
         if (movementStoppable)
             rb.isKinematic = true;
 
         if (canUnleash)
         {
+            transform.tag = "Untagged";
+            Destroy(transform.GetComponent<BoxCollider>());
+            addScore.trapsDestroyedAmount += 1;
             unleash = true;
         }
     }
