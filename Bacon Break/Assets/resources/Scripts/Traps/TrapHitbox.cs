@@ -9,8 +9,13 @@ public class TrapHitbox : MonoBehaviour {
         {
             //Destroy(other.gameObject);
             //SceneManager.LoadScene(0);
-            WinOrLoseScript.isDead = true;
+            CameraShake.isHit = true;
+            for (int i = 0; i < GetComponents<Collider>().Length; i++) {
+                GetComponents<Collider>()[i].enabled = false;
+            }
             PlayerMovement.isAbleToMove = false;
+            //CameraShake.deathParticle.SetActive(true);
+            WinOrLoseScript.isDead = true;
         }
     }
 
