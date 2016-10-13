@@ -1,106 +1,56 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BridgeScript : MonoBehaviour 
+public class BridgeScript : MonoBehaviour
 {
-    private float speed = 1.0f;
-    private bool triggerBridgeA = false;
-    private float currentLerpTime = 0f;
+    private float time = 0.2f;
+    private bool bridgeIsDown = false;
+    private RaycastHit hit;
 
-    private Vector3 currentRotation = new Vector3(225, 0,180);
-    private Vector3 destinationRotation = new Vector3(-40, 0, 180);
+    private Vector3 startRotation = new Vector3(-45, 0, 0);
+    private Vector3 destinationRotation = new Vector3(15, 0, 0);
 
-    Renderer rend;
-    bool confirmed, selected;
     private int tapped = 0;
 
-    Transform childComponents;
 
     // Use this for initialization
     void Start()
     {
-        confirmed = false;
-        selected = false;
-        rend = GetComponent<Renderer>();
-
-        //Sets the object rotation to its starting angle
-        transform.eulerAngles = currentRotation;
+        transform.Rotate(startRotation);
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentLerpTime += Time.deltaTime;
-
-        if (Input.GetMouseButtonUp(0))
+        // get touch position and check if the right object is hit to move it.
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            tapped++;
-
-            if (tapped == 3)
+            if (hit.transform.gameObject.GetInstanceID() == transform.gameObject.GetInstanceID())
             {
-                //activate object
-                triggerBridgeA = true;
-            }
-        }
-
-        //Rotate the bridge
-        if (triggerBridgeA)
-        {
-            if (tapped == 3)
-            {
-                currentRotation = Vector3.Lerp(currentRotation, destinationRotation, Time.deltaTime * speed);
-
-                transform.eulerAngles = currentRotation;
-            }
-                else
+                if (Input.GetMouseButtonUp(0) && !bridgeIsDown && (tapped <= 3))
                 {
-                triggerBridgeA = false;
+                    RotateTheBridge();
+                }
+                else if (bridgeIsDown)
+                    transform.tag = "Untagged";
             }
         }
-
     }
 
-    void OnMouseEnter()
+    void RotateTheBridge()
     {
-        if (!confirmed)
-        {
-            rend.material.SetColor("_Color", Color.yellow);
-        }
+        iTween.RotateAdd(gameObject, iTween.Hash("amount", destinationRotation, "time", time, "easytype", iTween.EaseType.easeOutCubic, "oncomplete", "TappedAmount"));
     }
 
-    void OnMouseOver()
+    //Stops rotating the bridge when in the correct rotational position
+    void TappedAmount()
     {
-        //confirms selecting by highlighting it yellow
-        if (Input.GetMouseButtonDown(0) && !confirmed)
+        tapped++;
+        if (tapped == 3)
         {
-            //highlight selected object with yellow
-            rend.material.SetColor("_Color", Color.green);
-
-            //do something with that the previouse step
-        }
-
-        if (Input.GetMouseButtonUp(0) && !confirmed)
-        {
-            confirmed = true;
-        }
-
-        if (Input.GetMouseButtonUp(0) && selected)
-        {
-            rend.material.SetColor("_Color", Color.white);
-            selected = false;
-            confirmed = false;
+            bridgeIsDown = true;
         }
     }
 
-    void OnMouseExit()
-    {
-        if (confirmed)
-        {
-            //stays selected color yellow
-            selected = true;
-        }
-        else {
-            rend.material.SetColor("_Color", Color.white);
-        }
-    }
 }

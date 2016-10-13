@@ -14,25 +14,19 @@ public class MoveObjectScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+    
         // switch control scheme for phone or pc debugging
-    #if UNITY_EDITOR
-            simpleMoveObjectControls();
-    #else
-            swipeObjectControls();
-    #endif
+        #if UNITY_EDITOR
+                simpleMoveObjectControls();
+        #else
+                swipeObjectControls();
+        #endif
 	}
 
     private void simpleMoveObjectControls()
     {
-        //OnMouseDrag();
+
     }
-
-
-    /* void OnMouseDrag() {
-         rend.material.color -= Color.yellow * Time.deltaTime;
-         Debug.Log("dragging");
-     }
-     */
 
     private void swipeObjectControls()
     {
