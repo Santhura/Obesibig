@@ -44,7 +44,7 @@ public class NodeMovement : MonoBehaviour
             levelNode = GameObject.Find("Level 0");
             levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
             levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
-            gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, 0);
+            gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, 0, PlayerPrefs.GetInt(levelNode.name + "_score"));
 
             //Set player pos
             player.transform.position = levelNode.transform.position;
@@ -57,7 +57,7 @@ public class NodeMovement : MonoBehaviour
             levelNode = GameObject.Find("Level " + PlayerPrefs.GetInt("LevelIndex"));
             levelPrefab = levelNode.GetComponent<LevelPrefab>().levelPrefab;
             levelName = levelNode.GetComponent<LevelPrefab>().levelPrefab.name;
-            gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, PlayerPrefs.GetInt("LevelIndex"));
+            gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, PlayerPrefs.GetInt("LevelIndex"), PlayerPrefs.GetInt(levelNode.name + "_score"));
 
             //Set player pos
             player.transform.position = levelNode.transform.position;
@@ -110,7 +110,7 @@ public class NodeMovement : MonoBehaviour
             if (Mathf.Abs(Vector3.Distance(player.transform.position, nodes[endIndex])) <= 0.5f)
             {
                 startIndex = endIndex;
-                gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, endIndex / 2);
+                gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, endIndex / 2, PlayerPrefs.GetInt(levelNode.name + "_score"));
                 isMoving = false;
             }
         }
