@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // todo: make this script into a singleton
 
     public float touchSensivity = 1;
     float speed = 0.0f; // character speed on Z axis

@@ -28,13 +28,18 @@ public class TrapTap : MonoBehaviour
     void OnMouseDown()
     {
         if (!movementStoppable && !canUnleash)
+        {
+            transform.tag = "Untagged";
             Destroy(destroyThis);
+        }
 
         if (movementStoppable)
             rb.isKinematic = true;
 
         if (canUnleash)
         {
+            transform.tag = "Untagged";
+            Destroy(transform.GetComponent<BoxCollider>());
             unleash = true;
         }
     }
