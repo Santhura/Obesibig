@@ -11,6 +11,7 @@ public class LevelInfo : MonoBehaviour
 
     //Private vars
     private Text txt_levelName;             //For displaying the name of the level
+    private Text txt_score;                 //For displaying the highscore;
     private Button btn_play;                //Play a level!
     private Vector2 screenspaceWorld;       //Get world corners in screen space.
 
@@ -20,6 +21,7 @@ public class LevelInfo : MonoBehaviour
 
         txt_levelName = pnl_levelInfo.transform.GetChild(0).GetComponent<Text>();
         btn_play = pnl_levelInfo.transform.GetChild(1).GetComponent<Button>();
+        txt_score = pnl_levelInfo.transform.GetChild(2).GetComponent<Text>();
     }
 
     // Use this for initialization
@@ -54,7 +56,7 @@ public class LevelInfo : MonoBehaviour
     }
 
     //TODO:: Add prefab name
-    public void SetLevelInformation(Vector3 panelPosition, string levelName, GameObject levelPrefab, int levelIndex)
+    public void SetLevelInformation(Vector3 panelPosition, string levelName, GameObject levelPrefab, int levelIndex, int score)
     {
         //Set information panel to the levelnode's position
         Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, panelPosition);
@@ -65,6 +67,7 @@ public class LevelInfo : MonoBehaviour
 
         //Set level name and prefab
         txt_levelName.text = levelName;
+        txt_score.text = "Score: " + score.ToString();
         btn_play.GetComponent<LevelSelector>().SetLevelObject(levelPrefab, levelIndex);
 
         pnl_levelInfo.SetActive(true);

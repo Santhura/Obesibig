@@ -37,5 +37,6 @@ public class HighscoreManager : MonoBehaviour {
     {
         maxTime = maxTime - timeLeft;
         text_highScore.text = "Score: " + highScore + "\nTime: " + System.Math.Round(maxTime, 2) + " seconds\nBacons Collected: " + baconsCollected.baconAmount + "\nTraps Destroyed" + trapsDestroyedAmount;
+        PlayerPrefs.SetInt("Level " + PlayerPrefs.GetInt("LevelIndex") + "_score", Mathf.FloorToInt(highScore));
     }
 }
