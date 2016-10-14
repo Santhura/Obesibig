@@ -36,6 +36,14 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (GameObject.Find("M-LVL8_TheHills")){
+            baseSpeed = 10.0f;
+            bonusSpeed = 25.0f;
+        } else {
+            baseSpeed = 10.0f;
+            bonusSpeed = 35.0f;
+        }
+
         GameObject theStamina = GameObject.Find("bar_stamina");
         staminaScript = theStamina.GetComponent<StaminaScript>();
         
