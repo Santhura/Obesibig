@@ -9,6 +9,7 @@ public class SplashScreenScript : MonoBehaviour {
 
     void Awake () {
 
+
         splashPanel = GameObject.Find("SplashPanel");
 
         for (int i = 0; i < disableMMbuttons.Length; i++)
@@ -19,12 +20,27 @@ public class SplashScreenScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        StartCoroutine(Waitforseconds());
-	}
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+
+            StartCoroutine(Waitforseconds());
+
+        if (Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+
+            splashPanel.SetActive(false);
+
+            for (int i = 0; i < disableMMbuttons.Length; i++)
+            {
+                disableMMbuttons[i].interactable = true;
+            }
+
+            GetComponent<SplashScreenScript>().enabled = false;
+        }
 	}
 
     IEnumerator Waitforseconds() {
@@ -37,6 +53,6 @@ public class SplashScreenScript : MonoBehaviour {
             disableMMbuttons[i].interactable = true;
         }
 
-
+        GetComponent<SplashScreenScript>().enabled = false;
     }
 }
