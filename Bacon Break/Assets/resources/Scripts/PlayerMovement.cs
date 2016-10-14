@@ -235,11 +235,13 @@ public class PlayerMovement : MonoBehaviour
         float dist = 5;
         Vector3 rayDir = new Vector3(dir, 0, 0);
         RaycastHit hit;
-
+        Debug.DrawRay(transform.position, rayDir, Color.green);
         // check for a valid raycast hit
         if (Physics.Raycast(transform.position, rayDir, out hit, dist) && hit.collider.gameObject.tag == "Wall")
+
             // a wall has been detected next to the player
             return false;
+        
         else
             return true;
             // no wall was next to the player within range.
