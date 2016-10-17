@@ -36,6 +36,14 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (GameObject.Find("M-LVL8_TheHills")){
+            baseSpeed = 10.0f;
+            bonusSpeed = 25.0f;
+        } else {
+            baseSpeed = 15.0f;
+            bonusSpeed = 35.0f;
+        }
+
         GameObject theStamina = GameObject.Find("bar_stamina");
         staminaScript = theStamina.GetComponent<StaminaScript>();
         
@@ -86,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
                     if (Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out hitInfo))
                     {
-                        if (hitInfo.transform.gameObject.tag != "Trap" || hitInfo.transform.gameObject.tag != "MoveBridge")
+                        if (hitInfo.transform.gameObject.tag != "Trap" && hitInfo.transform.gameObject.tag != "MoveBridge")
                         {
                             pos1 = Camera.main.ScreenToWorldPoint(new Vector3(theTouch.position.x, theTouch.position.y, 0));
                             // hold stays true as long as the mousebutton is held
@@ -235,11 +243,13 @@ public class PlayerMovement : MonoBehaviour
         float dist = 5;
         Vector3 rayDir = new Vector3(dir, 0, 0);
         RaycastHit hit;
-
+        Debug.DrawRay(transform.position, rayDir, Color.green);
         // check for a valid raycast hit
         if (Physics.Raycast(transform.position, rayDir, out hit, dist) && hit.collider.gameObject.tag == "Wall")
+
             // a wall has been detected next to the player
             return false;
+        
         else
             return true;
             // no wall was next to the player within range.

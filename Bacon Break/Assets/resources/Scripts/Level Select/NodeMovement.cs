@@ -59,6 +59,7 @@ public class NodeMovement : MonoBehaviour
 
         //Set player pos
         player.transform.position = levelNode.transform.position;
+        Camera.main.GetComponent<CameraDrag>().RefocusCamera();
 
     }
 
