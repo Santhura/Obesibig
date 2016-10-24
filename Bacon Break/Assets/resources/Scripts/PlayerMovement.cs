@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
             baseSpeed = 10.0f;
             bonusSpeed = 25.0f;
         } else {
-            baseSpeed = 10.0f;
+            baseSpeed = 15.0f;
             bonusSpeed = 35.0f;
         }
 
