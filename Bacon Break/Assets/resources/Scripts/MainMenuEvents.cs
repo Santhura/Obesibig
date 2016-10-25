@@ -8,7 +8,7 @@ public class MainMenuEvents : MonoBehaviour
 {
 
     private Text signInButtonText;
-    private Text authStatus;
+    //private Text authStatus;
     private GameObject achButton;
 
 
@@ -16,7 +16,7 @@ public class MainMenuEvents : MonoBehaviour
     void Start()
     {
         signInButtonText = GameObject.Find("Sign_In").GetComponentInChildren<Text>();
-        authStatus = GameObject.Find("authStatus").GetComponent<Text>();
+        //authStatus = GameObject.Find("authStatus").GetComponent<Text>();
         achButton = GameObject.Find("Achievements_Button");
 
         // Create client configuration
@@ -56,7 +56,7 @@ public class MainMenuEvents : MonoBehaviour
 
             // Reset UI
             signInButtonText.text = "Sign In";
-            authStatus.text = "";
+            //authStatus.text = "";
         }
     }
 
@@ -70,7 +70,7 @@ public class MainMenuEvents : MonoBehaviour
             signInButtonText.text = "Sign out";
 
             // Show the user's name
-            authStatus.text = "Signed in as: " + Social.localUser.userName;
+            //authStatus.text = "Signed in as: " + Social.localUser.userName;
         }
         else
         {
@@ -78,7 +78,7 @@ public class MainMenuEvents : MonoBehaviour
 
             // Show failure message
             signInButtonText.text = "Sign in";
-            authStatus.text = "Sign-in failed";
+            //authStatus.text = "Sign-in failed";
         }
     }
 
