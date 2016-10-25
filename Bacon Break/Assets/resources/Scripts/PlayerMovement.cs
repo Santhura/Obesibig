@@ -240,7 +240,7 @@ public class PlayerMovement : MonoBehaviour
     bool canMove(float dir)
     {
         // raycast on the X axis in the direction which the player whishes to move towards
-        float dist = 5;
+        float dist = step;
         Vector3 rayDir = new Vector3(dir, 0, 0);
         RaycastHit hit;
 
