@@ -1,0 +1,62 @@
+VERSION 2.0: on recent feedback we were told that the screen was not used fully, 
+and that traps as well as swiping was difficult in a small level. this all the lanes now have a size of x = 3.
+NAMING:
+
+T = tutorial/intro level
+E = easy level
+M = moderate level
+H = hard level
+Make sure to use the above named letters to sort the levels as follows:
+E.G.: ""difficulty"-"levelnumber"-"levelname"" ->E.G: "T-2-firstlevelwithsawblades"
+in ths case, the number is simply to tell the user which level goes before another level.
+right now numbering is not that important, as it can be discussed which levels should go first,
+but it is convenient for navigating through the prefabs/levels folder.
+
+
+CREATING:
+use the "empty level" as a basic prefab, thiss contains 3 lanes with the appropriate textures.
+From there, you can go to prefabs and select "completed traps" to get your traps. 
+the prefab section also contains the bacons and other usables (decoration, tiles, coins, etc)
+
+ADDING:
+to add your level to the game, go to the v2LevelSelect and find any of the pnl_level objects. 
+in these objects there will be a button child object that contains the LevelSelector. drag your level prefab into this
+script to add the level. make sure you put your level in an appropriate pnl_level. are all the pnl_level used?
+Then make your own and add your level to that one.
+
+ 
+POSITIONING:
+Lane positions have changed since the latest update. duue to lanes being bigger now:
+x positions:
+Left lane: -683
+Middle Lane: -665
+Right Lane: -647
+
+ATTENTION: These positions apply to the following traps:
+- Cutter Traps
+- Loose Sawblades
+- Pressure Plates
+- Blade Traps
+- Spiked Walls
+
+These traps must be placed this way due to the way they function, they are made to cover one single lane
+entirely and thus these trap's positions need to be consistent to avoid faulty level design.
+
+the other traps depend more on their Z position and thus don't need specific positioning.
+
+TRAPS DATA:
+some traps have been changed, if your traps are not like these, please check them in the prefabs folder and replace
+your outdated traps.
+Axe trap:
+Hammer Trap - SCALE: (2, 6, 6)
+Blade Trap - SCALE: (8, 6, 4)
+Hammer Trap - SCALE: (6, 6, 6)
+MovingSawblade - SCALE: (4, 8, 8)
+
+Cutter Trap - SCALE: (10, 10, 10), BOX COLLIDER SCALE: (1.2, 1.4, 1.2)
+Loose Sawblade - SCALE: (6, 6, 6), BOX COLLIDER SCALE: (2, 2.5, 3.5)
+
+Pressure Plate - SCALE: (10, 10, 10)
+
+
+Written & updated by: Manuel Martin

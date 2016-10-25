@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float bonusSpeed = 30.0f;
     public float switchSpeed = 3f; // character switch lane speed on X axis
 
-    int step = 9; // total laneswitch step size
+    public int step = 18; // total laneswitch step size
     float totalMovement = 0; // used to store the total distance travelled on the x axis when switching lanes
     int switchDirection = 0; // direction in witch to switch lanes
     float toBeMoved = 0;
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     public static bool isAbleToMove;
 
-    //public bool controlWithButtons;
+    public bool controlWithButtons;
 
     bool hold = false; // check if the mouse is holding the player after a mouseclick
 
@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     // Distance reference points for the swipe release
     Vector3 pos1;
     Vector3 pos2;
+
+    public Vector3 mousePos;
 
     // Use this for initialization
     void Start()
@@ -46,6 +48,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 0, 0));
+        //transform.position = (new Vector3(mousePos.x, this.transform.position.y, this.transform.position.z));
+
         if (isAbleToMove)
         {
             speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
@@ -211,22 +217,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    /*public void MoveCharLeft()
+    public void MoveCharLeft()
     {
-        if (controlWithButtons)
+        if (controlWithButtons && canMove(-1))
         {
             totalMovement = 0;
             switchDirection = -1;
+            toBeMoved = step;
         }
     }
     public void MoveCharRight()
     {
-        if (controlWithButtons)
+        if (controlWithButtons && canMove(1))
         {
             totalMovement = 0;
             switchDirection = 1;
+            toBeMoved = step;
         }
-    }*/
+    }
 
     // used to detect walls next to the player
     bool canMove(float dir)

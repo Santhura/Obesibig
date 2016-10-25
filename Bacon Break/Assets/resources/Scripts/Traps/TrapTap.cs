@@ -24,7 +24,7 @@ public class TrapTap : MonoBehaviour
     {
         if (unleash)
         {
-            unleashThis.transform.Translate(Vector3.back * Time.deltaTime * 25, Space.World);
+            unleashThis.transform.Translate(Vector3.back * Time.deltaTime * 40, Space.World);
         }
     }
     void OnMouseDown()
