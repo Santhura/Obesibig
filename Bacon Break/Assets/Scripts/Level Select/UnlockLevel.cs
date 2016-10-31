@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GooglePlayGames;
 
 public class UnlockLevel : MonoBehaviour
 {
@@ -21,6 +22,20 @@ public class UnlockLevel : MonoBehaviour
     //Reveal the path to the next level and unlock it.
     public void UnlockNextLevel(int nextLevelIndex)
     {
+        if (Social.localUser.authenticated)
+        {
+            // Increment the "Fitness Master" achievement.
+            // This achievement is unlocked after 10 completed levels (10 increments).
+            PlayGamesPlatform.Instance.IncrementAchievement(
+                   GPGSIds.achievement_fitness_master,
+                   1,
+                   (bool success) =>
+                   {
+                       Debug.Log("(Bacon Break) Fitness Master Increment: " +
+                          success);
+                   });
+        }
+
         curLevel = GameObject.Find("Level " + (nextLevelIndex - 1));
         nextLevel = GameObject.Find("Level " + nextLevelIndex);
 

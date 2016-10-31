@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GooglePlayGames;
 
 public class TrapTap : MonoBehaviour
 {
@@ -34,6 +35,21 @@ public class TrapTap : MonoBehaviour
             addScore.trapsDestroyedAmount += 1;
 
             transform.tag = "Untagged";
+
+            // Only unlock achievements if the user is signed in.
+            if (Social.localUser.authenticated)
+            {
+                // Increment the "Trap Novice" achievement.
+                PlayGamesPlatform.Instance.IncrementAchievement(
+                       GPGSIds.achievement_trap_novice,
+                       1,
+                       (bool success) =>
+                       {
+                           Debug.Log("(Bacon Break) Trap Novice Increment: " +
+                              success);
+                       });
+            }
+
             Destroy(destroyThis);
         }
 
