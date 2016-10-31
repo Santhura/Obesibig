@@ -13,7 +13,7 @@ public class LoadLevel : MonoBehaviour {
     }
     void LoadMyLevel()
     {
-        loadLevel = (GameObject)Instantiate(Resources.Load("Prefabs/Levels/" + UIManager.currentLevelName));
+        loadLevel = (GameObject)Instantiate(Resources.Load("Levels/" + UIManager.currentLevelName));
 
         SetCameraView();
     }
