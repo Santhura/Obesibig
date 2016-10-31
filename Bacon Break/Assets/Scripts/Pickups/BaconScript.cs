@@ -44,19 +44,6 @@ public class BaconScript : MonoBehaviour
                     });
             }
 
-                // Increment the "sharpshooter" achievement
-                /*PlayGamesPlatform.Instance.IncrementAchievement(
-                       GPGSIds.achievement_sharpshooter,
-                       1,
-                       (bool success) =>
-                       {
-                           Debug.Log("(Lollygagger) Sharpshooter Increment: " +
-                              success);
-                       });
-                 * */
-             // end of isAuthenticated
-
-
             Destroy(gameObject);
         }
     }

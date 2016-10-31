@@ -282,4 +282,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Endpoint")
+        {
+            WinOrLoseScript.hasWon = true;
+        }
+    }
 }
