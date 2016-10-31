@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//Used for basic tappables only. E.g. loosesawblade & cutter trap.
 public class TrapTap : MonoBehaviour
 {
-    public bool movementStoppable = false;
+//    public bool movementStoppable = false;
 
     public HighscoreManager addScore;
     public bool canUnleash = false;
@@ -29,7 +31,7 @@ public class TrapTap : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if (!movementStoppable && !canUnleash)
+        if (/*!movementStoppable &&*/ !canUnleash)
         {
             addScore.trapsDestroyedAmount += 1;
 
@@ -37,8 +39,8 @@ public class TrapTap : MonoBehaviour
             Destroy(destroyThis);
         }
 
-        if (movementStoppable)
-            rb.isKinematic = true;
+    //    if (movementStoppable)
+    //        rb.isKinematic = true;
 
         if (canUnleash)
         {
@@ -48,6 +50,7 @@ public class TrapTap : MonoBehaviour
             unleash = true;
         }
     }
+ /*
     void OnMouseUp()
     {
         if (movementStoppable)
@@ -58,4 +61,5 @@ public class TrapTap : MonoBehaviour
         if (movementStoppable)
             rb.isKinematic = false;
     }
+    */
 }
