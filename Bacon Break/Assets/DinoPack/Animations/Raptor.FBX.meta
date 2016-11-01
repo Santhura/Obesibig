@@ -1,0 +1,634 @@
+fileFormatVersion: 2
+guid: fb0bff24c2ce8484693eaa9530c9e583
+timeCreated: 1459252253
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: CATRigHub009
+    100002: CATRigHub010
+    100004: CATRigHub010Bone001
+    100006: CATRigHub010Bone002
+    100008: CATRigLArm1
+    100010: CATRigLArm2
+    100012: CATRigLArmCollarbone
+    100014: CATRigLArmPalm
+    100016: CATRigLLeg1
+    100018: CATRigLLeg2
+    100020: CATRigLLegAnkle
+    100022: CATRigLLegDigit11
+    100024: CATRigLLegDigit12
+    100026: CATRigLLegDigit21
+    100028: CATRigLLegDigit22
+    100030: CATRigLLegDigit31
+    100032: CATRigLLegDigit32
+    100034: CATRigRArm1
+    100036: CATRigRArm2
+    100038: CATRigRArmCollarbone
+    100040: CATRigRArmPalm
+    100042: CATRigRLeg1
+    100044: CATRigRLeg2
+    100046: CATRigRLegAnkle
+    100048: CATRigRLegDigit11
+    100050: CATRigRLegDigit12
+    100052: CATRigRLegDigit21
+    100054: CATRigRLegDigit22
+    100056: CATRigRLegDigit31
+    100058: CATRigRLegDigit32
+    100060: CATRigSpine1
+    100062: CATRigSpine1 1
+    100064: CATRigSpine2
+    100066: CATRigSpine2 1
+    100068: CATRigSpine3
+    100070: CATRigSpine3 1
+    100072: CATRigTail1
+    100074: CATRigTail2
+    100076: CATRigTail3
+    100078: nyam
+    100080: raptopr
+    100082: //RootNode
+    400000: CATRigHub009
+    400002: CATRigHub010
+    400004: CATRigHub010Bone001
+    400006: CATRigHub010Bone002
+    400008: CATRigLArm1
+    400010: CATRigLArm2
+    400012: CATRigLArmCollarbone
+    400014: CATRigLArmPalm
+    400016: CATRigLLeg1
+    400018: CATRigLLeg2
+    400020: CATRigLLegAnkle
+    400022: CATRigLLegDigit11
+    400024: CATRigLLegDigit12
+    400026: CATRigLLegDigit21
+    400028: CATRigLLegDigit22
+    400030: CATRigLLegDigit31
+    400032: CATRigLLegDigit32
+    400034: CATRigRArm1
+    400036: CATRigRArm2
+    400038: CATRigRArmCollarbone
+    400040: CATRigRArmPalm
+    400042: CATRigRLeg1
+    400044: CATRigRLeg2
+    400046: CATRigRLegAnkle
+    400048: CATRigRLegDigit11
+    400050: CATRigRLegDigit12
+    400052: CATRigRLegDigit21
+    400054: CATRigRLegDigit22
+    400056: CATRigRLegDigit31
+    400058: CATRigRLegDigit32
+    400060: CATRigSpine1
+    400062: CATRigSpine1 1
+    400064: CATRigSpine2
+    400066: CATRigSpine2 1
+    400068: CATRigSpine3
+    400070: CATRigSpine3 1
+    400072: CATRigTail1
+    400074: CATRigTail2
+    400076: CATRigTail3
+    400078: nyam
+    400080: raptopr
+    400082: //RootNode
+    4300000: raptopr
+    7400000: Raptor_Idle_1
+    7400002: Raptor_Walk_1
+    7400004: Raptor_Death
+    7400006: Raptor_Dead
+    9500000: //RootNode
+    13700000: raptopr
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Raptor_Idle_1
+      takeName: Take 001
+      firstFrame: -500
+      lastFrame: -313
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: nyam
+        weight: 1
+      - path: nyam/CATRigLLeg1
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11/CATRigLLegDigit12
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit21
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit21/CATRigLLegDigit22
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit31
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit31/CATRigLLegDigit32
+        weight: 1
+      - path: nyam/CATRigRLeg1
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11/CATRigRLegDigit12
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit21
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit21/CATRigRLegDigit22
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit31
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit31/CATRigRLegDigit32
+        weight: 1
+      - path: nyam/CATRigSpine1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone/CATRigLArm1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone/CATRigLArm1/CATRigLArm2
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone/CATRigLArm1/CATRigLArm2/CATRigLArmPalm
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone/CATRigRArm1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone/CATRigRArm1/CATRigRArm2
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone/CATRigRArm1/CATRigRArm2/CATRigRArmPalm
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1/CATRigHub010
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1/CATRigHub010/CATRigHub010Bone001
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1/CATRigHub010/CATRigHub010Bone002
+        weight: 1
+      - path: nyam/CATRigTail1
+        weight: 1
+      - path: nyam/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: nyam/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: raptopr
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Raptor_Walk_1
+      takeName: Take 001
+      firstFrame: -61
+      lastFrame: 1134
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: nyam
+        weight: 1
+      - path: nyam/CATRigLLeg1
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11/CATRigLLegDigit12
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit21
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit21/CATRigLLegDigit22
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit31
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit31/CATRigLLegDigit32
+        weight: 1
+      - path: nyam/CATRigRLeg1
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11/CATRigRLegDigit12
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit21
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit21/CATRigRLegDigit22
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit31
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit31/CATRigRLegDigit32
+        weight: 1
+      - path: nyam/CATRigSpine1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone/CATRigLArm1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone/CATRigLArm1/CATRigLArm2
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone/CATRigLArm1/CATRigLArm2/CATRigLArmPalm
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone/CATRigRArm1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone/CATRigRArm1/CATRigRArm2
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone/CATRigRArm1/CATRigRArm2/CATRigRArmPalm
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1/CATRigHub010
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1/CATRigHub010/CATRigHub010Bone001
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1/CATRigHub010/CATRigHub010Bone002
+        weight: 1
+      - path: nyam/CATRigTail1
+        weight: 1
+      - path: nyam/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: nyam/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: raptopr
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Raptor_Death
+      takeName: Take 001
+      firstFrame: 1167
+      lastFrame: 1500
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: nyam
+        weight: 1
+      - path: nyam/CATRigLLeg1
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11/CATRigLLegDigit12
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit21
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit21/CATRigLLegDigit22
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit31
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit31/CATRigLLegDigit32
+        weight: 1
+      - path: nyam/CATRigRLeg1
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11/CATRigRLegDigit12
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit21
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit21/CATRigRLegDigit22
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit31
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit31/CATRigRLegDigit32
+        weight: 1
+      - path: nyam/CATRigSpine1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone/CATRigLArm1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone/CATRigLArm1/CATRigLArm2
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone/CATRigLArm1/CATRigLArm2/CATRigLArmPalm
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone/CATRigRArm1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone/CATRigRArm1/CATRigRArm2
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone/CATRigRArm1/CATRigRArm2/CATRigRArmPalm
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1/CATRigHub010
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1/CATRigHub010/CATRigHub010Bone001
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1/CATRigHub010/CATRigHub010Bone002
+        weight: 1
+      - path: nyam/CATRigTail1
+        weight: 1
+      - path: nyam/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: nyam/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: raptopr
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Raptor_Dead
+      takeName: Take 001
+      firstFrame: 1433
+      lastFrame: 1454
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: nyam
+        weight: 1
+      - path: nyam/CATRigLLeg1
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11/CATRigLLegDigit12
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit21
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit21/CATRigLLegDigit22
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit31
+        weight: 1
+      - path: nyam/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit31/CATRigLLegDigit32
+        weight: 1
+      - path: nyam/CATRigRLeg1
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11/CATRigRLegDigit12
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit21
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit21/CATRigRLegDigit22
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit31
+        weight: 1
+      - path: nyam/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit31/CATRigRLegDigit32
+        weight: 1
+      - path: nyam/CATRigSpine1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone/CATRigLArm1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone/CATRigLArm1/CATRigLArm2
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigLArmCollarbone/CATRigLArm1/CATRigLArm2/CATRigLArmPalm
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone/CATRigRArm1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone/CATRigRArm1/CATRigRArm2
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigRArmCollarbone/CATRigRArm1/CATRigRArm2/CATRigRArmPalm
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1/CATRigHub010
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1/CATRigHub010/CATRigHub010Bone001
+        weight: 1
+      - path: nyam/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub009/CATRigSpine1
+          1/CATRigSpine2 1/CATRigSpine3 1/CATRigHub010/CATRigHub010Bone002
+        weight: 1
+      - path: nyam/CATRigTail1
+        weight: 1
+      - path: nyam/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: nyam/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: raptopr
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
