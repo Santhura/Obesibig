@@ -7,7 +7,6 @@ public class FadingScenes : MonoBehaviour {
     public Image fadeOutImage;               // the texture that will overlay the screen. This can be a black iamge or a loading graphic
     public float fadeSpeed = 3f;             // the fading speed
 
-    private float alpha = 1.0f;              // the texture's alpha value between 0 and 1
     private float fadeDir = 1;               // the direction to fade : in = -1 or out = 1
 
     public static bool activateFade;        // Activefade when the fading has to start
