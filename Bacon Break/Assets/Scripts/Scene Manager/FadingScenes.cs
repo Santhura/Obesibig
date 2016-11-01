@@ -7,7 +7,7 @@ public class FadingScenes : MonoBehaviour {
     public Image fadeOutImage;               // the texture that will overlay the screen. This can be a black iamge or a loading graphic
     public float fadeSpeed = 3f;             // the fading speed
 
-    private float fadeDir = 1;               // the direction to fade : in = -1 or out = 1
+    public float fadeDir = 1;               // the direction to fade : in = -1 or out = 1
 
     public static bool activateFade;        // Activefade when the fading has to start
     private Color fadeColor;                // color that will be set for the image
@@ -21,12 +21,16 @@ public class FadingScenes : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Fading(fadeDir);
+    }
+
+    private void Fading(float fadingDir) {
         if (activateFade) {
-            fadeColor.a += fadeSpeed * fadeDir * Time.deltaTime;
+            fadeColor.a += fadeSpeed * fadingDir * Time.deltaTime;
             fadeOutImage.color = fadeColor;
-            if(fadeColor.a >= 1) {
+            if (fadeColor.a >= 1) {
                 GameManager.SwitchScene("Main Menu", null);
             }
         }
-	}
+    }
 }
