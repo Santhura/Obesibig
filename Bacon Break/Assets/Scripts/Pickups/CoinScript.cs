@@ -11,7 +11,6 @@ public class CoinScript : MonoBehaviour {
     {
         pnl_score = GameObject.Find("pnl_score");
         //   bar_stamina = GameObject.Find("bar_stamina");
-
     }
 	
 	// Update is called once per frame.
