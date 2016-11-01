@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
 
-    private static UIManager uiManager;
+    private static GameManager uiManager;
 
     private string currentSceneName;                        // current scene that is playing 
     private string nextSceneName;                           // next scene that will load
