@@ -12,7 +12,7 @@ public class LevelSelector : MonoBehaviour
     {
         Time.timeScale = 1;
         WinOrLoseScript.isDead = false;
-        GameManager.SwitchScene("TutorialScene", levelName.name);
+        UIManager.SwitchScene("TutorialScene", levelName.name);
         // UIManager.SwitchLevels(levelName.name);
 
         //   PlayerPrefs.SetString("level", myLevel.name);
