@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         updateDelegates[(int)SceneState.Ready] = UpdateSceneReady;
         updateDelegates[(int)SceneState.Run] = UpdateSceneRun;
 
-        nextSceneName = "Main Menu";
+        nextSceneName = "SplashScreen";
         sceneState = SceneState.Reset;
     }
 
