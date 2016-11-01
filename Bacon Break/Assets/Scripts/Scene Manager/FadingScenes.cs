@@ -8,28 +8,28 @@ public class FadingScenes : MonoBehaviour {
     public float fadeSpeed = 3f;             // the fading speed
 
     public float fadeDir = 1;               // the direction to fade : in = -1 or out = 1
+    public string sceneName;
 
     public static bool activateFade;        // Activefade when the fading has to start
-    private Color fadeColor;                // color that will be set for the image
+    public Color fadeColor;                // color that will be set for the image
 
 	// Use this for initialization
 	void Start () {
         fadeOutImage = GameObject.Find("Fade").GetComponent<Image>();
         activateFade = false;
-        fadeColor = new Color(0, 0, 0, 0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Fading(fadeDir);
+        Fading(fadeDir, sceneName);
     }
 
-    private void Fading(float fadingDir) {
+    private void Fading(float fadingDir, string sceneName) {
         if (activateFade) {
             fadeColor.a += fadeSpeed * fadingDir * Time.deltaTime;
             fadeOutImage.color = fadeColor;
             if (fadeColor.a >= 1) {
-                GameManager.SwitchScene("Main Menu", null);
+                GameManager.SwitchScene(sceneName, null);
             }
         }
     }
