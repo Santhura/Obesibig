@@ -10,4 +10,7 @@ public class ShopItem : ScriptableObject
     public int itemCost = 10;
     public string itemDesc = "Shop item description here.";
     public bool isUnique;
+
+    //For inventory (specific)
+    //public string meshName;
 }

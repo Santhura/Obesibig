@@ -13,6 +13,9 @@ public class ShopController : MonoBehaviour
     //The actual shop
     public GameObject shopContainer;
 
+    //For unlocking inventory items
+    public GameObject inventoryController;
+
     //For opening and closing the shop
     private bool shopOpened;
 
@@ -64,10 +67,17 @@ public class ShopController : MonoBehaviour
     //Purchase item if the player has enough coins
     public void PurchaseItem(int itemIndex, int coinAmount, int itemCost)
     {     
+        //Update coin amount (amount - cost)
         PlayerPrefs.SetInt("myCoins", coinAmount - itemCost);
-
-        UpdateAchievement(GPGSIds.achievement_small_spender);
         SetCointAmount();
+
+        //Unlock item for the player to use
+        /*
+         * 
+        */
+
+        //"Small Spender" achievement
+        UpdateAchievement(GPGSIds.achievement_small_spender);
 
         //Show on the console what item you have bought
         DebugConsole.Log(shopItems[itemIndex].itemName + " purchased!");

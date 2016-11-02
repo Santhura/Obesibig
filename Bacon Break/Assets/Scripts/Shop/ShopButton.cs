@@ -61,7 +61,6 @@ namespace CompleteProject
             //Set greyish color for the disabled button
             thisButton.GetComponent<Image>().color = new Color(146.0f / 255.0f, 146.0f / 255.0f, 146.0f / 255.0f, 1.0f);
             ColorBlock cb = thisButton.colors;
-            //thisButton.GetComponent<Image>().color = new Color(146.0f / 255.0f, 146.0f / 255.0f, 146.0f / 255.0f, 1.0f);
             cb.disabledColor = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 1.0f);
             thisButton.colors = cb;
 
