@@ -8,6 +8,7 @@ namespace CompleteProject
     {
         public ShopController shopController;
         public int itemIndex;
+        private Button thisButton;
 
         //Children of the button.
         public Text itemName;
@@ -18,6 +19,10 @@ namespace CompleteProject
         // Use this for initialization
         void Start()
         {
+            //Set onclicklistener for button
+            thisButton = GetComponent<Button>();
+            thisButton.onClick.AddListener(() => { AttemptPurchase(); });
+
             SetButton();
         }
 
@@ -29,6 +34,11 @@ namespace CompleteProject
             itemImage.sprite = shopController.shopItems[itemIndex].itemSprite;
             itemCost.text = "Coins: " + costString;
             itemDesc.text = shopController.shopItems[itemIndex].itemDesc;
+        }
+
+        void AttemptPurchase()
+        {
+            shopController.PurchaseItem(itemIndex);
         }
     }
 }
