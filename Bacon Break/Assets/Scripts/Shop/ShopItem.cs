@@ -9,4 +9,5 @@ public class ShopItem : ScriptableObject
     public Sprite itemSprite;
     public int itemCost = 10;
     public string itemDesc = "Shop item description here.";
+    public bool isUnique;
 }

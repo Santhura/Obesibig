@@ -62,23 +62,15 @@ public class ShopController : MonoBehaviour
     }
 
     //Purchase item if the player has enough coins
-    public void PurchaseItem(int itemIndex)
-    {
-        int coinAmount = PlayerPrefs.GetInt("myCoins");
-        int itemCost = shopItems[itemIndex].itemCost;
+    public void PurchaseItem(int itemIndex, int coinAmount, int itemCost)
+    {     
+        PlayerPrefs.SetInt("myCoins", coinAmount - itemCost);
 
-        if (coinAmount >= itemCost)
-        {
-            DebugConsole.Log(shopItems[itemIndex].itemName + " purchased!");
-            PlayerPrefs.SetInt("myCoins", coinAmount - itemCost);
+        UpdateAchievement(GPGSIds.achievement_small_spender);
+        SetCointAmount();
 
-            UpdateAchievement(GPGSIds.achievement_small_spender);
-            SetCointAmount();
-        }
-        else
-        {
-            DebugConsole.Log("You don't have enough coins!");
-        }
+        //Show on the console what item you have bought
+        DebugConsole.Log(shopItems[itemIndex].itemName + " purchased!");
     }
 
     void UpdateAchievement(string achievementName)

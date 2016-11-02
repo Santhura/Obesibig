@@ -38,7 +38,34 @@ namespace CompleteProject
 
         void AttemptPurchase()
         {
-            shopController.PurchaseItem(itemIndex);
+            int coinAmount = PlayerPrefs.GetInt("myCoins");
+            int cost = shopController.shopItems[itemIndex].itemCost;
+
+            if (coinAmount >= cost)
+            {
+                shopController.PurchaseItem(itemIndex, coinAmount, cost);
+
+                if (shopController.shopItems[itemIndex].isUnique)
+                {
+                    DisableButton();
+                }
+            }
+            else
+            {
+                DebugConsole.Log("You don't have enough coins!");
+            }
+        }
+
+        void DisableButton()
+        {
+            //Set greyish color for the disabled button
+            thisButton.GetComponent<Image>().color = new Color(146.0f / 255.0f, 146.0f / 255.0f, 146.0f / 255.0f, 1.0f);
+            ColorBlock cb = thisButton.colors;
+            //thisButton.GetComponent<Image>().color = new Color(146.0f / 255.0f, 146.0f / 255.0f, 146.0f / 255.0f, 1.0f);
+            cb.disabledColor = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 1.0f);
+            thisButton.colors = cb;
+
+            thisButton.interactable = false;
         }
     }
 }
