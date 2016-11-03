@@ -4,7 +4,6 @@ using UnityEditor;
 
 public class MakeShopItem
 {
-
     [MenuItem("Assets/Create/Shop Item")]
     public static void Create()
     {

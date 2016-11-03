@@ -14,4 +14,5 @@ public class ShopItem : ScriptableObject
     //For inventory (specific)
     public bool isCharacter = false;
     public bool isUnlocked = false;
+    public string prefabName = "Put prefab name here";
 }

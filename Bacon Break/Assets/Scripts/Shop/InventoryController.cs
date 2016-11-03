@@ -87,7 +87,7 @@ public class InventoryController : MonoBehaviour
             if (i == 0)
             {
                 characters.Add(defaultCharacter);
-                FillItemInformation("character", 0);
+                FillItemInformation("character", i);
             }
 
             //Add unlocked characters to list
@@ -99,12 +99,13 @@ public class InventoryController : MonoBehaviour
 
             //Add unlocked upgrades to list
             if (shopController.shopItems[i].isUnlocked
-               && !shopController.shopItems[i].isCharacter 
-               && upgrades.Count > 0)
+               && !shopController.shopItems[i].isCharacter)
             {
                 upgrades.Add(shopController.shopItems[i]);
             }
         }
+
+        FillItemInformation("upgrade", 0);
     }
 
     public void NextItem(string itemType)

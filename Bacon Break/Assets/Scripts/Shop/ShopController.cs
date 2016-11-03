@@ -23,8 +23,7 @@ public class ShopController : MonoBehaviour
     {
         if (shopCanvas.activeSelf)
         {
-            shopOpened = true;
-            SetCointAmount();
+            OpenShop();
         }
         else
         {
@@ -34,11 +33,11 @@ public class ShopController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Q) && !shopOpened)
+        if (Input.GetKeyUp(KeyCode.U) && !shopOpened)
         {
             OpenShop();
         }
-        else if (Input.GetKeyUp(KeyCode.Q) && shopOpened)
+        else if (Input.GetKeyUp(KeyCode.U) && shopOpened)
         {
             CloseShop();
         }
@@ -46,6 +45,7 @@ public class ShopController : MonoBehaviour
 
     void OpenShop()
     {
+        SetCoinAmount();
         shopCanvas.SetActive(true);
         Time.timeScale = 0;
         shopOpened = true;
@@ -58,18 +58,18 @@ public class ShopController : MonoBehaviour
         shopOpened = false;
     }
 
-    void SetCointAmount()
+    void SetCoinAmount()
     {
-        PlayerPrefs.SetInt("myCoins", 10);
+        //PlayerPrefs.SetInt("myCoins", 10);
         coinAmount.text = "x" + PlayerPrefs.GetInt("myCoins").ToString();
     }
 
     //Purchase item if the player has enough coins
     public void PurchaseItem(int itemIndex, int coinAmount, int itemCost)
     {     
-        //Update coin amount (amount - cost)
+        //Update coin amount
         PlayerPrefs.SetInt("myCoins", coinAmount - itemCost);
-        SetCointAmount();
+        SetCoinAmount();
 
         //Unlock item for the player to use
         AddToInventory(itemIndex);

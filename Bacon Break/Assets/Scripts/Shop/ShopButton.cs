@@ -34,6 +34,12 @@ namespace CompleteProject
             itemImage.sprite = shopController.shopItems[itemIndex].itemSprite;
             itemCost.text = "Coins: " + costString;
             itemDesc.text = shopController.shopItems[itemIndex].itemDesc;
+
+            if (shopController.shopItems[itemIndex].isUnlocked
+                && shopController.shopItems[itemIndex].isUnique)
+            {
+                DisableButton();
+            }
         }
 
         void AttemptPurchase()
