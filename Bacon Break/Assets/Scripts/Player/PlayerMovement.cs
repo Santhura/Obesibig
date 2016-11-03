@@ -65,7 +65,6 @@ public class PlayerMovement : MonoBehaviour
             else {
                 speed = baseSpeed;
             }
-            Debug.Log(speed);
             transform.Translate(0, 0, speed * Time.deltaTime);
 
             if (transform.position.y < deathHeight)
