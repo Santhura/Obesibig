@@ -12,5 +12,6 @@ public class ShopItem : ScriptableObject
     public bool isUnique;
 
     //For inventory (specific)
-    //public string meshName;
+    public bool isCharacter = false;
+    public bool isUnlocked = false;
 }

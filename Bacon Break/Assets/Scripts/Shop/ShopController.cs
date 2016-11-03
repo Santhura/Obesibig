@@ -11,17 +11,17 @@ public class ShopController : MonoBehaviour
     public Text coinAmount;
 
     //The actual shop
-    public GameObject shopContainer;
+    public GameObject shopCanvas;
 
     //For unlocking inventory items
-    public GameObject inventoryController;
+    public InventoryController inventoryController;
 
     //For opening and closing the shop
     private bool shopOpened;
 
     void Start()
     {
-        if (shopContainer.activeSelf)
+        if (shopCanvas.activeSelf)
         {
             shopOpened = true;
             SetCointAmount();
@@ -46,21 +46,21 @@ public class ShopController : MonoBehaviour
 
     void OpenShop()
     {
-        shopContainer.SetActive(true);
+        shopCanvas.SetActive(true);
         Time.timeScale = 0;
         shopOpened = true;
     }
 
     void CloseShop()
     {
-        shopContainer.SetActive(false);
+        shopCanvas.SetActive(false);
         Time.timeScale = 1;
         shopOpened = false;
     }
 
     void SetCointAmount()
     {
-        //PlayerPrefs.SetInt("myCoins", 10);
+        PlayerPrefs.SetInt("myCoins", 10);
         coinAmount.text = "x" + PlayerPrefs.GetInt("myCoins").ToString();
     }
 
@@ -72,9 +72,7 @@ public class ShopController : MonoBehaviour
         SetCointAmount();
 
         //Unlock item for the player to use
-        /*
-         * 
-        */
+        AddToInventory(itemIndex);
 
         //"Small Spender" achievement
         UpdateAchievement(GPGSIds.achievement_small_spender);
@@ -97,5 +95,12 @@ public class ShopController : MonoBehaviour
                           success);
                 });
         }
+    }
+
+    void AddToInventory(int itemIndex)
+    {
+        shopItems[itemIndex].isUnlocked = true;
+
+        inventoryController.Add(shopItems[itemIndex], shopItems[itemIndex].isCharacter);
     }
 }
