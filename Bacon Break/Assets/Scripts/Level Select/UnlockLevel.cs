@@ -25,7 +25,7 @@ public class UnlockLevel : MonoBehaviour
         if (Social.localUser.authenticated)
         {
             // Increment the "Fitness Master" achievement.
-            // This achievement is unlocked after 10 completed levels (10 increments).
+            // This achievement is unlocked after 6 completed levels (6 increments).
             PlayGamesPlatform.Instance.IncrementAchievement(
                    GPGSIds.achievement_fitness_master,
                    1,
