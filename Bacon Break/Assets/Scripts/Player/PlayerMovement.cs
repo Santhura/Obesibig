@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private float maxSpeed;
     public float switchSpeed = 3f; // character switch lane speed on X axis
 
-    int step = 9; // total laneswitch step size
+    public int step = 9; // total laneswitch step size
     float totalMovement = 0; // used to store the total distance travelled on the x axis when switching lanes
     int switchDirection = 0; // direction in witch to switch lanes
     float toBeMoved = 0;
@@ -248,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
     bool canMove(float dir)
     {
         // raycast on the X axis in the direction which the player whishes to move towards
-        float dist = 5;
+        float dist = step;
         Vector3 rayDir = new Vector3(dir, 0, 0);
         RaycastHit hit;
         Debug.DrawRay(transform.position, rayDir, Color.green);
