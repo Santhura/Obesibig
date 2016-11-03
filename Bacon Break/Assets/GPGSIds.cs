@@ -24,8 +24,11 @@
 
 public static class GPGSIds
 {
-        public const string leaderboard_world_highscore = "CgkIwvmQiuQVEAIQAQ"; // <GPGSID>
+        public const string achievement_small_spender = "CgkIwvmQiuQVEAIQBg"; // <GPGSID>
+        public const string achievement_saving_up = "CgkIwvmQiuQVEAIQCA"; // <GPGSID>
+        public const string achievement_fitness_master = "CgkIwvmQiuQVEAIQBw"; // <GPGSID>
         public const string achievement_welcome_to_bacon_break = "CgkIwvmQiuQVEAIQAg"; // <GPGSID>
+        public const string leaderboard_world_highscore = "CgkIwvmQiuQVEAIQAQ"; // <GPGSID>
         public const string achievement_trap_novice = "CgkIwvmQiuQVEAIQAw"; // <GPGSID>
 
 }
