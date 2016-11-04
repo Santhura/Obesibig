@@ -1,0 +1,501 @@
+fileFormatVersion: 2
+guid: 5cb4a130858d2274fb50dc0893d0fb33
+timeCreated: 1459252244
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: LizardHead
+    100002: LizardLFrontLegCollarbone
+    100004: LizardLFrontLegLower
+    100006: LizardLFrontLegUpper
+    100008: LizardLLegAnkle1
+    100010: LizardLLegCalf
+    100012: LizardLLegThigh
+    100014: LizardNeck1
+    100016: LizardNeck2
+    100018: LizardNeck3
+    100020: LizardNeck4
+    100022: LizardRFrontLegCollarbone
+    100024: LizardRFrontLegLower
+    100026: LizardRFrontLegUpper
+    100028: LizardRibcage
+    100030: LizardRRearLegAnkle1
+    100032: LizardRRearLegCalf
+    100034: LizardRRearLegThigh
+    100036: LizardSpine1
+    100038: LizardSpine2
+    100040: LizardSpine3
+    100042: LizardSpine4
+    100044: LizardSpine5
+    100046: LizardSpine6
+    100048: LizardTail1
+    100050: LizardTail2
+    100052: LizardTail3
+    100054: LizardTail4
+    100056: //RootNode
+    100058: stego
+    100060: stego 1
+    400000: LizardHead
+    400002: LizardLFrontLegCollarbone
+    400004: LizardLFrontLegLower
+    400006: LizardLFrontLegUpper
+    400008: LizardLLegAnkle1
+    400010: LizardLLegCalf
+    400012: LizardLLegThigh
+    400014: LizardNeck1
+    400016: LizardNeck2
+    400018: LizardNeck3
+    400020: LizardNeck4
+    400022: LizardRFrontLegCollarbone
+    400024: LizardRFrontLegLower
+    400026: LizardRFrontLegUpper
+    400028: LizardRibcage
+    400030: LizardRRearLegAnkle1
+    400032: LizardRRearLegCalf
+    400034: LizardRRearLegThigh
+    400036: LizardSpine1
+    400038: LizardSpine2
+    400040: LizardSpine3
+    400042: LizardSpine4
+    400044: LizardSpine5
+    400046: LizardSpine6
+    400048: LizardTail1
+    400050: LizardTail2
+    400052: LizardTail3
+    400054: LizardTail4
+    400056: //RootNode
+    400058: stego
+    400060: stego 1
+    4300000: stego
+    7400000: Stego_Walk_1
+    7400002: Stego_Idle_1
+    7400004: Stego_Death
+    7400006: Stego_Dead
+    9500000: //RootNode
+    13700000: stego
+    13700002: stego 1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Stego_Idle_1
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 192
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: stego
+        weight: 1
+      - path: stego 1
+        weight: 1
+      - path: stego 1/LizardLLegThigh
+        weight: 1
+      - path: stego 1/LizardLLegThigh/LizardLLegCalf
+        weight: 1
+      - path: stego 1/LizardLLegThigh/LizardLLegCalf/LizardLLegAnkle1
+        weight: 1
+      - path: stego 1/LizardRRearLegThigh
+        weight: 1
+      - path: stego 1/LizardRRearLegThigh/LizardRRearLegCalf
+        weight: 1
+      - path: stego 1/LizardRRearLegThigh/LizardRRearLegCalf/LizardRRearLegAnkle1
+        weight: 1
+      - path: stego 1/LizardSpine1
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardLFrontLegCollarbone
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardLFrontLegCollarbone/LizardLFrontLegUpper
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardLFrontLegCollarbone/LizardLFrontLegUpper/LizardLFrontLegLower
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2/LizardNeck3
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2/LizardNeck3/LizardNeck4
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2/LizardNeck3/LizardNeck4/LizardHead
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardRFrontLegCollarbone
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper/LizardRFrontLegLower
+        weight: 1
+      - path: stego 1/LizardTail1
+        weight: 1
+      - path: stego 1/LizardTail1/LizardTail2
+        weight: 1
+      - path: stego 1/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: stego 1/LizardTail1/LizardTail2/LizardTail3/LizardTail4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Stego_Walk_1
+      takeName: Take 001
+      firstFrame: 205
+      lastFrame: 904
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: stego
+        weight: 1
+      - path: stego 1
+        weight: 1
+      - path: stego 1/LizardLLegThigh
+        weight: 1
+      - path: stego 1/LizardLLegThigh/LizardLLegCalf
+        weight: 1
+      - path: stego 1/LizardLLegThigh/LizardLLegCalf/LizardLLegAnkle1
+        weight: 1
+      - path: stego 1/LizardRRearLegThigh
+        weight: 1
+      - path: stego 1/LizardRRearLegThigh/LizardRRearLegCalf
+        weight: 1
+      - path: stego 1/LizardRRearLegThigh/LizardRRearLegCalf/LizardRRearLegAnkle1
+        weight: 1
+      - path: stego 1/LizardSpine1
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardLFrontLegCollarbone
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardLFrontLegCollarbone/LizardLFrontLegUpper
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardLFrontLegCollarbone/LizardLFrontLegUpper/LizardLFrontLegLower
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2/LizardNeck3
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2/LizardNeck3/LizardNeck4
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2/LizardNeck3/LizardNeck4/LizardHead
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardRFrontLegCollarbone
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper/LizardRFrontLegLower
+        weight: 1
+      - path: stego 1/LizardTail1
+        weight: 1
+      - path: stego 1/LizardTail1/LizardTail2
+        weight: 1
+      - path: stego 1/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: stego 1/LizardTail1/LizardTail2/LizardTail3/LizardTail4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Stego_Death
+      takeName: Take 001
+      firstFrame: 949
+      lastFrame: 1200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: stego
+        weight: 1
+      - path: stego 1
+        weight: 1
+      - path: stego 1/LizardLLegThigh
+        weight: 1
+      - path: stego 1/LizardLLegThigh/LizardLLegCalf
+        weight: 1
+      - path: stego 1/LizardLLegThigh/LizardLLegCalf/LizardLLegAnkle1
+        weight: 1
+      - path: stego 1/LizardRRearLegThigh
+        weight: 1
+      - path: stego 1/LizardRRearLegThigh/LizardRRearLegCalf
+        weight: 1
+      - path: stego 1/LizardRRearLegThigh/LizardRRearLegCalf/LizardRRearLegAnkle1
+        weight: 1
+      - path: stego 1/LizardSpine1
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardLFrontLegCollarbone
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardLFrontLegCollarbone/LizardLFrontLegUpper
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardLFrontLegCollarbone/LizardLFrontLegUpper/LizardLFrontLegLower
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2/LizardNeck3
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2/LizardNeck3/LizardNeck4
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2/LizardNeck3/LizardNeck4/LizardHead
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardRFrontLegCollarbone
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper/LizardRFrontLegLower
+        weight: 1
+      - path: stego 1/LizardTail1
+        weight: 1
+      - path: stego 1/LizardTail1/LizardTail2
+        weight: 1
+      - path: stego 1/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: stego 1/LizardTail1/LizardTail2/LizardTail3/LizardTail4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Stego_Dead
+      takeName: Take 001
+      firstFrame: 1133
+      lastFrame: 1200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: stego
+        weight: 1
+      - path: stego 1
+        weight: 1
+      - path: stego 1/LizardLLegThigh
+        weight: 1
+      - path: stego 1/LizardLLegThigh/LizardLLegCalf
+        weight: 1
+      - path: stego 1/LizardLLegThigh/LizardLLegCalf/LizardLLegAnkle1
+        weight: 1
+      - path: stego 1/LizardRRearLegThigh
+        weight: 1
+      - path: stego 1/LizardRRearLegThigh/LizardRRearLegCalf
+        weight: 1
+      - path: stego 1/LizardRRearLegThigh/LizardRRearLegCalf/LizardRRearLegAnkle1
+        weight: 1
+      - path: stego 1/LizardSpine1
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardLFrontLegCollarbone
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardLFrontLegCollarbone/LizardLFrontLegUpper
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardLFrontLegCollarbone/LizardLFrontLegUpper/LizardLFrontLegLower
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2/LizardNeck3
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2/LizardNeck3/LizardNeck4
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardNeck1/LizardNeck2/LizardNeck3/LizardNeck4/LizardHead
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardRFrontLegCollarbone
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper
+        weight: 1
+      - path: stego 1/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardSpine5/LizardSpine6/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper/LizardRFrontLegLower
+        weight: 1
+      - path: stego 1/LizardTail1
+        weight: 1
+      - path: stego 1/LizardTail1/LizardTail2
+        weight: 1
+      - path: stego 1/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: stego 1/LizardTail1/LizardTail2/LizardTail3/LizardTail4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

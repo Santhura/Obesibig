@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
+/*using UnityEditor;
 
 public class MakeShopItem
 {
@@ -14,3 +14,4 @@ public class MakeShopItem
         Selection.activeObject = asset;
     }
 }
+*/

@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 40d62d7065d8e7748bed277c01d13c2b
+timeCreated: 1459252243
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: b_lab
+    100002: CATRigAnkleBone001
+    100004: CATRigAnkleBone001 1
+    100006: CATRigAnkleBone001Bone001
+    100008: CATRigAnkleBone001Bone001 1
+    100010: CATRigAnkleBone001Bone001Bone001
+    100012: CATRigAnkleBone001Bone001Bone001 1
+    100014: CATRigAnkleBone001Bone001Bone001Bone001
+    100016: CATRigAnkleBone001Bone001Bone001Bone001 1
+    100018: CATRigAnkleBone001Bone001Bone001Bone001 2
+    100020: CATRigAnkleBone001Bone001Bone001Bone001 3
+    100022: CATRigAnkleBone001Bone001Bone001Bone001 4
+    100024: CATRigAnkleBone001Bone001Bone001Bone001 5
+    100026: CATRigAnkleBone001Bone001Bone001Bone001Bone001
+    100028: CATRigAnkleBone001Bone001Bone001Bone001Bone001 1
+    100030: CATRigAnkleBone001Bone001Bone001Bone001Bone001 2
+    100032: CATRigAnkleBone001Bone001Bone001Bone001Bone001 3
+    100034: CATRigAnkleBone001Bone001Bone001Bone001Bone001 4
+    100036: CATRigAnkleBone001Bone001Bone001Bone001Bone001 5
+    100038: CATRigAnkleBone001Bone001Bone002
+    100040: CATRigAnkleBone001Bone001Bone002 1
+    100042: CATRigAnkleBone001Bone001Bone003
+    100044: CATRigAnkleBone001Bone001Bone003 1
+    100046: CATRigHub003Bone001
+    100048: CATRigHub003Bone002
+    100050: CATRigLArm1
+    100052: CATRigLArmCollarbone
+    100054: CATRigLArmPalm
+    100056: CATRigLLeg2
+    100058: CATRigRArm1
+    100060: CATRigRArmCollarbone
+    100062: CATRigRArmPalm
+    100064: CATRigRLeg2
+    100066: CATRigRLegAnkle
+    100068: CATRigSpine1
+    100070: CATRigSpine2
+    100072: CATRigSpine3
+    100074: CATRigTail1
+    100076: CATRigTail2
+    100078: CATRigTail3
+    100080: CATRigTail4
+    100082: CATRigTail5
+    100084: csigolya_01
+    100086: csigolya_02
+    100088: csigolya_03
+    100090: csipo
+    100092: dino_mesh
+    100094: fej
+    100096: j_lab
+    100098: lab
+    100100: mellkas
+    100102: //RootNode
+    400000: b_lab
+    400002: CATRigAnkleBone001
+    400004: CATRigAnkleBone001 1
+    400006: CATRigAnkleBone001Bone001
+    400008: CATRigAnkleBone001Bone001 1
+    400010: CATRigAnkleBone001Bone001Bone001
+    400012: CATRigAnkleBone001Bone001Bone001 1
+    400014: CATRigAnkleBone001Bone001Bone001Bone001
+    400016: CATRigAnkleBone001Bone001Bone001Bone001 1
+    400018: CATRigAnkleBone001Bone001Bone001Bone001 2
+    400020: CATRigAnkleBone001Bone001Bone001Bone001 3
+    400022: CATRigAnkleBone001Bone001Bone001Bone001 4
+    400024: CATRigAnkleBone001Bone001Bone001Bone001 5
+    400026: CATRigAnkleBone001Bone001Bone001Bone001Bone001
+    400028: CATRigAnkleBone001Bone001Bone001Bone001Bone001 1
+    400030: CATRigAnkleBone001Bone001Bone001Bone001Bone001 2
+    400032: CATRigAnkleBone001Bone001Bone001Bone001Bone001 3
+    400034: CATRigAnkleBone001Bone001Bone001Bone001Bone001 4
+    400036: CATRigAnkleBone001Bone001Bone001Bone001Bone001 5
+    400038: CATRigAnkleBone001Bone001Bone002
+    400040: CATRigAnkleBone001Bone001Bone002 1
+    400042: CATRigAnkleBone001Bone001Bone003
+    400044: CATRigAnkleBone001Bone001Bone003 1
+    400046: CATRigHub003Bone001
+    400048: CATRigHub003Bone002
+    400050: CATRigLArm1
+    400052: CATRigLArmCollarbone
+    400054: CATRigLArmPalm
+    400056: CATRigLLeg2
+    400058: CATRigRArm1
+    400060: CATRigRArmCollarbone
+    400062: CATRigRArmPalm
+    400064: CATRigRLeg2
+    400066: CATRigRLegAnkle
+    400068: CATRigSpine1
+    400070: CATRigSpine2
+    400072: CATRigSpine3
+    400074: CATRigTail1
+    400076: CATRigTail2
+    400078: CATRigTail3
+    400080: CATRigTail4
+    400082: CATRigTail5
+    400084: csigolya_01
+    400086: csigolya_02
+    400088: csigolya_03
+    400090: csipo
+    400092: dino_mesh
+    400094: fej
+    400096: j_lab
+    400098: lab
+    400100: mellkas
+    400102: //RootNode
+    4300000: dino_mesh
+    7400000: Trex_Walk_1
+    7400002: Trex_Death
+    7400004: Trex_Dead
+    9500000: //RootNode
+    13700000: dino_mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Trex_Walk_1
+      takeName: Take 001
+      firstFrame: 102
+      lastFrame: 798
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: csipo
+        weight: 1
+      - path: csipo/b_lab
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone001/CATRigAnkleBone001Bone001Bone001Bone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone001/CATRigAnkleBone001Bone001Bone001Bone001/CATRigAnkleBone001Bone001Bone001Bone001Bone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone002
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone002/CATRigAnkleBone001Bone001Bone001Bone001
+          1
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone002/CATRigAnkleBone001Bone001Bone001Bone001
+          1/CATRigAnkleBone001Bone001Bone001Bone001Bone001 1
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone003
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone003/CATRigAnkleBone001Bone001Bone001Bone001
+          2
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone003/CATRigAnkleBone001Bone001Bone001Bone001
+          2/CATRigAnkleBone001Bone001Bone001Bone001Bone001 2
+        weight: 1
+      - path: csipo/CATRigTail1
+        weight: 1
+      - path: csipo/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: csipo/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: csipo/CATRigTail1/CATRigTail2/CATRigTail3/CATRigTail4
+        weight: 1
+      - path: csipo/CATRigTail1/CATRigTail2/CATRigTail3/CATRigTail4/CATRigTail5
+        weight: 1
+      - path: csipo/csigolya_03
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigLArmCollarbone
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigLArmCollarbone/CATRigLArm1
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigLArmCollarbone/CATRigLArm1/CATRigLArmPalm
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigRArmCollarbone
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigRArmCollarbone/CATRigRArm1
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigRArmCollarbone/CATRigRArm1/CATRigRArmPalm
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2/CATRigSpine3
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2/CATRigSpine3/fej
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2/CATRigSpine3/fej/CATRigHub003Bone001
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2/CATRigSpine3/fej/CATRigHub003Bone002
+        weight: 1
+      - path: csipo/j_lab
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone001 1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone001 1/CATRigAnkleBone001Bone001Bone001Bone001
+          3
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone001 1/CATRigAnkleBone001Bone001Bone001Bone001
+          3/CATRigAnkleBone001Bone001Bone001Bone001Bone001 3
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone002 1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone002 1/CATRigAnkleBone001Bone001Bone001Bone001
+          4
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone002 1/CATRigAnkleBone001Bone001Bone001Bone001
+          4/CATRigAnkleBone001Bone001Bone001Bone001Bone001 4
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone003 1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone003 1/CATRigAnkleBone001Bone001Bone001Bone001
+          5
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone003 1/CATRigAnkleBone001Bone001Bone001Bone001
+          5/CATRigAnkleBone001Bone001Bone001Bone001Bone001 5
+        weight: 1
+      - path: dino_mesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Trex_Death
+      takeName: Take 001
+      firstFrame: 972
+      lastFrame: 1200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: csipo
+        weight: 1
+      - path: csipo/b_lab
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone001/CATRigAnkleBone001Bone001Bone001Bone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone001/CATRigAnkleBone001Bone001Bone001Bone001/CATRigAnkleBone001Bone001Bone001Bone001Bone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone002
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone002/CATRigAnkleBone001Bone001Bone001Bone001
+          1
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone002/CATRigAnkleBone001Bone001Bone001Bone001
+          1/CATRigAnkleBone001Bone001Bone001Bone001Bone001 1
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone003
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone003/CATRigAnkleBone001Bone001Bone001Bone001
+          2
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone003/CATRigAnkleBone001Bone001Bone001Bone001
+          2/CATRigAnkleBone001Bone001Bone001Bone001Bone001 2
+        weight: 1
+      - path: csipo/CATRigTail1
+        weight: 1
+      - path: csipo/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: csipo/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: csipo/CATRigTail1/CATRigTail2/CATRigTail3/CATRigTail4
+        weight: 1
+      - path: csipo/CATRigTail1/CATRigTail2/CATRigTail3/CATRigTail4/CATRigTail5
+        weight: 1
+      - path: csipo/csigolya_03
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigLArmCollarbone
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigLArmCollarbone/CATRigLArm1
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigLArmCollarbone/CATRigLArm1/CATRigLArmPalm
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigRArmCollarbone
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigRArmCollarbone/CATRigRArm1
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigRArmCollarbone/CATRigRArm1/CATRigRArmPalm
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2/CATRigSpine3
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2/CATRigSpine3/fej
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2/CATRigSpine3/fej/CATRigHub003Bone001
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2/CATRigSpine3/fej/CATRigHub003Bone002
+        weight: 1
+      - path: csipo/j_lab
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone001 1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone001 1/CATRigAnkleBone001Bone001Bone001Bone001
+          3
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone001 1/CATRigAnkleBone001Bone001Bone001Bone001
+          3/CATRigAnkleBone001Bone001Bone001Bone001Bone001 3
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone002 1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone002 1/CATRigAnkleBone001Bone001Bone001Bone001
+          4
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone002 1/CATRigAnkleBone001Bone001Bone001Bone001
+          4/CATRigAnkleBone001Bone001Bone001Bone001Bone001 4
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone003 1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone003 1/CATRigAnkleBone001Bone001Bone001Bone001
+          5
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone003 1/CATRigAnkleBone001Bone001Bone001Bone001
+          5/CATRigAnkleBone001Bone001Bone001Bone001Bone001 5
+        weight: 1
+      - path: dino_mesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Trex_Dead
+      takeName: Take 001
+      firstFrame: 1145
+      lastFrame: 1200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: csipo
+        weight: 1
+      - path: csipo/b_lab
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone001/CATRigAnkleBone001Bone001Bone001Bone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone001/CATRigAnkleBone001Bone001Bone001Bone001/CATRigAnkleBone001Bone001Bone001Bone001Bone001
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone002
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone002/CATRigAnkleBone001Bone001Bone001Bone001
+          1
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone002/CATRigAnkleBone001Bone001Bone001Bone001
+          1/CATRigAnkleBone001Bone001Bone001Bone001Bone001 1
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone003
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone003/CATRigAnkleBone001Bone001Bone001Bone001
+          2
+        weight: 1
+      - path: csipo/b_lab/CATRigLLeg2/lab/CATRigAnkleBone001/CATRigAnkleBone001Bone001/CATRigAnkleBone001Bone001Bone003/CATRigAnkleBone001Bone001Bone001Bone001
+          2/CATRigAnkleBone001Bone001Bone001Bone001Bone001 2
+        weight: 1
+      - path: csipo/CATRigTail1
+        weight: 1
+      - path: csipo/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: csipo/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: csipo/CATRigTail1/CATRigTail2/CATRigTail3/CATRigTail4
+        weight: 1
+      - path: csipo/CATRigTail1/CATRigTail2/CATRigTail3/CATRigTail4/CATRigTail5
+        weight: 1
+      - path: csipo/csigolya_03
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigLArmCollarbone
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigLArmCollarbone/CATRigLArm1
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigLArmCollarbone/CATRigLArm1/CATRigLArmPalm
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigRArmCollarbone
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigRArmCollarbone/CATRigRArm1
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigRArmCollarbone/CATRigRArm1/CATRigRArmPalm
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2/CATRigSpine3
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2/CATRigSpine3/fej
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2/CATRigSpine3/fej/CATRigHub003Bone001
+        weight: 1
+      - path: csipo/csigolya_03/csigolya_02/csigolya_01/mellkas/CATRigSpine1/CATRigSpine2/CATRigSpine3/fej/CATRigHub003Bone002
+        weight: 1
+      - path: csipo/j_lab
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone001 1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone001 1/CATRigAnkleBone001Bone001Bone001Bone001
+          3
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone001 1/CATRigAnkleBone001Bone001Bone001Bone001
+          3/CATRigAnkleBone001Bone001Bone001Bone001Bone001 3
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone002 1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone002 1/CATRigAnkleBone001Bone001Bone001Bone001
+          4
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone002 1/CATRigAnkleBone001Bone001Bone001Bone001
+          4/CATRigAnkleBone001Bone001Bone001Bone001Bone001 4
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone003 1
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone003 1/CATRigAnkleBone001Bone001Bone001Bone001
+          5
+        weight: 1
+      - path: csipo/j_lab/CATRigRLeg2/CATRigRLegAnkle/CATRigAnkleBone001 1/CATRigAnkleBone001Bone001
+          1/CATRigAnkleBone001Bone001Bone003 1/CATRigAnkleBone001Bone001Bone001Bone001
+          5/CATRigAnkleBone001Bone001Bone001Bone001Bone001 5
+        weight: 1
+      - path: dino_mesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
