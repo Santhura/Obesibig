@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,6 +26,11 @@ public class InventoryController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //PlayerPrefs.DeleteAll();
+
+        charItem = new ShopItem();
+        upgrItem = new ShopItem();
+
         FillLists();
         SetPreferences(charItem, upgrItem);
 
@@ -78,13 +84,14 @@ public class InventoryController : MonoBehaviour
             if (i == 0)
             {
                 characters.Add(defaultCharacter);
-                FillItemInformation("character", i);
-                charItem = shopController.shopItems[i];
+                FillItemInformation("character", 0);
+                charItem = defaultCharacter;
             }
 
             //Add unlocked characters to list
             if (shopController.shopItems[i].isUnlocked
-                && shopController.shopItems[i].isCharacter)
+                && shopController.shopItems[i].isCharacter
+                && i > 0)
             {
                 characters.Add(shopController.shopItems[i]);
             }
@@ -98,9 +105,42 @@ public class InventoryController : MonoBehaviour
             }
         }
 
+        if (PlayerPrefs.HasKey("Character_Item") && PlayerPrefs.HasKey("Upgrade_Item"))
+        {
+            //Because the easy way out (Linq) didn't work---------------------------------
+            for (int i = 0; i < characters.Count; i++)
+            {
+                if (characters[i].prefabName == PlayerPrefs.GetString("Character_Item"))
+                {
+                     charItem = characters[i];
+                }               
+            }
+
+            if (upgrades.Count > 0)
+            {
+                for (int i = 0; i < upgrades.Count; i++)
+                {
+                    if (upgrades[i].prefabName == PlayerPrefs.GetString("Upgrade_Item"))
+                    {
+                        upgrItem = upgrades[i];
+                    }
+                }
+            }
+            //Because the easy way out (Linq) didn't work---------------------------------
+        }
+
+        //Order items alphabetically
+        characters = characters.OrderBy(go => go.itemName).ToList();
+
+        //Set selected items as first items to be shown.
+        FillItemInformation("character", characters.IndexOf(charItem));
+
         if (upgrades.Count > 0)
         {
-            FillItemInformation("upgrade", 0);
+            //Order items alphabetically
+            upgrades = upgrades.OrderBy(go => go.itemName).ToList();
+
+            FillItemInformation("upgrade", upgrades.IndexOf(upgrItem));
         }
     }
 
@@ -209,25 +249,22 @@ public class InventoryController : MonoBehaviour
         if (itemType == "upgrade")
         {
             upgradeTitle.text = upgrades[index].itemName;
-            upgradeImage.sprite = characters[index].itemSprite;
+            upgradeImage.sprite = upgrades[index].itemSprite;
         }
     }
 
-    void SetPreferences(ShopItem charItem, ShopItem upgrItem)
+    public void SetPreferences(ShopItem charItem, ShopItem upgrItem)
     {
-        PlayerPrefs.SetString("Character_Item", charItem.prefabName);
+        if (charItem != null)
+        {
+            PlayerPrefs.SetString("Character_Item", charItem.prefabName);
+        }
 
         //Upgrade item can be null
         if (upgrItem != null)
         {
             PlayerPrefs.SetString("Upgrade_Item", upgrItem.prefabName);
         }
-        else
-        {
-            PlayerPrefs.SetString("Upgrade_Item", "null");
-        }
-
-        DebugConsole.Log("Character Selected: " + PlayerPrefs.GetString("Character_Item"));
-        DebugConsole.Log("Upgrade Selected: " + PlayerPrefs.GetString("Upgrade_Item"));
     }
+
 }

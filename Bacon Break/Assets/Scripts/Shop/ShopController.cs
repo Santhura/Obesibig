@@ -101,6 +101,16 @@ public class ShopController : MonoBehaviour
     {
         shopItems[itemIndex].isUnlocked = true;
 
+        if (shopItems[itemIndex].isCharacter)
+        {
+            inventoryController.SetPreferences(shopItems[itemIndex], null);
+        }
+        else if(!shopItems[itemIndex].isCharacter)
+        {
+            inventoryController.SetPreferences(null, shopItems[itemIndex]);
+        }
+
+
         inventoryController.FillLists();
     }
 }
