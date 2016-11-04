@@ -1,0 +1,409 @@
+fileFormatVersion: 2
+guid: 9fc802a578342df4a98a18f2e6991359
+timeCreated: 1459252249
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: anki
+    100002: //RootNode
+    100004: ankylo
+    100006: LizardHead
+    100008: LizardLFrontLegLower
+    100010: LizardLFrontLegPalm2
+    100012: LizardLFrontLegUpper
+    100014: LizardLLeg3
+    100016: LizardLLegAnkle2
+    100018: LizardLLegCalf
+    100020: LizardLLegThigh
+    100022: LizardNeck1
+    100024: LizardNeck2
+    100026: LizardRFrontLegCollarbone
+    100028: LizardRFrontLegLower
+    100030: LizardRFrontLegPalm2
+    100032: LizardRFrontLegUpper
+    100034: LizardRibcage
+    100036: LizardRRearLeg3
+    100038: LizardRRearLegAnkle2
+    100040: LizardRRearLegCalf
+    100042: LizardRRearLegThigh
+    100044: LizardSpine1
+    100046: LizardSpine2
+    100048: LizardSpine3
+    100050: LizardSpine4
+    100052: LizardTail1
+    100054: LizardTail2
+    100056: LizardTail3
+    100058: LizardTail4
+    100060: Object143
+    400000: anki
+    400002: //RootNode
+    400004: ankylo
+    400006: LizardHead
+    400008: LizardLFrontLegLower
+    400010: LizardLFrontLegPalm2
+    400012: LizardLFrontLegUpper
+    400014: LizardLLeg3
+    400016: LizardLLegAnkle2
+    400018: LizardLLegCalf
+    400020: LizardLLegThigh
+    400022: LizardNeck1
+    400024: LizardNeck2
+    400026: LizardRFrontLegCollarbone
+    400028: LizardRFrontLegLower
+    400030: LizardRFrontLegPalm2
+    400032: LizardRFrontLegUpper
+    400034: LizardRibcage
+    400036: LizardRRearLeg3
+    400038: LizardRRearLegAnkle2
+    400040: LizardRRearLegCalf
+    400042: LizardRRearLegThigh
+    400044: LizardSpine1
+    400046: LizardSpine2
+    400048: LizardSpine3
+    400050: LizardSpine4
+    400052: LizardTail1
+    400054: LizardTail2
+    400056: LizardTail3
+    400058: LizardTail4
+    400060: Object143
+    4300000: ankylo
+    7400000: Ankylo_Idle_1
+    7400002: Ankylo_Death
+    7400004: Ankylo_Dead
+    9500000: //RootNode
+    13700000: ankylo
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Ankylo_Idle_1
+      takeName: Take 001
+      firstFrame: -100
+      lastFrame: 1509
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: anki
+        weight: 1
+      - path: anki/LizardLLegThigh
+        weight: 1
+      - path: anki/LizardLLegThigh/LizardLLegCalf
+        weight: 1
+      - path: anki/LizardLLegThigh/LizardLLegCalf/LizardLLeg3
+        weight: 1
+      - path: anki/LizardLLegThigh/LizardLLegCalf/LizardLLeg3/LizardLLegAnkle2
+        weight: 1
+      - path: anki/LizardRRearLegThigh
+        weight: 1
+      - path: anki/LizardRRearLegThigh/LizardRRearLegCalf
+        weight: 1
+      - path: anki/LizardRRearLegThigh/LizardRRearLegCalf/LizardRRearLeg3
+        weight: 1
+      - path: anki/LizardRRearLegThigh/LizardRRearLegCalf/LizardRRearLeg3/LizardRRearLegAnkle2
+        weight: 1
+      - path: anki/LizardSpine1
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardNeck1
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardNeck1/LizardNeck2
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardNeck1/LizardNeck2/LizardHead
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardRFrontLegCollarbone
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper/LizardRFrontLegLower
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper/LizardRFrontLegLower/LizardRFrontLegPalm2
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/Object143
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/Object143/LizardLFrontLegUpper
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/Object143/LizardLFrontLegUpper/LizardLFrontLegLower
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/Object143/LizardLFrontLegUpper/LizardLFrontLegLower/LizardLFrontLegPalm2
+        weight: 1
+      - path: anki/LizardTail1
+        weight: 1
+      - path: anki/LizardTail1/LizardTail2
+        weight: 1
+      - path: anki/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: anki/LizardTail1/LizardTail2/LizardTail3/LizardTail4
+        weight: 1
+      - path: ankylo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Ankylo_Death
+      takeName: Take 001
+      firstFrame: 1537
+      lastFrame: 1999.9999
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: anki
+        weight: 1
+      - path: anki/LizardLLegThigh
+        weight: 1
+      - path: anki/LizardLLegThigh/LizardLLegCalf
+        weight: 1
+      - path: anki/LizardLLegThigh/LizardLLegCalf/LizardLLeg3
+        weight: 1
+      - path: anki/LizardLLegThigh/LizardLLegCalf/LizardLLeg3/LizardLLegAnkle2
+        weight: 1
+      - path: anki/LizardRRearLegThigh
+        weight: 1
+      - path: anki/LizardRRearLegThigh/LizardRRearLegCalf
+        weight: 1
+      - path: anki/LizardRRearLegThigh/LizardRRearLegCalf/LizardRRearLeg3
+        weight: 1
+      - path: anki/LizardRRearLegThigh/LizardRRearLegCalf/LizardRRearLeg3/LizardRRearLegAnkle2
+        weight: 1
+      - path: anki/LizardSpine1
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardNeck1
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardNeck1/LizardNeck2
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardNeck1/LizardNeck2/LizardHead
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardRFrontLegCollarbone
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper/LizardRFrontLegLower
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper/LizardRFrontLegLower/LizardRFrontLegPalm2
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/Object143
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/Object143/LizardLFrontLegUpper
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/Object143/LizardLFrontLegUpper/LizardLFrontLegLower
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/Object143/LizardLFrontLegUpper/LizardLFrontLegLower/LizardLFrontLegPalm2
+        weight: 1
+      - path: anki/LizardTail1
+        weight: 1
+      - path: anki/LizardTail1/LizardTail2
+        weight: 1
+      - path: anki/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: anki/LizardTail1/LizardTail2/LizardTail3/LizardTail4
+        weight: 1
+      - path: ankylo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Ankylo_Dead
+      takeName: Take 001
+      firstFrame: 1849
+      lastFrame: 1999.9999
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: anki
+        weight: 1
+      - path: anki/LizardLLegThigh
+        weight: 1
+      - path: anki/LizardLLegThigh/LizardLLegCalf
+        weight: 1
+      - path: anki/LizardLLegThigh/LizardLLegCalf/LizardLLeg3
+        weight: 1
+      - path: anki/LizardLLegThigh/LizardLLegCalf/LizardLLeg3/LizardLLegAnkle2
+        weight: 1
+      - path: anki/LizardRRearLegThigh
+        weight: 1
+      - path: anki/LizardRRearLegThigh/LizardRRearLegCalf
+        weight: 1
+      - path: anki/LizardRRearLegThigh/LizardRRearLegCalf/LizardRRearLeg3
+        weight: 1
+      - path: anki/LizardRRearLegThigh/LizardRRearLegCalf/LizardRRearLeg3/LizardRRearLegAnkle2
+        weight: 1
+      - path: anki/LizardSpine1
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardNeck1
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardNeck1/LizardNeck2
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardNeck1/LizardNeck2/LizardHead
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardRFrontLegCollarbone
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper/LizardRFrontLegLower
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/LizardRFrontLegCollarbone/LizardRFrontLegUpper/LizardRFrontLegLower/LizardRFrontLegPalm2
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/Object143
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/Object143/LizardLFrontLegUpper
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/Object143/LizardLFrontLegUpper/LizardLFrontLegLower
+        weight: 1
+      - path: anki/LizardSpine1/LizardSpine2/LizardSpine3/LizardSpine4/LizardRibcage/Object143/LizardLFrontLegUpper/LizardLFrontLegLower/LizardLFrontLegPalm2
+        weight: 1
+      - path: anki/LizardTail1
+        weight: 1
+      - path: anki/LizardTail1/LizardTail2
+        weight: 1
+      - path: anki/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: anki/LizardTail1/LizardTail2/LizardTail3/LizardTail4
+        weight: 1
+      - path: ankylo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

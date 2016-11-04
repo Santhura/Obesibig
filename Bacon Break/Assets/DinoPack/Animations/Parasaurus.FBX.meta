@@ -1,0 +1,460 @@
+fileFormatVersion: 2
+guid: 9c201682d8f6b3448a549220f45f7dc9
+timeCreated: 1459252247
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: CATRigHub006
+    100002: CATRigHub007
+    100004: CATRigLLeg1
+    100006: CATRigLLeg2
+    100008: CATRigLLegAnkle
+    100010: CATRigLLegDigit11
+    100012: CATRigLLegDigit12
+    100014: CATRigRLeg1
+    100016: CATRigRLeg2
+    100018: CATRigRLegAnkle
+    100020: CATRigRLegDigit11
+    100022: CATRigRLegDigit12
+    100024: CATRigSpine1
+    100026: CATRigSpine1 1
+    100028: CATRigSpine2
+    100030: CATRigSpine2 1
+    100032: CATRigSpine3
+    100034: CATRigSpine4
+    100036: CATRigSpine5
+    100038: CATRigTail1
+    100040: CATRigTail2
+    100042: CATRigTail3
+    100044: palacsinta
+    100046: //RootNode
+    100048: Parasaurus
+    400000: CATRigHub006
+    400002: CATRigHub007
+    400004: CATRigLLeg1
+    400006: CATRigLLeg2
+    400008: CATRigLLegAnkle
+    400010: CATRigLLegDigit11
+    400012: CATRigLLegDigit12
+    400014: CATRigRLeg1
+    400016: CATRigRLeg2
+    400018: CATRigRLegAnkle
+    400020: CATRigRLegDigit11
+    400022: CATRigRLegDigit12
+    400024: CATRigSpine1
+    400026: CATRigSpine1 1
+    400028: CATRigSpine2
+    400030: CATRigSpine2 1
+    400032: CATRigSpine3
+    400034: CATRigSpine4
+    400036: CATRigSpine5
+    400038: CATRigTail1
+    400040: CATRigTail2
+    400042: CATRigTail3
+    400044: palacsinta
+    400046: //RootNode
+    400048: Parasaurus
+    4300000: Parasaurus
+    7400000: Parasaurus_Idle_1
+    7400002: Parasaurus_Walk_1
+    7400004: Parasaurus_Death
+    7400006: Parasaurus_Dead
+    9500000: //RootNode
+    13700000: Parasaurus
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Parasaurus_Idle_1
+      takeName: Take 001
+      firstFrame: -347
+      lastFrame: -60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: palacsinta
+        weight: 1
+      - path: palacsinta/CATRigLLeg1
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11/CATRigLLegDigit12
+        weight: 1
+      - path: palacsinta/CATRigRLeg1
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11/CATRigRLegDigit12
+        weight: 1
+      - path: palacsinta/CATRigSpine1
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3/CATRigSpine4
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3/CATRigSpine4/CATRigSpine5
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3/CATRigSpine4/CATRigSpine5/CATRigHub007
+        weight: 1
+      - path: palacsinta/CATRigTail1
+        weight: 1
+      - path: palacsinta/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: palacsinta/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: Parasaurus
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Parasaurus_Walk_1
+      takeName: Take 001
+      firstFrame: -30
+      lastFrame: 955
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: palacsinta
+        weight: 1
+      - path: palacsinta/CATRigLLeg1
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11/CATRigLLegDigit12
+        weight: 1
+      - path: palacsinta/CATRigRLeg1
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11/CATRigRLegDigit12
+        weight: 1
+      - path: palacsinta/CATRigSpine1
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3/CATRigSpine4
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3/CATRigSpine4/CATRigSpine5
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3/CATRigSpine4/CATRigSpine5/CATRigHub007
+        weight: 1
+      - path: palacsinta/CATRigTail1
+        weight: 1
+      - path: palacsinta/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: palacsinta/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: Parasaurus
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Parasaurus_Death
+      takeName: Take 001
+      firstFrame: 965
+      lastFrame: 1100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: palacsinta
+        weight: 1
+      - path: palacsinta/CATRigLLeg1
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11/CATRigLLegDigit12
+        weight: 1
+      - path: palacsinta/CATRigRLeg1
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11/CATRigRLegDigit12
+        weight: 1
+      - path: palacsinta/CATRigSpine1
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3/CATRigSpine4
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3/CATRigSpine4/CATRigSpine5
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3/CATRigSpine4/CATRigSpine5/CATRigHub007
+        weight: 1
+      - path: palacsinta/CATRigTail1
+        weight: 1
+      - path: palacsinta/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: palacsinta/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: Parasaurus
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Parasaurus_Dead
+      takeName: Take 001
+      firstFrame: 1042
+      lastFrame: 1064
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: palacsinta
+        weight: 1
+      - path: palacsinta/CATRigLLeg1
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11
+        weight: 1
+      - path: palacsinta/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/CATRigLLegDigit11/CATRigLLegDigit12
+        weight: 1
+      - path: palacsinta/CATRigRLeg1
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11
+        weight: 1
+      - path: palacsinta/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/CATRigRLegDigit11/CATRigRLegDigit12
+        weight: 1
+      - path: palacsinta/CATRigSpine1
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3/CATRigSpine4
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3/CATRigSpine4/CATRigSpine5
+        weight: 1
+      - path: palacsinta/CATRigSpine1/CATRigSpine2/CATRigHub006/CATRigSpine1 1/CATRigSpine2
+          1/CATRigSpine3/CATRigSpine4/CATRigSpine5/CATRigHub007
+        weight: 1
+      - path: palacsinta/CATRigTail1
+        weight: 1
+      - path: palacsinta/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: palacsinta/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: Parasaurus
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
