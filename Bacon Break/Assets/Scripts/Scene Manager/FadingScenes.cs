@@ -5,11 +5,10 @@ using UnityEngine.UI;
 public class FadingScenes : MonoBehaviour {
 
     private GameObject fadeImage;             // create a new gameobject with a image that will fade in or out
-   // public Image fadeOutImage;               // the texture that will overlay the screen. This can be a black iamge or a loading graphic
     public float fadeSpeed = 3f;             // the fading speed
 
     public float fadeDir = 1;               // the direction to fade : in = -1 or out = 1
-    public string sceneName;
+    public string sceneName;                // if switching scenes add the scene name
 
     public static bool activateFade;        // Activefade when the fading has to start
     public Color fadeColor;                // color that will be set for the image
@@ -42,7 +41,7 @@ public class FadingScenes : MonoBehaviour {
                 GameManager.SwitchScene(sceneName, null);
             }
             else if(fadeColor.a <= 0 && fadingDir == -1) {
-
+                fadeImage.transform.parent = null;
             }
         }
     }
