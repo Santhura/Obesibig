@@ -111,6 +111,6 @@ public class ShopController : MonoBehaviour
         }
 
 
-        inventoryController.FillLists();
+        inventoryController.FillInventory();
     }
 }
