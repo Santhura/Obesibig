@@ -68,7 +68,6 @@ public class InventoryController : MonoBehaviour
     void CloseInventory()
     {
         inventoryCanvas.SetActive(false);
-        SetPreferences(charItem, upgrItem);
         Time.timeScale = 1;
         inventoryOpened = false;
     }
@@ -84,14 +83,13 @@ public class InventoryController : MonoBehaviour
             if (i == 0)
             {
                 characters.Add(defaultCharacter);
-                FillItemInformation("character", 0);
                 charItem = defaultCharacter;
+                FillItemInformation("character", 0);
             }
 
             //Add unlocked characters to list
             if (shopController.shopItems[i].isUnlocked
-                && shopController.shopItems[i].isCharacter
-                && i > 0)
+                && shopController.shopItems[i].isCharacter)
             {
                 characters.Add(shopController.shopItems[i]);
             }
@@ -105,6 +103,9 @@ public class InventoryController : MonoBehaviour
             }
         }
 
+        //Order items alphabetically
+        characters = characters.OrderBy(go => go.itemName).ToList();
+
         if (PlayerPrefs.HasKey("Character_Item") && PlayerPrefs.HasKey("Upgrade_Item"))
         {
             //Because the easy way out (Linq) didn't work---------------------------------
@@ -112,8 +113,8 @@ public class InventoryController : MonoBehaviour
             {
                 if (characters[i].prefabName == PlayerPrefs.GetString("Character_Item"))
                 {
-                     charItem = characters[i];
-                }               
+                    charItem = characters[i];
+                }
             }
 
             if (upgrades.Count > 0)
@@ -129,18 +130,16 @@ public class InventoryController : MonoBehaviour
             //Because the easy way out (Linq) didn't work---------------------------------
         }
 
-        //Order items alphabetically
-        characters = characters.OrderBy(go => go.itemName).ToList();
-
         //Set selected items as first items to be shown.
         FillItemInformation("character", characters.IndexOf(charItem));
+        charIndex = characters.IndexOf(charItem);
 
         if (upgrades.Count > 0)
         {
             //Order items alphabetically
             upgrades = upgrades.OrderBy(go => go.itemName).ToList();
-
             FillItemInformation("upgrade", upgrades.IndexOf(upgrItem));
+            upgrIndex = upgrades.IndexOf(upgrItem);
         }
     }
 
@@ -162,8 +161,10 @@ public class InventoryController : MonoBehaviour
                     FillItemInformation(itemType, charIndex);
                 }
 
-                charItem = shopController.shopItems[charIndex];
+                charItem = characters[charIndex];
+                SetPreferences(charItem, null);
             }
+            DebugConsole.Log(charItem.itemName);
         }
 
         //For upgrade list
@@ -174,15 +175,16 @@ public class InventoryController : MonoBehaviour
                 if ((upgrIndex + 1) < upgrades.Count)
                 {
                     upgrIndex++;
-                    FillItemInformation(itemType, charIndex);
+                    FillItemInformation(itemType, upgrIndex);
                 }
                 else
                 {
                     upgrIndex = 0;
-                    FillItemInformation(itemType, charIndex);
+                    FillItemInformation(itemType, upgrIndex);
                 }
 
-                upgrItem = shopController.shopItems[upgrIndex];
+                upgrItem = upgrades[upgrIndex];
+                SetPreferences(null, upgrItem);
             }
             else
             {
@@ -209,7 +211,8 @@ public class InventoryController : MonoBehaviour
                     FillItemInformation(itemType, charIndex);
                 }
 
-                charItem = shopController.shopItems[charIndex];
+                charItem = characters[charIndex];
+                SetPreferences(charItem, null);
             }
         }
 
@@ -229,13 +232,16 @@ public class InventoryController : MonoBehaviour
                     FillItemInformation(itemType, charIndex);
                 }
 
-                upgrItem = shopController.shopItems[upgrIndex];
+                upgrItem = upgrades[upgrIndex];
+                SetPreferences(null, upgrItem);
             }
             else
             {
                 upgrItem = null;
             }
         }
+
+        SetPreferences(charItem, upgrItem);
     }
 
     void FillItemInformation(string itemType, int index)
@@ -244,17 +250,21 @@ public class InventoryController : MonoBehaviour
         {
             characterTitle.text = characters[index].itemName;
             characterImage.sprite = characters[index].itemSprite;
+            //charIndex = index;
         }
 
         if (itemType == "upgrade")
         {
             upgradeTitle.text = upgrades[index].itemName;
             upgradeImage.sprite = upgrades[index].itemSprite;
+            //upgrIndex = index;
         }
     }
 
     public void SetPreferences(ShopItem charItem, ShopItem upgrItem)
     {
+        //DebugConsole.Log(charItem.itemName);
+
         if (charItem != null)
         {
             PlayerPrefs.SetString("Character_Item", charItem.prefabName);
