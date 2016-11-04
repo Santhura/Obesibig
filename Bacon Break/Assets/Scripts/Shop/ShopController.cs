@@ -101,6 +101,6 @@ public class ShopController : MonoBehaviour
     {
         shopItems[itemIndex].isUnlocked = true;
 
-        inventoryController.Add(shopItems[itemIndex], shopItems[itemIndex].isCharacter);
+        inventoryController.FillLists();
     }
 }

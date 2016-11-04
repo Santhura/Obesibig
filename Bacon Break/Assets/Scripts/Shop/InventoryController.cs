@@ -20,14 +20,13 @@ public class InventoryController : MonoBehaviour
     //Setting character and upgrade information
     public Image characterImage, upgradeImage;
     public Text characterTitle, upgradeTitle;
+    private ShopItem charItem, upgrItem;
 
     // Use this for initialization
     void Start()
     {
-        characters = new List<ShopItem>();
-        upgrades = new List<ShopItem>();
-
         FillLists();
+        SetPreferences(charItem, upgrItem);
 
         if (inventoryCanvas.activeSelf)
         {
@@ -63,25 +62,16 @@ public class InventoryController : MonoBehaviour
     void CloseInventory()
     {
         inventoryCanvas.SetActive(false);
+        SetPreferences(charItem, upgrItem);
         Time.timeScale = 1;
         inventoryOpened = false;
     }
 
-    public void Add(ShopItem item, bool isCharacter)
+    public void FillLists()
     {
-        if (isCharacter)
-        {
-            characters.Add(item);
-        }
-        else
-        {
-            upgrades.Add(item);
-            FillLists();
-        }
-    }
+        characters = new List<ShopItem>();
+        upgrades = new List<ShopItem>();
 
-    void FillLists()
-    {
         for (int i = 0; i < shopController.shopItems.Count; i++)
         {
             //The default character is always at index 0
@@ -89,6 +79,7 @@ public class InventoryController : MonoBehaviour
             {
                 characters.Add(defaultCharacter);
                 FillItemInformation("character", i);
+                charItem = shopController.shopItems[i];
             }
 
             //Add unlocked characters to list
@@ -103,10 +94,14 @@ public class InventoryController : MonoBehaviour
                && !shopController.shopItems[i].isCharacter)
             {
                 upgrades.Add(shopController.shopItems[i]);
+                upgrItem = shopController.shopItems[i];
             }
         }
 
-        FillItemInformation("upgrade", 0);
+        if (upgrades.Count > 0)
+        {
+            FillItemInformation("upgrade", 0);
+        }
     }
 
     public void NextItem(string itemType)
@@ -126,6 +121,8 @@ public class InventoryController : MonoBehaviour
                     charIndex = 0;
                     FillItemInformation(itemType, charIndex);
                 }
+
+                charItem = shopController.shopItems[charIndex];
             }
         }
 
@@ -144,6 +141,12 @@ public class InventoryController : MonoBehaviour
                     upgrIndex = 0;
                     FillItemInformation(itemType, charIndex);
                 }
+
+                upgrItem = shopController.shopItems[upgrIndex];
+            }
+            else
+            {
+                upgrItem = null;
             }
         }
     }
@@ -165,6 +168,8 @@ public class InventoryController : MonoBehaviour
                     charIndex = (characters.Count - 1);
                     FillItemInformation(itemType, charIndex);
                 }
+
+                charItem = shopController.shopItems[charIndex];
             }
         }
 
@@ -183,6 +188,12 @@ public class InventoryController : MonoBehaviour
                     upgrIndex = (upgrades.Count - 1);
                     FillItemInformation(itemType, charIndex);
                 }
+
+                upgrItem = shopController.shopItems[upgrIndex];
+            }
+            else
+            {
+                upgrItem = null;
             }
         }
     }
@@ -200,5 +211,23 @@ public class InventoryController : MonoBehaviour
             upgradeTitle.text = upgrades[index].itemName;
             upgradeImage.sprite = characters[index].itemSprite;
         }
+    }
+
+    void SetPreferences(ShopItem charItem, ShopItem upgrItem)
+    {
+        PlayerPrefs.SetString("Character_Item", charItem.prefabName);
+
+        //Upgrade item can be null
+        if (upgrItem != null)
+        {
+            PlayerPrefs.SetString("Upgrade_Item", upgrItem.prefabName);
+        }
+        else
+        {
+            PlayerPrefs.SetString("Upgrade_Item", "null");
+        }
+
+        DebugConsole.Log("Character Selected: " + PlayerPrefs.GetString("Character_Item"));
+        DebugConsole.Log("Upgrade Selected: " + PlayerPrefs.GetString("Upgrade_Item"));
     }
 }
