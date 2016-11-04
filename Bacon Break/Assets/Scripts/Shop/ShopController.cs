@@ -60,7 +60,7 @@ public class ShopController : MonoBehaviour
 
     void SetCoinAmount()
     {
-        //PlayerPrefs.SetInt("myCoins", 10);
+        PlayerPrefs.SetInt("myCoins", 10);
         coinAmount.text = "x" + PlayerPrefs.GetInt("myCoins").ToString();
     }
 

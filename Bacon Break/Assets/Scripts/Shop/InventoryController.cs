@@ -76,6 +76,7 @@ public class InventoryController : MonoBehaviour
         else
         {
             upgrades.Add(item);
+            FillLists();
         }
     }
 
