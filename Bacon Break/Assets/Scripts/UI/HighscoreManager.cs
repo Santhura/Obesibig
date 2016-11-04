@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using UnityEngine.UI;
+using GooglePlayGames;
 
 public class HighscoreManager : MonoBehaviour {
     public float timeLeft;                  //the amount of timeleft is a way to calculate highscore.
@@ -40,6 +41,21 @@ public class HighscoreManager : MonoBehaviour {
         scoreTriggered = true;
         maxTime = maxTime - timeLeft;
         text_highScore.text = "Score: " + highScore + "\nTime: " + System.Math.Round(maxTime, 2) + " seconds\nBacons Collected: " + baconsCollected.baconAmount + "\nTraps Destroyed " + trapsDestroyedAmount;
+
+        //Update the leaderboard with new score
+        // Submit leaderboard scores, if authenticated
+        if (PlayGamesPlatform.Instance.localUser.authenticated)
+        {
+            long score = (long)highScore;
+            // Note: make sure to add 'using GooglePlayGames'
+            PlayGamesPlatform.Instance.ReportScore(score,
+                GPGSIds.leaderboard_world_highscore,
+                (bool success) =>
+                {
+                    Debug.Log("(BaconBreak) Leaderboard update success: " + success);
+                });
+        }
+
         PlayerPrefs.SetInt("Level " + PlayerPrefs.GetInt("LevelIndex") + "_score", Mathf.FloorToInt(highScore));
     }
 }
