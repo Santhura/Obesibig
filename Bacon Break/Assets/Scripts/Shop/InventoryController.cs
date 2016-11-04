@@ -102,12 +102,14 @@ public class InventoryController : MonoBehaviour
         //Set selected character 
         GetSelectedItem("Character_Item");
         DisplayItem("character", characters.IndexOf(charItem));
+        SetPreferences(charItem, null);
 
         //Set selected upgrade (if the player has one)
         if (upgrades.Count > 0)
         {
             GetSelectedItem("Upgrade_Item");
             DisplayItem("upgrade", upgrades.IndexOf(upgrItem));
+            SetPreferences(null, upgrItem);
         }
     }
 

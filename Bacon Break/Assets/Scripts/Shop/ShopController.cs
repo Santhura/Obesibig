@@ -6,22 +6,19 @@ using System.Collections.Generic;
 
 public class ShopController : MonoBehaviour
 {
-    //Keeps track of all the shop items.
-    public List<ShopItem> shopItems;
-    public Text coinAmount;
-
-    //The actual shop
-    public GameObject shopCanvas;
-
-    //For unlocking inventory items
-    public InventoryController inventoryController;
-
     //For opening and closing the shop
+    [Header("CANVAS_SETTINGS")]
+    public GameObject shopCanvas;
     private bool shopOpened;
+
+    [Header("TRANSACTION_SETTINGS")]
+    public List<ShopItem> shopItems;                    //For keeping track of all the (shop) items
+    public InventoryController inventoryController;     //Primarily used for making transactions between the shop and the inventory
+    public Text coinAmount;                             //For keeping track of the amount coins
 
     void Start()
     {
-        if (shopCanvas.activeSelf)
+        if (shopCanvas.activeSelf)                      //Check if the shop is open or not
         {
             OpenShop();
         }
@@ -33,6 +30,7 @@ public class ShopController : MonoBehaviour
 
     void Update()
     {
+        //Open / close inventory with 'U' (PC)
         if (Input.GetKeyUp(KeyCode.U) && !shopOpened)
         {
             OpenShop();
@@ -64,7 +62,6 @@ public class ShopController : MonoBehaviour
         coinAmount.text = "x" + PlayerPrefs.GetInt("myCoins").ToString();
     }
 
-    //Purchase item if the player has enough coins
     public void PurchaseItem(int itemIndex, int coinAmount, int itemCost)
     {     
         //Update coin amount
@@ -76,9 +73,6 @@ public class ShopController : MonoBehaviour
 
         //"Small Spender" achievement
         UpdateAchievement(GPGSIds.achievement_small_spender);
-
-        //Show on the console what item you have bought
-        DebugConsole.Log(shopItems[itemIndex].itemName + " purchased!");
     }
 
     void UpdateAchievement(string achievementName)
@@ -99,18 +93,8 @@ public class ShopController : MonoBehaviour
 
     void AddToInventory(int itemIndex)
     {
+        //Unlock item, update inventory lists
         shopItems[itemIndex].isUnlocked = true;
-
-        if (shopItems[itemIndex].isCharacter)
-        {
-            inventoryController.SetPreferences(shopItems[itemIndex], null);
-        }
-        else if(!shopItems[itemIndex].isCharacter)
-        {
-            inventoryController.SetPreferences(null, shopItems[itemIndex]);
-        }
-
-
         inventoryController.FillInventory();
     }
 }
