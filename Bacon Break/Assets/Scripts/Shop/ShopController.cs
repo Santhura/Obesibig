@@ -15,10 +15,15 @@ public class ShopController : MonoBehaviour
     public List<ShopItem> shopItems;                    //For keeping track of all the (shop) items
     public List<ShopButton> shopButtons;                //For cycling between shop items
     public InventoryController inventoryController;     //Primarily used for making transactions between the shop and the inventory
+
+    [Header("UI_SHIT")]
     public Text coinAmount;                             //For keeping track of the amount of coins
     public Button charFilter, upgrFilter;               //For filtering, obviously
+    public ShopButton shopButton0, shopButton1,         //For resetting button indices
+                      shopButton2;   
+    public Button btn_next, btn_back;                   //Disabling/enabling (if items in the list are less than 4 or more than 3)
 
-    public List<ShopItem> filteredItems;                 //Temporary list for storing filtered items in the shop
+    public List<ShopItem> filteredItems;                //Temporary list for storing filtered items in the shop
 
     void Awake()
     {
@@ -151,21 +156,25 @@ public class ShopController : MonoBehaviour
 
     public void SetFilter(string filterType)
     {
-        //Make sure list is empty
-        filteredItems.Clear();
+        //Reset button indices
         int buttonCount = 0;
+        shopButton0.itemIndex = 0;
+        shopButton1.itemIndex = 1;
+        shopButton2.itemIndex = 2;
 
         //Filter objects based on type (character or upgrade)
         if (filterType == "characters")
         {
             filteredItems.Clear();
-            EnableButton(upgrFilter);
+            buttonCount = 0;
+
+            EnableButton(upgrFilter, true);
             DisableButton(charFilter);
 
             for (int i = 0; i < shopItems.Count; i++)
             {
                 if (shopItems[i].isCharacter)
-                {
+                {                    
                     filteredItems.Add(shopItems[i]);
 
                     //Populate the three buttons
@@ -180,7 +189,9 @@ public class ShopController : MonoBehaviour
         else if (filterType == "upgrades")
         {
             filteredItems.Clear();
-            EnableButton(charFilter);
+            buttonCount = 0;
+
+            EnableButton(charFilter, true);
             DisableButton(upgrFilter);
 
             for (int i = 0; i < shopItems.Count; i++)
@@ -197,6 +208,19 @@ public class ShopController : MonoBehaviour
                     }
                 }
             }
+        }
+
+        //Enable/disable next/back button
+        //There are 3 buttons, if there are more than 3 items, enable next/back
+        if (filteredItems.Count > 3)
+        {
+            EnableButton(btn_back, false);
+            EnableButton(btn_next, false);
+        }
+        else
+        {
+            DisableButton(btn_back);
+            DisableButton(btn_next);
         }
 
         //Disable the rest of the buttons
@@ -220,10 +244,18 @@ public class ShopController : MonoBehaviour
         button.interactable = false;
     }
 
-    public void EnableButton(Button button)
+    public void EnableButton(Button button, bool isItemButton)
     {
         //Set color back to purple and enable the button
-        button.GetComponent<Image>().color = new Color(179.0f / 255.0f, 167.0f / 255.0f, 223.0f / 255.0f, 201.0f / 255.0f);
+        if (isItemButton)
+        {
+            button.GetComponent<Image>().color = new Color(179.0f / 255.0f, 167.0f / 255.0f, 223.0f / 255.0f, 201.0f / 255.0f);
+        }
+        else
+        {
+            button.GetComponent<Image>().color = Color.white;
+        }
+
         button.interactable = true;
     }
 }

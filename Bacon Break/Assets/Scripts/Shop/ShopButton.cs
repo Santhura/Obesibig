@@ -56,7 +56,7 @@ public class ShopButton : MonoBehaviour
         }
         else
         {
-            shopController.EnableButton(thisButton);
+            shopController.EnableButton(thisButton, true);
         }
     }
 
