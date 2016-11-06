@@ -13,11 +13,20 @@ public class ShopController : MonoBehaviour
 
     [Header("TRANSACTION_SETTINGS")]
     public List<ShopItem> shopItems;                    //For keeping track of all the (shop) items
+    public List<ShopButton> shopButtons;                //For cycling between shop items
     public InventoryController inventoryController;     //Primarily used for making transactions between the shop and the inventory
-    public Text coinAmount;                             //For keeping track of the amount coins
+
+    [Header("UI_SHIT")]
+    public Text coinAmount;                             //For keeping track of the amount of coins
+    public Button charFilter, upgrFilter;               //For filtering, obviously
+    public Button btn_next, btn_back;                   //Disabling/enabling (if items in the list are less than 4 or more than 3)
+
+    public List<ShopItem> filteredItems;                //Temporary list for storing filtered items in the shop
 
     void Start()
     {
+        SetFilter("characters");
+
         if (shopCanvas.activeSelf)                      //Check if the shop is open or not
         {
             OpenShop();
@@ -44,6 +53,7 @@ public class ShopController : MonoBehaviour
     void OpenShop()
     {
         SetCoinAmount();
+
         shopCanvas.SetActive(true);
         Time.timeScale = 0;
         shopOpened = true;
@@ -58,18 +68,18 @@ public class ShopController : MonoBehaviour
 
     void SetCoinAmount()
     {
-        PlayerPrefs.SetInt("myCoins", 10);
+        PlayerPrefs.SetInt("myCoins", 50);
         coinAmount.text = "x" + PlayerPrefs.GetInt("myCoins").ToString();
     }
 
-    public void PurchaseItem(int itemIndex, int coinAmount, int itemCost)
-    {     
+    public void PurchaseItem(ShopItem item, int coinAmount, int itemCost)
+    {
         //Update coin amount
         PlayerPrefs.SetInt("myCoins", coinAmount - itemCost);
         SetCoinAmount();
 
         //Unlock item for the player to use
-        AddToInventory(itemIndex);
+        AddToInventory(item);
 
         //"Small Spender" achievement
         UpdateAchievement(GPGSIds.achievement_small_spender);
@@ -91,10 +101,151 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    void AddToInventory(int itemIndex)
+    void AddToInventory(ShopItem item)
     {
         //Unlock item, update inventory lists
-        shopItems[itemIndex].isUnlocked = true;
+        item.isUnlocked = true;
         inventoryController.FillInventory();
+    }
+
+    public void Next()
+    {
+        foreach (ShopButton button in shopButtons)
+        {
+            if (button.gameObject.activeSelf)
+            {
+                if ((button.itemIndex + 1) < filteredItems.Count)
+                {
+                    button.itemIndex++;
+                }
+                else
+                {
+                    button.itemIndex = 0;
+                }
+
+                button.SetButton();
+            }
+        }
+    }
+
+    public void Back()
+    {
+        foreach (ShopButton button in shopButtons)
+        {
+            if (button.gameObject.activeSelf)
+            {
+                if ((button.itemIndex - 1) >= 0)
+                {
+                    button.itemIndex--;
+                }
+                else
+                {
+                    button.itemIndex = (filteredItems.Count - 1);
+                }
+
+                button.SetButton();
+            }
+        }
+    }
+
+    public void SetFilter(string filterType)
+    {
+        //Reset button indices
+        int buttonCount = 0;
+        filteredItems.Clear();
+
+        shopButtons[0].itemIndex = 0;
+        shopButtons[1].itemIndex = 1;
+        shopButtons[2].itemIndex = 2;
+
+        //Filter objects based on type (character or upgrade)
+        if (filterType == "characters")
+        {
+            EnableButton(upgrFilter, true);
+            DisableButton(charFilter);
+
+            for (int i = 0; i < shopItems.Count; i++)
+            {
+                if (shopItems[i].isCharacter)
+                {                  
+                    filteredItems.Add(shopItems[i]);                  
+
+                    //Populate the three buttons
+                    if (buttonCount < shopButtons.Count)
+                    {
+                        shopButtons[buttonCount].SetButton();
+                        buttonCount++;
+                    }
+                }
+            }
+        }
+        else if (filterType == "upgrades")
+        {
+            EnableButton(charFilter, true);
+            DisableButton(upgrFilter);
+
+            for (int i = 0; i < shopItems.Count; i++)
+            {
+                if (!shopItems[i].isCharacter)
+                {
+                    filteredItems.Add(shopItems[i]);
+
+                    //Populate the three buttons
+                    if (buttonCount < shopButtons.Count)
+                    {
+                        shopButtons[buttonCount].SetButton();
+                        buttonCount++;
+                    }
+                }
+            }
+        }
+
+        //Enable/disable next/back button
+        //There are 3 buttons, if there are more than 3 items, enable next/back
+        if (filteredItems.Count > 3)
+        {
+            EnableButton(btn_back, false);
+            EnableButton(btn_next, false);
+        }
+        else
+        {
+            DisableButton(btn_back);
+            DisableButton(btn_next);
+        }
+
+        //Disable the rest of the buttons
+        if (buttonCount < shopButtons.Count)
+        {
+            for (int i = buttonCount; i < shopButtons.Count; i++)
+            {
+                shopButtons[i].SetButton();
+            }
+        }
+    }
+
+    public void DisableButton(Button button)
+    {
+        //Set greyish color for the disabled button
+        button.GetComponent<Image>().color = new Color(146.0f / 255.0f, 146.0f / 255.0f, 146.0f / 255.0f, 1.0f);
+        ColorBlock cb = button.colors;
+        cb.disabledColor = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 1.0f);
+        button.colors = cb;
+
+        button.interactable = false;
+    }
+
+    public void EnableButton(Button button, bool isItemButton)
+    {
+        //Set color back to purple and enable the button
+        if (isItemButton)
+        {
+            button.GetComponent<Image>().color = new Color(179.0f / 255.0f, 167.0f / 255.0f, 223.0f / 255.0f, 201.0f / 255.0f);
+        }
+        else
+        {
+            button.GetComponent<Image>().color = Color.white;
+        }
+
+        button.interactable = true;
     }
 }

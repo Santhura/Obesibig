@@ -19,56 +19,61 @@ public class ShopButton : MonoBehaviour
     {
         //Set onclicklistener for this button
         thisButton = GetComponent<Button>();
-        thisButton.onClick.AddListener(() => { AttemptPurchase(); });
-
-        DisplayButton();
+        thisButton.onClick.AddListener(() => { AttemptPurchase(); });   
     }
 
-    void DisplayButton()
+    public void SetButton()
+    {
+        if (itemIndex >= 0 && itemIndex < shopController.filteredItems.Count)
+        {
+            gameObject.SetActive(true);
+            DisplayButton();
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void DisplayButton()
     {
         //Set item information
-        itemName.text = shopController.shopItems[itemIndex].itemName;
-        itemImage.sprite = shopController.shopItems[itemIndex].itemSprite;
-        itemCost.text = "Coins: " + shopController.shopItems[itemIndex].itemCost.ToString();
-        itemDesc.text = shopController.shopItems[itemIndex].itemDesc;
+        itemName.text = shopController.filteredItems[itemIndex].itemName;
+        itemImage.sprite = shopController.filteredItems[itemIndex].itemSprite;
+        itemCost.text = "Coins: " + shopController.filteredItems[itemIndex].itemCost.ToString();
+        itemDesc.text = shopController.filteredItems[itemIndex].itemDesc;
 
         //Disable the button if a unique item is already purchased
-        if (shopController.shopItems[itemIndex].isUnlocked
-            && shopController.shopItems[itemIndex].isUnique)
+        if (shopController.filteredItems[itemIndex].isUnlocked
+            && shopController.filteredItems[itemIndex].isUnique)
         {
-            DisableButton();
+            shopController.DisableButton(thisButton);
+        }
+        else
+        {
+            shopController.EnableButton(thisButton, true);
         }
     }
 
     void AttemptPurchase()
     {
         int coinAmount = PlayerPrefs.GetInt("myCoins");
-        int cost = shopController.shopItems[itemIndex].itemCost;
+        int cost = shopController.filteredItems[itemIndex].itemCost;
+        ShopItem item = shopController.filteredItems[itemIndex];
 
         //Purchase if the player has enough money
         if (coinAmount >= cost)
         {
-            shopController.PurchaseItem(itemIndex, coinAmount, cost);
+            shopController.PurchaseItem(item, coinAmount, cost);
 
-            if (shopController.shopItems[itemIndex].isUnique)
+            if (shopController.filteredItems[itemIndex].isUnique)
             {
-                DisableButton();
+                shopController.DisableButton(thisButton);
             }
         }
         else
         {
             DebugConsole.Log("You don't have enough coins!");
         }
-    }
-
-    void DisableButton()
-    {
-        //Set greyish color for the disabled button
-        thisButton.GetComponent<Image>().color = new Color(146.0f / 255.0f, 146.0f / 255.0f, 146.0f / 255.0f, 1.0f);
-        ColorBlock cb = thisButton.colors;
-        cb.disabledColor = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 1.0f);
-        thisButton.colors = cb;
-
-        thisButton.interactable = false;
     }
 }
