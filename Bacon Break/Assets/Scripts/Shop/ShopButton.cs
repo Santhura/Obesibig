@@ -19,12 +19,7 @@ public class ShopButton : MonoBehaviour
     {
         //Set onclicklistener for this button
         thisButton = GetComponent<Button>();
-        thisButton.onClick.AddListener(() => { AttemptPurchase(); });
-
-        if (!shopController.shopButtons.Contains(this))
-        {
-            shopController.shopButtons.Add(this);
-        }
+        thisButton.onClick.AddListener(() => { AttemptPurchase(); });   
     }
 
     public void SetButton()

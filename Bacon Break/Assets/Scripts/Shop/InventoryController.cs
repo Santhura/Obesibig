@@ -20,18 +20,16 @@ public class InventoryController : MonoBehaviour
 
     [Header("INVENTORY CANVAS ITEMS")]
     public Image characterImage;                            //This will display the currently selected character / upgrade image
-    public Image upgradeImage;              
+    public Image upgradeImage;
     public Text characterTitle, characterDescription,       //This will display the title and description of the selected character / upgrade
                 upgradeTitle, upgradeDescription;
 
     // Use this for initialization
     void Start()
     {
+        //PlayerPrefs.DeleteAll();
         characters = new List<ShopItem>();
         upgrades = new List<ShopItem>();
-
-        FillInventory();                                    //Fill the CHARACTERS and UPGRADES list (and display selected items)
-        SetPreferences(charItem, upgrItem);                 //Add the currently selected character / upgrade to PlayerPrefs
 
         if (inventoryCanvas.activeSelf)                     //Check if the inventory is open or not
         {
@@ -59,6 +57,9 @@ public class InventoryController : MonoBehaviour
 
     void OpenInventory()
     {
+        FillInventory();                                    //Fill the CHARACTERS and UPGRADES list (and display selected items)
+        SetPreferences(charItem, upgrItem);                 //Add the currently selected character / upgrade to PlayerPrefs
+
         inventoryCanvas.SetActive(true);
         Time.timeScale = 0;
         inventoryOpened = true;
@@ -135,14 +136,17 @@ public class InventoryController : MonoBehaviour
         if (keyName == "Upgrade_Item")
         {
             //Always have a default
-            upgrItem = shopController.shopItems[0];
+            upgrItem = upgrades[0];
 
             //Order list alphabetically
             upgrades = upgrades.OrderBy(go => go.itemName).ToList();
 
             if (PlayerPrefs.HasKey("Upgrade_Item"))
             {
-                upgrItem = upgrades.Where(upgrade => upgrade.prefabName == PlayerPrefs.GetString("Upgrade_Item")).SingleOrDefault();
+                if (PlayerPrefs.GetString("Upgrade_Item") != "null")
+                {
+                    upgrItem = upgrades.Where(upgrade => upgrade.prefabName == PlayerPrefs.GetString("Upgrade_Item")).SingleOrDefault();
+                }
             }
 
             //Set (selected) index for the UPGRADES list
@@ -258,6 +262,10 @@ public class InventoryController : MonoBehaviour
         if (upgrItem != null)
         {
             PlayerPrefs.SetString("Upgrade_Item", upgrItem.prefabName);
+        }
+        else
+        {
+            PlayerPrefs.SetString("Upgrade_Item", "null");
         }
     }
 }

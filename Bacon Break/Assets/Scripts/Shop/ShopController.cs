@@ -19,16 +19,9 @@ public class ShopController : MonoBehaviour
     [Header("UI_SHIT")]
     public Text coinAmount;                             //For keeping track of the amount of coins
     public Button charFilter, upgrFilter;               //For filtering, obviously
-    public ShopButton shopButton0, shopButton1,         //For resetting button indices
-                      shopButton2;   
     public Button btn_next, btn_back;                   //Disabling/enabling (if items in the list are less than 4 or more than 3)
 
     public List<ShopItem> filteredItems;                //Temporary list for storing filtered items in the shop
-
-    void Awake()
-    {
-        shopButtons.Clear();
-    }
 
     void Start()
     {
@@ -60,6 +53,7 @@ public class ShopController : MonoBehaviour
     void OpenShop()
     {
         SetCoinAmount();
+
         shopCanvas.SetActive(true);
         Time.timeScale = 0;
         shopOpened = true;
@@ -74,7 +68,7 @@ public class ShopController : MonoBehaviour
 
     void SetCoinAmount()
     {
-        PlayerPrefs.SetInt("myCoins", 10);
+        PlayerPrefs.SetInt("myCoins", 50);
         coinAmount.text = "x" + PlayerPrefs.GetInt("myCoins").ToString();
     }
 
@@ -158,24 +152,23 @@ public class ShopController : MonoBehaviour
     {
         //Reset button indices
         int buttonCount = 0;
-        shopButton0.itemIndex = 0;
-        shopButton1.itemIndex = 1;
-        shopButton2.itemIndex = 2;
+        filteredItems.Clear();
+
+        shopButtons[0].itemIndex = 0;
+        shopButtons[1].itemIndex = 1;
+        shopButtons[2].itemIndex = 2;
 
         //Filter objects based on type (character or upgrade)
         if (filterType == "characters")
         {
-            filteredItems.Clear();
-            buttonCount = 0;
-
             EnableButton(upgrFilter, true);
             DisableButton(charFilter);
 
             for (int i = 0; i < shopItems.Count; i++)
             {
                 if (shopItems[i].isCharacter)
-                {                    
-                    filteredItems.Add(shopItems[i]);
+                {                  
+                    filteredItems.Add(shopItems[i]);                  
 
                     //Populate the three buttons
                     if (buttonCount < shopButtons.Count)
@@ -188,9 +181,6 @@ public class ShopController : MonoBehaviour
         }
         else if (filterType == "upgrades")
         {
-            filteredItems.Clear();
-            buttonCount = 0;
-
             EnableButton(charFilter, true);
             DisableButton(upgrFilter);
 
