@@ -260,5 +260,4 @@ public class InventoryController : MonoBehaviour
             PlayerPrefs.SetString("Upgrade_Item", upgrItem.prefabName);
         }
     }
-
 }

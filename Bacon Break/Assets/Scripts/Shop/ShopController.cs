@@ -15,10 +15,20 @@ public class ShopController : MonoBehaviour
     public List<ShopItem> shopItems;                    //For keeping track of all the (shop) items
     public List<ShopButton> shopButtons;                //For cycling between shop items
     public InventoryController inventoryController;     //Primarily used for making transactions between the shop and the inventory
-    public Text coinAmount;                             //For keeping track of the amount coins
+    public Text coinAmount;                             //For keeping track of the amount of coins
+    public Button charFilter, upgrFilter;               //For filtering, obviously
+
+    public List<ShopItem> filteredItems;                 //Temporary list for storing filtered items in the shop
+
+    void Awake()
+    {
+        shopButtons.Clear();
+    }
 
     void Start()
     {
+        SetFilter("characters");
+
         if (shopCanvas.activeSelf)                      //Check if the shop is open or not
         {
             OpenShop();
@@ -63,14 +73,14 @@ public class ShopController : MonoBehaviour
         coinAmount.text = "x" + PlayerPrefs.GetInt("myCoins").ToString();
     }
 
-    public void PurchaseItem(int itemIndex, int coinAmount, int itemCost)
+    public void PurchaseItem(ShopItem item, int coinAmount, int itemCost)
     {
         //Update coin amount
         PlayerPrefs.SetInt("myCoins", coinAmount - itemCost);
         SetCoinAmount();
 
         //Unlock item for the player to use
-        AddToInventory(itemIndex);
+        AddToInventory(item);
 
         //"Small Spender" achievement
         UpdateAchievement(GPGSIds.achievement_small_spender);
@@ -92,10 +102,10 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    void AddToInventory(int itemIndex)
+    void AddToInventory(ShopItem item)
     {
         //Unlock item, update inventory lists
-        shopItems[itemIndex].isUnlocked = true;
+        item.isUnlocked = true;
         inventoryController.FillInventory();
     }
 
@@ -103,16 +113,19 @@ public class ShopController : MonoBehaviour
     {
         foreach (ShopButton button in shopButtons)
         {
-            if ((button.itemIndex + 1) < shopItems.Count)
+            if (button.gameObject.activeSelf)
             {
-                button.itemIndex++;
-            }
-            else
-            {
-                button.itemIndex = 0;
-            }
+                if ((button.itemIndex + 1) < filteredItems.Count)
+                {
+                    button.itemIndex++;
+                }
+                else
+                {
+                    button.itemIndex = 0;
+                }
 
-            button.DisplayButton();
+                button.SetButton();
+            }
         }
     }
 
@@ -120,16 +133,97 @@ public class ShopController : MonoBehaviour
     {
         foreach (ShopButton button in shopButtons)
         {
-            if ((button.itemIndex - 1) >= 0)
+            if (button.gameObject.activeSelf)
             {
-                button.itemIndex--;
-            }
-            else
-            {
-                button.itemIndex = (shopItems.Count - 1);
-            }
+                if ((button.itemIndex - 1) >= 0)
+                {
+                    button.itemIndex--;
+                }
+                else
+                {
+                    button.itemIndex = (filteredItems.Count - 1);
+                }
 
-            button.DisplayButton();
+                button.SetButton();
+            }
         }
+    }
+
+    public void SetFilter(string filterType)
+    {
+        //Make sure list is empty
+        filteredItems.Clear();
+        int buttonCount = 0;
+
+        //Filter objects based on type (character or upgrade)
+        if (filterType == "characters")
+        {
+            filteredItems.Clear();
+            EnableButton(upgrFilter);
+            DisableButton(charFilter);
+
+            for (int i = 0; i < shopItems.Count; i++)
+            {
+                if (shopItems[i].isCharacter)
+                {
+                    filteredItems.Add(shopItems[i]);
+
+                    //Populate the three buttons
+                    if (buttonCount < shopButtons.Count)
+                    {
+                        shopButtons[buttonCount].SetButton();
+                        buttonCount++;
+                    }
+                }
+            }
+        }
+        else if (filterType == "upgrades")
+        {
+            filteredItems.Clear();
+            EnableButton(charFilter);
+            DisableButton(upgrFilter);
+
+            for (int i = 0; i < shopItems.Count; i++)
+            {
+                if (!shopItems[i].isCharacter)
+                {
+                    filteredItems.Add(shopItems[i]);
+
+                    //Populate the three buttons
+                    if (buttonCount < shopButtons.Count)
+                    {
+                        shopButtons[buttonCount].SetButton();
+                        buttonCount++;
+                    }
+                }
+            }
+        }
+
+        //Disable the rest of the buttons
+        if (buttonCount < shopButtons.Count)
+        {
+            for (int i = buttonCount; i < shopButtons.Count; i++)
+            {
+                shopButtons[i].SetButton();
+            }
+        }
+    }
+
+    public void DisableButton(Button button)
+    {
+        //Set greyish color for the disabled button
+        button.GetComponent<Image>().color = new Color(146.0f / 255.0f, 146.0f / 255.0f, 146.0f / 255.0f, 1.0f);
+        ColorBlock cb = button.colors;
+        cb.disabledColor = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 1.0f);
+        button.colors = cb;
+
+        button.interactable = false;
+    }
+
+    public void EnableButton(Button button)
+    {
+        //Set color back to purple and enable the button
+        button.GetComponent<Image>().color = new Color(179.0f / 255.0f, 167.0f / 255.0f, 223.0f / 255.0f, 201.0f / 255.0f);
+        button.interactable = true;
     }
 }
