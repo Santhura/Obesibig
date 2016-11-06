@@ -22,9 +22,14 @@ public class ShopButton : MonoBehaviour
         thisButton.onClick.AddListener(() => { AttemptPurchase(); });
 
         DisplayButton();
+
+        if (!shopController.shopButtons.Contains(this))
+        {
+            shopController.shopButtons.Add(this);
+        }
     }
 
-    void DisplayButton()
+    public void DisplayButton()
     {
         //Set item information
         itemName.text = shopController.shopItems[itemIndex].itemName;
@@ -37,6 +42,10 @@ public class ShopButton : MonoBehaviour
             && shopController.shopItems[itemIndex].isUnique)
         {
             DisableButton();
+        }
+        else
+        {
+            EnableButton();
         }
     }
 
@@ -70,5 +79,12 @@ public class ShopButton : MonoBehaviour
         thisButton.colors = cb;
 
         thisButton.interactable = false;
+    }
+
+    void EnableButton()
+    {
+        //Set color back to purple
+        thisButton.GetComponent<Image>().color = new Color(179.0f / 255.0f, 167.0f / 255.0f, 223.0f / 255.0f, 201.0f / 255.0f);
+        thisButton.interactable = true;
     }
 }

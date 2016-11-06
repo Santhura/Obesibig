@@ -13,6 +13,7 @@ public class ShopController : MonoBehaviour
 
     [Header("TRANSACTION_SETTINGS")]
     public List<ShopItem> shopItems;                    //For keeping track of all the (shop) items
+    public List<ShopButton> shopButtons;                //For cycling between shop items
     public InventoryController inventoryController;     //Primarily used for making transactions between the shop and the inventory
     public Text coinAmount;                             //For keeping track of the amount coins
 
@@ -63,7 +64,7 @@ public class ShopController : MonoBehaviour
     }
 
     public void PurchaseItem(int itemIndex, int coinAmount, int itemCost)
-    {     
+    {
         //Update coin amount
         PlayerPrefs.SetInt("myCoins", coinAmount - itemCost);
         SetCoinAmount();
@@ -96,5 +97,39 @@ public class ShopController : MonoBehaviour
         //Unlock item, update inventory lists
         shopItems[itemIndex].isUnlocked = true;
         inventoryController.FillInventory();
+    }
+
+    public void Next()
+    {
+        foreach (ShopButton button in shopButtons)
+        {
+            if ((button.itemIndex + 1) < shopItems.Count)
+            {
+                button.itemIndex++;
+            }
+            else
+            {
+                button.itemIndex = 0;
+            }
+
+            button.DisplayButton();
+        }
+    }
+
+    public void Back()
+    {
+        foreach (ShopButton button in shopButtons)
+        {
+            if ((button.itemIndex - 1) >= 0)
+            {
+                button.itemIndex--;
+            }
+            else
+            {
+                button.itemIndex = (shopItems.Count - 1);
+            }
+
+            button.DisplayButton();
+        }
     }
 }
