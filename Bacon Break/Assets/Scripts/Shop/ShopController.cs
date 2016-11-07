@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 public class ShopController : MonoBehaviour
 {
+    private ShopItem item;
+    private int btnIndex;
+
     //For opening and closing the shop
     [Header("CANVAS_SETTINGS")]
     public GameObject shopCanvas;
@@ -15,16 +18,22 @@ public class ShopController : MonoBehaviour
     public List<ShopItem> shopItems;                    //For keeping track of all the (shop) items
     public List<ShopButton> shopButtons;                //For cycling between shop items
     public InventoryController inventoryController;     //Primarily used for making transactions between the shop and the inventory
+    public List<ShopItem> filteredItems;                //Temporary list for storing filtered items in the shop
 
     [Header("UI_SHIT")]
     public Text coinAmount;                             //For keeping track of the amount of coins
     public Button charFilter, upgrFilter;               //For filtering, obviously
     public Button btn_next, btn_back;                   //Disabling/enabling (if items in the list are less than 4 or more than 3)
-
-    public List<ShopItem> filteredItems;                //Temporary list for storing filtered items in the shop
+    public GameObject pnl_dialog, pnl_alert;
+    public Button btn_confirm, btn_cancel, btn_ok;
 
     void Start()
     {
+        //Add button lsiteners
+        btn_confirm.onClick.AddListener(() => { PurchaseItem(item, PlayerPrefs.GetInt("myCoins"), item.itemCost); });
+        btn_cancel.onClick.AddListener(() => { HidePanel(pnl_dialog); });
+        btn_ok.onClick.AddListener(() => { HidePanel(pnl_alert); });   
+
         SetFilter("characters");
 
         if (shopCanvas.activeSelf)                      //Check if the shop is open or not
@@ -74,15 +83,30 @@ public class ShopController : MonoBehaviour
 
     public void PurchaseItem(ShopItem item, int coinAmount, int itemCost)
     {
-        //Update coin amount
-        PlayerPrefs.SetInt("myCoins", coinAmount - itemCost);
-        SetCoinAmount();
+        if (coinAmount >= itemCost)
+        {
+            HidePanel(pnl_dialog);
 
-        //Unlock item for the player to use
-        AddToInventory(item);
+            if (item.isUnique)
+            {
+                DisableButton(shopButtons[btnIndex].thisButton);
+            }
 
-        //"Small Spender" achievement
-        UpdateAchievement(GPGSIds.achievement_small_spender);
+            //Update coin amount
+            PlayerPrefs.SetInt("myCoins", coinAmount - itemCost);
+            SetCoinAmount();
+
+            //Unlock item for the player to use
+            AddToInventory(item);
+
+            //"Small Spender" achievement
+            UpdateAchievement(GPGSIds.achievement_small_spender);
+        }
+        else
+        {
+            HidePanel(pnl_dialog);
+            pnl_alert.SetActive(true);
+        }
     }
 
     void UpdateAchievement(string achievementName)
@@ -99,6 +123,29 @@ public class ShopController : MonoBehaviour
                           success);
                 });
         }
+    }
+
+    //For confirming a purchase
+    public void SaveShopItem(ShopItem clickedItem, int buttonIndex)
+    {
+        item = clickedItem;
+        btnIndex = buttonIndex;
+
+        ShowDialogPanel();
+    }
+
+    //For confirng
+    public void ShowDialogPanel()
+    {
+        pnl_dialog.SetActive(true);
+        pnl_dialog.GetComponentInChildren<Text>().text = "Do you really want to buy \""
+                                                         + item.itemName + "\"?"
+                                                         + "\nCost: " + item.itemCost;
+    }
+
+    public void HidePanel(GameObject panel)
+    {
+        panel.SetActive(false);
     }
 
     void AddToInventory(ShopItem item)
