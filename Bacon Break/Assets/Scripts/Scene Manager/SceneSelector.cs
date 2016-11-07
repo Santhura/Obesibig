@@ -12,11 +12,12 @@ public class SceneSelector : MonoBehaviour {
 
     // Load the scene that has to be loaded
     public void SwitchScene(string sceneName) {
-        FadingScenes.activateFade = true;
+        Time.timeScale = 1;
         fadingScenes.fadeDir = 1;
         fadingScenes.sceneName = sceneName;
         fadingScenes.FadeImage.transform.SetParent(GameObject.FindWithTag("Canvas").transform);
+        fadingScenes.FadeImage.transform.position = GameObject.FindWithTag("Canvas").transform.position;
         fadingScenes.FadeImage.transform.rotation = GameObject.FindWithTag("Canvas").transform.rotation;
-        fadingScenes.Fading(fadingScenes.fadeDir, fadingScenes.sceneName);
+        FadingScenes.activateFade = true;
     }
 }

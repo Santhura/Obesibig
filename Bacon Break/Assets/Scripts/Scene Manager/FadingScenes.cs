@@ -44,7 +44,6 @@ public class FadingScenes : MonoBehaviour {
         if (activateFade) {
             fadeColor.a += fadingDir * fadeSpeed * Time.deltaTime;
             fadeImage.GetComponent<Image>().color = fadeColor;
-            DebugConsole.Log(fadingDir.ToString());
             if (fadeColor.a >= 1 && fadingDir == 1) {
                 GameManager.SwitchScene(sceneName, null);
             }
