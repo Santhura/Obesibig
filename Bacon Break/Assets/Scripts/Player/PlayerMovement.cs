@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     float speed = 0.0f; // character speed on Z axis
     public float baseSpeed = 10f;
     public float bonusSpeed = 30.0f;
+    private float maxSpeed;
     public float switchSpeed = 3f; // character switch lane speed on X axis
 
     public int step = 18; // total laneswitch step size
@@ -38,14 +39,17 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 mousePos;
 
+    public ParticleSystem boostParticles;
+
     // Use this for initialization
     void Start()
     {
+        maxSpeed = 50;
         if (GameObject.Find("M-LVL8_TheHills")){
             baseSpeed = 10.0f;
             bonusSpeed = 25.0f;
         } else {
-            baseSpeed = 15.0f;
+            baseSpeed = 30.0f;
             bonusSpeed = 35.0f;
         }
 
@@ -53,7 +57,8 @@ public class PlayerMovement : MonoBehaviour
 
         GameObject theStamina = GameObject.Find("bar_stamina");
         staminaScript = theStamina.GetComponent<StaminaScript>();
-        
+
+        boostParticles.enableEmission = false;
         isAbleToMove = true;
         transform.position = new Vector3(GameObject.Find("Start_Point").transform.position.x, GameObject.Find("Start_Point").transform.position.y + 1, GameObject.Find("Start_Point").transform.position.z);
     }
@@ -72,7 +77,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (isAbleToMove)
         {
-            speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
+            if (StaminaScript.isBoosting) {
+                //speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
+                speed = maxSpeed;
+                boostParticles.gameObject.SetActive(true);
+                boostParticles.enableEmission = true;
+            }
+            else {
+                speed = baseSpeed;
+                boostParticles.enableEmission = false;
+            }
             transform.Translate(0, 0, speed * Time.deltaTime);
 
             if (transform.position.y < deathHeight)
@@ -255,7 +269,7 @@ public class PlayerMovement : MonoBehaviour
             switchDirection = 1;
             toBeMoved = step;
         }
-    }
+        }
 
     // used to detect walls next to the player
     bool canMove(float dir)

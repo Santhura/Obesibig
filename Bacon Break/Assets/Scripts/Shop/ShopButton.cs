@@ -2,33 +2,78 @@
 using System.Collections;
 using UnityEngine.UI;
 
-namespace CompleteProject
+public class ShopButton : MonoBehaviour
 {
-    public class ShopButton : MonoBehaviour
+    public ShopController shopController;
+    public int itemIndex;
+
+    public Text itemName;
+    public Image itemImage;
+    public Text itemCost;
+    public Text itemDesc;
+
+    private Button thisButton;
+
+    // Use this for initialization
+    void Start()
     {
-        public ShopController shopController;
-        public int itemIndex;
+        //Set onclicklistener for this button
+        thisButton = GetComponent<Button>();
+        thisButton.onClick.AddListener(() => { AttemptPurchase(); });   
+    }
 
-        //Children of the button.
-        public Text itemName;
-        public Image itemImage;
-        public Text itemCost;
-        public Text itemDesc;
-
-        // Use this for initialization
-        void Start()
+    public void SetButton()
+    {
+        if (itemIndex >= 0 && itemIndex < shopController.filteredItems.Count)
         {
-            SetButton();
+            gameObject.SetActive(true);
+            DisplayButton();
         }
-
-        void SetButton()
+        else
         {
-            string costString = shopController.shopItems[itemIndex].itemCost.ToString();
+            gameObject.SetActive(false);
+        }
+    }
 
-            itemName.text = shopController.shopItems[itemIndex].itemName;
-            itemImage.sprite = shopController.shopItems[itemIndex].itemSprite;
-            itemCost.text = "Coins: " + costString;
-            itemDesc.text = shopController.shopItems[itemIndex].itemDesc;
+    public void DisplayButton()
+    {
+        //Set item information
+        itemName.text = shopController.filteredItems[itemIndex].itemName;
+        itemImage.sprite = shopController.filteredItems[itemIndex].itemSprite;
+        itemCost.text = "Coins: " + shopController.filteredItems[itemIndex].itemCost.ToString();
+        itemDesc.text = shopController.filteredItems[itemIndex].itemDesc;
+
+        //Disable the button if a unique item is already purchased
+        if (shopController.filteredItems[itemIndex].isUnlocked
+            && shopController.filteredItems[itemIndex].isUnique)
+        {
+            shopController.DisableButton(thisButton);
+        }
+        else
+        {
+            shopController.EnableButton(thisButton, true);
+        }
+    }
+
+    void AttemptPurchase()
+    {
+        int coinAmount = PlayerPrefs.GetInt("myCoins");
+        int cost = shopController.filteredItems[itemIndex].itemCost;
+        ShopItem item = shopController.filteredItems[itemIndex];
+
+        //Purchase if the player has enough money
+        if (coinAmount >= cost)
+        {
+            shopController.PurchaseItem(item, coinAmount, cost);
+
+            if (shopController.filteredItems[itemIndex].isUnique)
+            {
+                shopController.DisableButton(thisButton);
+            }
+        }
+        else
+        {
+            DebugConsole.Log("You don't have enough coins!");
         }
     }
 }

@@ -5,17 +5,17 @@ using GooglePlayGames;
 
 public class BaconScript : MonoBehaviour
 {
-    public AudioClip baconSound;
-    private AudioSource SelectedAudio;
+
     public GameObject pnl_score;           //UI element for displaying the total score (of bacon).
     public GameObject bar_stamina;         //UI element displaying the amount of stamina.
+    public GameObject pickUpStanimaParticle;    // particle effect for bacon pickups (stanima)
 
     // Use this for initialization.
     void Start()
     {
         pnl_score = GameObject.Find("pnl_score");
         bar_stamina = GameObject.Find("bar_stamina");
-        SelectedAudio = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame.
@@ -31,9 +31,7 @@ public class BaconScript : MonoBehaviour
         {
             bar_stamina.GetComponent<StaminaScript>().AddStamina();
             pnl_score.GetComponent<ScoreScript>().AddBacon();
-            SelectedAudio.clip = baconSound;
-            SelectedAudio.Play();
-
+            Instantiate(pickUpStanimaParticle, gameObject.transform.position, Quaternion.identity);
             // Only unlock achievements if the user is signed in.
             if (Social.localUser.authenticated)
             {
