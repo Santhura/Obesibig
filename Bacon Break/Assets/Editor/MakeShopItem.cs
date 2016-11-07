@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-/*using UnityEditor;
+
+using UnityEditor;
 
 public class MakeShopItem
 {
-
     [MenuItem("Assets/Create/Shop Item")]
     public static void Create()
     {
@@ -15,4 +15,3 @@ public class MakeShopItem
         Selection.activeObject = asset;
     }
 }
-*/
