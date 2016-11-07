@@ -20,8 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public int deathHeight = -30;
 
     public static bool isAbleToMove;
-
-    public bool controlWithButtons;
+    public bool isAbleToMoveTemp;
 
     bool hold = false; // check if the mouse is holding the player after a mouseclick
 
@@ -33,8 +32,6 @@ public class PlayerMovement : MonoBehaviour
     // Distance reference points for the swipe release
     Vector3 pos1;
     Vector3 pos2;
-
-    public Vector3 mousePos;
 
     public ParticleSystem boostParticles;
 
@@ -52,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
         GameObject theStamina = GameObject.Find("bar_stamina");
         staminaScript = theStamina.GetComponent<StaminaScript>();
-
+        
         boostParticles.enableEmission = false;
         isAbleToMove = true;
         transform.position = new Vector3(GameObject.Find("Start_Point").transform.position.x, GameObject.Find("Start_Point").transform.position.y + 1, GameObject.Find("Start_Point").transform.position.z);
@@ -61,11 +58,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 0, 0));
-        //transform.position = (new Vector3(mousePos.x, this.transform.position.y, this.transform.position.z));
-
-        if (isAbleToMove)
+        if (isAbleToMove && isAbleToMoveTemp)
         {
             if (StaminaScript.isBoosting) {
                 //speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
@@ -204,10 +197,6 @@ public class PlayerMovement : MonoBehaviour
                 toBeMoved = step;
                 totalMovement = 0;
             }
-            else if (switchDirection == -1)
-            {
-                toBeMoved += step;
-            }
             else if (switchDirection == 1)
             {
                 totalMovement = totalMovement % step;
@@ -224,10 +213,6 @@ public class PlayerMovement : MonoBehaviour
                 toBeMoved = step;
                 totalMovement = 0;
             }
-            else if (switchDirection == 1)
-            {
-                toBeMoved += step;
-            }
             else if (switchDirection == -1)
             {
                 totalMovement = totalMovement % step;
@@ -238,25 +223,6 @@ public class PlayerMovement : MonoBehaviour
             switchDirection = 1;
         }
     }
-
-    public void MoveCharLeft()
-    {
-        if (controlWithButtons && canMove(-1))
-        {
-            totalMovement = 0;
-            switchDirection = -1;
-            toBeMoved = step;
-        }
-    }
-    public void MoveCharRight()
-    {
-        if (controlWithButtons && canMove(1))
-        {
-            totalMovement = 0;
-            switchDirection = 1;
-            toBeMoved = step;
-        }
-        }
 
     // used to detect walls next to the player
     bool canMove(float dir)
