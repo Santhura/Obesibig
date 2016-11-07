@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /*This class is used for moving a character to a levelnode.
@@ -11,7 +12,8 @@ public class NodeMovement : MonoBehaviour
     //Pubs
     public Vector3[] nodes;                     //Masterlist of iTween nodes
     public GameObject pnl_level;                //Set active/inactive
-    public GameObject pnl_refocus;              //If the player drags the screen too far away from the player, the option to refocus appears.
+    public GameObject btn_refocus;              //If the player drags the screen too far away from the player, the option to refocus appears.
+    public GameObject pnl_play;
 
     //Privates ( ;) )
     private Vector3[] subPath;                  //Sub-path coordinates, used for character movement between level nodes
@@ -71,14 +73,17 @@ public class NodeMovement : MonoBehaviour
         if (isNodeVisible(PlayerPrefs.GetInt("LevelIndex")))
         {
             pnl_level.SetActive(true);
-            pnl_refocus.SetActive(false);
+            pnl_play.SetActive(true);
+            btn_refocus.SetActive(false);
         }
         else
         {
-            pnl_level.SetActive(false);
+            //pnl_level.SetActive(false);
+            pnl_play.SetActive(false);
+
             if (i > 2)
             {
-                pnl_refocus.SetActive(true);
+                btn_refocus.SetActive(true);
             }
         }
 
@@ -90,7 +95,7 @@ public class NodeMovement : MonoBehaviour
 
         //Use the mouse in the editor, use swipe in build.
         #if UNITY_EDITOR
-             Controls("Mouse");
+            Controls("Mouse");
         #else
              Controls("Swipe");
         #endif
@@ -98,13 +103,10 @@ public class NodeMovement : MonoBehaviour
         //Check if the character has reached the specified node.
         if (isMoving)
         {
-            //Focus on piggy when it walks out of the camera view.
-            //if (!player.GetComponentInChildren<Renderer>().isVisible)
-            //{
-                Camera.main.GetComponent<CameraDrag>().RefocusCamera();
-           // }
+            Camera.main.GetComponent<CameraDrag>().RefocusCamera();
 
             pnl_level.SetActive(false);
+            pnl_play.SetActive(false);
 
             if (Mathf.Abs(Vector3.Distance(player.transform.position, nodes[endIndex])) <= 0.5f)
             {
@@ -117,8 +119,10 @@ public class NodeMovement : MonoBehaviour
         {
             //Force the level information panel's position to be the same as the node position;
             //(If this isn't done, the panel will move with you whenever you drag the map around).
-            Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, levelNode.transform.position);
-            pnl_level.transform.position = screenPoint;
+            Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, new Vector3(levelNode.transform.position.x,
+                                                                                                   levelNode.transform.position.y,
+                                                                                                   levelNode.transform.position.z + 2));
+            pnl_play.transform.position = screenPoint;
 
             GameObject.Find("Game Manager").GetComponent<LevelInfo>().ClampPanel();
         }
