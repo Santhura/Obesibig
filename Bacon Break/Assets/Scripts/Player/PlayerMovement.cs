@@ -197,10 +197,6 @@ public class PlayerMovement : MonoBehaviour
                 toBeMoved = step;
                 totalMovement = 0;
             }
-            else if (switchDirection == -1)
-            {
-                toBeMoved += step;
-            }
             else if (switchDirection == 1)
             {
                 totalMovement = totalMovement % step;
@@ -216,10 +212,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 toBeMoved = step;
                 totalMovement = 0;
-            }
-            else if (switchDirection == 1)
-            {
-                toBeMoved += step;
             }
             else if (switchDirection == -1)
             {
