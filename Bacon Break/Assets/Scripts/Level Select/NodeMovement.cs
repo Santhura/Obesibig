@@ -14,6 +14,8 @@ public class NodeMovement : MonoBehaviour
     public GameObject pnl_level;                //Set active/inactive
     public GameObject btn_refocus;              //If the player drags the screen too far away from the player, the option to refocus appears.
     public GameObject pnl_play;
+    public Text txt_levelName;
+    public Text txt_levelScore;
 
     //Privates ( ;) )
     private Vector3[] subPath;                  //Sub-path coordinates, used for character movement between level nodes
@@ -105,7 +107,9 @@ public class NodeMovement : MonoBehaviour
         {
             Camera.main.GetComponent<CameraDrag>().RefocusCamera();
 
-            pnl_level.SetActive(false);
+            txt_levelName.text = "...";
+            txt_levelScore.text = "...";
+
             pnl_play.SetActive(false);
 
             if (Mathf.Abs(Vector3.Distance(player.transform.position, nodes[endIndex])) <= 0.5f)

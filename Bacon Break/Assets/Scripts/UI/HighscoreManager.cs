@@ -40,7 +40,7 @@ public class HighscoreManager : MonoBehaviour {
     {
         scoreTriggered = true;
         maxTime = maxTime - timeLeft;
-        text_highScore.text = "Score: " + highScore + "\nTime: " + System.Math.Round(maxTime, 2) + " seconds\nBacons Collected: " + baconsCollected.baconAmount + "\nTraps Destroyed " + trapsDestroyedAmount;
+        text_highScore.text = "Score: " + highScore + "\nTime: " + System.Math.Round(maxTime, 2) + " seconds\nBacons Collected: " + baconsCollected.baconAmount + "\nTraps Destroyed: " + trapsDestroyedAmount;
 
         //Update the leaderboard with new score
         // Submit leaderboard scores, if authenticated
