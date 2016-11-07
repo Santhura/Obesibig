@@ -15,7 +15,7 @@ public class SceneSelector : MonoBehaviour {
         FadingScenes.activateFade = true;
         fadingScenes.fadeDir = 1;
         fadingScenes.sceneName = sceneName;
-        fadingScenes.FadeImage.transform.parent = GameObject.FindWithTag("Canvas").transform;
+        fadingScenes.FadeImage.transform.SetParent(GameObject.FindWithTag("Canvas").transform);
         fadingScenes.Fading(fadingScenes.fadeDir, fadingScenes.sceneName);
     }
 }

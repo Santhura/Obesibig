@@ -47,7 +47,7 @@ public class FadingScenes : MonoBehaviour {
                 GameManager.SwitchScene(sceneName, null);
             }
             else if(fadeColor.a <= 0 && fadingDir == -1) {
-                fadeImage.transform.parent = null;
+                fadeImage.transform.SetParent(null);
                 activateFade = false;
             }
         }
