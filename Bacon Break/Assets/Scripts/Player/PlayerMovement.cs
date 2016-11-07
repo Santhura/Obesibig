@@ -19,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
     public int deathHeight = -30;
 
     public static bool isAbleToMove;
-    public static bool isCountdown;
 
     //public bool controlWithButtons;
 
@@ -66,18 +65,15 @@ public class PlayerMovement : MonoBehaviour
                 isAbleToMove = false;
             }
 
-            if (!isCountdown)
-            {
-                // switch control scheme for phone or pc debugging
-                #if UNITY_EDITOR
-                    simpleControls();
-                #else
-                    swipeControls();
-                #endif
+            // switch control scheme for phone or pc debugging
+            #if UNITY_EDITOR
+                simpleControls();
+            #else
+                swipeControls();
+            #endif
 
-                // switch lane update
-                smoothLaneTransition();
-            }
+            // switch lane update
+            smoothLaneTransition();
         }
     }
 
