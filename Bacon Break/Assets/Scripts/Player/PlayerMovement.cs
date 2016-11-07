@@ -36,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 mousePos;
 
+    public ParticleSystem boostParticles;
+
     // Use this for initialization
     void Start()
     {
@@ -50,7 +52,8 @@ public class PlayerMovement : MonoBehaviour
 
         GameObject theStamina = GameObject.Find("bar_stamina");
         staminaScript = theStamina.GetComponent<StaminaScript>();
-        
+
+        boostParticles.enableEmission = false;
         isAbleToMove = true;
         transform.position = new Vector3(GameObject.Find("Start_Point").transform.position.x, GameObject.Find("Start_Point").transform.position.y + 1, GameObject.Find("Start_Point").transform.position.z);
     }
@@ -67,9 +70,12 @@ public class PlayerMovement : MonoBehaviour
             if (StaminaScript.isBoosting) {
                 //speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
                 speed = maxSpeed;
+                boostParticles.gameObject.SetActive(true);
+                boostParticles.enableEmission = true;
             }
             else {
                 speed = baseSpeed;
+                boostParticles.enableEmission = false;
             }
             transform.Translate(0, 0, speed * Time.deltaTime);
 
