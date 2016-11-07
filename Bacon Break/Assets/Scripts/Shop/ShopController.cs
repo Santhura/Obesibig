@@ -29,20 +29,18 @@ public class ShopController : MonoBehaviour
 
     void Start()
     {
-        //Add button lsiteners
+        //Add button listeners
         btn_confirm.onClick.AddListener(() => { PurchaseItem(item, PlayerPrefs.GetInt("myCoins"), item.itemCost); });
         btn_cancel.onClick.AddListener(() => { HidePanel(pnl_dialog); });
-        btn_ok.onClick.AddListener(() => { HidePanel(pnl_alert); });   
+        btn_ok.onClick.AddListener(() => { HidePanel(pnl_alert); });
 
-        SetFilter("characters");
-
-        if (shopCanvas.activeSelf)                      //Check if the shop is open or not
+        if (shopCanvas.activeInHierarchy)              //Check if the shop is open or not
         {
             OpenShop();
         }
         else
         {
-            shopOpened = false;
+            CloseShop();
         }
     }
 
@@ -61,18 +59,18 @@ public class ShopController : MonoBehaviour
 
     void OpenShop()
     {
-        SetCoinAmount();
-
         shopCanvas.SetActive(true);
-        Time.timeScale = 0;
+        SetCoinAmount();
         shopOpened = true;
+        Time.timeScale = 0;
+        SetFilter("characters");
     }
 
     void CloseShop()
     {
         shopCanvas.SetActive(false);
-        Time.timeScale = 1;
         shopOpened = false;
+        Time.timeScale = 1;
     }
 
     void SetCoinAmount()
@@ -89,7 +87,7 @@ public class ShopController : MonoBehaviour
 
             if (item.isUnique)
             {
-                DisableButton(shopButtons[btnIndex].thisButton);
+                DisableButton(shopButtons[btnIndex].thisButton, true);
             }
 
             //Update coin amount
@@ -208,28 +206,29 @@ public class ShopController : MonoBehaviour
         //Filter objects based on type (character or upgrade)
         if (filterType == "characters")
         {
-            EnableButton(upgrFilter, true);
-            DisableButton(charFilter);
+            EnableButton(upgrFilter, false);
+            DisableButton(charFilter, false);
 
             for (int i = 0; i < shopItems.Count; i++)
             {
                 if (shopItems[i].isCharacter)
                 {                  
-                    filteredItems.Add(shopItems[i]);                  
-
+                    filteredItems.Add(shopItems[i]);
                     //Populate the three buttons
                     if (buttonCount < shopButtons.Count)
                     {
                         shopButtons[buttonCount].SetButton();
                         buttonCount++;
                     }
+
                 }
+
             }
         }
         else if (filterType == "upgrades")
         {
-            EnableButton(charFilter, true);
-            DisableButton(upgrFilter);
+            EnableButton(charFilter, false);
+            DisableButton(upgrFilter, false);
 
             for (int i = 0; i < shopItems.Count; i++)
             {
@@ -256,8 +255,8 @@ public class ShopController : MonoBehaviour
         }
         else
         {
-            DisableButton(btn_back);
-            DisableButton(btn_next);
+            DisableButton(btn_back, false);
+            DisableButton(btn_next, false);
         }
 
         //Disable the rest of the buttons
@@ -270,13 +269,25 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    public void DisableButton(Button button)
+    public void DisableButton(Button button, bool isItemButton)
     {
-        //Set greyish color for the disabled button
-        button.GetComponent<Image>().color = new Color(146.0f / 255.0f, 146.0f / 255.0f, 146.0f / 255.0f, 1.0f);
-        ColorBlock cb = button.colors;
-        cb.disabledColor = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 1.0f);
-        button.colors = cb;
+        if (isItemButton)
+        {
+            //Set greyish color for the disabled button
+            button.GetComponent<Image>().color = new Color(146.0f / 255.0f, 146.0f / 255.0f, 146.0f / 255.0f, 1.0f);
+
+            ColorBlock cb = button.colors;
+            cb.disabledColor = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 1.0f);
+            button.colors = cb;
+        }
+        else
+        {
+            button.GetComponent<Image>().color = Color.white;
+
+            ColorBlock cb = button.colors;
+            cb.normalColor = Color.white;
+            button.colors = cb;
+        }
 
         button.interactable = false;
     }
@@ -286,11 +297,16 @@ public class ShopController : MonoBehaviour
         //Set color back to purple and enable the button
         if (isItemButton)
         {
-            button.GetComponent<Image>().color = new Color(179.0f / 255.0f, 167.0f / 255.0f, 223.0f / 255.0f, 201.0f / 255.0f);
+            button.GetComponent<Image>().color = new Color(1.0f, 162.0f / 255.0f, 0.0f, 1.0f);
         }
         else
         {
-            button.GetComponent<Image>().color = Color.white;
+            //Set greyish color for the disabled button
+            button.GetComponent<Image>().color = new Color(146.0f / 255.0f, 146.0f / 255.0f, 146.0f / 255.0f, 1.0f);
+
+            ColorBlock cb = button.colors;
+            cb.disabledColor = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 1.0f);
+            button.colors = cb;
         }
 
         button.interactable = true;
