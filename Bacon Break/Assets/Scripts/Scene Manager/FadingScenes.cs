@@ -13,6 +13,12 @@ public class FadingScenes : MonoBehaviour {
     public static bool activateFade;        // Activefade when the fading has to start
     public Color fadeColor;                // color that will be set for the image
 
+    public GameObject FadeImage
+    {
+        get { return fadeImage; }
+        set { fadeImage = value; }
+    }
+
 	// Use this for initialization
 	void Start () {
 
@@ -30,10 +36,10 @@ public class FadingScenes : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Fading(fadeDir, sceneName);
+            Fading(fadeDir, sceneName);
     }
 
-    private void Fading(float fadingDir, string sceneName) {
+    public void Fading(float fadingDir, string sceneName) {
         if (activateFade) {
             fadeColor.a += fadingDir * fadeSpeed * Time.deltaTime;
             fadeImage.GetComponent<Image>().color = fadeColor;
@@ -42,6 +48,7 @@ public class FadingScenes : MonoBehaviour {
             }
             else if(fadeColor.a <= 0 && fadingDir == -1) {
                 fadeImage.transform.parent = null;
+                activateFade = false;
             }
         }
     }
