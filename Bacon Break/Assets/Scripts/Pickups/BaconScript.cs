@@ -8,13 +8,16 @@ public class BaconScript : MonoBehaviour
 
     public GameObject pnl_score;           //UI element for displaying the total score (of bacon).
     public GameObject bar_stamina;         //UI element displaying the amount of stamina.
-    public GameObject pickUpStanimaParticle;    // particle effect for bacon pickups (stanima)
+//    public GameObject pickUpStanimaParticle;    // particle effect for bacon pickups (stanima)
+    private ParticleSystem pickUpStanimParticle;
 
     // Use this for initialization.
     void Start()
     {
         pnl_score = GameObject.Find("pnl_score");
         bar_stamina = GameObject.Find("bar_stamina");
+        pickUpStanimParticle = GameObject.Find("Pickup stanima Particle").GetComponent<ParticleSystem>();
+        pickUpStanimParticle.enableEmission = false;
 
     }
 
@@ -31,7 +34,8 @@ public class BaconScript : MonoBehaviour
         {
             bar_stamina.GetComponent<StaminaScript>().AddStamina();
             pnl_score.GetComponent<ScoreScript>().AddBacon();
-            Instantiate(pickUpStanimaParticle, gameObject.transform.position, Quaternion.identity);
+            // Instantiate(pickUpStanimaParticle, gameObject.transform.position, Quaternion.identity);
+            pickUpStanimParticle.enableEmission = true;
             // Only unlock achievements if the user is signed in.
             if (Social.localUser.authenticated)
             {
