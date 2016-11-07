@@ -6,7 +6,9 @@ using GooglePlayGames;
 //Used for basic tappables only. E.g. loosesawblade & cutter trap.
 public class TrapTap : MonoBehaviour
 {
-//    public bool movementStoppable = false;
+    //    public bool movementStoppable = false;
+    public AudioClip[] destroySounds;
+    private AudioSource SelectedAudio;
 
     public HighscoreManager addScore;
     public bool canUnleash = false;
@@ -20,6 +22,7 @@ public class TrapTap : MonoBehaviour
     {
         addScore = GameObject.Find("Score Manager").GetComponent<HighscoreManager>();
         rb = this.GetComponent<Rigidbody>();
+        SelectedAudio = GameObject.Find("Main Camera").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,6 +38,8 @@ public class TrapTap : MonoBehaviour
         if (/*!movementStoppable &&*/ !canUnleash)
         {
             addScore.trapsDestroyedAmount += 1;
+            SelectedAudio.clip = destroySounds[Random.Range(0, destroySounds.Length)];
+            SelectedAudio.Play();
 
             transform.tag = "Untagged";
 
@@ -63,6 +68,8 @@ public class TrapTap : MonoBehaviour
             transform.tag = "Untagged";
             Destroy(transform.GetComponent<BoxCollider>());
             addScore.trapsDestroyedAmount += 1;
+            SelectedAudio.clip = destroySounds[Random.Range(0, destroySounds.Length)];
+            SelectedAudio.Play();
             unleash = true;
         }
     }
