@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public int deathHeight = -30;
 
     public static bool isAbleToMove;
+    public bool isAbleToMoveTemp;
 
     //public bool controlWithButtons;
 
@@ -54,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAbleToMove)
+        if (isAbleToMove && isAbleToMoveTemp)
         {
             speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
             transform.Translate(0, 0, speed * Time.deltaTime);

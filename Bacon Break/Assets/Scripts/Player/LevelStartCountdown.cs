@@ -6,6 +6,7 @@ public class LevelStartCountdown : MonoBehaviour
 {
     public float countDown = 4; // countdown in seconds
     public Text count; // text drawn on the screen
+    GameObject player;
 
     // Use this for initialization
     void Start()
@@ -17,7 +18,10 @@ public class LevelStartCountdown : MonoBehaviour
         Camera.main.orthographicSize = 75;
 
         // this stops all control over the player
-        PlayerMovement.isAbleToMove = false;
+        // temporarily solving this using a second variable
+        player = GameObject.Find("Player");
+        player.GetComponent<PlayerMovement>().isAbleToMoveTemp = false;
+        //PlayerMovement.isAbleToMove = false;
     }
 
     // Update is called once per frame
@@ -48,7 +52,8 @@ public class LevelStartCountdown : MonoBehaviour
         else
         {
             // give back control to the player
-            PlayerMovement.isAbleToMove = true;
+            player.GetComponent<PlayerMovement>().isAbleToMoveTemp = true;
+            //PlayerMovement.isAbleToMove = true;
 
             // make sure the camera has the correct final size
             Camera.main.orthographicSize = 35;
