@@ -59,7 +59,7 @@ public class LevelStartCountdown : MonoBehaviour
             Camera.main.orthographicSize = 35;
 
             // destroy this script as its not required anymore after countdown
-            gameObject.GetComponent<CanvasGroup>().alpha = 0f;
+            Destroy(gameObject);
         }
     }
 }
