@@ -45,17 +45,17 @@ public class InventoryController : MonoBehaviour
     void Update()
     {
         //Open / close inventory with 'I' (PC)
-        if (Input.GetKeyUp(KeyCode.I) && !inventoryOpened)
+        /*if (Input.GetKeyUp(KeyCode.I) && !inventoryOpened)
         {
             OpenInventory();
         }
         else if (Input.GetKeyUp(KeyCode.I) && inventoryOpened)
         {
             CloseInventory();
-        }
+        }*/
     }
 
-    void OpenInventory()
+    public void OpenInventory()
     {
         FillInventory();                                    //Fill the CHARACTERS and UPGRADES list (and display selected items)
         SetPreferences(charItem, upgrItem);                 //Add the currently selected character / upgrade to PlayerPrefs
@@ -65,7 +65,7 @@ public class InventoryController : MonoBehaviour
         inventoryOpened = true;
     }
 
-    void CloseInventory()
+    public void CloseInventory()
     {
         inventoryCanvas.SetActive(false);
         Time.timeScale = 1;

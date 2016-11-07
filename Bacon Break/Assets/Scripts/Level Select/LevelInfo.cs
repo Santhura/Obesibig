@@ -5,12 +5,13 @@ using UnityEngine.UI;
 public class LevelInfo : MonoBehaviour
 {
     //Public vars
+    [Header("UI SHIT")]
     public GameObject pnl_levelInfo;        //For accessing and filling in the level's information
+    public Text txt_levelName;             //For displaying the name of the level
     public RectTransform canvasRect;        //Canvas space
     public int clampOffsetX, clampOffsetY;  //Used for extra spacing if the panel had to be repositioned (when panel was (partly) out of the screen)
 
     //Private vars
-    private Text txt_levelName;             //For displaying the name of the level
     private Text txt_score;                 //For displaying the highscore;
     private Button btn_play;                //Play a level!
     private Vector2 screenspaceWorld;       //Get world corners in screen space.
@@ -19,9 +20,8 @@ public class LevelInfo : MonoBehaviour
     {
         Time.timeScale = 1.0f;
 
-        txt_levelName = pnl_levelInfo.transform.GetChild(0).GetComponent<Text>();
-        btn_play = pnl_levelInfo.transform.GetChild(1).GetComponent<Button>();
-        txt_score = pnl_levelInfo.transform.GetChild(2).GetComponent<Text>();
+        btn_play = pnl_levelInfo.transform.GetChild(0).GetComponent<Button>();
+        txt_score = pnl_levelInfo.transform.GetChild(1).GetComponent<Text>();
     }
 
     // Use this for initialization
@@ -46,10 +46,6 @@ public class LevelInfo : MonoBehaviour
 
             //Zet big op levelnode;
             GameObject.FindWithTag("Player").transform.position = level.transform.position;
-
-            //Zet score;
-            /*
-             */
 
             //Level is unlocked, set unlock to false again.
             PlayerPrefs.SetInt("Unlock", 0);

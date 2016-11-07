@@ -47,17 +47,17 @@ public class ShopController : MonoBehaviour
     void Update()
     {
         //Open / close inventory with 'U' (PC)
-        if (Input.GetKeyUp(KeyCode.U) && !shopOpened)
+        /*if (Input.GetKeyUp(KeyCode.U) && !shopOpened)
         {
             OpenShop();
         }
         else if (Input.GetKeyUp(KeyCode.U) && shopOpened)
         {
             CloseShop();
-        }
+        }*/
     }
 
-    void OpenShop()
+    public void OpenShop()
     {
         shopCanvas.SetActive(true);
         SetCoinAmount();
@@ -66,7 +66,7 @@ public class ShopController : MonoBehaviour
         SetFilter("characters");
     }
 
-    void CloseShop()
+    public void CloseShop()
     {
         shopCanvas.SetActive(false);
         shopOpened = false;
