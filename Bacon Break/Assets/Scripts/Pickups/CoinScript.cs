@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class CoinScript : MonoBehaviour {
 
     public GameObject pnl_score;   //UI element for displaying the total score (of bacon).
-
+    public GameObject PS_coinPickup;
     // Use this for initialization.
     void Start () 
     {
@@ -25,7 +25,8 @@ public class CoinScript : MonoBehaviour {
         if (col.gameObject.tag == "Player")
         {
             pnl_score.GetComponent<ScoreScript>().AddCoin();
-
+            GameObject coinPickupParticle = Instantiate(PS_coinPickup, gameObject.transform.position, Quaternion.identity) as GameObject;
+            Destroy(coinPickupParticle, 1);
             Destroy(gameObject);
         }
     }
