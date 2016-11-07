@@ -1,0 +1,446 @@
+fileFormatVersion: 2
+guid: 774e7ff6c1a564b44ad48343f3d46604
+timeCreated: 1459252246
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: CATRigHub011
+    100002: CATRigHub012
+    100004: CATRigHub013
+    100006: CATRigHub013Bone001
+    100008: CATRigHub013Bone002
+    100010: CATRigLLeg1
+    100012: CATRigLLeg1 1
+    100014: CATRigLLeg2
+    100016: CATRigLLegAnkle
+    100018: CATRigLLegAnkle 1
+    100020: CATRigRLeg1
+    100022: CATRigRLeg1 1
+    100024: CATRigRLeg2
+    100026: CATRigRLegAnkle
+    100028: CATRigRLegAnkle 1
+    100030: CATRigSpine
+    100032: CATRigSpine1
+    100034: CATRigSpine2
+    100036: CATRigSpine3
+    100038: CATRigTail1
+    100040: CATRigTail2
+    100042: CATRigTail3
+    100044: trice
+    100046: //RootNode
+    400000: CATRigHub011
+    400002: CATRigHub012
+    400004: CATRigHub013
+    400006: CATRigHub013Bone001
+    400008: CATRigHub013Bone002
+    400010: CATRigLLeg1
+    400012: CATRigLLeg1 1
+    400014: CATRigLLeg2
+    400016: CATRigLLegAnkle
+    400018: CATRigLLegAnkle 1
+    400020: CATRigRLeg1
+    400022: CATRigRLeg1 1
+    400024: CATRigRLeg2
+    400026: CATRigRLegAnkle
+    400028: CATRigRLegAnkle 1
+    400030: CATRigSpine
+    400032: CATRigSpine1
+    400034: CATRigSpine2
+    400036: CATRigSpine3
+    400038: CATRigTail1
+    400040: CATRigTail2
+    400042: CATRigTail3
+    400044: trice
+    400046: //RootNode
+    4300000: trice
+    7400000: Triceratops_Idle_1
+    7400002: Triceratops_Idle_2
+    7400004: Triceratops_Death
+    7400006: Triceratos_Dead
+    9500000: //RootNode
+    13700000: trice
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Triceratops_Idle_1
+      takeName: Take 001
+      firstFrame: -500
+      lastFrame: 0
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CATRigHub011
+        weight: 1
+      - path: CATRigHub011/CATRigLLeg1
+        weight: 1
+      - path: CATRigHub011/CATRigLLeg1/CATRigLLeg2
+        weight: 1
+      - path: CATRigHub011/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle
+        weight: 1
+      - path: CATRigHub011/CATRigRLeg1
+        weight: 1
+      - path: CATRigHub011/CATRigRLeg1/CATRigRLeg2
+        weight: 1
+      - path: CATRigHub011/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigLLeg1
+          1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigLLeg1
+          1/CATRigLLegAnkle 1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigRLeg1
+          1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigRLeg1
+          1/CATRigRLegAnkle 1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine/CATRigHub013
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine/CATRigHub013/CATRigHub013Bone001
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine/CATRigHub013/CATRigHub013Bone002
+        weight: 1
+      - path: CATRigHub011/CATRigTail1
+        weight: 1
+      - path: CATRigHub011/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: CATRigHub011/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: trice
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Triceratops_Idle_2
+      takeName: Take 001
+      firstFrame: 115
+      lastFrame: 860
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CATRigHub011
+        weight: 1
+      - path: CATRigHub011/CATRigLLeg1
+        weight: 1
+      - path: CATRigHub011/CATRigLLeg1/CATRigLLeg2
+        weight: 1
+      - path: CATRigHub011/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle
+        weight: 1
+      - path: CATRigHub011/CATRigRLeg1
+        weight: 1
+      - path: CATRigHub011/CATRigRLeg1/CATRigRLeg2
+        weight: 1
+      - path: CATRigHub011/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigLLeg1
+          1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigLLeg1
+          1/CATRigLLegAnkle 1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigRLeg1
+          1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigRLeg1
+          1/CATRigRLegAnkle 1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine/CATRigHub013
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine/CATRigHub013/CATRigHub013Bone001
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine/CATRigHub013/CATRigHub013Bone002
+        weight: 1
+      - path: CATRigHub011/CATRigTail1
+        weight: 1
+      - path: CATRigHub011/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: CATRigHub011/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: trice
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Triceratops_Death
+      takeName: Take 001
+      firstFrame: 1182
+      lastFrame: 1500
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CATRigHub011
+        weight: 1
+      - path: CATRigHub011/CATRigLLeg1
+        weight: 1
+      - path: CATRigHub011/CATRigLLeg1/CATRigLLeg2
+        weight: 1
+      - path: CATRigHub011/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle
+        weight: 1
+      - path: CATRigHub011/CATRigRLeg1
+        weight: 1
+      - path: CATRigHub011/CATRigRLeg1/CATRigRLeg2
+        weight: 1
+      - path: CATRigHub011/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigLLeg1
+          1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigLLeg1
+          1/CATRigLLegAnkle 1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigRLeg1
+          1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigRLeg1
+          1/CATRigRLegAnkle 1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine/CATRigHub013
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine/CATRigHub013/CATRigHub013Bone001
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine/CATRigHub013/CATRigHub013Bone002
+        weight: 1
+      - path: CATRigHub011/CATRigTail1
+        weight: 1
+      - path: CATRigHub011/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: CATRigHub011/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: trice
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Triceratos_Dead
+      takeName: Take 001
+      firstFrame: 1405
+      lastFrame: 1447
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CATRigHub011
+        weight: 1
+      - path: CATRigHub011/CATRigLLeg1
+        weight: 1
+      - path: CATRigHub011/CATRigLLeg1/CATRigLLeg2
+        weight: 1
+      - path: CATRigHub011/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle
+        weight: 1
+      - path: CATRigHub011/CATRigRLeg1
+        weight: 1
+      - path: CATRigHub011/CATRigRLeg1/CATRigRLeg2
+        weight: 1
+      - path: CATRigHub011/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigLLeg1
+          1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigLLeg1
+          1/CATRigLLegAnkle 1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigRLeg1
+          1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigRLeg1
+          1/CATRigRLegAnkle 1
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine/CATRigHub013
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine/CATRigHub013/CATRigHub013Bone001
+        weight: 1
+      - path: CATRigHub011/CATRigSpine1/CATRigSpine2/CATRigSpine3/CATRigHub012/CATRigSpine/CATRigHub013/CATRigHub013Bone002
+        weight: 1
+      - path: CATRigHub011/CATRigTail1
+        weight: 1
+      - path: CATRigHub011/CATRigTail1/CATRigTail2
+        weight: 1
+      - path: CATRigHub011/CATRigTail1/CATRigTail2/CATRigTail3
+        weight: 1
+      - path: trice
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
