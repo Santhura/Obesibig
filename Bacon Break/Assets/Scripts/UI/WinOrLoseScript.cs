@@ -49,7 +49,7 @@ public class WinOrLoseScript : MonoBehaviour {
             panel_winLose.SetActive(true);
             displayScore.TriggerScore();
             //  LoseAndWin_Panel.alpha = 1;
-            winOrLose_Text.text = "You have completed the level!!";
+            winOrLose_Text.text = "Level Completed!";
             retunToMenu_Button.interactable = true;
 
             //Unlock next level
