@@ -12,8 +12,6 @@ public class SceneSelector : MonoBehaviour {
 
     // Load the scene that has to be loaded
     public void SwitchScene(string sceneName) {
-        //GameManager.SwitchScene(sceneName, null);
-        Debug.Log(sceneName);
         FadingScenes.activateFade = true;
         fadingScenes.fadeDir = 1;
         fadingScenes.sceneName = sceneName;
