@@ -206,7 +206,7 @@ public class ShopController : MonoBehaviour
         //Filter objects based on type (character or upgrade)
         if (filterType == "characters")
         {
-            EnableButton(upgrFilter, false);
+            EnableButton(upgrFilter, "grey");
             DisableButton(charFilter, false);
 
             for (int i = 0; i < shopItems.Count; i++)
@@ -227,7 +227,7 @@ public class ShopController : MonoBehaviour
         }
         else if (filterType == "upgrades")
         {
-            EnableButton(charFilter, false);
+            EnableButton(charFilter, "grey");
             DisableButton(upgrFilter, false);
 
             for (int i = 0; i < shopItems.Count; i++)
@@ -250,13 +250,13 @@ public class ShopController : MonoBehaviour
         //There are 3 buttons, if there are more than 3 items, enable next/back
         if (filteredItems.Count > 3)
         {
-            EnableButton(btn_back, false);
-            EnableButton(btn_next, false);
+            EnableButton(btn_back, "white");
+            EnableButton(btn_next, "white");
         }
         else
         {
-            DisableButton(btn_back, false);
-            DisableButton(btn_next, false);
+            DisableButton(btn_back, true);
+            DisableButton(btn_next, true);
         }
 
         //Disable the rest of the buttons
@@ -292,20 +292,28 @@ public class ShopController : MonoBehaviour
         button.interactable = false;
     }
 
-    public void EnableButton(Button button, bool isItemButton)
+    public void EnableButton(Button button, string color)
     {
         //Set color back to purple and enable the button
-        if (isItemButton)
+        if (color == "orange")
         {
             button.GetComponent<Image>().color = new Color(1.0f, 162.0f / 255.0f, 0.0f, 1.0f);
         }
-        else
+        else if(color == "grey")
         {
             //Set greyish color for the disabled button
             button.GetComponent<Image>().color = new Color(146.0f / 255.0f, 146.0f / 255.0f, 146.0f / 255.0f, 1.0f);
 
             ColorBlock cb = button.colors;
             cb.disabledColor = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 1.0f);
+            button.colors = cb;
+        }
+        else if (color == "white")
+        {
+            button.GetComponent<Image>().color = Color.white;
+
+            ColorBlock cb = button.colors;
+            cb.normalColor = Color.white;
             button.colors = cb;
         }
 
