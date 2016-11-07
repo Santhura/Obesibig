@@ -12,14 +12,14 @@ public class ShopButton : MonoBehaviour
     public Text itemCost;
     public Text itemDesc;
 
-    private Button thisButton;
+    public Button thisButton;
 
     // Use this for initialization
     void Start()
     {
-        //Set onclicklistener for this button
+        //Set onclicklistener for buttons
         thisButton = GetComponent<Button>();
-        thisButton.onClick.AddListener(() => { AttemptPurchase(); });   
+        thisButton.onClick.AddListener(() => { shopController.SaveShopItem(shopController.filteredItems[itemIndex], itemIndex); });   
     }
 
     public void SetButton()
@@ -57,23 +57,23 @@ public class ShopButton : MonoBehaviour
 
     void AttemptPurchase()
     {
-        int coinAmount = PlayerPrefs.GetInt("myCoins");
-        int cost = shopController.filteredItems[itemIndex].itemCost;
-        ShopItem item = shopController.filteredItems[itemIndex];
+       // int coinAmount = PlayerPrefs.GetInt("myCoins");
+       // int cost = shopController.filteredItems[itemIndex].itemCost;
+       // ShopItem item = shopController.filteredItems[itemIndex];
 
         //Purchase if the player has enough money
-        if (coinAmount >= cost)
-        {
-            shopController.PurchaseItem(item, coinAmount, cost);
+        //if (coinAmount >= cost)
+        //{
+        //    shopController.PurchaseItem(item, coinAmount, cost);
 
-            if (shopController.filteredItems[itemIndex].isUnique)
-            {
-                shopController.DisableButton(thisButton);
-            }
-        }
-        else
-        {
-            DebugConsole.Log("You don't have enough coins!");
-        }
+       //     if (shopController.filteredItems[itemIndex].isUnique)
+        //    {
+        //        shopController.DisableButton(thisButton);
+      //      }
+    //    }
+      //  else
+      //  {
+       //     DebugConsole.Log("You don't have enough coins!");
+      //  }
     }
 }
