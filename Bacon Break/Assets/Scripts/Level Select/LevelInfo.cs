@@ -5,23 +5,23 @@ using UnityEngine.UI;
 public class LevelInfo : MonoBehaviour
 {
     //Public vars
+    [Header("UI SHIT")]
     public GameObject pnl_levelInfo;        //For accessing and filling in the level's information
+    public GameObject pnl_play;                 //Play the selected level
+    public Text txt_levelName;              //For displaying the name of the level
     public RectTransform canvasRect;        //Canvas space
     public int clampOffsetX, clampOffsetY;  //Used for extra spacing if the panel had to be repositioned (when panel was (partly) out of the screen)
 
     //Private vars
-    private Text txt_levelName;             //For displaying the name of the level
+    private Button btn_play;
     private Text txt_score;                 //For displaying the highscore;
-    private Button btn_play;                //Play a level!
     private Vector2 screenspaceWorld;       //Get world corners in screen space.
 
     void Awake()
     {
         Time.timeScale = 1.0f;
-
-        txt_levelName = pnl_levelInfo.transform.GetChild(0).GetComponent<Text>();
-        btn_play = pnl_levelInfo.transform.GetChild(1).GetComponent<Button>();
-        txt_score = pnl_levelInfo.transform.GetChild(2).GetComponent<Text>();
+        btn_play = pnl_play.transform.GetChild(0).GetComponent<Button>();
+        txt_score = pnl_levelInfo.transform.GetChild(0).GetComponent<Text>();
     }
 
     // Use this for initialization
@@ -47,10 +47,6 @@ public class LevelInfo : MonoBehaviour
             //Zet big op levelnode;
             GameObject.FindWithTag("Player").transform.position = level.transform.position;
 
-            //Zet score;
-            /*
-             */
-
             //Level is unlocked, set unlock to false again.
             PlayerPrefs.SetInt("Unlock", 0);
         }
@@ -61,14 +57,14 @@ public class LevelInfo : MonoBehaviour
     }
 
     //TODO:: Add prefab name
-    public void SetLevelInformation(Vector3 panelPosition, string levelName, GameObject levelPrefab, int levelIndex, int score)
+    public void SetLevelInformation(Vector3 buttonPosition, string levelName, GameObject levelPrefab, int levelIndex, int score)
     {
         //Set information panel to the levelnode's position
-        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, panelPosition);
-        pnl_levelInfo.transform.position = screenPoint;
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, new Vector3(buttonPosition.x, buttonPosition.y, buttonPosition.z + 2));
+        pnl_play.transform.position = screenPoint;
 
         //"Clamp" panel if it happens to be positioned (partially) out of the screen view.
-        ClampPanel();
+        //ClampPanel();
 
         //Set level name and prefab
         txt_levelName.text = levelName;
@@ -76,6 +72,7 @@ public class LevelInfo : MonoBehaviour
         btn_play.GetComponent<LevelSelector>().SetLevelObject(levelPrefab, levelIndex);
 
         pnl_levelInfo.SetActive(true);
+        pnl_play.SetActive(true);
     }
 
     public void ClampPanel()
