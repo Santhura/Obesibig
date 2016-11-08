@@ -55,7 +55,8 @@ public class WinOrLoseScript : MonoBehaviour {
             //Unlock next level
             PlayerPrefs.SetInt("Unlock", 1);
 
-            Time.timeScale = 0;
+            PlayerMovement.isAbleToMove = false;
+           // Time.timeScale = 0;
         }
         else if(isDead) // display losing screen
         {
@@ -97,6 +98,6 @@ public class WinOrLoseScript : MonoBehaviour {
         winOrLose_Text.text = "The pig is slaughtered";
         PlayerPrefs.SetInt("Unlock", 0);
         retunToMenu_Button.interactable = true;
-        Time.timeScale = 0;
+       // Time.timeScale = 0;
     }
 }

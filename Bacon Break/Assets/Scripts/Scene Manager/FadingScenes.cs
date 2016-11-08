@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class FadingScenes : MonoBehaviour {
 
     private GameObject fadeImage;             // create a new gameobject with a image that will fade in or out
-    public float fadeSpeed = 3f;             // the fading speed
+    public float fadeSpeed = 1f;             // the fading speed
 
     public float fadeDir = 1;               // the direction to fade : in = -1 or out = 1
     public string sceneName;                // if switching scenes add the scene name
@@ -26,7 +26,8 @@ public class FadingScenes : MonoBehaviour {
         fadeImage.name = "Fade";
         fadeImage.AddComponent<Image>();
         fadeImage.GetComponent<Image>().color = fadeColor;
-        fadeImage.transform.SetParent( GameObject.FindWithTag("Canvas").transform);
+        if(Application.loadedLevelName != "TutorialScene")
+            fadeImage.transform.SetParent( GameObject.FindWithTag("Canvas").transform);
         fadeImage.transform.localScale = new Vector3(133, 133, 1);
         if (fadeColor.a == 1)
             activateFade = true;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StanimaParticleMovement : MonoBehaviour {
+public class StaminaParticleMovement : MonoBehaviour {
 
     private readonly string playerTag = "Player";
     private Transform targetPosition;
@@ -10,7 +10,7 @@ public class StanimaParticleMovement : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         gameObject.transform.position = GameObject.FindWithTag(playerTag).transform.position;
-        targetPosition = GameObject.Find("TargetStanima").transform;
+        targetPosition = GameObject.Find("TargetStamina").transform;
        // Destroy(gameObject, 1.5f);
 
     }
