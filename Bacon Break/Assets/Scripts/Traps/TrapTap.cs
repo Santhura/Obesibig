@@ -36,7 +36,8 @@ public class TrapTap : MonoBehaviour
         if (releaseChaser && gameObject.name == "ChasingSawTrap")
         {
             Debug.Log("released...RUNN!!");
-            unleashThis.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
+            if(unleashThis != null)
+                unleashThis.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
         }
     }
     void OnMouseDown()
