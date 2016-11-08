@@ -9,8 +9,8 @@ public class MainMenuEvents : MonoBehaviour
 
     private Text signInButtonText;
     //private Text authStatus;
-    private GameObject achButton;
-    private GameObject leaderboardButton;
+    public GameObject achButton;
+    public GameObject leaderboardButton;
 
 
     // Use this for initialization
@@ -18,8 +18,8 @@ public class MainMenuEvents : MonoBehaviour
     {
         signInButtonText = GameObject.Find("Sign_In").GetComponentInChildren<Text>();
         //authStatus = GameObject.Find("authStatus").GetComponent<Text>();
-        achButton = GameObject.Find("Achievements_Button");
-        leaderboardButton = GameObject.Find("Leaderboard_Button");
+        //achButton = GameObject.Find("Achievements_Button");
+        //leaderboardButton = GameObject.Find("LeaderBoard_Button");
 
         // Create client configuration
         PlayGamesClientConfiguration config = new
@@ -39,7 +39,7 @@ public class MainMenuEvents : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Show achievements if authenticated
+        //Show achievements and leaderboards button if authenticated
         achButton.SetActive(Social.localUser.authenticated);
         leaderboardButton.SetActive(Social.localUser.authenticated);
     }
@@ -93,7 +93,7 @@ public class MainMenuEvents : MonoBehaviour
         }
         else
         {
-            Debug.Log("Cannot show Achievements, not logged in");
+            Debug.Log("Cannot show Achievements: not authenticated");
         }
     }
 

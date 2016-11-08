@@ -26,8 +26,12 @@ public class FadingScenes : MonoBehaviour {
         fadeImage.name = "Fade";
         fadeImage.AddComponent<Image>();
         fadeImage.GetComponent<Image>().color = fadeColor;
-        if(Application.loadedLevelName != "TutorialScene")
-            fadeImage.transform.SetParent( GameObject.FindWithTag("Canvas").transform);
+
+        if (Application.loadedLevelName != "TutorialScene")
+        {
+            fadeImage.transform.SetParent(GameObject.FindWithTag("Canvas").transform);
+        }
+
         fadeImage.transform.localScale = new Vector3(133, 133, 1);
         if (fadeColor.a == 1)
             activateFade = true;
