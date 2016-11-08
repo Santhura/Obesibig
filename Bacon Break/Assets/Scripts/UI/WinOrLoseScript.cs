@@ -53,13 +53,14 @@ public class WinOrLoseScript : MonoBehaviour {
             panel_winLose.SetActive(true);
             displayScore.TriggerScore();
             //  LoseAndWin_Panel.alpha = 1;
-            winOrLose_Text.text = "You have completed the level!!";
+            winOrLose_Text.text = "Level Completed!";
             retunToMenu_Button.interactable = true;
 
             //Unlock next level
             PlayerPrefs.SetInt("Unlock", 1);
 
-            Time.timeScale = 0;
+            PlayerMovement.isAbleToMove = false;
+           // Time.timeScale = 0;
         }
         else if(isDead) // display losing screen
         {    
