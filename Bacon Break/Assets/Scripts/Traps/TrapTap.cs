@@ -18,7 +18,6 @@ public class TrapTap : MonoBehaviour
     public GameObject destroyThis;
     public GameObject unleashThis;
     public GameObject PS_explosion;
-    public float speed;
 
     Rigidbody rb;
     // Use this for initialization
