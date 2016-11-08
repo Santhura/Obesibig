@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using GooglePlayGames;
 using System.Collections;
 
 public class LevelPrefab : MonoBehaviour
@@ -6,8 +7,8 @@ public class LevelPrefab : MonoBehaviour
     public GameObject levelPrefab;
     private int unlocked;
     public bool isVisible;
-    
-    void Start() 
+
+    void Start()
     {
         if (PlayerPrefs.HasKey(gameObject.name + "_unlocked"))
         {
@@ -21,6 +22,21 @@ public class LevelPrefab : MonoBehaviour
     //Unlock level
     public void Unlock()
     {
+        if (!PlayerPrefs.HasKey(gameObject.name + "_unlocked"))
+            if (Social.localUser.authenticated)
+            {
+                // Increment the "Fitness Master" achievement.
+                // This achievement is unlocked after 6 completed levels (6 increments).
+                PlayGamesPlatform.Instance.IncrementAchievement(
+                       GPGSIds.achievement_fitness_master,
+                       1,
+                       (bool success) =>
+                       {
+                           Debug.Log("(Bacon Break) Fitness Master Increment: " +
+                              success);
+                       });
+            }
+
         unlocked = 1;
         PlayerPrefs.SetInt(gameObject.name + "_unlocked", unlocked);
     }
