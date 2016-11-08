@@ -4,6 +4,7 @@ using GooglePlayGames;
 
 public class StopTrapAnimation : MonoBehaviour
 {
+    public AudioClip destroySounds;
     public HighscoreManager addScore;
     public Animation trapAnimation;
     private AudioSource SelectedAudio;
@@ -26,7 +27,11 @@ public class StopTrapAnimation : MonoBehaviour
     {
         trapAnimation.enabled = false;
         addScore.trapsDestroyedAmount += 1;
+        SelectedAudio.enabled = true;
+        SelectedAudio.clip = destroySounds;
+        SelectedAudio.loop = false;
         SelectedAudio.Play();
+
 
         // Only unlock achievements if the user is signed in.
         if (Social.localUser.authenticated)

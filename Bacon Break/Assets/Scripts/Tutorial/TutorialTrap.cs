@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TutorialTrap : MonoBehaviour {
-    public GameObject destroyThis;
-    void OnTriggerEnter(Collider other)
+public class TutorialTrap : MonoBehaviour
+{
+    public GameObject destroyIndicator;
+    public GameObject activateIndicator;
+    void OnMouseDown()
     {
-        if (other.gameObject.tag == "Tutorial")
-        {
-            Destroy(destroyThis);
-        }
+        Destroy(destroyIndicator);
+        activateIndicator.gameObject.SetActive(true);
     }
 }
