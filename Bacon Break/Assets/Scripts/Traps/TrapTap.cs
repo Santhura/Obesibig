@@ -14,6 +14,7 @@ public class TrapTap : MonoBehaviour
     bool unleash;
     public GameObject destroyThis;
     public GameObject unleashThis;
+    public GameObject PS_explosion;
     public float speed;
 
     Rigidbody rb;
@@ -59,7 +60,8 @@ public class TrapTap : MonoBehaviour
                               success);
                        });
             }
-
+            GameObject explosion = Instantiate(PS_explosion, transform.position, Quaternion.identity) as GameObject;
+            Destroy(explosion, 2);
             Destroy(destroyThis);
         }
 

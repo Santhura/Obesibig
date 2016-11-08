@@ -50,7 +50,7 @@ public class ScoreScript : MonoBehaviour
     {
         baconAmount++;
 
-        txt_baconAmount.text = baconAmount.ToString();
+        txt_baconAmount.text = "x " + baconAmount.ToString();
         txt_baconScore.text = "x " + baconAmount.ToString();
     }
 
