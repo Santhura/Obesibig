@@ -10,10 +10,12 @@ public class TrapTap : MonoBehaviour
 
     public HighscoreManager addScore;
     public bool canUnleash = false;
+    public bool releaseChaser = false;
     bool unleash;
     public GameObject destroyThis;
     public GameObject unleashThis;
     public GameObject PS_explosion;
+    public float speed;
 
     Rigidbody rb;
     // Use this for initialization
@@ -26,9 +28,15 @@ public class TrapTap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (unleash)
+        if (unleash && gameObject.name == "LooseSawTrap")
         {
-            unleashThis.transform.Translate(Vector3.back * Time.deltaTime * 40, Space.World);
+            unleashThis.transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
+        }
+
+        if (releaseChaser && gameObject.name == "ChasingSawTrap")
+        {
+            Debug.Log("released...RUNN!!");
+            unleashThis.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
         }
     }
     void OnMouseDown()
@@ -57,15 +65,20 @@ public class TrapTap : MonoBehaviour
             Destroy(destroyThis);
         }
 
-    //    if (movementStoppable)
-    //        rb.isKinematic = true;
-
         if (canUnleash)
         {
             transform.tag = "Untagged";
             Destroy(transform.GetComponent<BoxCollider>());
             addScore.trapsDestroyedAmount += 1;
             unleash = true;
+        }
+
+        Debug.Log(gameObject.name);
+
+        //When tapped the chasing chain saw can be released
+        if (gameObject.name == "ChasingSawTrap")
+        {
+            releaseChaser = true;
         }
     }
  /*

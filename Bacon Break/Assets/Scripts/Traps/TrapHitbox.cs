@@ -16,6 +16,12 @@ public class TrapHitbox : MonoBehaviour
             PlayerMovement.isAbleToMove = false;
             WinOrLoseScript.isDead = true;
         }
+
+        if(other.gameObject.tag == "Wall")
+        {
+            Debug.Log("Hit the wall");
+            Destroy(gameObject, 0.5f);
+        }
     }
 
 }
