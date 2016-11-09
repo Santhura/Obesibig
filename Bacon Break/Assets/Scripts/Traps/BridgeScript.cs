@@ -6,6 +6,7 @@ public class BridgeScript : MonoBehaviour
     private float time = 0.2f;
     private bool bridgeIsDown = false;
     private RaycastHit hit;
+    private AudioSource tapAudio;
 
     private Vector3 startRotation = new Vector3(-45, 0, 0);
     private Vector3 destinationRotation = new Vector3(15, 0, 0);
@@ -17,6 +18,7 @@ public class BridgeScript : MonoBehaviour
     void Start()
     {
         transform.Rotate(startRotation);
+        tapAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class BridgeScript : MonoBehaviour
                 if (Input.GetMouseButtonUp(0) && !bridgeIsDown && (tapped <= 3))
                 {
                     RotateTheBridge();
+                    tapAudio.Play();
                 }
                 else if (bridgeIsDown)
                     transform.tag = "Untagged";

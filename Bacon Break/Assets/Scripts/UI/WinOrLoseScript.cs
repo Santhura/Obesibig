@@ -20,6 +20,8 @@ public class WinOrLoseScript : MonoBehaviour {
     private Button retunToMenu_Button;          // When in lose screen, button has to return to main menu.
     private GameObject panel_winLose;
     public HighscoreManager displayScore;
+    public AudioClip[] winOrLoseAudio;
+    private AudioSource SelectedAudio;
 
     public static bool hasWon;                  // check if the player has won.
     public static bool isDead;                  // check if the player is dead.
@@ -39,13 +41,15 @@ public class WinOrLoseScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        SelectedAudio = GetComponent<AudioSource>();
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 	    if(hasWon) // Display winning screen
         {
+           SelectedAudio.clip = winOrLoseAudio[0];
+           SelectedAudio.Play();
             panel_winLose.SetActive(true);
             displayScore.TriggerScore();
             //  LoseAndWin_Panel.alpha = 1;
@@ -59,7 +63,7 @@ public class WinOrLoseScript : MonoBehaviour {
            // Time.timeScale = 0;
         }
         else if(isDead) // display losing screen
-        {
+        {    
             StartCoroutine(WaitForDeathScreen(2));
         }
 	}
@@ -98,6 +102,8 @@ public class WinOrLoseScript : MonoBehaviour {
         winOrLose_Text.text = "The pig is slaughtered";
         PlayerPrefs.SetInt("Unlock", 0);
         retunToMenu_Button.interactable = true;
-       // Time.timeScale = 0;
+        SelectedAudio.clip = winOrLoseAudio[1];
+        SelectedAudio.Play();
+        Time.timeScale = 0;
     }
 }

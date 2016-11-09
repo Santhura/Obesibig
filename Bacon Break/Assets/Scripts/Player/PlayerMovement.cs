@@ -5,6 +5,9 @@ public class PlayerMovement : MonoBehaviour
 {
     // todo: make this script into a singleton
 
+    public AudioClip[] walkSounds; // walking sounds
+    private AudioSource SelectedAudio;
+
     public float touchSensivity = 1;
     float speed = 0.0f; // character speed on Z axis
     public float baseSpeed = 10f;
@@ -47,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
             bonusSpeed = 35.0f;
         }
 
+        SelectedAudio = GetComponent<AudioSource>();
+
         GameObject theStamina = GameObject.Find("bar_stamina");
         staminaScript = theStamina.GetComponent<StaminaScript>();
         
@@ -58,7 +63,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAbleToMove && isAbleToMoveTemp)
+        if (!SelectedAudio.isPlaying && Time.timeScale != 0)
+        {
+            SelectedAudio.clip = walkSounds[Random.Range(0, walkSounds.Length)];
+            SelectedAudio.Play();
+        }
+
+
         {
             if (StaminaScript.isBoosting) {
                 //speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
@@ -77,9 +88,12 @@ public class PlayerMovement : MonoBehaviour
                 WinOrLoseScript.isDead = true;
                 isAbleToMove = false;
             }
+            else
+              
 
-            // switch control scheme for phone or pc debugging
-            #if UNITY_EDITOR
+
+                // switch control scheme for phone or pc debugging
+#if UNITY_EDITOR
                 simpleControls();
             #else
                 swipeControls();
@@ -276,6 +290,7 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.tag == "Endpoint")
         {
             WinOrLoseScript.hasWon = true;
+
         }
     }
 }
