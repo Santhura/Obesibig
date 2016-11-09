@@ -8,6 +8,8 @@ public class BaconScript : MonoBehaviour
 
     public GameObject pnl_score;           //UI element for displaying the total score (of bacon).
     public GameObject bar_stamina;         //UI element displaying the amount of stamina.
+    public GameObject pickUpStanimaParticle;    // particle effect for bacon pickups (stanima)
+    public AudioClip pickupSound;
     public GameObject PS_staminaPickup;    // particle effect for bacon pickups (stanima)
 
     // Use this for initialization.
@@ -30,6 +32,7 @@ public class BaconScript : MonoBehaviour
         //Destroy the bacon object.
         if (col.gameObject.tag == "Player")
         {
+            AudioSource.PlayClipAtPoint(pickupSound, this.transform.position);
             bar_stamina.GetComponent<StaminaScript>().AddStamina();
             pnl_score.GetComponent<ScoreScript>().AddBacon();
              Instantiate(PS_staminaPickup, gameObject.transform.position, Quaternion.identity);

@@ -128,7 +128,7 @@ public class NodeMovement : MonoBehaviour
                                                                                                    levelNode.transform.position.z + 2));
             pnl_play.transform.position = screenPoint;
 
-            GameObject.Find("Game Manager").GetComponent<LevelInfo>().ClampPanel();
+            //GameObject.Find("Game Manager").GetComponent<LevelInfo>().ClampPanel();
         }
     }
 
