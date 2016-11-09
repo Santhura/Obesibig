@@ -25,7 +25,7 @@ public class TrapTap : MonoBehaviour
     {
         addScore = GameObject.Find("Score Manager").GetComponent<HighscoreManager>();
         rb = this.GetComponent<Rigidbody>();
-        SelectedAudio = GetComponent<AudioSource>();
+        SelectedAudio = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
