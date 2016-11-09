@@ -45,7 +45,10 @@ public class TrapTap : MonoBehaviour
         }
         if (unleash)
         {
-            unleashThis.transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
+            if(unleashThis != null)
+            {
+                unleashThis.transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
+            }
         }
 
     
