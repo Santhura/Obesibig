@@ -16,6 +16,7 @@ public class LoadLevel : MonoBehaviour {
         loadLevel = (GameObject)Instantiate(Resources.Load("Levels/" + GameManager.currentLevelName));
 
         SetCameraView();
+        //SetPlayerPrefab();
     }
 
     //Change main camera position and rotation based on the given settings
@@ -63,20 +64,13 @@ public class LoadLevel : MonoBehaviour {
                 mainCamera.GetComponent<Camera>().orthographic = true;
                 break;
         }
-        /*GameObject mainCamera = GameObject.Find("Main Camera");
-
-        if (OptionScript.IsCameraOrthographic())
-        {
-            mainCamera.GetComponent<Camera>().orthographic = true;
-        }
-        else
-        {
-            mainCamera.GetComponent<Camera>().orthographic = false;
-        }
-
-        mainCamera.transform.localPosition = OptionScript.GetCameraPosition();
-        mainCamera.transform.localRotation = Quaternion.Euler(OptionScript.GetCameraRotation());
-         * */
     }
-	
+
+    void SetPlayerPrefab()
+    {
+        GameObject player;
+        player = Instantiate(Resources.Load("Dinos/" + PlayerPrefs.GetString("Character_Item"))) as GameObject;
+        player.transform.SetParent(GameObject.FindWithTag("Player").transform);
+        GameObject.FindWithTag("Player").transform.position = new Vector3(GameObject.Find("Start_Point").transform.position.x, GameObject.Find("Start_Point").transform.position.y + 1, GameObject.Find("Start_Point").transform.position.z);
+    }
 }
