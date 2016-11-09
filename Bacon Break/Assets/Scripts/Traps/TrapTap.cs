@@ -31,10 +31,17 @@ public class TrapTap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (unleash && gameObject.tag == "Untagged")
+        {
+            if (unleashThis != null)
+                unleashThis.transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
+        }
+
         if (releaseChaser && gameObject.name == "ChasingSawTrap")
         {
             Debug.Log("released...RUNN!!");
-            unleashThis.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
+            if(unleashThis != null)
+                unleashThis.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
         }
         if (unleash)
         {
@@ -76,8 +83,9 @@ public class TrapTap : MonoBehaviour
             transform.tag = "Untagged";
             Destroy(transform.GetComponent<BoxCollider>());
             addScore.trapsDestroyedAmount += 1;
-            SelectedAudio.clip = destroySounds[Random.Range(0, destroySounds.Length)];
-            SelectedAudio.Play();
+      //      SelectedAudio.clip = destroySounds[Random.Range(0, destroySounds.Length)];
+      //      SelectedAudio.Play();
+            AudioSource.PlayClipAtPoint(destroySounds[Random.Range(0, destroySounds.Length)], this.transform.position);
             unleash = true;
         }
 

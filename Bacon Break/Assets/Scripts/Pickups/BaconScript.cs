@@ -8,7 +8,6 @@ public class BaconScript : MonoBehaviour
 
     public GameObject pnl_score;           //UI element for displaying the total score (of bacon).
     public GameObject bar_stamina;         //UI element displaying the amount of stamina.
-    public GameObject pickUpStanimaParticle;    // particle effect for bacon pickups (stanima)
     public AudioClip pickupSound;
     public GameObject PS_staminaPickup;    // particle effect for bacon pickups (stanima)
 
