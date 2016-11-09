@@ -13,6 +13,9 @@ public class BridgeScript : MonoBehaviour
 
     private int tapped = 0;
 
+    public bool isTutorial; //check if this bridge is used as a tutorial
+    public GameObject tutorialIcon; //if it is a tutorial, we can use this to call upon the tutorial icon.
+
 
     // Use this for initialization
     void Start()
@@ -36,6 +39,8 @@ public class BridgeScript : MonoBehaviour
                     tapAudio.Play();
                 }
                 else if (bridgeIsDown)
+                    if (isTutorial)
+                        Destroy(tutorialIcon);
                     transform.tag = "Untagged";
             }
         }
