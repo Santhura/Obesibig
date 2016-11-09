@@ -41,20 +41,6 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Open / close inventory with 'I' (PC)
-        /*if (Input.GetKeyUp(KeyCode.I) && !inventoryOpened)
-        {
-            OpenInventory();
-        }
-        else if (Input.GetKeyUp(KeyCode.I) && inventoryOpened)
-        {
-            CloseInventory();
-        }*/
-    }
-
     public void OpenInventory()
     {
         FillInventory();                                    //Fill the CHARACTERS and UPGRADES list (and display selected items)
