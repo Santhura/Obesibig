@@ -5,6 +5,9 @@ public class PlayerMovement : MonoBehaviour
 {
     // todo: make this script into a singleton
 
+    public AudioClip[] walkSounds; // walking sounds
+    private AudioSource SelectedAudio;
+
     public float touchSensivity = 1;
     float speed = 0.0f; // character speed on Z axis
     public float baseSpeed = 10f;
@@ -47,18 +50,26 @@ public class PlayerMovement : MonoBehaviour
             bonusSpeed = 35.0f;
         }
 
+        SelectedAudio = GetComponent<AudioSource>();
+
         GameObject theStamina = GameObject.Find("bar_stamina");
         staminaScript = theStamina.GetComponent<StaminaScript>();
         
         boostParticles.enableEmission = false;
-        isAbleToMove = true;
+       // isAbleToMove = true;
         transform.position = new Vector3(GameObject.Find("Start_Point").transform.position.x, GameObject.Find("Start_Point").transform.position.y + 1, GameObject.Find("Start_Point").transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isAbleToMove && isAbleToMoveTemp)
+        if (!SelectedAudio.isPlaying && Time.timeScale != 0)
+        {
+            SelectedAudio.clip = walkSounds[Random.Range(0, walkSounds.Length)];
+            SelectedAudio.Play();
+        }
+
+
         {
             if (StaminaScript.isBoosting) {
                 //speed = baseSpeed + bonusSpeed * staminaScript.estimatedSpeed;
@@ -70,23 +81,23 @@ public class PlayerMovement : MonoBehaviour
                 speed = baseSpeed;
                 boostParticles.enableEmission = false;
             }
-            transform.Translate(0, 0, speed * Time.deltaTime);
+            if (isAbleToMoveTemp || isAbleToMove) { 
+                transform.Translate(0, 0, speed * Time.deltaTime);
 
-            if (transform.position.y < deathHeight)
-            {
+            if (transform.position.y < deathHeight) {
                 WinOrLoseScript.isDead = true;
                 isAbleToMove = false;
             }
 
-            // switch control scheme for phone or pc debugging
-            #if UNITY_EDITOR
-                simpleControls();
-            #else
-                swipeControls();
-            #endif
-
-            // switch lane update
-            smoothLaneTransition();
+                // switch control scheme for phone or pc debugging
+                #if UNITY_EDITOR
+                    simpleControls();
+                #else
+                    swipeControls();
+                #endif
+                // switch lane update
+                smoothLaneTransition();
+            }
         }
     }
 
@@ -228,12 +239,10 @@ public class PlayerMovement : MonoBehaviour
     bool canMove(float dir)
     {
         // raycast on the X axis in the direction which the player whishes to move towards
-        float dist = step;
         Vector3 rayDir = new Vector3(dir, 0, 0);
         RaycastHit hit;
-        Debug.DrawRay(transform.position, rayDir, Color.green);
         // check for a valid raycast hit
-        if (Physics.Raycast(transform.position, rayDir, out hit, dist) && hit.collider.gameObject.tag == "Wall")
+        if (Physics.Raycast(transform.position, rayDir, out hit, step) && hit.collider.gameObject.tag == "Wall")
 
             // a wall has been detected next to the player
             return false;
@@ -276,6 +285,7 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.tag == "Endpoint")
         {
             WinOrLoseScript.hasWon = true;
+
         }
     }
 }
