@@ -31,7 +31,7 @@ public class TrapTap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (unleash && gameObject.name == "LooseSawTrap")
+        if (unleash && gameObject.tag == "Untagged")
         {
             if (unleashThis != null)
                 unleashThis.transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);

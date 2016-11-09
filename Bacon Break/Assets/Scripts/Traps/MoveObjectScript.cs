@@ -40,7 +40,7 @@ public class MoveObjectScript : MonoBehaviour {
                 {
                     Vector2 touchPos = Input.GetTouch(0).deltaPosition;
 
-                    hit.transform.parent.Translate(touchPos.x * speed, 0, 0);
+                    hit.transform.Translate(touchPos.x * speed, 0, 0);
                 }
             }
         }
