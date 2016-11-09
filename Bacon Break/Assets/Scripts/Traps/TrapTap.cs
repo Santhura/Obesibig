@@ -33,7 +33,8 @@ public class TrapTap : MonoBehaviour
     {
         if (unleash && gameObject.name == "LooseSawTrap")
         {
-            unleashThis.transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
+            if (unleashThis != null)
+                unleashThis.transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
         }
 
         if (releaseChaser && gameObject.name == "ChasingSawTrap")

@@ -21,6 +21,7 @@ public class LevelStartCountdown : MonoBehaviour
         // temporarily solving this using a second variable
         player = GameObject.Find("Player");
         player.GetComponent<PlayerMovement>().isAbleToMoveTemp = false;
+        PlayerMovement.isAbleToMove = false;
         //PlayerMovement.isAbleToMove = false;
     }
 
@@ -53,6 +54,7 @@ public class LevelStartCountdown : MonoBehaviour
         {
             // give back control to the player
             player.GetComponent<PlayerMovement>().isAbleToMoveTemp = true;
+            PlayerMovement.isAbleToMove = true;
             //PlayerMovement.isAbleToMove = true;
 
             // make sure the camera has the correct final size

@@ -46,6 +46,7 @@ public class FadingScenes : MonoBehaviour {
 
     public void Fading(float fadingDir, string sceneName) {
         if (activateFade) {
+            Time.timeScale = 1;
             fadeColor.a += fadingDir * fadeSpeed * Time.deltaTime;
             fadeImage.GetComponent<Image>().color = fadeColor;
             if (fadeColor.a >= 1 && fadingDir == 1) {
