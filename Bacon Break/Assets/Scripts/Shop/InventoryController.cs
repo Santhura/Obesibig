@@ -27,7 +27,6 @@ public class InventoryController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //PlayerPrefs.DeleteAll();
         characters = new List<ShopItem>();
         upgrades = new List<ShopItem>();
 

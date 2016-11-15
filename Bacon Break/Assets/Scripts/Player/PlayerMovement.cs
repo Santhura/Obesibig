@@ -42,8 +42,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         maxSpeed = 50;
-        if (GameObject.Find("M-LVL8_TheHills")){
-            baseSpeed = 10.0f;
+        if (GameObject.Find("M-LVL8_TheHills(Clone)")){
+            baseSpeed = 25.0f;
             bonusSpeed = 25.0f;
         } else {
             baseSpeed = 30.0f;
