@@ -34,13 +34,20 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         if (uiManager != null)
         {
-            if (uiManager.currentSceneName != nextSceneName)
-            {
+             if (uiManager.currentSceneName != nextSceneName)
+             {
                 uiManager.nextSceneName = nextSceneName;
                 if (levelName != null)
                 {
                     currentLevelName = levelName;
                 }
+            }
+             else {
+                uiManager.nextSceneName = nextSceneName;
+                if (levelName != null) {
+                    currentLevelName = levelName;
+                }
+                // SceneManager.LoadScene("TutorialScene");
             }
         }
     }

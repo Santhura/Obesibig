@@ -19,6 +19,8 @@ public class WinOrLoseScript : MonoBehaviour {
     private bool canPlay = true;
     private Text winOrLose_Text;                // Display if you have won or losed
     private Button retunToMenu_Button;          // When in lose screen, button has to return to main menu.
+    private Button restartLevel_Button;          // When dead restart the current level
+    private Button nextLevel_Button;            // when level is succeeded the next level will be loaded.
     private GameObject panel_winLose;
     public HighscoreManager displayScore;
     public AudioClip[] winOrLoseAudio;
@@ -34,6 +36,13 @@ public class WinOrLoseScript : MonoBehaviour {
         displayScore = GameObject.Find("Score Manager").GetComponent<HighscoreManager>();
         winOrLose_Text = GameObject.Find("Text_WinOrLose").GetComponent<Text>();
         retunToMenu_Button = GameObject.Find("Button_ReturnToLevelSelect").GetComponent<Button>();
+        restartLevel_Button = GameObject.Find("Button_Restart").GetComponent<Button>();
+        nextLevel_Button = GameObject.Find("Button_NextLevel").GetComponent<Button>();
+
+        restartLevel_Button.interactable = false;
+        restartLevel_Button.gameObject.SetActive(false);
+        nextLevel_Button.interactable = false;
+        nextLevel_Button.gameObject.SetActive(false);
         //    LoseAndWin_Panel.alpha = 0;
         retunToMenu_Button.interactable = false;
         panel_winLose.SetActive(false);
@@ -53,12 +62,15 @@ public class WinOrLoseScript : MonoBehaviour {
                 SelectedAudio.clip = winOrLoseAudio[0];
                 SelectedAudio.Play();
                 canPlay = false;
+                
             }
             else
                 DisableAll();
 
             panel_winLose.SetActive(true);
             displayScore.TriggerScore();
+            nextLevel_Button.gameObject.SetActive(true);
+            nextLevel_Button.interactable = true;
             //  LoseAndWin_Panel.alpha = 1;
             winOrLose_Text.text = "Level Completed!";
             retunToMenu_Button.interactable = true;
@@ -96,6 +108,23 @@ public class WinOrLoseScript : MonoBehaviour {
         SceneManager.LoadScene(0);
     }
 
+    public void NextLevel() {
+       for (int i = 0; i < LevelNodeCollection.levelNames.Count; i++) {
+            if(LevelNodeCollection.currentLevelName == LevelNodeCollection.levelNames[i]) {
+                if ((i+1) < LevelNodeCollection.levelNames.Count) {
+                    Time.timeScale = 1;
+                    Debug.Log(LevelNodeCollection.levelNames[i + 1]);
+                    GameManager.SwitchScene("TutorialScene", LevelNodeCollection.levelNames[i + 1]);
+                }
+            }
+        }
+    }
+
+    public void RestartLevel() {
+        DisableAll();
+        SceneManager.LoadScene(Application.loadedLevel);
+    }
+
     /// <summary>
     /// Wait for couple seconds to show death screen
     /// </summary>
@@ -107,6 +136,8 @@ public class WinOrLoseScript : MonoBehaviour {
         winOrLose_Text.text = "The pig is slaughtered";
         PlayerPrefs.SetInt("Unlock", 0);
         retunToMenu_Button.interactable = true;
+        restartLevel_Button.gameObject.SetActive(true);
+        restartLevel_Button.interactable = true;
 
         if (canPlay) {
             Time.timeScale = 0;
