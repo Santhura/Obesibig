@@ -25,7 +25,7 @@ public class TrapTap : MonoBehaviour
     {
         addScore = GameObject.Find("Score Manager").GetComponent<HighscoreManager>();
         rb = this.GetComponent<Rigidbody>();
-        SelectedAudio = GetComponent<AudioSource>();
+        SelectedAudio = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -43,6 +43,15 @@ public class TrapTap : MonoBehaviour
             if(unleashThis != null)
                 unleashThis.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
         }
+        if (unleash)
+        {
+            if(unleashThis != null)
+            {
+                unleashThis.transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
+            }
+        }
+
+    
     }
     void OnMouseDown()
     {
@@ -77,8 +86,9 @@ public class TrapTap : MonoBehaviour
             transform.tag = "Untagged";
             Destroy(transform.GetComponent<BoxCollider>());
             addScore.trapsDestroyedAmount += 1;
-            SelectedAudio.clip = destroySounds[Random.Range(0, destroySounds.Length)];
-            SelectedAudio.Play();
+      //      SelectedAudio.clip = destroySounds[Random.Range(0, destroySounds.Length)];
+      //      SelectedAudio.Play();
+            AudioSource.PlayClipAtPoint(destroySounds[Random.Range(0, destroySounds.Length)], this.transform.position);
             unleash = true;
         }
 

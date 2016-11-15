@@ -27,28 +27,36 @@ public class LevelInfo : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //PlayerPrefs.DeleteAll();
         clampOffsetX = 20;
         clampOffsetY = 20;
     }
 
+    // Update is called once per frame
     // Update is called once per frame
     void Update()
     {
         //Check if level exists before unlocking it.
         if (PlayerPrefs.GetInt("Unlock") == 1 && GameObject.Find("Level " + (PlayerPrefs.GetInt("LevelIndex") + 1)) != null)
         {
-            //Unlock level with index.
-            GameObject level = GameObject.Find("Level " + PlayerPrefs.GetInt("LevelIndex"));
-            GameObject gameManager = GameObject.Find("Game Manager");
-            gameManager.GetComponent<UnlockLevel>().UnlockNextLevel(PlayerPrefs.GetInt("LevelIndex") + 1);
-            level.GetComponent<LevelPrefab>().Unlock();
+            if (GameObject.Find("Level " + (PlayerPrefs.GetInt("LevelIndex") + 1)).activeSelf)
+            {
+                //Unlock level with index.
+                GameObject level = GameObject.Find("Level " + PlayerPrefs.GetInt("LevelIndex"));
+                GameObject gameManager = GameObject.Find("Game Manager");
+                gameManager.GetComponent<UnlockLevel>().UnlockNextLevel(PlayerPrefs.GetInt("LevelIndex") + 1);
+                level.GetComponent<LevelPrefab>().Unlock();
 
-            //Zet big op levelnode;
-            GameObject.FindWithTag("Player").transform.position = level.transform.position;
+                //Zet big op levelnode;
+                GameObject.FindWithTag("Player").transform.position = level.transform.position;
 
-            //Level is unlocked, set unlock to false again.
-            PlayerPrefs.SetInt("Unlock", 0);
+                //Level is unlocked, set unlock to false again.
+                PlayerPrefs.SetInt("Unlock", 0);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("Unlock", 0);
+            }
+
         }
         else
         {
