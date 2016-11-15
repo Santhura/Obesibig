@@ -109,9 +109,9 @@ public class WinOrLoseScript : MonoBehaviour {
         retunToMenu_Button.interactable = true;
 
         if (canPlay) {
-            Time.timeScale = 0;
             SelectedAudio.clip = winOrLoseAudio[1];
             SelectedAudio.Play();
+            Time.timeScale = 0;
             canPlay = false;
         }
         else
