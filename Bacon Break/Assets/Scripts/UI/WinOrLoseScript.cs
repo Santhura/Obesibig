@@ -28,6 +28,7 @@ public class WinOrLoseScript : MonoBehaviour {
 
     public static bool hasWon;                  // check if the player has won.
     public static bool isDead;                  // check if the player is dead.
+    public static bool pressedNextLevelButtons;
 
     void Awake() {
         hasWon = false;
@@ -46,6 +47,7 @@ public class WinOrLoseScript : MonoBehaviour {
         //    LoseAndWin_Panel.alpha = 0;
         retunToMenu_Button.interactable = false;
         panel_winLose.SetActive(false);
+        pressedNextLevelButtons = false;
     }
 
     // Use this for initialization
@@ -109,12 +111,19 @@ public class WinOrLoseScript : MonoBehaviour {
     }
 
     public void NextLevel() {
-       for (int i = 0; i < LevelNodeCollection.levelNames.Count; i++) {
+        DisableAll();
+        pressedNextLevelButtons = true;
+
+        for (int i = 0; i < LevelNodeCollection.levelNames.Count; i++) {
             if(LevelNodeCollection.currentLevelName == LevelNodeCollection.levelNames[i]) {
                 if ((i+1) < LevelNodeCollection.levelNames.Count) {
                     Time.timeScale = 1;
-                    Debug.Log(LevelNodeCollection.levelNames[i + 1]);
-                    GameManager.SwitchScene("TutorialScene", LevelNodeCollection.levelNames[i + 1]);
+            //        Debug.Log(LevelNodeCollection.levelNames[i + 1]);
+                    LevelNodeCollection.currentLevelName = LevelNodeCollection.levelNames[i + 1];
+                    //GameManager.SwitchScene("TutorialScene", LevelNodeCollection.levelNames[i + 1]);
+                    GameManager.currentLevelName = LevelNodeCollection.levelNames[i + 1];
+                    GameObject.FindWithTag("Canvas").GetComponent<SceneSelector>().SwitchLevel("TutorialScene", LevelNodeCollection.levelNames[i + 1]);
+                    break;
                 }
             }
         }
