@@ -50,10 +50,9 @@ public class TrapTap : MonoBehaviour
                 unleashThis.transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
             }
         }
-
-    
     }
-    void OnMouseDown()
+
+    public void OnTap()
     {
         if (!canUnleash && destroyThis)
         {
