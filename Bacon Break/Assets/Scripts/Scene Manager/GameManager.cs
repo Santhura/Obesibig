@@ -34,13 +34,20 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         if (uiManager != null)
         {
-            if (uiManager.currentSceneName != nextSceneName)
-            {
+             if (uiManager.currentSceneName != nextSceneName)
+             {
                 uiManager.nextSceneName = nextSceneName;
                 if (levelName != null)
                 {
                     currentLevelName = levelName;
                 }
+            }
+             else {
+                uiManager.nextSceneName = nextSceneName;
+                if (levelName != null) {
+                    currentLevelName = levelName;
+                }
+                // SceneManager.LoadScene("TutorialScene");
             }
         }
     }
@@ -113,6 +120,7 @@ public class GameManager : MonoBehaviour
     // attach the new scene controller to start cascade of loading
     private void UpdateSceneReset()
     {
+
         // run a garbace collecter pass
         System.GC.Collect();
         sceneState = SceneState.Preload;
@@ -177,22 +185,13 @@ public class GameManager : MonoBehaviour
         {
             sceneState = SceneState.Reset;
         }
+        else if(currentSceneName == "TutorialScene" && WinOrLoseScript.pressedNextLevelButtons ) {
+            sceneState = SceneState.Reset;
+            WinOrLoseScript.pressedNextLevelButtons = false;
+        }
     }
     #endregion
 
-
-
-    /// <summary>
-    /// For now play the level we have created.
-    /// TODO:: go to select screen instead of play a level.
-    /// </summary>
-    public void PlayButton(string nexSceneName)
-    {
-        PlayerMovement.isAbleToMove = true;
-        this.nextSceneName = nexSceneName;
-
-        sceneState = SceneState.Reset;
-    }
 
     public void ReturnToMainMenu()
     {

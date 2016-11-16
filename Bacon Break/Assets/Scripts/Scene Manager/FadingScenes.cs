@@ -9,6 +9,7 @@ public class FadingScenes : MonoBehaviour {
 
     public float fadeDir = 1;               // the direction to fade : in = -1 or out = 1
     public string sceneName;                // if switching scenes add the scene name
+    public string levelName;
 
     public static bool activateFade;        // Activefade when the fading has to start
     public Color fadeColor;                // color that will be set for the image
@@ -41,16 +42,21 @@ public class FadingScenes : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-            Fading(fadeDir, sceneName);
+            Fading(fadeDir, sceneName, levelName);
     }
 
-    public void Fading(float fadingDir, string sceneName) {
+    public void Fading(float fadingDir, string sceneName, string levelName) {
         if (activateFade) {
             Time.timeScale = 1;
             fadeColor.a += fadingDir * fadeSpeed * Time.deltaTime;
             fadeImage.GetComponent<Image>().color = fadeColor;
             if (fadeColor.a >= 1 && fadingDir == 1) {
-                GameManager.SwitchScene(sceneName, null);
+                if (levelName == null) {
+                    GameManager.SwitchScene(sceneName, null);
+                }
+                else  {
+                    GameManager.SwitchScene(sceneName, levelName);
+                }
             }
             else if(fadeColor.a <= 0 && fadingDir == -1) {
                 fadeImage.transform.SetParent(null);
