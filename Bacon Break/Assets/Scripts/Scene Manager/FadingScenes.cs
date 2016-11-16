@@ -47,8 +47,6 @@ public class FadingScenes : MonoBehaviour {
 
     public void Fading(float fadingDir, string sceneName, string levelName) {
         if (activateFade) {
-            Debug.Log(levelName);
-
             Time.timeScale = 1;
             fadeColor.a += fadingDir * fadeSpeed * Time.deltaTime;
             fadeImage.GetComponent<Image>().color = fadeColor;
@@ -57,7 +55,6 @@ public class FadingScenes : MonoBehaviour {
                     GameManager.SwitchScene(sceneName, null);
                 }
                 else  {
-                    Debug.Log(levelName);
                     GameManager.SwitchScene(sceneName, levelName);
                 }
             }
