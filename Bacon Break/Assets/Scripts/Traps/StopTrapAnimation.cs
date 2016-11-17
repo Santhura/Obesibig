@@ -27,10 +27,18 @@ public class StopTrapAnimation : MonoBehaviour
     }
     public void Tapped()
     {
-        if (trapAnimation.enabled)
-            trapAnimation.enabled = false;
-        else
-            trapAnimation.enabled = true;
+        if (!TrapRay.hasPressed)
+        {
+            foreach (AnimationState state in trapAnimation)
+            {
+                if (state.speed > 0)
+                    state.speed = 0f;
+                else
+                    state.speed = 1.0f;
+            }
+        }
+
+        Debug.Log(TrapRay.hasPressed);
 
         if (!activated)addScore.trapsDestroyedAmount += 1;
         activated = true;

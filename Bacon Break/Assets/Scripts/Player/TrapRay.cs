@@ -7,13 +7,16 @@ public class TrapRay : MonoBehaviour {
     public bool noTrapsTouched;
     public float tapSize = 3;
 
+    public static bool hasPressed;
+
     // Use this for initialization
     void Start () {
         noTrapsTouched = true;
+        hasPressed = false;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 	    #if UNITY_EDITOR
             simpleControls();
         #else
@@ -37,6 +40,7 @@ public class TrapRay : MonoBehaviour {
                 else if (temp.transform.GetComponent<StopTrapAnimation>() != null)
                 {
                     temp.transform.GetComponent<StopTrapAnimation>().Tapped();
+                    hasPressed = true;
                 }
                 else if (temp.transform.GetComponent<BridgeScript>() != null && !temp.transform.GetComponent<BridgeScript>().activated)
                 {
@@ -44,6 +48,9 @@ public class TrapRay : MonoBehaviour {
                 }
             }
         }
+
+        if (Input.GetMouseButtonUp(0))
+            hasPressed = false;
     }
 
     void tapControls()
@@ -66,6 +73,7 @@ public class TrapRay : MonoBehaviour {
                     {
                         temp.transform.GetComponent<StopTrapAnimation>().Tapped();
                         noTrapsTouched = false;
+                        hasPressed = true;
                     }
                     else if (temp.transform.GetComponent<BridgeScript>() != null && !temp.transform.GetComponent<BridgeScript>().activated)
                     {
@@ -78,6 +86,7 @@ public class TrapRay : MonoBehaviour {
             if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
                 noTrapsTouched = true;
+                hasPressed = false;
             }
         }
     }
