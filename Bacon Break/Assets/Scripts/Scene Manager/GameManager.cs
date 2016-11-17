@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     private static GameObject level;
     public static string currentLevelName;
 
+    public string CurrentSceneName {
+        get { return currentSceneName; }
+    }
 
     #region public static methods
     /// <summary>
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
 
     protected void Awake()
     {
+     //   PlayerPrefs.DeleteAll();
         //Keep this object alive between scene changes.
         Object.DontDestroyOnLoad(gameObject);
 
