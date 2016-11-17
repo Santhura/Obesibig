@@ -96,7 +96,7 @@ public class TrapTap : MonoBehaviour
             unleash = true;
         }
 
-        Debug.Log(gameObject.name);
+
 
         //When tapped the chasing chain saw can be released
         if (gameObject.name == "ChasingSawTrap")

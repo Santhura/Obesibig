@@ -32,7 +32,6 @@ public class LevelInfo : MonoBehaviour
     }
 
     // Update is called once per frame
-    // Update is called once per frame
     void Update()
     {
         //Check if level exists before unlocking it.
@@ -43,7 +42,7 @@ public class LevelInfo : MonoBehaviour
                 //Unlock level with index.
                 GameObject level = GameObject.Find("Level " + PlayerPrefs.GetInt("LevelIndex"));
                 GameObject gameManager = GameObject.Find("Game Manager");
-                gameManager.GetComponent<UnlockLevel>().UnlockNextLevel(PlayerPrefs.GetInt("LevelIndex") + 1);
+                gameManager.GetComponent<UnlockLevel>().UnlockNextLevel(PlayerPrefs.GetInt("LevelIndex") + 2);
                 level.GetComponent<LevelPrefab>().Unlock();
 
                 //Zet big op levelnode;
