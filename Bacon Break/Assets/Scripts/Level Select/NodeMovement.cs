@@ -35,6 +35,7 @@ public class NodeMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //PlayerPrefs.DeleteAll();
         player = GameObject.FindWithTag("Player");
         isMoving = false;
 
@@ -95,11 +96,11 @@ public class NodeMovement : MonoBehaviour
         }
 
         //Use the mouse in the editor, use swipe in build.
-        #if UNITY_EDITOR
-            Controls("Mouse");
-        #else
+#if UNITY_EDITOR
+        Controls("Mouse");
+#else
              Controls("Swipe");
-        #endif
+#endif
 
         //Check if the character has reached the specified node.
         if (isMoving)
@@ -115,6 +116,7 @@ public class NodeMovement : MonoBehaviour
             {
                 startIndex = endIndex;
                 gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, endIndex / 2, PlayerPrefs.GetInt(levelNode.name + "_score"));
+                PlayerPrefs.SetInt("LevelIndex", endIndex / 2);
                 isMoving = false;
             }
         }
@@ -247,9 +249,6 @@ public class NodeMovement : MonoBehaviour
         Vector3[] path = new Vector3[Mathf.Abs(endIndex - startIndex) + 1];
         path = GetPath(startIndex, endIndex);
         iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.easeInOutSine));
-
-        //Set level index to the new level number.
-        PlayerPrefs.SetInt("LevelIndex", endIndex / 2);
 
         isMoving = true;
     }

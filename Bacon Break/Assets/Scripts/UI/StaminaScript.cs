@@ -10,13 +10,13 @@ public class StaminaScript : MonoBehaviour {
     private const float maxWidthOfStanimabar = 330;
     private const float min = -175;
     private const float max = 155;
-    AudioSource audioSource;
-    public AudioClip[] boostSounds;
+    public AudioClip[] boostAudio;
+    AudioSource selectedAudio;
 
     // Use this for initialization
     void Start() {
-        audioSource = GetComponent<AudioSource>();
         //stanimaParticles = GameObject.Find("Stanima Particle").GetComponent<ParticleSystem>();
+        selectedAudio = this.GetComponent<AudioSource>();
         isBoosting = false;
         gameObject.GetComponent<Image>().fillAmount /= 2.5f;
         float foo = maxWidthOfStanimabar / 5 * 2;
@@ -61,16 +61,15 @@ public class StaminaScript : MonoBehaviour {
         if (gameObject.GetComponent<Image>().fillAmount > 0) {
             if (isBoosting)
             {
+                selectedAudio.clip = boostAudio[1];
+                selectedAudio.Play();
                 isBoosting = false;
-                audioSource.clip = boostSounds[1];
-                audioSource.Play();
             }
-
             else
             {
+                selectedAudio.clip = boostAudio[0];
+                selectedAudio.Play();
                 isBoosting = true;
-                audioSource.clip = boostSounds[0];
-                audioSource.Play();
             }
         }
     }
