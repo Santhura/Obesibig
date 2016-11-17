@@ -4,12 +4,13 @@ using System.Collections;
 public class TrapRay : MonoBehaviour {
 
 
-    //private RaycastHit[] hit;
+    public bool noTrapsTouched;
+    public float tapSize = 3;
 
     // Use this for initialization
     void Start () {
-	
-	}
+        noTrapsTouched = true;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,7 +23,27 @@ public class TrapRay : MonoBehaviour {
 
     void simpleControls()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            var hit = Physics.SphereCastAll(ray, tapSize, 1000f);
+
+            foreach (RaycastHit temp in hit)
+            {
+                if (temp.transform.GetComponent<TrapTap>() != null && !temp.transform.GetComponent<TrapTap>().activated)
+                {
+                    temp.transform.GetComponent<TrapTap>().Tapped();
+                }
+                else if (temp.transform.GetComponent<StopTrapAnimation>() != null)
+                {
+                    temp.transform.GetComponent<StopTrapAnimation>().Tapped();
+                }
+                else if (temp.transform.GetComponent<BridgeScript>() != null && !temp.transform.GetComponent<BridgeScript>().activated)
+                {
+                    temp.transform.GetComponent<BridgeScript>().Tapped();
+                }
+            }
+        }
     }
 
     void tapControls()
@@ -32,15 +53,31 @@ public class TrapRay : MonoBehaviour {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-                var hit = Physics.SphereCastAll(ray, 5f, 100f);
+                var hit = Physics.SphereCastAll(ray, tapSize, 1000f);
 
                 foreach (RaycastHit temp in hit)
                 {
-                    if (temp.transform.gameObject.tag == "Trap" && temp.transform.GetComponent<TrapTap>() != null)
+                    if (temp.transform.GetComponent<TrapTap>() != null && !temp.transform.GetComponent<TrapTap>().activated)
                     {
-                        temp.transform.GetComponent<TrapTap>().OnTap();
+                        temp.transform.GetComponent<TrapTap>().Tapped();
+                        noTrapsTouched = false;
+                    }
+                    else if (temp.transform.GetComponent<StopTrapAnimation>() != null && !temp.transform.GetComponent<StopTrapAnimation>().activated)
+                    {
+                        temp.transform.GetComponent<StopTrapAnimation>().Tapped();
+                        noTrapsTouched = false;
+                    }
+                    else if (temp.transform.GetComponent<BridgeScript>() != null && !temp.transform.GetComponent<BridgeScript>().activated)
+                    {
+                        temp.transform.GetComponent<BridgeScript>().Tapped();
+                        noTrapsTouched = false;
                     }
                 }
+            }
+
+            if (Input.GetTouch(0).phase == TouchPhase.Ended)
+            {
+                noTrapsTouched = true;
             }
         }
     }
