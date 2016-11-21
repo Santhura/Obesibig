@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     private static GameObject level;
     public static string currentLevelName;
 
+    public string CurrentSceneName {
+        get { return currentSceneName; }
+    }
 
     #region public static methods
     /// <summary>
@@ -47,7 +50,6 @@ public class GameManager : MonoBehaviour
                 if (levelName != null) {
                     currentLevelName = levelName;
                 }
-                // SceneManager.LoadScene("TutorialScene");
             }
         }
     }

@@ -117,6 +117,7 @@ public class NodeMovement : MonoBehaviour
                 startIndex = endIndex;
                 gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, endIndex / 2, PlayerPrefs.GetInt(levelNode.name + "_score"));
                 PlayerPrefs.SetInt("LevelIndex", endIndex / 2);
+                LevelNodeCollection.currentLevelIndex = PlayerPrefs.GetInt("LevelIndex");
                 isMoving = false;
             }
         }

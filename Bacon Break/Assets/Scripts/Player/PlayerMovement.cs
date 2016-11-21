@@ -84,10 +84,10 @@ public class PlayerMovement : MonoBehaviour
             if (isAbleToMoveTemp || isAbleToMove) { 
                 transform.Translate(0, 0, speed * Time.deltaTime);
 
-            if (transform.position.y < deathHeight) {
-                WinOrLoseScript.isDead = true;
-                isAbleToMove = false;
-            }
+                if (transform.position.y < deathHeight) {
+                    WinOrLoseScript.isDead = true;
+                    isAbleToMove = false;
+                }
 
                 // switch control scheme for phone or pc debugging
                 #if UNITY_EDITOR
@@ -95,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
                 #else
                     swipeControls();
                 #endif
+
                 // switch lane update
                 smoothLaneTransition();
             }
@@ -114,23 +115,23 @@ public class PlayerMovement : MonoBehaviour
                 case TouchPhase.Began:
                 {
                     // send ray from mouse position after mouseclick
-                    hitInfo = new RaycastHit();
-
-                    if (Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out hitInfo))
-                    {
-                        if (hitInfo.transform.gameObject.tag != "Trap" && hitInfo.transform.gameObject.tag != "MoveBridge")
-                        {
-                            pos1 = Camera.main.ScreenToWorldPoint(new Vector3(theTouch.position.x, theTouch.position.y, 0));
-                            // hold stays true as long as the mousebutton is held
-                            hold = true;
-                        }
-                    }
-                    else
-                    {
+                    //hitInfo = new RaycastHit();
+                    //
+                    //if (Physics.Raycast(Camera.main.ScreenPointToRay(theTouch.position), out hitInfo))
+                    //{
+                    //    if (hitInfo.transform.gameObject.tag != "Trap" && hitInfo.transform.gameObject.tag != "MoveBridge")
+                    //    {
+                    //        pos1 = Camera.main.ScreenToWorldPoint(new Vector3(theTouch.position.x, theTouch.position.y, 0));
+                    //        // hold stays true as long as the mousebutton is held
+                    //        hold = true;
+                    //    }
+                    //}
+                    //else
+                    //{
                         pos1 = Camera.main.ScreenToWorldPoint(new Vector3(theTouch.position.x, theTouch.position.y, 0));
                         // hold stays true as long as the mousebutton is held
                         hold = true;
-                    }
+                    //}
                     break;
                 }
 
@@ -139,6 +140,12 @@ public class PlayerMovement : MonoBehaviour
                     // if the mousebutton has not yet been released after clicking on the swipebox
                     if (hold)
                     {
+                        if (!gameObject.GetComponent<TrapRay>().noTrapsTouched)
+                        {
+                            hold = false;
+                            break;
+                        }
+
                         // second raycast to check if the player has swiped over the swipebox
                         pos2 = Camera.main.ScreenToWorldPoint(new Vector3(theTouch.position.x, theTouch.position.y, 0));
 
