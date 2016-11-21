@@ -4,7 +4,6 @@ using System.Collections;
 public class BridgeScript : MonoBehaviour
 {
     private float time = 0.2f;
-    private bool bridgeIsDown = false;
     private RaycastHit hit;
     private AudioSource tapAudio;
 
@@ -13,6 +12,8 @@ public class BridgeScript : MonoBehaviour
 
     private int tapped = 0;
 
+    public bool activated;
+
     public bool isTutorial; //check if this bridge is used as a tutorial
     public GameObject tutorialIcon; //if it is a tutorial, we can use this to call upon the tutorial icon.
 
@@ -20,30 +21,17 @@ public class BridgeScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        activated = false;
+
         transform.Rotate(startRotation);
         tapAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Tapped()
     {
-        // get touch position and check if the right object is hit to move it.
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-        {
-            if (hit.transform.gameObject.GetInstanceID() == transform.gameObject.GetInstanceID())
-            {
-                if (Input.GetMouseButtonUp(0) && !bridgeIsDown && (tapped <= 3))
-                {
-                    RotateTheBridge();
-                    tapAudio.Play();
-                }
-                else if (bridgeIsDown)
-                    if (isTutorial)
-                        Destroy(tutorialIcon);
-                    transform.tag = "Untagged";
-            }
-        }
+        RotateTheBridge();
+        tapAudio.Play();
     }
 
     void RotateTheBridge()
@@ -57,7 +45,8 @@ public class BridgeScript : MonoBehaviour
         tapped++;
         if (tapped == 3)
         {
-            bridgeIsDown = true;
+            Destroy(tutorialIcon);
+            activated = true;
         }
     }
 
