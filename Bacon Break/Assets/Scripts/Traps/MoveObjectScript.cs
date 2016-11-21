@@ -6,10 +6,13 @@ public class MoveObjectScript : MonoBehaviour {
     float speed = .3f;
     private RaycastHit hit;
     public Renderer rend;
+    AudioSource audioSource;
+
 
     // Use this for initialization
     void Start () {
         rend = GetComponent<Renderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -38,9 +41,12 @@ public class MoveObjectScript : MonoBehaviour {
             {
                 if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
                 {
+
                     Vector2 touchPos = Input.GetTouch(0).deltaPosition;
 
                     hit.transform.Translate(touchPos.x * speed, 0, 0);
+
+                    audioSource.Play();
                 }
             }
         }
