@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraRepositionScript : MonoBehaviour {
+public class CameraEditorScript : MonoBehaviour {
 
     public bool rot, pos, cameraMode = false;
-    private float originalSpeed;
+    public bool canRun = true; //stop and start player bool
+    public float originalSpeed;
     private float originalRotX, originalRotY, originalRotZ;
     public Texture aTexture;
     private Transform cameraNewtransform;
@@ -16,7 +17,7 @@ public class CameraRepositionScript : MonoBehaviour {
     public GameObject OriginalCamviewObj;
     public GameObject playerObj;
 
-    public float manipulatorSpeed, rotationSpeed;
+    private float manipulatorSpeed, rotationSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -33,6 +34,8 @@ public class CameraRepositionScript : MonoBehaviour {
         originalRotY = transform.rotation.y;
         originalRotZ = transform.rotation.z;
         targetOriginalRot = new Quaternion (originalRotX, originalRotY, originalRotZ, 0.0f);
+
+        originalSpeed = playerObj.GetComponent<PlayerMovement>().baseSpeed;
     }
 	
 	// Update is called once per frame
@@ -173,10 +176,42 @@ public class CameraRepositionScript : MonoBehaviour {
     {       
         if (cameraMode)
         {
-            GUI.DrawTexture(new Rect(10, 10, 100, 300), aTexture, ScaleMode.StretchToFill, true, 10.0F);
-            GUI.Box(new Rect(15, 15, 90, 20), "This is a box");
-        }
             
 
+            //Background
+            GUI.DrawTexture(new Rect(10, 10, 140, 300), aTexture, ScaleMode.StretchToFill, true, 10.0F);
+            GUI.Box(new Rect(15, 15, 100, 20), "CAM EDITING");
+
+            //Button Controls
+            GUI.Label(new Rect(30, 45, 100, 20), "Stop/Start Player movement");
+            if (GUI.Button(new Rect(35, 65, 40, 20), "Stop") && canRun)
+            {
+                canRun = false;
+                StopStartPlayer(canRun);
+            }
+
+            if (GUI.Button(new Rect(85, 65, 40, 20), "Start") && !canRun)
+            {
+                canRun = true;
+                StopStartPlayer(canRun);
+            }
+        }
+    }
+
+    void StopStartPlayer(bool canMove)
+    {
+        if (canMove)
+        {
+            playerObj.GetComponent<PlayerMovement>().baseSpeed = originalSpeed;
+            originalSpeed = 0;
+            Debug.Log("Started the player move");
+        }
+
+        if (!canMove)
+        {
+            originalSpeed = playerObj.GetComponent<PlayerMovement>().baseSpeed;
+            playerObj.GetComponent<PlayerMovement>().baseSpeed = 0;
+            Debug.Log("Stopped the player move");
+        }
     }
 }
