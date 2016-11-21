@@ -44,7 +44,6 @@ public class LevelInfo : MonoBehaviour
                 GameObject gameManager = GameObject.Find("Game Manager");
                 gameManager.GetComponent<UnlockLevel>().UnlockNextLevel(LevelNodeCollection.currentLevelIndex + 1);
                 level.GetComponent<LevelPrefab>().Unlock();
-                Debug.Log(LevelNodeCollection.currentLevelIndex + 1);
                 //Zet big op levelnode;
                 GameObject.FindWithTag("Player").transform.position = level.transform.position;
 

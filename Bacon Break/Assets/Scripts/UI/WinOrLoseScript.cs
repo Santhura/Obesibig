@@ -118,11 +118,8 @@ public class WinOrLoseScript : MonoBehaviour {
             if(LevelNodeCollection.currentLevelName == LevelNodeCollection.levelNames[i]) {
                 if ((i+1) < LevelNodeCollection.levelNames.Count) {
                     Time.timeScale = 1;
-                    //        Debug.Log(LevelNodeCollection.levelNames[i + 1]);
                     LevelNodeCollection.currentLevelName = LevelNodeCollection.levelNames[PlayerPrefs.GetInt("LevelIndex") + 1];
                     LevelNodeCollection.currentLevelIndex += 1;
-                    Debug.Log(LevelNodeCollection.currentLevelIndex);
-                    //GameManager.SwitchScene("TutorialScene", LevelNodeCollection.levelNames[i + 1]);
                     GameManager.currentLevelName = LevelNodeCollection.levelNames[LevelNodeCollection.currentLevelIndex];
                     GameObject.FindWithTag("Canvas").GetComponent<SceneSelector>().SwitchLevel("TutorialScene"/*, LevelNodeCollection.levelNames[i + 1]*/);
                     break;

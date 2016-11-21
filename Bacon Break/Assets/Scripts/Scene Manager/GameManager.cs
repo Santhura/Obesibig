@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
                 if (levelName != null) {
                     currentLevelName = levelName;
                 }
-                // SceneManager.LoadScene("TutorialScene");
             }
         }
     }
@@ -58,7 +57,6 @@ public class GameManager : MonoBehaviour
 
     protected void Awake()
     {
-     //   PlayerPrefs.DeleteAll();
         //Keep this object alive between scene changes.
         Object.DontDestroyOnLoad(gameObject);
 

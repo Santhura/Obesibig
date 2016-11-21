@@ -5,20 +5,20 @@ using System.Collections.Generic;
 
 public class LevelNodeCollection : MonoBehaviour {
 
-    private static LevelNodeCollection levelNodeCollection;
+    private static LevelNodeCollection levelNodeCollection;         //singleton
 
-    public static List<string> levelNames = new List<string>();
-    public static string currentLevelName;
-    public static int currentLevelIndex;
+    public static List<string> levelNames = new List<string>();     // a list of all the level names
+    public static string currentLevelName;                          // current level that is playing
+    public static int currentLevelIndex;                            // current index of the array of levels
 
-    private List<GameObject> levels = new List<GameObject>();
+    private List<GameObject> levels = new List<GameObject>();       // a list to find all level objects
 
-    private GameManager gameManager;
+    private GameManager gameManager;                                // for a check in which current scene is playing
 
     protected void Start() {
         if (!levelNodeCollection) {
             levelNodeCollection = this;
-            Object.DontDestroyOnLoad(gameObject);
+            Object.DontDestroyOnLoad(gameObject);                   // always run this script
         }
         else {
             Destroy(gameObject);
@@ -27,14 +27,16 @@ public class LevelNodeCollection : MonoBehaviour {
     }
 
     protected void Update() {
+        // when in level select, find all the levels and get al the level names
         if(gameManager.CurrentSceneName == "v2LevelSelect") {
             FindLevels();
         }
     }
 
-
+    /// <summary>
+    /// Get all the level names in level select
+    /// </summary>
     private void FindLevels() {
-        Debug.Log("askdfjlasdfklj");
         currentLevelIndex = PlayerPrefs.GetInt("LevelIndex");
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("Node").Length; i++) {
 
