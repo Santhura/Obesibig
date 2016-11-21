@@ -38,8 +38,6 @@ public class StopTrapAnimation : MonoBehaviour
             }
         }
 
-        Debug.Log(TrapRay.hasPressed);
-
         if (!activated)addScore.trapsDestroyedAmount += 1;
         activated = true;
 
