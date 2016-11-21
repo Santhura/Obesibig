@@ -27,6 +27,7 @@ public class LevelInfo : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //PlayerPrefs.DeleteAll();
         clampOffsetX = 20;
         clampOffsetY = 20;
     }
