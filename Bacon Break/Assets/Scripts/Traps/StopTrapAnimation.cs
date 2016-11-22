@@ -10,10 +10,12 @@ public class StopTrapAnimation : MonoBehaviour
     private AudioSource SelectedAudio;
     // Use this for initialization
 
-
+    public bool activated;
 
     void Start()
     {
+        activated = false;
+
         SelectedAudio = GetComponent<AudioSource>();
         addScore = GameObject.Find("Score Manager").GetComponent<HighscoreManager>();
     }
@@ -23,10 +25,22 @@ public class StopTrapAnimation : MonoBehaviour
     {
 
     }
-    void OnMouseDown()
+    public void Tapped()
     {
-        trapAnimation.enabled = false;
-        addScore.trapsDestroyedAmount += 1;
+        if (!TrapRay.hasPressed)
+        {
+            foreach (AnimationState state in trapAnimation)
+            {
+                if (state.speed > 0)
+                    state.speed = 0f;
+                else
+                    state.speed = 1.0f;
+            }
+        }
+
+        if (!activated)addScore.trapsDestroyedAmount += 1;
+        activated = true;
+
         SelectedAudio.enabled = true;
         SelectedAudio.clip = destroySounds;
         SelectedAudio.loop = false;

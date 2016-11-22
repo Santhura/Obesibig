@@ -19,10 +19,13 @@ public class TrapTap : MonoBehaviour
     public GameObject unleashThis;
     public GameObject PS_explosion;
 
+    public bool activated;
+
     Rigidbody rb;
     // Use this for initialization
     void Start()
     {
+        activated = false;
         addScore = GameObject.Find("Score Manager").GetComponent<HighscoreManager>();
         rb = this.GetComponent<Rigidbody>();
         SelectedAudio = this.GetComponent<AudioSource>();
@@ -50,11 +53,12 @@ public class TrapTap : MonoBehaviour
                 unleashThis.transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
             }
         }
-
-    
     }
-    void OnMouseDown()
+
+    public void Tapped()
     {
+        activated = true;
+
         if (!canUnleash && destroyThis)
         {
             addScore.trapsDestroyedAmount += 1;

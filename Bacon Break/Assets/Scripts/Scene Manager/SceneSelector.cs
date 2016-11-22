@@ -22,9 +22,9 @@ public class SceneSelector : MonoBehaviour {
         FadingScenes.activateFade = true;
     }
 
-    public void SwitchLevel(string sceneName, string levelName) {
+    public void SwitchLevel(string sceneName/*, string levelName*/) {
         Time.timeScale = 1;
-        fadingScenes.levelName = levelName;
+      //  fadingScenes.levelName = levelName;
         fadingScenes.fadeDir = 1;
         fadingScenes.sceneName = sceneName;
         fadingScenes.FadeImage.transform.SetParent(GameObject.FindWithTag("Canvas").transform);

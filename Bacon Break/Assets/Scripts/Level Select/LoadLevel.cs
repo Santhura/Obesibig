@@ -14,9 +14,7 @@ public class LoadLevel : MonoBehaviour {
     void LoadMyLevel()
     {
         loadLevel = (GameObject)Instantiate(Resources.Load("Levels/" + GameManager.currentLevelName));
-
         SetCameraView();
-        //SetPlayerPrefab();
     }
 
     //Change main camera position and rotation based on the given settings

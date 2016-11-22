@@ -42,10 +42,10 @@ public class FadingScenes : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-            Fading(fadeDir, sceneName, levelName);
+            Fading(fadeDir, sceneName/*, levelName*/);
     }
 
-    public void Fading(float fadingDir, string sceneName, string levelName) {
+    public void Fading(float fadingDir, string sceneName/*, string levelName*/) {
         if (activateFade) {
             Time.timeScale = 1;
             fadeColor.a += fadingDir * fadeSpeed * Time.deltaTime;
