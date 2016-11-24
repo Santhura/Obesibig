@@ -13,6 +13,7 @@ public class LevelNodeCollection : MonoBehaviour
     public static int currentLevelIndex;                            // current index of the array of levels
 
     private List<GameObject> levels = new List<GameObject>();       // a list to find all level objects
+    public static List<string> nodeNames = new List<string>();
 
     private GameManager gameManager;                                // for a check in which current scene is playing
     private bool levelsFound;                                       // to check if the levels have been found
@@ -41,10 +42,12 @@ public class LevelNodeCollection : MonoBehaviour
         currentLevelIndex = PlayerPrefs.GetInt("LevelIndex");
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("Node").Length; i++)
         {
+            GameObject level = GameObject.Find("Level " + i);
 
-            if (GameObject.Find("Level " + i) != null)
+            if (level != null)
             {
-                levels.Add(GameObject.Find("Level " + i));
+                levels.Add(level);
+                nodeNames.Add(level.name);
             }
         }
 
