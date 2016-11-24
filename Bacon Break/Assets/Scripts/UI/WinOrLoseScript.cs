@@ -75,10 +75,11 @@ public class WinOrLoseScript : MonoBehaviour {
             nextLevel_Button.interactable = true;
             //  LoseAndWin_Panel.alpha = 1;
             winOrLose_Text.text = "Level Completed!";
-            retunToMenu_Button.interactable = true;
 
             //Unlock next level
             PlayerPrefs.SetInt("Unlock", 1);
+
+            retunToMenu_Button.interactable = true;
 
             PlayerMovement.isAbleToMove = false;
             GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().isAbleToMoveTemp = false;
@@ -118,8 +119,11 @@ public class WinOrLoseScript : MonoBehaviour {
             if(LevelNodeCollection.currentLevelName == LevelNodeCollection.levelNames[i]) {
                 if ((i+1) < LevelNodeCollection.levelNames.Count) {
                     Time.timeScale = 1;
-                    LevelNodeCollection.currentLevelName = LevelNodeCollection.levelNames[PlayerPrefs.GetInt("LevelIndex") + 1];
                     LevelNodeCollection.currentLevelIndex += 1;
+                    LevelNodeCollection.currentLevelName = LevelNodeCollection.levelNames[LevelNodeCollection.currentLevelIndex];
+
+                    //Unlock next level in playerprefs here, because the level gameobject is not available in this scene
+                    PlayerPrefs.SetInt(LevelNodeCollection.nodeNames[i+1] + "_unlocked", 1);
                     GameManager.currentLevelName = LevelNodeCollection.levelNames[LevelNodeCollection.currentLevelIndex];
                     GameObject.FindWithTag("Canvas").GetComponent<SceneSelector>().SwitchLevel("TutorialScene"/*, LevelNodeCollection.levelNames[i + 1]*/);
                     break;
