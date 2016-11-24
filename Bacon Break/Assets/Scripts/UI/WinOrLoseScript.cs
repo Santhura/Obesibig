@@ -13,7 +13,8 @@ using UnityEngine.SceneManagement;
      
      */
 
-public class WinOrLoseScript : MonoBehaviour {
+public class WinOrLoseScript : MonoBehaviour
+{
 
     //  private CanvasGroup LoseAndWin_Panel;       // Display all the children.
     private bool canPlay = true;
@@ -30,7 +31,8 @@ public class WinOrLoseScript : MonoBehaviour {
     public static bool isDead;                  // check if the player is dead.
     public static bool pressedNextLevelButtons;
 
-    void Awake() {
+    void Awake()
+    {
         hasWon = false;
         // LoseAndWin_Panel = GameObject.Find("LoseAndWin_Panel").GetComponent<CanvasGroup>();
         panel_winLose = GameObject.Find("LoseAndWin_Panel");
@@ -51,20 +53,23 @@ public class WinOrLoseScript : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         SelectedAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         if (hasWon) // Display winning screen
         {
-            if (canPlay) {
+            if (canPlay)
+            {
                 Time.timeScale = 0;
                 SelectedAudio.clip = winOrLoseAudio[0];
                 SelectedAudio.Play();
                 canPlay = false;
-                
+
             }
             else
                 DisableAll();
@@ -94,7 +99,8 @@ public class WinOrLoseScript : MonoBehaviour {
     /// <summary>
     /// Stop displaying the lose screen, and buttons can't interact
     /// </summary>
-    private void DisableAll() {
+    private void DisableAll()
+    {
 
         // LoseAndWin_Panel.alpha = 0;
         // retunToMenu_Button.interactable = false;
@@ -106,24 +112,30 @@ public class WinOrLoseScript : MonoBehaviour {
     /// <summary>
     /// Function to return to main menu.
     /// </summary>
-    public void ReturnToMenu() {
+    public void ReturnToMenu()
+    {
         DisableAll();
         SceneManager.LoadScene(0);
     }
 
-    public void NextLevel() {
+    public void NextLevel()
+    {
         DisableAll();
         pressedNextLevelButtons = true;
 
-        for (int i = 0; i < LevelNodeCollection.levelNames.Count; i++) {
-            if(LevelNodeCollection.currentLevelName == LevelNodeCollection.levelNames[i]) {
-                if ((i+1) < LevelNodeCollection.levelNames.Count) {
+        for (int i = 0; i < LevelNodeCollection.levelNames.Count; i++)
+        {
+            if (LevelNodeCollection.currentLevelName == LevelNodeCollection.levelNames[i])
+            {
+                if ((i + 1) < LevelNodeCollection.levelNames.Count)
+                {
                     Time.timeScale = 1;
                     LevelNodeCollection.currentLevelIndex += 1;
                     LevelNodeCollection.currentLevelName = LevelNodeCollection.levelNames[LevelNodeCollection.currentLevelIndex];
 
-                    //Unlock next level in playerprefs here, because the level gameobject is not available in this scene
-                    PlayerPrefs.SetInt(LevelNodeCollection.nodeNames[i+1] + "_unlocked", 1);
+                    //Unlock next level and score in playerprefs here, because the level gameobject is not available in this scene
+                    PlayerPrefs.SetInt(LevelNodeCollection.nodeNames[i + 1] + "_unlocked", 1);
+                    PlayerPrefs.SetInt(LevelNodeCollection.nodeNames[i + 1] + "_score", Mathf.FloorToInt(HighscoreManager.highScore));
                     GameManager.currentLevelName = LevelNodeCollection.levelNames[LevelNodeCollection.currentLevelIndex];
                     GameObject.FindWithTag("Canvas").GetComponent<SceneSelector>().SwitchLevel("TutorialScene"/*, LevelNodeCollection.levelNames[i + 1]*/);
                     break;
@@ -132,7 +144,8 @@ public class WinOrLoseScript : MonoBehaviour {
         }
     }
 
-    public void RestartLevel() {
+    public void RestartLevel()
+    {
         DisableAll();
         SceneManager.LoadScene(Application.loadedLevel);
     }
@@ -142,7 +155,8 @@ public class WinOrLoseScript : MonoBehaviour {
     /// </summary>
     /// <param name="time"></param>
     /// <returns></returns>
-    IEnumerator WaitForDeathScreen(float time) {
+    IEnumerator WaitForDeathScreen(float time)
+    {
         yield return new WaitForSeconds(time);
         panel_winLose.SetActive(true);
         winOrLose_Text.text = "The pig is slaughtered";
@@ -151,7 +165,8 @@ public class WinOrLoseScript : MonoBehaviour {
         restartLevel_Button.gameObject.SetActive(true);
         restartLevel_Button.interactable = true;
 
-        if (canPlay) {
+        if (canPlay)
+        {
             SelectedAudio.clip = winOrLoseAudio[1];
             SelectedAudio.Play();
             Time.timeScale = 0;
