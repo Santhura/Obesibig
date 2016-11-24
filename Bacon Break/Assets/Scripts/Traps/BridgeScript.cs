@@ -7,7 +7,7 @@ public class BridgeScript : MonoBehaviour
     private RaycastHit hit;
     private AudioSource tapAudio;
 
-    private Vector3 startRotation = new Vector3(-45, 0, 0);
+    public Vector3 startRotation = new Vector3(-45, 0, 0);
     private Vector3 destinationRotation = new Vector3(15, 0, 0);
 
     private int tapped = 0;
