@@ -9,7 +9,7 @@ public class HighscoreManager : MonoBehaviour {
     private float maxTime;                  //used to display the amount of time the player used to complete the level
     private Text text_highScore;            //When you win, the game will display your highscore.
     public ScoreScript baconsCollected;      // this gameobject will call upon the score script to count the amount of bacons collected.
-    public float highScore;                 //the actual highscore.
+    public static float highScore;                 //the actual highscore.
     public int trapsDestroyedAmount;
     private bool scoreTriggered;
 
