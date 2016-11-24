@@ -19,7 +19,6 @@ public class TrapHitbox : MonoBehaviour
 
         if(other.gameObject.tag == "Wall")
         {
-            Debug.Log("Hit the wall");
             Destroy(gameObject, 0.5f);
         }
     }
