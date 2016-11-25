@@ -31,6 +31,7 @@ public class CameraEditorScript : MonoBehaviour {
     private Transform originalTransform, preSet1, preSet2, preSet3;
     private Quaternion targetOriginalRot;
     private Quaternion loadQuartRotSet1;
+    private Quaternion preSet1Angle, preSet2Angle, preSet3Angle;
     private Transform targetOriginalPos;
     private Transform lookAtPlayer;
     private GameObject getCamera;
@@ -465,7 +466,16 @@ public class CameraEditorScript : MonoBehaviour {
             FileStream file = File.Open(Application.persistentDataPath + "/cameraInfo.dat", FileMode.Open);
             CameraData data = (CameraData)bf.Deserialize(file);
             file.Close();
-            
+
+            preSet1.transform.position = new Vector3(data.preSet1PosX, data.preSet1PosY, data.preSet1PosZ);
+            preSet2.transform.position = new Vector3(data.preSet2PosX, data.preSet2PosY, data.preSet2PosZ);
+            preSet3.transform.position = new Vector3(data.preSet3PosX, data.preSet3PosY, data.preSet3PosZ);
+
+            preSet1Angle = Quaternion.Euler(data.preSet1RotX, data.preSet1RotY, data.preSet1RotZ);
+            preSet2Angle = Quaternion.Euler(data.preSet2RotX, data.preSet2RotY, data.preSet2RotZ);
+            preSet3Angle = Quaternion.Euler(data.preSet3RotX, data.preSet3RotY, data.preSet3RotZ);
+
+            /*
             if (loadPresetNr == 1)
             {
                 //Position
@@ -502,7 +512,7 @@ public class CameraEditorScript : MonoBehaviour {
                 loadQuartRotSet1 = newAngle;
                 loadData = true;
                 Debug.Log("Loaded set 3");
-            }
+            }*/
         }
     }
 }
