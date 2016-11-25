@@ -1,0 +1,496 @@
+fileFormatVersion: 2
+guid: ea79ddeb18c12434cbc742a76d682af4
+timeCreated: 1480032714
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: AnkleL
+    100002: AnkleLCtrl
+    100004: AnkleLGrp
+    100006: AnkleR
+    100008: AnkleRCtrl
+    100010: AnkleRGrp
+    100012: ArmLCtrl
+    100014: ArmLGrp
+    100016: ArmLIK
+    100018: ArmRCtrl
+    100020: ArmRGrp
+    100022: ArmRIK
+    100024: BeakCtrl
+    100026: BeakGrp
+    100028: Belly
+    100030: BellyCtrl
+    100032: BellyGrp
+    100034: BodyCtrl
+    100036: BodyGrp
+    100038: ElbowL
+    100040: ElbowLCtrl
+    100042: ElbowLGrp
+    100044: ElbowR
+    100046: ElbowRCtrl
+    100048: ElbowRGrp
+    100050: FootL
+    100052: FootLIK
+    100054: FootR
+    100056: FootRIK
+    100058: HandL
+    100060: HandR
+    100062: Head
+    100064: Head2
+    100066: Head3
+    100068: HeadCtrl
+    100070: HeadGrp
+    100072: HeelLIK
+    100074: HeelRIK
+    100076: HipL
+    100078: HipR
+    100080: ikHandle1
+    100082: ikHandle2
+    100084: Jaw
+    100086: Jaw2
+    100088: JawCtrl
+    100090: JawGrp
+    100092: KneeCtrl
+    100094: KneeCtrl 1
+    100096: KneeGrp
+    100098: KneeGrp 1
+    100100: KneeL
+    100102: KneeR
+    100104: LegLCtrl
+    100106: LegLGrp
+    100108: LegLIK
+    100110: LegRCtrl
+    100112: LegRGrp
+    100114: LegRIK
+    100116: Main
+    100118: MainCtrl
+    100120: MainGrp
+    100122: Neck
+    100124: Neck2
+    100126: NeckCtrl
+    100128: NeckGrp
+    100130: Raptor
+    100132: //RootNode
+    100134: ShoulderL
+    100136: ShoulderL2
+    100138: ShoulderLGrp
+    100140: ShoulderLIK
+    100142: ShoulderR
+    100144: ShoulderR2
+    100146: ShoulderRGrp
+    100148: ShoulderRIK
+    100150: Shoulders
+    100152: ShouldersCtrl
+    100154: ShouldersGrp
+    100156: ShouldrLCtrl
+    100158: ShouldrRCtrl
+    100160: Tail
+    100162: Tail2
+    100164: TailCtrl
+    100166: TailCtrl2
+    100168: TailCtrl3
+    100170: TailGrp
+    100172: TailGrp2
+    100174: TailGrp3
+    100176: TailTip
+    100178: ToeLM
+    100180: ToeLM2
+    100182: ToeRM
+    100184: ToeRM2
+    100186: Torso
+    100188: TorsoCtrl
+    100190: TorsoGrp
+    100192: WristL
+    100194: WristR
+    400000: AnkleL
+    400002: AnkleLCtrl
+    400004: AnkleLGrp
+    400006: AnkleR
+    400008: AnkleRCtrl
+    400010: AnkleRGrp
+    400012: ArmLCtrl
+    400014: ArmLGrp
+    400016: ArmLIK
+    400018: ArmRCtrl
+    400020: ArmRGrp
+    400022: ArmRIK
+    400024: BeakCtrl
+    400026: BeakGrp
+    400028: Belly
+    400030: BellyCtrl
+    400032: BellyGrp
+    400034: BodyCtrl
+    400036: BodyGrp
+    400038: ElbowL
+    400040: ElbowLCtrl
+    400042: ElbowLGrp
+    400044: ElbowR
+    400046: ElbowRCtrl
+    400048: ElbowRGrp
+    400050: FootL
+    400052: FootLIK
+    400054: FootR
+    400056: FootRIK
+    400058: HandL
+    400060: HandR
+    400062: Head
+    400064: Head2
+    400066: Head3
+    400068: HeadCtrl
+    400070: HeadGrp
+    400072: HeelLIK
+    400074: HeelRIK
+    400076: HipL
+    400078: HipR
+    400080: ikHandle1
+    400082: ikHandle2
+    400084: Jaw
+    400086: Jaw2
+    400088: JawCtrl
+    400090: JawGrp
+    400092: KneeCtrl
+    400094: KneeCtrl 1
+    400096: KneeGrp
+    400098: KneeGrp 1
+    400100: KneeL
+    400102: KneeR
+    400104: LegLCtrl
+    400106: LegLGrp
+    400108: LegLIK
+    400110: LegRCtrl
+    400112: LegRGrp
+    400114: LegRIK
+    400116: Main
+    400118: MainCtrl
+    400120: MainGrp
+    400122: Neck
+    400124: Neck2
+    400126: NeckCtrl
+    400128: NeckGrp
+    400130: //RootNode
+    400132: Raptor
+    400134: ShoulderL
+    400136: ShoulderL2
+    400138: ShoulderLGrp
+    400140: ShoulderLIK
+    400142: ShoulderR
+    400144: ShoulderR2
+    400146: ShoulderRGrp
+    400148: ShoulderRIK
+    400150: Shoulders
+    400152: ShouldersCtrl
+    400154: ShouldersGrp
+    400156: ShouldrLCtrl
+    400158: ShouldrRCtrl
+    400160: Tail
+    400162: Tail2
+    400164: TailCtrl
+    400166: TailCtrl2
+    400168: TailCtrl3
+    400170: TailGrp
+    400172: TailGrp2
+    400174: TailGrp3
+    400176: TailTip
+    400178: ToeLM
+    400180: ToeLM2
+    400182: ToeRM
+    400184: ToeRM2
+    400186: Torso
+    400188: TorsoCtrl
+    400190: TorsoGrp
+    400192: WristL
+    400194: WristR
+    4300000: Raptor
+    7400000: RaptorWalk
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Raptor
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: RaptorWalk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 20
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainGrp
+        weight: 1
+      - path: MainGrp/MainCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/HipL
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/HipL/KneeL
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/HipL/KneeL/AnkleL
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/HipL/KneeL/AnkleL/FootL
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/HipL/KneeL/AnkleL/FootL/ToeLM
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/HipL/KneeL/AnkleL/FootL/ToeLM/ToeLM2
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/HipR
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/HipR/KneeR
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/HipR/KneeR/AnkleR
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/HipR/KneeR/AnkleR/FootR
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/HipR/KneeR/AnkleR/FootR/ToeRM
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/HipR/KneeR/AnkleR/FootR/ToeRM/ToeRM2
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Tail
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Tail/Tail2
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Tail/Tail2/TailTip
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/Neck2
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/Neck2/Head
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/Neck2/Head/Head2
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/Neck2/Head/Head2/Head3
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/Neck2/Head/Jaw
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/Neck2/Head/Jaw/Jaw2
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/ShoulderL
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/ShoulderL/ShoulderL2
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/ShoulderL/ShoulderL2/ElbowL
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/ShoulderL/ShoulderL2/ElbowL/WristL
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/ShoulderL/ShoulderL2/ElbowL/WristL/HandL
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/ShoulderR
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/ShoulderR/ShoulderR2
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/ShoulderR/ShoulderR2/ElbowR
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/ShoulderR/ShoulderR2/ElbowR/WristR
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/Main/Torso/Belly/Shoulders/Neck/ShoulderR/ShoulderR2/ElbowR/WristR/HandR
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TailGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TailGrp/TailCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TailGrp/TailCtrl/TailGrp2
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TailGrp/TailCtrl/TailGrp2/TailCtrl2
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TailGrp/TailCtrl/TailGrp2/TailCtrl2/TailGrp3
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TailGrp/TailCtrl/TailGrp2/TailCtrl2/TailGrp3/TailCtrl3
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/NeckGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/NeckGrp/NeckCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/NeckGrp/NeckCtrl/HeadGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/NeckGrp/NeckCtrl/HeadGrp/HeadCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/NeckGrp/NeckCtrl/HeadGrp/HeadCtrl/BeakGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/NeckGrp/NeckCtrl/HeadGrp/HeadCtrl/BeakGrp/BeakCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/NeckGrp/NeckCtrl/HeadGrp/HeadCtrl/BeakGrp/BeakCtrl/ikHandle1
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/NeckGrp/NeckCtrl/HeadGrp/HeadCtrl/JawGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/NeckGrp/NeckCtrl/HeadGrp/HeadCtrl/JawGrp/JawCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/NeckGrp/NeckCtrl/HeadGrp/HeadCtrl/JawGrp/JawCtrl/ikHandle2
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderLGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderLGrp/ShouldrLCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderLGrp/ShouldrLCtrl/ArmLGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderLGrp/ShouldrLCtrl/ArmLGrp/ArmLCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderLGrp/ShouldrLCtrl/ArmLGrp/ArmLCtrl/ArmLIK
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderLGrp/ShouldrLCtrl/ElbowLGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderLGrp/ShouldrLCtrl/ElbowLGrp/ElbowLCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderLGrp/ShouldrLCtrl/ShoulderLIK
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderRGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderRGrp/ShouldrRCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderRGrp/ShouldrRCtrl/ArmRGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderRGrp/ShouldrRCtrl/ArmRGrp/ArmRCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderRGrp/ShouldrRCtrl/ArmRGrp/ArmRCtrl/ArmRIK
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderRGrp/ShouldrRCtrl/ElbowRGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderRGrp/ShouldrRCtrl/ElbowRGrp/ElbowRCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/BodyGrp/BodyCtrl/TorsoGrp/TorsoCtrl/BellyGrp/BellyCtrl/ShouldersGrp/ShouldersCtrl/ShoulderRGrp/ShouldrRCtrl/ShoulderRIK
+        weight: 1
+      - path: MainGrp/MainCtrl/LegLGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/LegLGrp/LegLCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/LegLGrp/LegLCtrl/AnkleLGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/LegLGrp/LegLCtrl/AnkleLGrp/AnkleLCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/LegLGrp/LegLCtrl/AnkleLGrp/AnkleLCtrl/LegLIK
+        weight: 1
+      - path: MainGrp/MainCtrl/LegLGrp/LegLCtrl/FootLIK
+        weight: 1
+      - path: MainGrp/MainCtrl/LegLGrp/LegLCtrl/HeelLIK
+        weight: 1
+      - path: MainGrp/MainCtrl/LegLGrp/LegLCtrl/KneeGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/LegLGrp/LegLCtrl/KneeGrp/KneeCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/LegRGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/LegRGrp/LegRCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/LegRGrp/LegRCtrl/AnkleRGrp
+        weight: 1
+      - path: MainGrp/MainCtrl/LegRGrp/LegRCtrl/AnkleRGrp/AnkleRCtrl
+        weight: 1
+      - path: MainGrp/MainCtrl/LegRGrp/LegRCtrl/AnkleRGrp/AnkleRCtrl/LegRIK
+        weight: 1
+      - path: MainGrp/MainCtrl/LegRGrp/LegRCtrl/FootRIK
+        weight: 1
+      - path: MainGrp/MainCtrl/LegRGrp/LegRCtrl/HeelRIK
+        weight: 1
+      - path: MainGrp/MainCtrl/LegRGrp/LegRCtrl/KneeGrp 1
+        weight: 1
+      - path: MainGrp/MainCtrl/LegRGrp/LegRCtrl/KneeGrp 1/KneeCtrl 1
+        weight: 1
+      - path: Raptor
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
