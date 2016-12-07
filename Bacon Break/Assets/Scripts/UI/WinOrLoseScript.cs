@@ -159,7 +159,7 @@ public class WinOrLoseScript : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         panel_winLose.SetActive(true);
-        winOrLose_Text.text = "The pig is slaughtered";
+        winOrLose_Text.text = "The dino is slaughtered";
         PlayerPrefs.SetInt("Unlock", 0);
         retunToMenu_Button.interactable = true;
         restartLevel_Button.gameObject.SetActive(true);
