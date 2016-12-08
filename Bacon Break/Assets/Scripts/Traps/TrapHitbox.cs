@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class TrapHitbox : MonoBehaviour
 {
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -12,6 +13,9 @@ public class TrapHitbox : MonoBehaviour
             {
                 GetComponents<Collider>()[i].enabled = false;
             }
+            other.GetComponent<PlayerMovement>().enabled = false;
+            other.GetComponent<PlayerDeath>().TriggerDeathAnimation(gameObject.tag);
+
 
             PlayerMovement.isAbleToMove = false;
             WinOrLoseScript.isDead = true;
