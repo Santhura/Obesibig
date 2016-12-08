@@ -6,35 +6,57 @@ using System.Collections.Generic;
 
 public class ShopController : MonoBehaviour
 {
-    private ShopItem item;
-    private int btnIndex;
+    //Singleton pattern
+    private static ShopController instance;
+    public static ShopController Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new ShopController();
+            }
+            return instance;
+        }
+    }
 
-    //For opening and closing the shop
-    [Header("CANVAS_SETTINGS")]
-    public GameObject shopCanvas;
+    //Private variables
     private bool shopOpened;
+    private int buttonIndex;
+    private ShopItem shopItem;
+    private List<ShopItem> characters;
+    private List<ShopItem> upgrades;
+    private InventoryController invController = InventoryController.Instance;
 
-    [Header("TRANSACTION_SETTINGS")]
-    public List<ShopItem> shopItems;                    //For keeping track of all the (shop) items
-    public List<ShopButton> shopButtons;                //For cycling between shop items
-    public InventoryController inventoryController;     //Primarily used for making transactions between the shop and the inventory
-    public List<ShopItem> filteredItems;                //Temporary list for storing filtered items in the shop
+    //Public variables
+    public ShopItem defaultCharacter;
+    public List<ShopItem> shopItems;
+    public List<ShopItem> filteredItems;
+    public GameObject shopCanvas;
+    public List<ShopButton> shopButtons;
 
-    [Header("UI_SHIT")]
-    public Text coinAmount;                             //For keeping track of the amount of coins
-    public Button charFilter, upgrFilter;               //For filtering, obviously
-    public Button btn_next, btn_back;                   //Disabling/enabling (if items in the list are less than 4 or more than 3)
-    public GameObject pnl_dialog, pnl_alert;
-    public Button btn_confirm, btn_cancel, btn_ok;
+    public Text txtCoinAmount;
+    public Button characterFilter, upgradeFilter;
+    public Button btnNext, btnPrevious;
+    public Button btnConfirm, btnCancel, btnOK;
+    public GameObject pnlDialog, pnlAlert;
 
+    //Initialization
     void Start()
     {
-        //Add button listeners
-        btn_confirm.onClick.AddListener(() => { PurchaseItem(item, PlayerPrefs.GetInt("myCoins"), item.itemCost); });
-        btn_cancel.onClick.AddListener(() => { HidePanel(pnl_dialog); });
-        btn_ok.onClick.AddListener(() => { HidePanel(pnl_alert); });
+        characters = new List<ShopItem>();
+        upgrades = new List<ShopItem>();
 
-        if (shopCanvas.activeInHierarchy)              //Check if the shop is open or not
+        //Add button listeners
+        btnConfirm.onClick.AddListener(() => { PurchaseItem(shopItem, PlayerPrefs.GetInt("myCoins"), shopItem.itemCost); });
+        btnCancel.onClick.AddListener(() => { HidePanel(pnlDialog); });
+        btnOK.onClick.AddListener(() => { HidePanel(pnlAlert); });
+
+        //Only once
+        GetShopItems();
+
+        //Check if the shop is open or not
+        if (shopCanvas.activeInHierarchy)
         {
             OpenShop();
         }
@@ -44,20 +66,7 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        //Open / close inventory with 'U' (PC)
-        /*if (Input.GetKeyUp(KeyCode.U) && !shopOpened)
-        {
-            OpenShop();
-        }
-        else if (Input.GetKeyUp(KeyCode.U) && shopOpened)
-        {
-            CloseShop();
-        }*/
-    }
-
-    public void OpenShop()
+    void OpenShop()
     {
         shopCanvas.SetActive(true);
         SetCoinAmount();
@@ -66,207 +75,55 @@ public class ShopController : MonoBehaviour
         SetFilter("characters");
     }
 
-    public void CloseShop()
+    void CloseShop()
     {
         shopCanvas.SetActive(false);
-        shopOpened = false;
         Time.timeScale = 1;
+        shopOpened = false;
+    }
+
+    void GetShopItems()
+    {
+        invController.Add(defaultCharacter);
+
+        //Filter objects based on type
+        for (int i = 0; i < shopItems.Count; i++)
+        {
+            if (shopItems[i].isCharacter)
+            {
+                characters.Add(shopItems[i]);
+            }
+            else
+            {
+                upgrades.Add(shopItems[i]);
+            }
+
+            //Also add to inventory list if unlocked
+            if (shopItems[i].isUnlocked)
+            {
+                invController.Add(shopItems[i]);
+            }
+        }
     }
 
     void SetCoinAmount()
     {
         PlayerPrefs.SetInt("myCoins", 50);
-        coinAmount.text = "x" + PlayerPrefs.GetInt("myCoins").ToString();
+        txtCoinAmount.text = "x" + PlayerPrefs.GetInt("myCoins").ToString();
     }
 
-    public void PurchaseItem(ShopItem item, int coinAmount, int itemCost)
+    //For confirming dialogs
+    void ShowDialogPanel()
     {
-        if (coinAmount >= itemCost)
-        {
-            HidePanel(pnl_dialog);
-
-            if (item.isUnique)
-            {
-                DisableButton(shopButtons[btnIndex].thisButton, true);
-            }
-
-            //Update coin amount
-            PlayerPrefs.SetInt("myCoins", coinAmount - itemCost);
-            SetCoinAmount();
-
-            //Unlock item for the player to use
-            AddToInventory(item);
-
-            //"Small Spender" achievement
-            UpdateAchievement(GPGSIds.achievement_small_spender);
-        }
-        else
-        {
-            HidePanel(pnl_dialog);
-            pnl_alert.SetActive(true);
-        }
+        pnlDialog.SetActive(true);
+        pnlDialog.GetComponentInChildren<Text>().text = "Do you really want to buy \""
+                                                         + shopItem.itemName + "\"?"
+                                                         + "\nCost: " + shopItem.itemCost;
     }
 
-    void UpdateAchievement(string achievementName)
-    {
-        // Only unlock achievements if the user is signed in.
-        if (Social.localUser.authenticated)
-        {
-            //Unlock the "Small Spender" achievement
-            PlayGamesPlatform.Instance.ReportProgress(
-                achievementName,
-                100.0f, (bool success) =>
-                {
-                    Debug.Log("(Bacon Break) Small Spender Unlock: " +
-                          success);
-                });
-        }
-    }
-
-    //For confirming a purchase
-    public void SaveShopItem(ShopItem clickedItem, int buttonIndex)
-    {
-        item = clickedItem;
-        btnIndex = buttonIndex;
-
-        ShowDialogPanel();
-    }
-
-    //For confirng
-    public void ShowDialogPanel()
-    {
-        pnl_dialog.SetActive(true);
-        pnl_dialog.GetComponentInChildren<Text>().text = "Do you really want to buy \""
-                                                         + item.itemName + "\"?"
-                                                         + "\nCost: " + item.itemCost;
-    }
-
-    public void HidePanel(GameObject panel)
+    void HidePanel(GameObject panel)
     {
         panel.SetActive(false);
-    }
-
-    void AddToInventory(ShopItem item)
-    {
-        //Unlock item, update inventory lists
-        item.isUnlocked = true;
-        inventoryController.FillInventory();
-    }
-
-    public void Next()
-    {
-        foreach (ShopButton button in shopButtons)
-        {
-            if (button.gameObject.activeSelf)
-            {
-                if ((button.itemIndex + 1) < filteredItems.Count)
-                {
-                    button.itemIndex++;
-                }
-                else
-                {
-                    button.itemIndex = 0;
-                }
-
-                button.SetButton();
-            }
-        }
-    }
-
-    public void Back()
-    {
-        foreach (ShopButton button in shopButtons)
-        {
-            if (button.gameObject.activeSelf)
-            {
-                if ((button.itemIndex - 1) >= 0)
-                {
-                    button.itemIndex--;
-                }
-                else
-                {
-                    button.itemIndex = (filteredItems.Count - 1);
-                }
-
-                button.SetButton();
-            }
-        }
-    }
-
-    public void SetFilter(string filterType)
-    {
-        //Reset button indices
-        int buttonCount = 0;
-        filteredItems.Clear();
-
-        shopButtons[0].itemIndex = 0;
-        shopButtons[1].itemIndex = 1;
-        shopButtons[2].itemIndex = 2;
-
-        //Filter objects based on type (character or upgrade)
-        if (filterType == "characters")
-        {
-            EnableButton(upgrFilter, "grey");
-            DisableButton(charFilter, false);
-
-            for (int i = 0; i < shopItems.Count; i++)
-            {
-                if (shopItems[i].isCharacter)
-                {                  
-                    filteredItems.Add(shopItems[i]);
-                    //Populate the three buttons
-                    if (buttonCount < shopButtons.Count)
-                    {
-                        shopButtons[buttonCount].SetButton();
-                        buttonCount++;
-                    }
-
-                }
-
-            }
-        }
-        else if (filterType == "upgrades")
-        {
-            EnableButton(charFilter, "grey");
-            DisableButton(upgrFilter, false);
-
-            for (int i = 0; i < shopItems.Count; i++)
-            {
-                if (!shopItems[i].isCharacter)
-                {
-                    filteredItems.Add(shopItems[i]);
-
-                    //Populate the three buttons
-                    if (buttonCount < shopButtons.Count)
-                    {
-                        shopButtons[buttonCount].SetButton();
-                        buttonCount++;
-                    }
-                }
-            }
-        }
-
-        //Enable/disable next/back button
-        //There are 3 buttons, if there are more than 3 items, enable next/back
-        if (filteredItems.Count > 3)
-        {
-            EnableButton(btn_back, "white");
-            EnableButton(btn_next, "white");
-        }
-        else
-        {
-            DisableButton(btn_back, true);
-            DisableButton(btn_next, true);
-        }
-
-        //Disable the rest of the buttons
-        if (buttonCount < shopButtons.Count)
-        {
-            for (int i = buttonCount; i < shopButtons.Count; i++)
-            {
-                shopButtons[i].SetButton();
-            }
-        }
     }
 
     public void DisableButton(Button button, bool isItemButton)
@@ -299,7 +156,7 @@ public class ShopController : MonoBehaviour
         {
             button.GetComponent<Image>().color = new Color(1.0f, 162.0f / 255.0f, 0.0f, 1.0f);
         }
-        else if(color == "grey")
+        else if (color == "grey")
         {
             //Set greyish color for the disabled button
             button.GetComponent<Image>().color = new Color(146.0f / 255.0f, 146.0f / 255.0f, 146.0f / 255.0f, 1.0f);
@@ -318,5 +175,143 @@ public class ShopController : MonoBehaviour
         }
 
         button.interactable = true;
+    }
+
+    /*void UpdateAchievement(string achievementName)
+    {
+        // Only unlock achievements if the user is signed in.
+        if (Social.localUser.authenticated)
+        {
+            //Unlock the "Small Spender" achievement
+            PlayGamesPlatform.Instance.ReportProgress(
+                achievementName,
+                100.0f, (bool success) =>
+                {
+                    Debug.Log("(Bacon Break) Small Spender Unlock: " +
+                          success);
+                });
+        }
+    }*/
+
+    void PurchaseItem(ShopItem shopItem, int coinAmount, int itemCost)
+    {
+        if (coinAmount >= itemCost)
+        {
+            HidePanel(pnlDialog);
+
+            if (shopItem.isUnique)
+            {
+                DisableButton(shopButtons[buttonIndex].thisButton, true);
+            }
+
+            //Update coin amount
+            PlayerPrefs.SetInt("myCoins", coinAmount - itemCost);
+            SetCoinAmount();
+
+            //Unlock item for the player to use
+            shopItem.isUnlocked = true;
+            invController.Add(shopItem);
+
+            //"Small Spender" achievement
+            //UpdateAchievement(GPGSIds.achievement_small_spender);
+        }
+        else
+        {
+            HidePanel(pnlDialog);
+            pnlAlert.SetActive(true);
+        }
+    }
+
+    public void SaveSelectedItem(ShopItem clickedItem, int buttonIndex)
+    {
+        shopItem = clickedItem;
+        this.buttonIndex = buttonIndex;
+
+        ShowDialogPanel();
+    }
+
+    //Public voor onclick button
+    public void NextItem()
+    {
+        foreach (ShopButton button in shopButtons)
+        {
+            if (button.gameObject.activeSelf)
+            {
+                if ((button.itemIndex + 1) < filteredItems.Count)
+                {
+                    button.itemIndex++;
+                }
+                else
+                {
+                    button.itemIndex = 0;
+                }
+
+                button.SetButton();
+            }
+        }
+    }
+
+    //public voor onclick button
+    public void PreviousItem()
+    {
+        foreach (ShopButton button in shopButtons)
+        {
+            if (button.gameObject.activeSelf)
+            {
+                if ((button.itemIndex - 1) >= 0)
+                {
+                    button.itemIndex--;
+                }
+                else
+                {
+                    button.itemIndex = (filteredItems.Count - 1);
+                }
+
+                button.SetButton();
+            }
+        }
+    }
+
+    public void SetFilter(string filterType)
+    {
+        //Reset button list because reasons... I <3 Unity
+        shopButtons[0].itemIndex = 0;
+        shopButtons[1].itemIndex = 1;
+        shopButtons[2].itemIndex = 2;
+
+        if (filterType == "characters")
+        {
+            //Enable filter button for upgrades, disable the character filter
+            EnableButton(upgradeFilter, "grey");
+            DisableButton(characterFilter, false);
+
+            filteredItems = new List<ShopItem>(characters);
+        }
+        else if (filterType == "upgrades")
+        {
+            //Enable filter button for characters, disable the upgrade filter
+            EnableButton(characterFilter, "grey");
+            DisableButton(upgradeFilter, false);
+
+            filteredItems = new List<ShopItem>(upgrades);
+        }
+
+        //Populate the first three buttons, if possible
+        for (int i = 0; i < 3; i++)
+        {
+            shopButtons[i].SetButton();
+        }
+
+        //Enable or disable the next/back button
+        if (filteredItems.Count > 3)
+        {
+            EnableButton(btnPrevious, "white");
+            EnableButton(btnNext, "white");
+        }
+        else
+        {
+            DisableButton(btnPrevious, true);
+            DisableButton(btnNext, true);
+        }
     }
 }

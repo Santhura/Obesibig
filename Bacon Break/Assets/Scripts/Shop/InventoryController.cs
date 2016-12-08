@@ -6,31 +6,43 @@ using System.Collections.Generic;
 
 public class InventoryController : MonoBehaviour
 {
-    private List<ShopItem> characters;                      //Unlocked shop items of type CHARACTER are added to this list
-    private List<ShopItem> upgrades;                        //Unlocked shop items of type UPGRADE are added to this list
-    private ShopItem charItem, upgrItem;                    //Used for storing the selected character / upgrade in playerprefs
-    private int charIndex = 0;                              //Index specifically used for the CHARACTER list
-    private int upgrIndex = 0;                              //Index specifically used for the UPGRADE list
+    //Singleton pattern
+    private static InventoryController instance;
+    public static InventoryController Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new InventoryController();
+            }
+            return instance;
+        }
+    }
 
-    [Header("CONTROLLER SETTINGS")]
-    public GameObject inventoryCanvas;                      //For setting the canvas on active or inactive
-    private bool inventoryOpened;                           //Checking if the inventory is opened or not
-    public ShopController shopController;                   //Primarily used for retrieving the SHOP ITEM list
-    public ShopItem defaultCharacter;                       //There is always one character - the default character
+    //Private variables
+    private bool inventoryOpened;
 
-    [Header("INVENTORY CANVAS ITEMS")]
-    public Image characterImage;                            //This will display the currently selected character / upgrade image
-    public Image upgradeImage;
-    public Text characterTitle, characterDescription,       //This will display the title and description of the selected character / upgrade
-                upgradeTitle, upgradeDescription;
+    private static List<ShopItem> characters = new List<ShopItem>();
+    private int characterIndex = 0;
+    private ShopItem selectedCharacter;
 
-    // Use this for initialization
+    private static List<ShopItem> upgrades = new List<ShopItem>();
+    private int upgradeIndex = 0;
+    private ShopItem selectedUpgrade;
+
+    //Public variables
+    public GameObject inventoryCanvas;
+
+    public Image characterImage, upgradeImage;
+    public Text characterName, characterDescription,
+                upgradeName, upgradeDescription;
+
+    //Initialization
     void Start()
     {
-        characters = new List<ShopItem>();
-        upgrades = new List<ShopItem>();
-
-        if (inventoryCanvas.activeSelf)                     //Check if the inventory is open or not
+        //Check if the inventory is open or not
+        if (inventoryCanvas.activeSelf)
         {
             inventoryOpened = true;
         }
@@ -40,62 +52,48 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    public void OpenInventory()
+    void OpenInventory()
     {
-        FillInventory();                                    //Fill the CHARACTERS and UPGRADES list (and display selected items)
-        SetPreferences(charItem, upgrItem);                 //Add the currently selected character / upgrade to PlayerPrefs
+        FillInventory();
+        SetPlayerPrefs(selectedCharacter, selectedUpgrade);
 
         inventoryCanvas.SetActive(true);
         Time.timeScale = 0;
         inventoryOpened = true;
     }
 
-    public void CloseInventory()
+    void CloseInventory()
     {
         inventoryCanvas.SetActive(false);
         Time.timeScale = 1;
         inventoryOpened = false;
     }
 
-    public void FillInventory()
+    public void Add(ShopItem shopItem)
     {
-        //Make sure both lists are empty before filling
-        characters.Clear();
-        upgrades.Clear();
-
-        //Add unlocked characters and upgrades to their respective lists
-        for (int i = 0; i < shopController.shopItems.Count; i++)
+        if (shopItem.isCharacter)
         {
-            //Make sure there always is a default character
-            if (i == 0)
-            {
-                characters.Add(defaultCharacter);
-            }
-
-            if (shopController.shopItems[i].isUnlocked)
-            {
-                if (shopController.shopItems[i].isCharacter)
-                {
-                    characters.Add(shopController.shopItems[i]);
-                }
-                else
-                {
-                    upgrades.Add(shopController.shopItems[i]);
-                }
-            }
+            characters.Add(shopItem);
         }
+        else
+        {
+            upgrades.Add(shopItem);
+        }
+    }
 
+    void FillInventory()
+    {
         //Set selected character 
         GetSelectedItem("Character_Item");
-        DisplayItem("character", characters.IndexOf(charItem));
-        SetPreferences(charItem, null);
+        DisplayItem("character", characters.IndexOf(selectedCharacter));
+        SetPlayerPrefs(selectedCharacter, null);
 
         //Set selected upgrade (if the player has one)
         if (upgrades.Count > 0)
         {
             GetSelectedItem("Upgrade_Item");
-            DisplayItem("upgrade", upgrades.IndexOf(upgrItem));
-            SetPreferences(null, upgrItem);
+            DisplayItem("upgrade", upgrades.IndexOf(selectedUpgrade));
+            SetPlayerPrefs(null, selectedUpgrade);
         }
     }
 
@@ -103,25 +101,25 @@ public class InventoryController : MonoBehaviour
     {
         if (keyName == "Character_Item")
         {
-            //Always have a default
-            charItem = defaultCharacter;
+            //Always have a default, in this case the raptor character
+            selectedCharacter = characters[0];
 
             //Order list alphabetically
             characters = characters.OrderBy(go => go.itemName).ToList();
 
             if (PlayerPrefs.HasKey("Character_Item"))
             {
-                charItem = characters.Where(character => character.prefabName == PlayerPrefs.GetString("Character_Item")).SingleOrDefault();
+                selectedCharacter = characters.Where(character => character.prefabName == PlayerPrefs.GetString("Character_Item")).SingleOrDefault();
             }
 
             //Set (selected) index for the CHARACTER list
-            charIndex = characters.IndexOf(charItem);
+            characterIndex = characters.IndexOf(selectedCharacter);
         }
 
         if (keyName == "Upgrade_Item")
         {
             //Always have a default
-            upgrItem = upgrades[0];
+            selectedUpgrade = upgrades[0];
 
             //Order list alphabetically
             upgrades = upgrades.OrderBy(go => go.itemName).ToList();
@@ -130,93 +128,29 @@ public class InventoryController : MonoBehaviour
             {
                 if (PlayerPrefs.GetString("Upgrade_Item") != "null")
                 {
-                    upgrItem = upgrades.Where(upgrade => upgrade.prefabName == PlayerPrefs.GetString("Upgrade_Item")).SingleOrDefault();
+                    selectedUpgrade = upgrades.Where(upgrade => upgrade.prefabName == PlayerPrefs.GetString("Upgrade_Item")).SingleOrDefault();
                 }
             }
 
             //Set (selected) index for the UPGRADES list
-            upgrIndex = upgrades.IndexOf(upgrItem);
+            upgradeIndex = upgrades.IndexOf(selectedUpgrade);
         }
     }
 
-    public void NextItem(string itemType)
+    public void SetPlayerPrefs(ShopItem selCharacter, ShopItem selUpgrade)
     {
-        //CHARACTER: The list is a cycle list, which means the index starts at 0 again after passing 'Count'
-        if (itemType == "character")
+        if (selCharacter != null)
         {
-            if ((charIndex + 1) < characters.Count)
-            {
-                charIndex++;
-                DisplayItem(itemType, charIndex);
-            }
-            else
-            {
-                charIndex = 0;
-                DisplayItem(itemType, charIndex);
-            }
-
-            charItem = characters[charIndex];
-            SetPreferences(charItem, null);
+            PlayerPrefs.SetString("Character_Item", selCharacter.prefabName);
         }
 
-        //UPGRADE: The list is a cycle list, which means the index starts at 0 again after passing 'Count'
-        if (itemType == "upgrade" && upgrades.Count > 0)
+        if (selUpgrade != null)
         {
-            if ((upgrIndex + 1) < upgrades.Count)
-            {
-                upgrIndex++;
-                DisplayItem(itemType, upgrIndex);
-            }
-            else
-            {
-                upgrIndex = 0;
-                DisplayItem(itemType, upgrIndex);
-            }
-
-            upgrItem = upgrades[upgrIndex];
-            SetPreferences(null, upgrItem);
+            PlayerPrefs.SetString("Upgrade_Item", selUpgrade.prefabName);
         }
-    }
-
-    public void PreviousItem(string itemType)
-    {
-        //CHARACTER: The list is a cycle list, which means the index starts at 'Count-1' again after passing 0
-        if (itemType == "character")
+        else
         {
-            if (characters.Count > 0)
-            {
-                if ((charIndex - 1) >= 0)
-                {
-                    charIndex--;
-                    DisplayItem(itemType, charIndex);
-                }
-                else
-                {
-                    charIndex = (characters.Count - 1);
-                    DisplayItem(itemType, charIndex);
-                }
-
-                charItem = characters[charIndex];
-                SetPreferences(charItem, null);
-            }
-        }
-
-        //UPGRADE: The list is a cycle list, which means the index starts at 'Count-1' again after passing 0
-        if (itemType == "upgrade" && upgrades.Count > 0)
-        {
-            if ((upgrIndex - 1) >= 0)
-            {
-                upgrIndex--;
-                DisplayItem(itemType, charIndex);
-            }
-            else
-            {
-                upgrIndex = (upgrades.Count - 1);
-                DisplayItem(itemType, charIndex);
-            }
-
-            upgrItem = upgrades[upgrIndex];
-            SetPreferences(null, upgrItem);
+            PlayerPrefs.SetString("Upgrade_Item", "null");
         }
     }
 
@@ -224,33 +158,97 @@ public class InventoryController : MonoBehaviour
     {
         if (itemType == "character")
         {
-            characterTitle.text = characters[index].itemName;
+            characterName.text = characters[index].itemName;
             characterImage.sprite = characters[index].itemSprite;
             characterDescription.text = characters[index].itemDesc;
         }
 
         if (itemType == "upgrade")
         {
-            upgradeTitle.text = upgrades[index].itemName;
+            upgradeName.text = upgrades[index].itemName;
             upgradeImage.sprite = upgrades[index].itemSprite;
             upgradeDescription.text = upgrades[index].itemDesc;
         }
     }
 
-    public void SetPreferences(ShopItem charItem, ShopItem upgrItem)
+    void NextItem(string itemType)
     {
-        if (charItem != null)
+        //CHARACTER: The list is a cycle list, which means the index starts at 0 again after passing 'Count'
+        if (itemType == "character")
         {
-            PlayerPrefs.SetString("Character_Item", charItem.prefabName);
+            if ((characterIndex + 1) < characters.Count)
+            {
+                characterIndex++;
+                DisplayItem(itemType, characterIndex);
+            }
+            else
+            {
+                characterIndex = 0;
+                DisplayItem(itemType, characterIndex);
+            }
+
+            selectedCharacter = characters[characterIndex];
+            SetPlayerPrefs(selectedCharacter, null);
         }
 
-        if (upgrItem != null)
+        //UPGRADE: The list is a cycle list, which means the index starts at 0 again after passing 'Count'
+        if (itemType == "upgrade" && upgrades.Count > 0)
         {
-            PlayerPrefs.SetString("Upgrade_Item", upgrItem.prefabName);
+            if ((upgradeIndex + 1) < upgrades.Count)
+            {
+                upgradeIndex++;
+                DisplayItem(itemType, upgradeIndex);
+            }
+            else
+            {
+                upgradeIndex = 0;
+                DisplayItem(itemType, upgradeIndex);
+            }
+
+            selectedUpgrade = upgrades[upgradeIndex];
+            SetPlayerPrefs(null, selectedUpgrade);
         }
-        else
+    }
+
+    void PreviousItem(string itemType)
+    {
+        //CHARACTER: The list is a cycle list, which means the index starts at 'Count-1' again after passing 0
+        if (itemType == "character")
         {
-            PlayerPrefs.SetString("Upgrade_Item", "null");
+            if (characters.Count > 0)
+            {
+                if ((characterIndex - 1) >= 0)
+                {
+                    characterIndex--;
+                    DisplayItem(itemType, characterIndex);
+                }
+                else
+                {
+                    characterIndex = (characters.Count - 1);
+                    DisplayItem(itemType, characterIndex);
+                }
+
+                selectedCharacter = characters[characterIndex];
+                SetPlayerPrefs(selectedCharacter, null);
+            }
+        }
+
+        //UPGRADE: The list is a cycle list, which means the index starts at 'Count-1' again after passing 0
+        if (itemType == "upgrade" && upgrades.Count > 0)
+        {
+            if ((upgradeIndex - 1) >= 0)
+            {
+                upgradeIndex--;
+                DisplayItem(itemType, upgradeIndex);
+            }
+            else
+            {
+                upgradeIndex = (upgrades.Count - 1);
+                DisplayItem(itemType, upgradeIndex);
+            }
+
+            selectedUpgrade = upgrades[upgradeIndex];
+            SetPlayerPrefs(null, selectedUpgrade);
         }
     }
 }
