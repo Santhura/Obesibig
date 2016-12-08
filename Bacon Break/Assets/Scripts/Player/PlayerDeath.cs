@@ -22,6 +22,10 @@ public class PlayerDeath : MonoBehaviour {
 
         switch(trapTag) {
             case "AxeTrap":
+                for (int i = 0; i < deathObjects.Length; i++) {
+                    if (deathObjects[i].name == "Cut in half")
+                        deathObjects[i].SetActive(true);
+                }
                 break;
             case "CutterTrap":
                 break;
@@ -29,7 +33,8 @@ public class PlayerDeath : MonoBehaviour {
                 break;
             case "LooseSawTrap":
                 for (int i = 0; i < deathObjects.Length; i++) {
-                    deathObjects[i].SetActive(true);
+                    if(deathObjects[i].name == "SlicePlayer")
+                        deathObjects[i].SetActive(true);
                 }
                 break;
             case "MovingSawTrap":
