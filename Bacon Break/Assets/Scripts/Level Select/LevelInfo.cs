@@ -27,6 +27,7 @@ public class LevelInfo : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //PlayerPrefs.DeleteAll();
         clampOffsetX = 20;
         clampOffsetY = 20;
     }
@@ -35,15 +36,19 @@ public class LevelInfo : MonoBehaviour
     void Update()
     {
         //Check if level exists before unlocking it.
-        if (PlayerPrefs.GetInt("Unlock") == 1 && GameObject.Find("Level " + (LevelNodeCollection.currentLevelIndex + 1)) != null)
+        if (PlayerPrefs.GetInt("Unlock") == 1
+            && GameObject.Find("Level " + (LevelNodeCollection.currentLevelIndex + 1)) != null)
         {
-            if (GameObject.Find("Level " + (LevelNodeCollection.currentLevelIndex + 1)).activeSelf)
+            GameObject nextLevel = GameObject.Find("Level " + (LevelNodeCollection.currentLevelIndex + 1));
+
+            if (nextLevel.activeSelf)
             {
                 //Unlock level with index.
                 GameObject level = GameObject.Find("Level " + PlayerPrefs.GetInt("LevelIndex"));
                 GameObject gameManager = GameObject.Find("Game Manager");
                 gameManager.GetComponent<UnlockLevel>().UnlockNextLevel(LevelNodeCollection.currentLevelIndex + 1);
                 level.GetComponent<LevelPrefab>().Unlock();
+
                 //Zet big op levelnode;
                 GameObject.FindWithTag("Player").transform.position = level.transform.position;
 
@@ -54,7 +59,6 @@ public class LevelInfo : MonoBehaviour
             {
                 PlayerPrefs.SetInt("Unlock", 0);
             }
-
         }
         else
         {

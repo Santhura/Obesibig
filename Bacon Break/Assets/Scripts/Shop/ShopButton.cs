@@ -23,8 +23,11 @@ public class ShopButton : MonoBehaviour
     void Start()
     {
         //Set onclicklistener for buttons
-        thisButton.onClick.AddListener(() => { shopController.SaveShopItem(shopController.filteredItems[itemIndex], 
-                                               shopController.shopButtons.IndexOf(this)); });   
+        thisButton.onClick.AddListener(() =>
+        {
+            shopController.SaveSelectedItem(shopController.filteredItems[itemIndex],
+            shopController.shopButtons.IndexOf(this));
+        });
     }
 
     public void SetButton()
@@ -59,4 +62,6 @@ public class ShopButton : MonoBehaviour
             shopController.EnableButton(thisButton, "orange");
         }
     }
+
+
 }

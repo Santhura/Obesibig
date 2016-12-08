@@ -32,8 +32,8 @@ public class BaconScript : MonoBehaviour
         {
             bar_stamina.GetComponent<StaminaScript>().AddStamina();
             pnl_score.GetComponent<ScoreScript>().AddBacon();
-             Instantiate(PS_staminaPickup, gameObject.transform.position, Quaternion.identity);
-            PS_staminaPickup.GetComponent<ParticleSystem>().enableEmission = true;
+           GameObject ps_stamina =  Instantiate(Resources.Load("Particles/PS_Stamina", typeof(GameObject)), gameObject.transform.position, Quaternion.identity) as GameObject;
+            ps_stamina.GetComponent<ParticleSystem>().enableEmission = true;
             // Only unlock achievements if the user is signed in.
             if (Social.localUser.authenticated)
             {

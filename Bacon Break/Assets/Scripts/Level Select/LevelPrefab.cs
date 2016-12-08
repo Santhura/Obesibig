@@ -23,6 +23,7 @@ public class LevelPrefab : MonoBehaviour
     public void Unlock()
     {
         if (!PlayerPrefs.HasKey(gameObject.name + "_unlocked"))
+        {
             if (Social.localUser.authenticated)
             {
                 // Increment the "Fitness Master" achievement.
@@ -37,8 +38,9 @@ public class LevelPrefab : MonoBehaviour
                        });
             }
 
-        unlocked = 1;
-        PlayerPrefs.SetInt(gameObject.name + "_unlocked", unlocked);
+            unlocked = 1;
+            PlayerPrefs.SetInt(gameObject.name + "_unlocked", unlocked);
+        }
     }
 
     //Check if level is unlocked
