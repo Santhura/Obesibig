@@ -4,17 +4,17 @@ using UnityEngine.UI;
 
 public class FadingScenes : MonoBehaviour {
 
-    private GameObject fadeImage;             // create a new gameobject with a image that will fade in or out
-    public float fadeSpeed = 1f;             // the fading speed
+    private GameObject fadeImage;           // create a new gameobject with a image that will fade in or out
+    public float fadeSpeed = 1f;            // the fading speed
 
     public float fadeDir = 1;               // the direction to fade : in = -1 or out = 1
     public string sceneName;                // if switching scenes add the scene name
     public string levelName;
 
     public static bool activateFade;        // Activefade when the fading has to start
-    public Color fadeColor;                // color that will be set for the image
+    public Color fadeColor;                 // color that will be set for the image
 
-    public GameObject FadeImage
+    public GameObject FadeImage             // get and set for the fadeIamge
     {
         get { return fadeImage; }
         set { fadeImage = value; }
@@ -42,10 +42,15 @@ public class FadingScenes : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-            Fading(fadeDir, sceneName/*, levelName*/);
+            Fading(fadeDir, sceneName);
     }
 
-    public void Fading(float fadingDir, string sceneName/*, string levelName*/) {
+    /// <summary>
+    /// It will fade in or out depending on what the value of alpha is from the image.
+    /// </summary>
+    /// <param name="fadingDir"></param>
+    /// <param name="sceneName"></param>
+    public void Fading(float fadingDir, string sceneName) {
         if (activateFade) {
             Time.timeScale = 1;
             fadeColor.a += fadingDir * fadeSpeed * Time.deltaTime;
