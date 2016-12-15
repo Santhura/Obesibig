@@ -2,24 +2,36 @@
 using System.Collections;
 
 public class PlayerDeath : MonoBehaviour {
-
-
+    
     public GameObject[] deathObjects;                   // all the meshes from the death animations
-        
-    private Animator animator;                                  // Triger the right animation
-    public SkinnedMeshRenderer skinnedMeshRenderer;             // Disable the main renderer
+    public SkinnedMeshRenderer skinnedMeshRenderer;     // Disable the main renderer
+    public Collider playerCollider;                     // enable the collider of the player.
+    public GameObject PS_blood;                         // activate blood particles
 
-	// Use this for initialization
-	void Awake () {
+    private Animator animator;                          // Triger the right animation
+    private Rigidbody rigidbody;                        // turn off gravity;
+    private Collider player_collider;                   // turn off collider;
+
+    // Use this for initialization
+    void Awake () {
         animator = GetComponent<Animator>();
+        rigidbody = GetComponent<Rigidbody>();
+        playerCollider = GetComponent<Collider>();
         for (int i = 0; i < deathObjects.Length; i++) {
             deathObjects[i].SetActive(false);
         }
+        PS_blood.SetActive(false);
 	}
 	
+    /// <summary>
+    /// Activate the right death animation by checking the right tag.
+    /// </summary>
+    /// <param name="trapTag"></param>
     public void TriggerDeathAnimation(string trapTag) {
+        rigidbody.useGravity = false;
+        playerCollider.enabled = false;
         skinnedMeshRenderer.enabled = false;
-
+        PS_blood.SetActive(true);
         switch(trapTag) {
             case "AxeTrap":
                 for (int i = 0; i < deathObjects.Length; i++) {
@@ -49,7 +61,7 @@ public class PlayerDeath : MonoBehaviour {
                 break;
             case "MovingSawTrap":
                 for (int i = 0; i < deathObjects.Length; i++) {
-                    if (deathObjects[i].name == "Death_Axe") {
+                    if (deathObjects[i].name == "Death_Axe") {      // do the same animation as for the axe death.
                         deathObjects[i].SetActive(true);
                         break;
                     }
