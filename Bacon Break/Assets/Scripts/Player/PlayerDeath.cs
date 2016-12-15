@@ -5,18 +5,17 @@ public class PlayerDeath : MonoBehaviour {
     
     public GameObject[] deathObjects;                   // all the meshes from the death animations
     public SkinnedMeshRenderer skinnedMeshRenderer;     // Disable the main renderer
-    public Collider playerCollider;                     // enable the collider of the player.
     public GameObject PS_blood;                         // activate blood particles
 
     private Animator animator;                          // Triger the right animation
     private Rigidbody rigidbody;                        // turn off gravity;
-    private Collider player_collider;                   // turn off collider;
+    private Collider player_collider;                   // enable the collider from the player;
 
     // Use this for initialization
     void Awake () {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
-        playerCollider = GetComponent<Collider>();
+        player_collider = GetComponent<Collider>();
         for (int i = 0; i < deathObjects.Length; i++) {
             deathObjects[i].SetActive(false);
         }
@@ -29,7 +28,7 @@ public class PlayerDeath : MonoBehaviour {
     /// <param name="trapTag"></param>
     public void TriggerDeathAnimation(string trapTag) {
         rigidbody.useGravity = false;
-        playerCollider.enabled = false;
+        player_collider.enabled = false;
         skinnedMeshRenderer.enabled = false;
         PS_blood.SetActive(true);
         switch(trapTag) {
