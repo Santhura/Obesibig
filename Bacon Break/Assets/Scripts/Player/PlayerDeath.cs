@@ -41,6 +41,12 @@ public class PlayerDeath : MonoBehaviour {
                 }
                 break;
             case "CutterTrap":
+                for (int i = 0; i < deathObjects.Length; i++) {
+                    if (deathObjects[i].name == "Cutter_death") {
+                        deathObjects[i].SetActive(true);
+                        break;
+                    }
+                }
                 break;
             case "HammerTrap":
                 for (int i = 0; i < deathObjects.Length; i++) {
