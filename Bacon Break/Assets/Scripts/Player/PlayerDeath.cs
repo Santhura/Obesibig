@@ -29,7 +29,9 @@ public class PlayerDeath : MonoBehaviour {
     public void TriggerDeathAnimation(string trapTag) {
         rigidbody.useGravity = false;
         player_collider.enabled = false;
-        skinnedMeshRenderer.enabled = false;
+     //   if (trapTag != "Untagged") {
+            skinnedMeshRenderer.enabled = false;
+      //  }
         PS_blood.SetActive(true);
         switch(trapTag) {
             case "AxeTrap":
@@ -67,6 +69,14 @@ public class PlayerDeath : MonoBehaviour {
             case "MovingSawTrap":
                 for (int i = 0; i < deathObjects.Length; i++) {
                     if (deathObjects[i].name == "Death_Axe") {      // do the same animation as for the axe death.
+                        deathObjects[i].SetActive(true);
+                        break;
+                    }
+                }
+                break;
+            case "Untagged":    // this has to changed into something else
+                for (int i = 0; i < deathObjects.Length; i++) {
+                    if (deathObjects[i].name == "Death_SpikeWall") {     
                         deathObjects[i].SetActive(true);
                         break;
                     }
