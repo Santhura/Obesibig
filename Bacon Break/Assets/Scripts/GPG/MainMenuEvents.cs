@@ -8,7 +8,6 @@ public class MainMenuEvents : MonoBehaviour
 {
 
     private Text signInButtonText;
-    //private Text authStatus;
     public GameObject achButton;
     public GameObject leaderboardButton;
 
@@ -17,9 +16,6 @@ public class MainMenuEvents : MonoBehaviour
     void Start()
     {
         signInButtonText = GameObject.Find("Sign_In").GetComponentInChildren<Text>();
-        //authStatus = GameObject.Find("authStatus").GetComponent<Text>();
-        //achButton = GameObject.Find("Achievements_Button");
-        //leaderboardButton = GameObject.Find("LeaderBoard_Button");
 
         // Create client configuration
         PlayGamesClientConfiguration config = new
@@ -59,7 +55,6 @@ public class MainMenuEvents : MonoBehaviour
 
             // Reset UI
             signInButtonText.text = "Sign In";
-            //authStatus.text = "";
         }
     }
 
@@ -67,21 +62,13 @@ public class MainMenuEvents : MonoBehaviour
     {
         if (success)
         {
-            Debug.Log("(Bacon Break) Signed in!");
-
             // Change sign-in button text
             signInButtonText.text = "Sign out";
-
-            // Show the user's name
-            //authStatus.text = "Signed in as: " + Social.localUser.userName;
         }
         else
         {
-            Debug.Log("(Bacon Break) Sign-in failed...");
-
-            // Show failure message
+            // Do not change sign-in button text
             signInButtonText.text = "Sign in";
-            //authStatus.text = "Sign-in failed";
         }
     }
 

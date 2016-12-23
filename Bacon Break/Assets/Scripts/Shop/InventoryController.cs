@@ -55,7 +55,7 @@ public class InventoryController : MonoBehaviour
     void OpenInventory()
     {
         FillInventory();
-        SetPlayerPrefs(selectedCharacter, selectedUpgrade);
+        //SetPlayerPrefs(selectedCharacter, selectedUpgrade);
 
         inventoryCanvas.SetActive(true);
         Time.timeScale = 0;
@@ -104,7 +104,7 @@ public class InventoryController : MonoBehaviour
             //Always have a default, in this case the raptor character
             selectedCharacter = characters[0];
 
-            //Order list alphabetically
+            //Order list alphabetically (--> Order on cost)
             characters = characters.OrderBy(go => go.itemName).ToList();
 
             if (PlayerPrefs.HasKey("Character_Item"))
@@ -112,7 +112,7 @@ public class InventoryController : MonoBehaviour
                 selectedCharacter = characters.Where(character => character.prefabName == PlayerPrefs.GetString("Character_Item")).SingleOrDefault();
             }
 
-            //Set (selected) index for the CHARACTER list
+            //Set (selected) index for the CHARACTERS list
             characterIndex = characters.IndexOf(selectedCharacter);
         }
 

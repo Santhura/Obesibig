@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GooglePlayGames;
 using UnityEngine.UI;
 
 public class CoinScript : MonoBehaviour {
@@ -24,6 +25,12 @@ public class CoinScript : MonoBehaviour {
         if (col.gameObject.tag == "Player")
         {
             pnl_score.GetComponent<ScoreScript>().AddCoin();
+
+            Achievement.Unlock(GPGSIds.achievement_welcome_to_bacon_break);
+
+            //Update "Static Achievement"
+            Achievement.Unlock(GPGSIds.achievement_static_achievement);
+
             GameObject coinPickupParticle = Instantiate(PS_coinPickup, gameObject.transform.position, Quaternion.identity) as GameObject;
             Destroy(coinPickupParticle, 1);
             Destroy(gameObject);

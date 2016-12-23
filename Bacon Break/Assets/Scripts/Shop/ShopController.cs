@@ -26,6 +26,7 @@ public class ShopController : MonoBehaviour
     private ShopItem shopItem;
     private List<ShopItem> characters;
     private List<ShopItem> upgrades;
+
     private InventoryController invController = InventoryController.Instance;
 
     //Public variables
@@ -177,22 +178,6 @@ public class ShopController : MonoBehaviour
         button.interactable = true;
     }
 
-    /*void UpdateAchievement(string achievementName)
-    {
-        // Only unlock achievements if the user is signed in.
-        if (Social.localUser.authenticated)
-        {
-            //Unlock the "Small Spender" achievement
-            PlayGamesPlatform.Instance.ReportProgress(
-                achievementName,
-                100.0f, (bool success) =>
-                {
-                    Debug.Log("(Bacon Break) Small Spender Unlock: " +
-                          success);
-                });
-        }
-    }*/
-
     void PurchaseItem(ShopItem shopItem, int coinAmount, int itemCost)
     {
         if (coinAmount >= itemCost)
@@ -213,7 +198,7 @@ public class ShopController : MonoBehaviour
             invController.Add(shopItem);
 
             //"Small Spender" achievement
-            //UpdateAchievement(GPGSIds.achievement_small_spender);
+            Achievement.Unlock(GPGSIds.achievement_small_spender);
         }
         else
         {

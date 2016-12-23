@@ -29,7 +29,7 @@ public class LevelPrefab : MonoBehaviour
                 // Increment the "Fitness Master" achievement.
                 // This achievement is unlocked after 6 completed levels (6 increments).
                 PlayGamesPlatform.Instance.IncrementAchievement(
-                       GPGSIds.achievement_fitness_master,
+                       GPGSIds.achievement_back_from_the_gym,
                        1,
                        (bool success) =>
                        {

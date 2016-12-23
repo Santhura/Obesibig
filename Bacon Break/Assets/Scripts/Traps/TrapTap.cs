@@ -43,12 +43,12 @@ public class TrapTap : MonoBehaviour
         if (releaseChaser && gameObject.name == "ChasingSawTrap")
         {
             Debug.Log("released...RUNN!!");
-            if(unleashThis != null)
+            if (unleashThis != null)
                 unleashThis.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
         }
         if (unleash)
         {
-            if(unleashThis != null)
+            if (unleashThis != null)
             {
                 unleashThis.transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
             }
@@ -67,19 +67,9 @@ public class TrapTap : MonoBehaviour
 
             transform.tag = "Untagged";
 
-            // Only unlock achievements if the user is signed in.
-            if (Social.localUser.authenticated)
-            {
-                // Increment the "Trap Novice" achievement.
-                PlayGamesPlatform.Instance.IncrementAchievement(
-                       GPGSIds.achievement_trap_novice,
-                       1,
-                       (bool success) =>
-                       {
-                           Debug.Log("(Bacon Break) Trap Novice Increment: " +
-                              success);
-                       });
-            }
+            //"Trap Novice" achievement increment
+            Achievement.Increment(GPGSIds.achievement_trap_novice);
+
             GameObject explosion = Instantiate(PS_explosion, transform.position, Quaternion.identity) as GameObject;
             Destroy(explosion, 2);
             Destroy(destroyThis);
@@ -90,13 +80,11 @@ public class TrapTap : MonoBehaviour
             transform.tag = "Untagged";
             Destroy(transform.GetComponent<BoxCollider>());
             addScore.trapsDestroyedAmount += 1;
-      //      SelectedAudio.clip = destroySounds[Random.Range(0, destroySounds.Length)];
-      //      SelectedAudio.Play();
+            //      SelectedAudio.clip = destroySounds[Random.Range(0, destroySounds.Length)];
+            //      SelectedAudio.Play();
             AudioSource.PlayClipAtPoint(destroySounds[Random.Range(0, destroySounds.Length)], this.transform.position);
             unleash = true;
         }
-
-
 
         //When tapped the chasing chain saw can be released
         if (gameObject.name == "ChasingSawTrap")
@@ -104,16 +92,16 @@ public class TrapTap : MonoBehaviour
             releaseChaser = true;
         }
     }
- /*
-    void OnMouseUp()
-    {
-        if (movementStoppable)
-            rb.isKinematic = false;
-    }
-    void OnMouseExit()
-    {
-        if (movementStoppable)
-            rb.isKinematic = false;
-    }
-    */
+    /*
+       void OnMouseUp()
+       {
+           if (movementStoppable)
+               rb.isKinematic = false;
+       }
+       void OnMouseExit()
+       {
+           if (movementStoppable)
+               rb.isKinematic = false;
+       }
+       */
 }

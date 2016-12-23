@@ -67,7 +67,7 @@ public class ScoreScript : MonoBehaviour
         {
             // Increment the "Saving Up" achievement.
             PlayGamesPlatform.Instance.IncrementAchievement(
-                   GPGSIds.achievement_saving_up,
+                   GPGSIds.achievement_novice_dasher,
                    1,
                    (bool success) =>
                    {

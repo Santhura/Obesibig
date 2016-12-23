@@ -13,9 +13,9 @@ public class NodeMovement : MonoBehaviour
     public Vector3[] nodes;                     //Masterlist of iTween nodes
     public GameObject pnl_level;                //Set active/inactive
     public GameObject btn_refocus;              //If the player drags the screen too far away from the player, the option to refocus appears.
-    public GameObject pnl_play;
-    public Text txt_levelName;
-    public Text txt_levelScore;
+    public GameObject pnl_play;                 //Play the selected level!
+    public Text txt_levelName;                  //Shows the name of the level in the top bar
+    public Text txt_levelScore;                 //Shows the score of the level in the top bar
 
     //Privates ( ;) )
     private Vector3[] subPath;                  //Sub-path coordinates, used for character movement between level nodes
@@ -25,7 +25,7 @@ public class NodeMovement : MonoBehaviour
     private GameObject levelNode;               //For accessing the node of the level (for position purposes)
     private GameObject levelPrefab;             //For setting the MyLevel object (for level loading)
     private string levelName;                   //The name of the level.
-    private int i;
+    private int i;                              //QUICK-FIX
 
     void Awake()
     {
@@ -61,10 +61,9 @@ public class NodeMovement : MonoBehaviour
             gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, PlayerPrefs.GetInt("LevelIndex"), PlayerPrefs.GetInt(levelNode.name + "_score"));
         }
 
-        //Set player pos
+        //Set player pos on the map
         player.transform.position = levelNode.transform.position;
         Camera.main.GetComponent<CameraDrag>().RefocusCamera();
-
     }
 
     // Update is called once per frame.
@@ -115,9 +114,13 @@ public class NodeMovement : MonoBehaviour
             if (Mathf.Abs(Vector3.Distance(player.transform.position, nodes[endIndex])) <= 0.5f)
             {
                 startIndex = endIndex;
-                gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, endIndex / 2, PlayerPrefs.GetInt(levelNode.name + "_score"));
+                gameObject.GetComponent<LevelInfo>().SetLevelInformation(levelNode.transform.position, levelName, levelPrefab, 
+                                                                         endIndex / 2, PlayerPrefs.GetInt(levelNode.name + "_score"));
                 PlayerPrefs.SetInt("LevelIndex", endIndex / 2);
+
+                //Needed for in-game when the player presses "next" on completion.
                 LevelNodeCollection.currentLevelIndex = PlayerPrefs.GetInt("LevelIndex");
+
                 isMoving = false;
             }
         }
@@ -129,8 +132,6 @@ public class NodeMovement : MonoBehaviour
                                                                                                    levelNode.transform.position.y,
                                                                                                    levelNode.transform.position.z + 2));
             pnl_play.transform.position = screenPoint;
-
-            //GameObject.Find("Game Manager").GetComponent<LevelInfo>().ClampPanel();
         }
     }
 
@@ -200,7 +201,8 @@ public class NodeMovement : MonoBehaviour
                                 path = GetPath(startIndex, endIndex);
 
                                 //Move the object to the specified location using the sub-path.
-                                iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", iTween.EaseType.easeInOutSine));
+                                iTween.MoveTo(player.gameObject, iTween.Hash("path", path, "time", 5, "orienttopath", true, "easetype", 
+                                                                             iTween.EaseType.easeInOutSine));
 
                                 //Character is on the move.
                                 isMoving = true;
