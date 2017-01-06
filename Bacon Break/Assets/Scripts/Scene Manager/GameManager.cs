@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
 
     public static GameManager gameManager;                   //singleton
 
@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         Reset, Preload, Load, Unload,
         Postload, Ready, Run, Count
     };  // all scene states
-    private SceneState sceneState;                          // The state dat is active
+    private SceneState sceneState;                          // The state that is active
     private delegate void UpdateDelegate();                 // contain the update state functions
     private UpdateDelegate[] updateDelegates;               // has all the state functions
 
@@ -31,21 +31,17 @@ public class GameManager : MonoBehaviour
     /// Changes scenes
     /// </summary>
     /// <param name="nextSceneName"></param>
-    public static void SwitchScene(string nextSceneName, string levelName)
-    {
+    public static void SwitchScene(string nextSceneName, string levelName) {
         Time.timeScale = 1.0f;
-        if (gameManager != null)
-        {
-             if (gameManager.currentSceneName != nextSceneName)
-             {
+        if (gameManager != null) {
+            if (gameManager.currentSceneName != nextSceneName) {
                 gameManager.nextSceneName = nextSceneName;
-                if (levelName != null)
-                {
+                if (levelName != null) {
                     currentLevelName = levelName;
                 }
             }
-             // this is for when a level is played and pressed the next level button
-             else {
+            // this is for when a level is played and pressed the next level button
+            else {
                 gameManager.nextSceneName = nextSceneName;
                 if (levelName != null) {
                     currentLevelName = levelName;
@@ -55,10 +51,9 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    protected void Awake()
-    {
+    protected void Awake() {
         //Keep this object alive between scene changes.
-        Object.DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
 
         //setup the signleton instance
         gameManager = this;
@@ -67,51 +62,43 @@ public class GameManager : MonoBehaviour
         updateDelegates = new UpdateDelegate[(int)SceneState.Count];
 
         // set each updateDelegate
-        updateDelegates[(int)SceneState.Reset] = UpdateSceneReset;
-        updateDelegates[(int)SceneState.Preload] = UpdateScenePreload;
-        updateDelegates[(int)SceneState.Load] = UpdateSceneLoad;
-        updateDelegates[(int)SceneState.Unload] = UpdateSceneUnload;
-        updateDelegates[(int)SceneState.Postload] = UpdateScenePostload;
-        updateDelegates[(int)SceneState.Ready] = UpdateSceneReady;
-        updateDelegates[(int)SceneState.Run] = UpdateSceneRun;
+        updateDelegates[(int)SceneState.Reset] = ResetState;
+        updateDelegates[(int)SceneState.Preload] = PreloadState;
+        updateDelegates[(int)SceneState.Load] = LoadState;
+        updateDelegates[(int)SceneState.Unload] = UnloadState;
+        updateDelegates[(int)SceneState.Postload] = PostloadState;
+        updateDelegates[(int)SceneState.Ready] = ReadyState;
+        updateDelegates[(int)SceneState.Run] = RunState;
 
         nextSceneName = "SplashScreen";
         sceneState = SceneState.Reset;
     }
 
-    protected void OnDestroy()
-    {
+    protected void OnDestroy() {
         //Clean up all the updateDelegates
-        if (updateDelegates != null)
-        {
-            for (int i = 0; i < (int)SceneState.Count; i++)
-            {
+        if (updateDelegates != null) {
+            for (int i = 0; i < (int)SceneState.Count; i++) {
                 updateDelegates[i] = null;
             }
             updateDelegates = null;
         }
 
         //Clean up the singleton instance
-        if (gameManager != null)
-        {
+        if (gameManager != null) {
             gameManager = null;
         }
     }
 
     // Use this for initialization
-    void Start()
-    {
-        if (!PlayerPrefs.HasKey("Character_Item"))
-        {
+    void Start() {
+        if (!PlayerPrefs.HasKey("Character_Item")) {
             PlayerPrefs.SetString("Character_Item", "Raptor");
         }
     }
 
     // Update is called once per frame
-    protected void Update()
-    {
-        if (updateDelegates[(int)sceneState] != null)
-        {
+    protected void Update() {
+        if (updateDelegates[(int)sceneState] != null) {
             updateDelegates[(int)sceneState]();
         }
     }
@@ -120,8 +107,7 @@ public class GameManager : MonoBehaviour
     #region Private methods
 
     // attach the new scene controller to start cascade of loading
-    private void UpdateSceneReset()
-    {
+    private void ResetState() {
 
         // run a garbace collecter pass
         System.GC.Collect();
@@ -129,65 +115,65 @@ public class GameManager : MonoBehaviour
     }
 
     // handle anything that needs to happen before loading
-    private void UpdateScenePreload()
-    {
+    private void PreloadState() {
         sceneLoadTask = SceneManager.LoadSceneAsync(nextSceneName);
         sceneState = SceneState.Load;
     }
 
     //show the loading screen until it's loaded
-    private void UpdateSceneLoad()
-    {
+    private void LoadState() {
         // done loading ?
-        if (sceneLoadTask.isDone)
-        {
-            sceneState = SceneState.Unload;
+        try {
+            if (sceneLoadTask.isDone) {
+                sceneState = SceneState.Unload;
+            }
+            else {
+                // keep the loading progress going
+            }
         }
-        else
-        {
-            // update scene loading progress
+        catch (Exception e) {
+            Debug.LogException(e, this);
         }
     }
 
-    private void UpdateSceneUnload()
-    {
-        // cleaning up resoucres yet?
-        if (resourceUnloadTask == null)
-        {
-            resourceUnloadTask = Resources.UnloadUnusedAssets();
-        }
-        else
-        {
-            //done cleaning up?
-            if (resourceUnloadTask.isDone)
-            {
-                resourceUnloadTask = null;
-                sceneState = SceneState.Postload;
+    private void UnloadState() {
+        try {
+            // cleaning up resoucres yet?
+            if (resourceUnloadTask == null) {
+
+                resourceUnloadTask = Resources.UnloadUnusedAssets();
             }
+
+            else {
+                //done cleaning up, go to next state
+                if (resourceUnloadTask.isDone) {
+                    resourceUnloadTask = null;
+                    sceneState = SceneState.Postload;
+                }
+            }
+        }
+        catch (Exception e) {
+            Debug.LogException(e, this);
         }
     }
 
     //handle anything that needs to happen immediately after loading
-    private void UpdateScenePostload()
-    {
+    private void PostloadState() {
         currentSceneName = nextSceneName;
         sceneState = SceneState.Ready;
     }
     // handle anything that needs to happen immediately before running
-    private void UpdateSceneReady()
-    {
+    private void ReadyState() {
         System.GC.Collect();
         sceneState = SceneState.Run;
     }
 
     //wait for scene change
-    private void UpdateSceneRun()
-    {
-        if (currentSceneName != nextSceneName)
-        {
+    private void RunState() {
+        if (currentSceneName != nextSceneName) {
             sceneState = SceneState.Reset;
         }
-        else if(currentSceneName == "TutorialScene" && WinOrLoseScript.pressedNextLevelButtons ) {
+        else if (currentSceneName == "TutorialScene" && WinOrLoseScript.pressedNextLevelButtons) {
             sceneState = SceneState.Reset;
             WinOrLoseScript.pressedNextLevelButtons = false;
         }
@@ -195,16 +181,14 @@ public class GameManager : MonoBehaviour
     #endregion
 
 
-    public void ReturnToMainMenu()
-    {
+    public void ReturnToMainMenu() {
         SwitchScene("Main Menu", null);
     }
 
     /// <summary>
     /// Quit the game
     /// </summary>
-    public void QuitButton()
-    {
+    public void QuitButton() {
         Application.Quit();
     }
 }
