@@ -24,15 +24,15 @@ public class ShopController : MonoBehaviour
     private bool shopOpened;
     private int buttonIndex;
     private ShopItem shopItem;
-    private List<ShopItem> characters;
-    private List<ShopItem> upgrades;
+    private List<ShopItem> characterItems;
+    private List<ShopItem> upgradeItems;
 
-    private InventoryController invController = InventoryController.Instance;
+    private InventoryController inventoryController = InventoryController.Instance;
 
     //Public variables
     public ShopItem defaultCharacter;
     public List<ShopItem> shopItems;
-    public List<ShopItem> filteredItems;
+    public List<ShopItem> filteredShopItems;
     public GameObject shopCanvas;
     public List<ShopButton> shopButtons;
 
@@ -46,8 +46,8 @@ public class ShopController : MonoBehaviour
     //Initialization
     void Start()
     {
-        characters = new List<ShopItem>();
-        upgrades = new List<ShopItem>();
+        characterItems = new List<ShopItem>();
+        upgradeItems = new List<ShopItem>();
 
         //Add button listeners
         btnConfirm.onClick.AddListener(() => { PurchaseItem(shopItem, PlayerPrefs.GetInt("myCoins"), shopItem.itemCost); });
@@ -88,24 +88,24 @@ public class ShopController : MonoBehaviour
 
     void GetShopItems()
     {
-        invController.Add(defaultCharacter);
+        inventoryController.Add(defaultCharacter);
 
         //Filter objects based on type
         for (int i = 0; i < shopItems.Count; i++)
         {
             if (shopItems[i].isCharacter)
             {
-                characters.Add(shopItems[i]);
+                characterItems.Add(shopItems[i]);
             }
             else
             {
-                upgrades.Add(shopItems[i]);
+                upgradeItems.Add(shopItems[i]);
             }
 
             //Also add to inventory list if unlocked
             if (shopItems[i].isUnlocked)
             {
-                invController.Add(shopItems[i]);
+                inventoryController.Add(shopItems[i]);
             }
         }
     }
@@ -198,7 +198,7 @@ public class ShopController : MonoBehaviour
 
             //Unlock item for the player to use
             shopItem.isUnlocked = true;
-            invController.Add(shopItem);
+            inventoryController.Add(shopItem);
 
             //"Small Spender" achievement
             //Achievement.Unlock(GPGSIds.achievement_small_spender);
@@ -225,7 +225,7 @@ public class ShopController : MonoBehaviour
         {
             if (button.gameObject.activeSelf)
             {
-                if ((button.itemIndex + 1) < filteredItems.Count)
+                if ((button.itemIndex + 1) < filteredShopItems.Count)
                 {
                     button.itemIndex++;
                 }
@@ -252,7 +252,7 @@ public class ShopController : MonoBehaviour
                 }
                 else
                 {
-                    button.itemIndex = (filteredItems.Count - 1);
+                    button.itemIndex = (filteredShopItems.Count - 1);
                 }
 
                 button.SetButton();
@@ -273,7 +273,7 @@ public class ShopController : MonoBehaviour
             EnableButton(upgradeFilter, "grey");
             DisableButton(characterFilter, false);
 
-            filteredItems = new List<ShopItem>(characters);
+            filteredShopItems = new List<ShopItem>(characterItems);
         }
         else if (filterType == "upgrades")
         {
@@ -281,7 +281,7 @@ public class ShopController : MonoBehaviour
             EnableButton(characterFilter, "grey");
             DisableButton(upgradeFilter, false);
 
-            filteredItems = new List<ShopItem>(upgrades);
+            filteredShopItems = new List<ShopItem>(upgradeItems);
         }
 
         //Populate the first three buttons, if possible
@@ -291,7 +291,7 @@ public class ShopController : MonoBehaviour
         }
 
         //Enable or disable the next/back button
-        if (filteredItems.Count > 3)
+        if (filteredShopItems.Count > 3)
         {
             EnableButton(btnPrevious, "white");
             EnableButton(btnNext, "white");
