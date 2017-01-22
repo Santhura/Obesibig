@@ -43,7 +43,7 @@ public class ShopController : MonoBehaviour
     public Button btnConfirm, btnCancel, btnOK;
     public GameObject pnlDialog, pnlAlert;
 
-    //Initialization
+    //Initialization.
     void Start()
     {
         characterItems = new List<ShopItem>();
@@ -68,6 +68,7 @@ public class ShopController : MonoBehaviour
         }
     }
 
+    //Opens the shop.
     void OpenShop()
     {
         shopCanvas.SetActive(true);
@@ -79,6 +80,7 @@ public class ShopController : MonoBehaviour
         SetFilter("characters");
     }
 
+    //Closes the shop.
     public void CloseShop()
     {
         shopCanvas.SetActive(false);
@@ -86,11 +88,13 @@ public class ShopController : MonoBehaviour
         shopOpened = false;
     }
 
+    /*Only happens once at scene startup.
+     * All shop items are retrieved and ordered [character - upgrade]
+     * Unlocked items are added to the inventory list.*/
     void GetShopItems()
     {
         inventoryController.Add(defaultCharacter);
 
-        //Filter objects based on type
         for (int i = 0; i < shopItems.Count; i++)
         {
             if (shopItems[i].isCharacter)
@@ -102,7 +106,7 @@ public class ShopController : MonoBehaviour
                 upgradeItems.Add(shopItems[i]);
             }
 
-            //Also add to inventory list if unlocked
+            //Add to inventory
             if (shopItems[i].isUnlocked)
             {
                 inventoryController.Add(shopItems[i]);
@@ -110,13 +114,14 @@ public class ShopController : MonoBehaviour
         }
     }
 
+    //Sets the amount of player coins from PlayerPrefs.
     void SetCoinAmount()
     {
         PlayerPrefs.SetInt("myCoins", 50);
         txtCoinAmount.text = "x " + PlayerPrefs.GetInt("myCoins").ToString();
     }
 
-    //For confirming dialogs
+    //For showing purchase dialog.
     void ShowDialogPanel()
     {
         pnlDialog.SetActive(true);
@@ -125,12 +130,14 @@ public class ShopController : MonoBehaviour
         txtItemCost.text = "x " + shopItem.itemCost.ToString();
     }
 
+    //For hiding purchase dialog or alert (alert appears when the user doesn't have enough money to buy an item).
     void HidePanel(GameObject panel)
     {
         panel.SetActive(false);
     }
 
-    public void DisableButton(Button button, bool isItemButton)
+    //Disables a certain filter button [characters - upgrades]
+    public void DisableFilterButton(Button button, bool isItemButton)
     {
         if (isItemButton)
         {
@@ -153,7 +160,8 @@ public class ShopController : MonoBehaviour
         button.interactable = false;
     }
 
-    public void EnableButton(Button button, string color)
+    //Enables a certain filter button [characters - upgrades]
+    public void EnableFilterButton(Button button, string color)
     {
         //Set color back to purple and enable the button
         if (color == "orange")
@@ -181,6 +189,8 @@ public class ShopController : MonoBehaviour
         button.interactable = true;
     }
 
+    /*Complete the transaction of a shop item.
+     * Adds the bought item to the inventory.*/
     void PurchaseItem(ShopItem shopItem, int coinAmount, int itemCost)
     {
         if (coinAmount >= itemCost)
@@ -189,7 +199,7 @@ public class ShopController : MonoBehaviour
 
             if (shopItem.isUnique)
             {
-                DisableButton(shopButtons[buttonIndex].thisButton, true);
+                DisableFilterButton(shopButtons[buttonIndex].thisButton, true);
             }
 
             //Update coin amount
@@ -210,6 +220,8 @@ public class ShopController : MonoBehaviour
         }
     }
 
+    /*Holds selected item when the dialog-panel pops up.
+     * This makes the transaction process easier*/
     public void SaveSelectedItem(ShopItem clickedItem, int buttonIndex)
     {
         shopItem = clickedItem;
@@ -218,7 +230,7 @@ public class ShopController : MonoBehaviour
         ShowDialogPanel();
     }
 
-    //Public voor onclick button
+    //Go to the next shop item (public for OnClick button)
     public void NextItem()
     {
         foreach (ShopButton button in shopButtons)
@@ -239,7 +251,7 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    //public voor onclick button
+    //Go to the previous shop item (public for OnClick button)
     public void PreviousItem()
     {
         foreach (ShopButton button in shopButtons)
@@ -260,6 +272,8 @@ public class ShopController : MonoBehaviour
         }
     }
 
+    /*Sets the [characters - upgrades] filter. 
+     * filteredShopItems will either be the 'characterItems' or the 'upgradeItems' list.*/
     public void SetFilter(string filterType)
     {
         //Reset button list because reasons... I <3 Unity
@@ -270,16 +284,16 @@ public class ShopController : MonoBehaviour
         if (filterType == "characters")
         {
             //Enable filter button for upgrades, disable the character filter
-            EnableButton(upgradeFilter, "grey");
-            DisableButton(characterFilter, false);
+            EnableFilterButton(upgradeFilter, "grey");
+            DisableFilterButton(characterFilter, false);
 
             filteredShopItems = new List<ShopItem>(characterItems);
         }
         else if (filterType == "upgrades")
         {
             //Enable filter button for characters, disable the upgrade filter
-            EnableButton(characterFilter, "grey");
-            DisableButton(upgradeFilter, false);
+            EnableFilterButton(characterFilter, "grey");
+            DisableFilterButton(upgradeFilter, false);
 
             filteredShopItems = new List<ShopItem>(upgradeItems);
         }
@@ -293,13 +307,13 @@ public class ShopController : MonoBehaviour
         //Enable or disable the next/back button
         if (filteredShopItems.Count > 3)
         {
-            EnableButton(btnPrevious, "white");
-            EnableButton(btnNext, "white");
+            EnableFilterButton(btnPrevious, "white");
+            EnableFilterButton(btnNext, "white");
         }
         else
         {
-            DisableButton(btnPrevious, true);
-            DisableButton(btnNext, true);
+            DisableFilterButton(btnPrevious, true);
+            DisableFilterButton(btnNext, true);
         }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class ShopButton : MonoBehaviour
 {
+    //Public variables.
     public ShopController shopController;
     public int itemIndex;
 
@@ -14,25 +15,27 @@ public class ShopButton : MonoBehaviour
 
     public Button thisButton;
 
+    //Do this before everthing else.
     void Awake()
     {
         thisButton = GetComponent<Button>();
     }
 
-    // Use this for initialization
+    //Initialization.
     void Start()
     {
-        //Set onclicklistener for buttons
+        //Set onclicklistener for buttons. SaveSelectedItem: holds selected item for purchase.
         thisButton.onClick.AddListener(() =>
         {
-            shopController.SaveSelectedItem(shopController.filteredItems[itemIndex],
+            shopController.SaveSelectedItem(shopController.filteredShopItems[itemIndex],
             shopController.shopButtons.IndexOf(this));
         });
     }
 
+    //Set the three shop buttons with the first three shop items.
     public void SetButton()
     {
-        if (itemIndex >= 0 && itemIndex < shopController.filteredItems.Count)
+        if (itemIndex >= 0 && itemIndex < shopController.filteredShopItems.Count)
         {
             gameObject.SetActive(true);
             DisplayButton();
@@ -43,25 +46,23 @@ public class ShopButton : MonoBehaviour
         }
     }
 
+    //Display shop item information on a shop button.
     public void DisplayButton()
     {
-        //Set item information
-        itemName.text = shopController.filteredItems[itemIndex].itemName;
-        itemImage.sprite = shopController.filteredItems[itemIndex].itemSprite;
-        itemCost.text = shopController.filteredItems[itemIndex].itemCost.ToString();
-        //itemDesc.text = shopController.filteredItems[itemIndex].itemDesc;
+        //Name, image and price
+        itemName.text = shopController.filteredShopItems[itemIndex].itemName;
+        itemImage.sprite = shopController.filteredShopItems[itemIndex].itemSprite;
+        itemCost.text = shopController.filteredShopItems[itemIndex].itemCost.ToString();
 
         //Disable the button if a unique item is already purchased
-        if (shopController.filteredItems[itemIndex].isUnlocked
-            && shopController.filteredItems[itemIndex].isUnique)
+        if (shopController.filteredShopItems[itemIndex].isUnlocked
+            && shopController.filteredShopItems[itemIndex].isUnique)
         {
-            shopController.DisableButton(thisButton, true);
+            shopController.DisableFilterButton(thisButton, true);
         }
         else
         {
-            shopController.EnableButton(thisButton, "orange");
+            shopController.EnableFilterButton(thisButton, "orange");
         }
     }
-
-
 }

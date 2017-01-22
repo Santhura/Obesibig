@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class InventoryController : MonoBehaviour
 {
-    //Singleton pattern
+    //Singleton pattern.
     private static InventoryController instance;
     public static InventoryController Instance
     {
@@ -20,7 +20,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    //Private variables
+    //Private variables.
     private bool inventoryOpened;
 
     private static List<ShopItem> characterItems = new List<ShopItem>();
@@ -31,14 +31,14 @@ public class InventoryController : MonoBehaviour
     private int upgradeIndex = 0;
     private ShopItem selectedUpgrade;
 
-    //Public variables
+    //Public variables.
     public GameObject inventoryCanvas;
 
     public Image characterImage, upgradeImage;
     public Text characterTitle, characterDescription,
                 upgradeTitle, upgradeDescription;
 
-    //Initialization
+    //Initialization.
     void Start()
     {
         //Check if the inventory is open or not
@@ -52,6 +52,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    //Opens the inventory.
     void OpenInventory()
     {
         FillInventory();
@@ -62,6 +63,7 @@ public class InventoryController : MonoBehaviour
         inventoryOpened = true;
     }
 
+    //Closes the inventory.
     void CloseInventory()
     {
         inventoryCanvas.SetActive(false);
@@ -69,6 +71,8 @@ public class InventoryController : MonoBehaviour
         inventoryOpened = false;
     }
 
+    //Adds an unlocked item to the inventory.
+    //Characters are added to 'characterItems', upgrades to 'upgradeItems'.
     public void Add(ShopItem shopItem)
     {
         if (shopItem.isCharacter)
@@ -81,6 +85,8 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    /*Fills the inventory and shows the last selected item of each category.
+     * The last selected item is stored in playerprefs.*/
     void FillInventory()
     {
         //Set selected character 
@@ -97,6 +103,8 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    /*Retrieves the last selected item from PlayerPrefs.
+     * If there is no last selected item, use a default item.*/
     void GetSelectedItem(string keyName)
     {
         if (keyName == "Character_Item")
@@ -137,16 +145,17 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    public void SetPlayerPrefs(ShopItem selCharacter, ShopItem selUpgrade)
+    //Sets the last selected item in PlayerPrefs.
+    public void SetPlayerPrefs(ShopItem selectedCharacter, ShopItem selectedUpgrade)
     {
-        if (selCharacter != null)
+        if (selectedCharacter != null)
         {
-            PlayerPrefs.SetString("Character_Item", selCharacter.prefabName);
+            PlayerPrefs.SetString("Character_Item", selectedCharacter.prefabName);
         }
 
-        if (selUpgrade != null)
+        if (selectedUpgrade != null)
         {
-            PlayerPrefs.SetString("Upgrade_Item", selUpgrade.prefabName);
+            PlayerPrefs.SetString("Upgrade_Item", selectedUpgrade.prefabName);
         }
         else
         {
@@ -154,6 +163,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    //Actually shows the last selected item (called in "FillInventory").
     void DisplayItem(string itemType, int index)
     {
         if (itemType == "character")
@@ -171,6 +181,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    //Go to the next item in the 'characterItems' or 'upgradeItems' list.
     void NextItem(string itemType)
     {
         //CHARACTER: The list is a cycle list, which means the index starts at 0 again after passing 'Count'
@@ -210,6 +221,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    //Go to the previous item in the 'characterItems' or 'upgradeItems' list.
     void PreviousItem(string itemType)
     {
         //CHARACTER: The list is a cycle list, which means the index starts at 'Count-1' again after passing 0
