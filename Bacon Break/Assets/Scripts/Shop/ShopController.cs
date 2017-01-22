@@ -208,6 +208,7 @@ public class ShopController : MonoBehaviour
 
             //Unlock item for the player to use
             shopItem.isUnlocked = true;
+            UnityEditor.EditorUtility.SetDirty(shopItem);
             inventoryController.Add(shopItem);
 
             //"Small Spender" achievement
