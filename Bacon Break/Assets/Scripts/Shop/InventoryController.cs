@@ -168,7 +168,6 @@ public class InventoryController : MonoBehaviour
     {
         if (itemType == "character")
         {
-            Debug.Log(characterItems[index].itemName);
             characterTitle.text = characterItems[index].itemName;
             characterImage.sprite = characterItems[index].itemSprite;
             characterDescription.text = characterItems[index].itemDesc;
