@@ -48,8 +48,8 @@ public class ShopButton : MonoBehaviour
         //Set item information
         itemName.text = shopController.filteredItems[itemIndex].itemName;
         itemImage.sprite = shopController.filteredItems[itemIndex].itemSprite;
-        itemCost.text = "Coins: " + shopController.filteredItems[itemIndex].itemCost.ToString();
-        itemDesc.text = shopController.filteredItems[itemIndex].itemDesc;
+        itemCost.text = shopController.filteredItems[itemIndex].itemCost.ToString();
+        //itemDesc.text = shopController.filteredItems[itemIndex].itemDesc;
 
         //Disable the button if a unique item is already purchased
         if (shopController.filteredItems[itemIndex].isUnlocked

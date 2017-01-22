@@ -37,6 +37,7 @@ public class ShopController : MonoBehaviour
     public List<ShopButton> shopButtons;
 
     public Text txtCoinAmount;
+    public Text txtItemCost;
     public Button characterFilter, upgradeFilter;
     public Button btnNext, btnPrevious;
     public Button btnConfirm, btnCancel, btnOK;
@@ -72,11 +73,13 @@ public class ShopController : MonoBehaviour
         shopCanvas.SetActive(true);
         SetCoinAmount();
         shopOpened = true;
+
         Time.timeScale = 0;
+
         SetFilter("characters");
     }
 
-    void CloseShop()
+    public void CloseShop()
     {
         shopCanvas.SetActive(false);
         Time.timeScale = 1;
@@ -110,7 +113,7 @@ public class ShopController : MonoBehaviour
     void SetCoinAmount()
     {
         PlayerPrefs.SetInt("myCoins", 50);
-        txtCoinAmount.text = "x" + PlayerPrefs.GetInt("myCoins").ToString();
+        txtCoinAmount.text = "x " + PlayerPrefs.GetInt("myCoins").ToString();
     }
 
     //For confirming dialogs
@@ -118,8 +121,8 @@ public class ShopController : MonoBehaviour
     {
         pnlDialog.SetActive(true);
         pnlDialog.GetComponentInChildren<Text>().text = "Do you really want to buy \""
-                                                         + shopItem.itemName + "\"?"
-                                                         + "\nCost: " + shopItem.itemCost;
+                                                         + shopItem.itemName + "\"?";
+        txtItemCost.text = "x " + shopItem.itemCost.ToString();
     }
 
     void HidePanel(GameObject panel)
@@ -198,7 +201,7 @@ public class ShopController : MonoBehaviour
             invController.Add(shopItem);
 
             //"Small Spender" achievement
-            Achievement.Unlock(GPGSIds.achievement_small_spender);
+            //Achievement.Unlock(GPGSIds.achievement_small_spender);
         }
         else
         {
