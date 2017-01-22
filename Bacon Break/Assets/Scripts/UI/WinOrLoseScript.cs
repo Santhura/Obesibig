@@ -137,7 +137,7 @@ public class WinOrLoseScript : MonoBehaviour
                     PlayerPrefs.SetInt(LevelNodeCollection.nodeNames[i + 1] + "_unlocked", 1);
                     PlayerPrefs.SetInt(LevelNodeCollection.nodeNames[i + 1] + "_score", Mathf.FloorToInt(HighscoreManager.highScore));
                     GameManager.currentLevelName = LevelNodeCollection.levelNames[LevelNodeCollection.currentLevelIndex];
-                    GameObject.FindWithTag("Canvas").GetComponent<SceneSelector>().SwitchLevel("TutorialScene"/*, LevelNodeCollection.levelNames[i + 1]*/);
+                    GameObject.FindWithTag("Canvas").GetComponent<SceneSelector>().SwitchScene("TutorialScene");
                     break;
                 }
             }

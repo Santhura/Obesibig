@@ -5,25 +5,24 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    private static GameManager uiManager;
+    public static GameManager gameManager;                   //singleton
 
     private string currentSceneName;                        // current scene that is playing 
     private string nextSceneName;                           // next scene that will load
     private AsyncOperation resourceUnloadTask;              // unload all resources
     private AsyncOperation sceneLoadTask;                   // load scene resources
-    private enum SceneState
+    private enum SceneState                                 // All the states that a scene can be in
     {
         Reset, Preload, Load, Unload,
         Postload, Ready, Run, Count
     };  // all scene states
     private SceneState sceneState;                          // The state dat is active
-    private delegate void UpdateDelegate();
-    private UpdateDelegate[] updateDelegates;
+    private delegate void UpdateDelegate();                 // contain the update state functions
+    private UpdateDelegate[] updateDelegates;               // has all the state functions
 
-    private static GameObject level;
-    public static string currentLevelName;
+    public static string currentLevelName;                  // what is the current level that is playing
 
-    public string CurrentSceneName {
+    public string CurrentSceneName {                        // a getter for the scene name
         get { return currentSceneName; }
     }
 
@@ -35,18 +34,19 @@ public class GameManager : MonoBehaviour
     public static void SwitchScene(string nextSceneName, string levelName)
     {
         Time.timeScale = 1.0f;
-        if (uiManager != null)
+        if (gameManager != null)
         {
-             if (uiManager.currentSceneName != nextSceneName)
+             if (gameManager.currentSceneName != nextSceneName)
              {
-                uiManager.nextSceneName = nextSceneName;
+                gameManager.nextSceneName = nextSceneName;
                 if (levelName != null)
                 {
                     currentLevelName = levelName;
                 }
             }
+             // this is for when a level is played and pressed the next level button
              else {
-                uiManager.nextSceneName = nextSceneName;
+                gameManager.nextSceneName = nextSceneName;
                 if (levelName != null) {
                     currentLevelName = levelName;
                 }
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         Object.DontDestroyOnLoad(gameObject);
 
         //setup the signleton instance
-        uiManager = this;
+        gameManager = this;
 
         // setup the array of updateDelegates
         updateDelegates = new UpdateDelegate[(int)SceneState.Count];
@@ -92,9 +92,9 @@ public class GameManager : MonoBehaviour
         }
 
         //Clean up the singleton instance
-        if (uiManager != null)
+        if (gameManager != null)
         {
-            uiManager = null;
+            gameManager = null;
         }
     }
 
