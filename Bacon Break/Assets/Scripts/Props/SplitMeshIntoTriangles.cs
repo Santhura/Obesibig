@@ -43,7 +43,7 @@ public class SplitMeshIntoTriangles : MonoBehaviour {
                 GameObject go = new GameObject("Triangles " + (1 / 3));
                 go.transform.position = transform.position;
                 go.transform.rotation = transform.rotation;
-                go.transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, 0);
+                go.transform.rotation = new Quaternion(transform.rotation.x,-90, transform.rotation.z, 90);
                 go.transform.localScale = new Vector3(3, 3, 3);
                 go.AddComponent<MeshRenderer>().material = skinnedMeshRenderer.materials[submesh];
                 go.AddComponent<MeshFilter>().mesh = newMesh;

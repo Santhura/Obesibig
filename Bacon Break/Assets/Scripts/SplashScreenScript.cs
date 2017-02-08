@@ -7,7 +7,9 @@ public class SplashScreenScript : MonoBehaviour {
 	// Use this for initialization
     //Shows splash screen for couple seconds
 	IEnumerator Start () {
+        FadingScenes fadingScenes = GameObject.FindWithTag("GameManager").GetComponent<FadingScenes>();
         yield return new WaitForSeconds(2);
-        FadingScenes.activateFade = true;
+        fadingScenes.sceneName = "Main Menu";
+        fadingScenes.activateFade = true;
     }
 }

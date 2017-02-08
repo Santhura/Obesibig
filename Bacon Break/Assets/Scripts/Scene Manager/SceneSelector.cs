@@ -7,18 +7,17 @@ public class SceneSelector : MonoBehaviour {
 
     void Start()
     {
-        fadingScenes = GameObject.FindWithTag("Canvas").GetComponent<FadingScenes>();
+        fadingScenes = GameObject.FindWithTag("GameManager").GetComponent<FadingScenes>();
     }
 
     // Load the scene that has to be loaded
     public void SwitchScene(string sceneName) {
         Time.timeScale = 1;
         fadingScenes.fadeDir = 1;
+        fadingScenes.fadeSpeed = 2;
         fadingScenes.sceneName = sceneName;
         fadingScenes.levelName = null;
-        fadingScenes.FadeImage.transform.SetParent(GameObject.FindWithTag("Canvas").transform);
-        fadingScenes.FadeImage.transform.position = GameObject.FindWithTag("Canvas").transform.position;
-        fadingScenes.FadeImage.transform.rotation = GameObject.FindWithTag("Canvas").transform.rotation;
-        FadingScenes.activateFade = true;
+        fadingScenes.fadingIn = true;
+        fadingScenes.activateFade = true;
     }
 }
