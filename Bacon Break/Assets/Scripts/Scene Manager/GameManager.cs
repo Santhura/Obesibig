@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour {
     public string CurrentSceneName {                        // a getter for the scene name
         get { return currentSceneName; }
     }
+
+    private GameObject progressBar;
 
     #region public static methods
     /// <summary>
@@ -70,6 +73,8 @@ public class GameManager : MonoBehaviour {
         updateDelegates[(int)SceneState.Ready] = ReadyState;
         updateDelegates[(int)SceneState.Run] = RunState;
 
+        progressBar = GameObject.Find("Progress bar sides");
+        progressBar.SetActive(false);
         nextSceneName = "SplashScreen";
         sceneState = SceneState.Reset;
     }
@@ -110,33 +115,56 @@ public class GameManager : MonoBehaviour {
     private void ResetState() {
 
         // run a garbace collecter pass
+        progressBar.SetActive(true);
+        progressBar.transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
         System.GC.Collect();
         sceneState = SceneState.Preload;
     }
 
     // handle anything that needs to happen before loading
     private void PreloadState() {
-        sceneLoadTask = SceneManager.LoadSceneAsync(nextSceneName);
+        try {
+            sceneLoadTask = SceneManager.LoadSceneAsync(nextSceneName);
+        }
+        catch (Exception e) {
+              Debug.LogException(e, this);
+        }
+        sceneLoadTask.allowSceneActivation = false;
         sceneState = SceneState.Load;
     }
 
     //show the loading screen until it's loaded
     private void LoadState() {
+        StartCoroutine(SceneLoadProgress());
+    }
+
+    /// <summary>
+    /// Loading bar
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator SceneLoadProgress() {
+        yield return null;
         // done loading ?
-        try {
-            if (sceneLoadTask.isDone) {
-                sceneState = SceneState.Unload;
+            if (!sceneLoadTask.isDone) {
+            // keep the loading progress going
+                if (progressBar != null) {
+                    float progress = Mathf.Clamp01(sceneLoadTask.progress / 0.9f);
+                  //  Time.timeScale = .1f;
+                    progressBar.transform.GetChild(0).GetComponent<Image>().fillAmount = progress;
+                }
+                if (sceneLoadTask.progress == 0.9f && progressBar.GetComponentInChildren<Image>().fillAmount == 1) {
+                    yield return new WaitForSeconds(.1f);
+                    sceneLoadTask.allowSceneActivation = true;
+                 //   Time.timeScale = 1;
+                    sceneState = SceneState.Unload;
+
+                }
             }
-            else {
-                // keep the loading progress going
-            }
-        }
-        catch (Exception e) {
-            Debug.LogException(e, this);
-        }
+        yield return null;
     }
 
     private void UnloadState() {
+        progressBar.SetActive(false);
         try {
             // cleaning up resoucres yet?
             if (resourceUnloadTask == null) {

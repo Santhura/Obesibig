@@ -13,6 +13,7 @@ public class PlayerDeath : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
+        GetComponent<PlayerDeath>().enabled = false;
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         player_collider = GetComponent<Collider>();
