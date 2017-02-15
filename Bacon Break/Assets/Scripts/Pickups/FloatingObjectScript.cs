@@ -17,6 +17,5 @@ public class FloatingObjectScript : MonoBehaviour {
     void FixedUpdate()
     {
         transform.position = new Vector3(transform.position.x, originalY + ((float)Mathf.Sin(Time.time * speed) * floatStrength), transform.position.z);
-
     }
 }

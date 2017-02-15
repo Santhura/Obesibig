@@ -16,9 +16,9 @@ public class TrapHitbox : MonoBehaviour
             other.GetComponent<PlayerMovement>().enabled = false;
             other.GetComponent<PlayerDeath>().TriggerDeathAnimation(gameObject.tag);
 
-
             PlayerMovement.isAbleToMove = false;
             WinOrLoseScript.isDead = true;
+
         }
 
         if(other.gameObject.tag == "Wall")

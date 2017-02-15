@@ -8,6 +8,7 @@ public class CameraEditorScript : MonoBehaviour {
 
     public static CameraEditorScript camEditor;
 
+    //singleton
     void Awake()
     {
         if (camEditor == null)
@@ -19,28 +20,37 @@ public class CameraEditorScript : MonoBehaviour {
         }
     }
 
+    //Camera translation and rotations keys and variables
     public bool cameraMode = false;
+    private GameObject playerObj;
     private bool canRun = true; //stop and start player bool
     private bool translateUP, translateDOWN, translateRIGHT, translateLEFT, rotateUP, rotateDOWN, rotateLEFT, rotateRIGHT, rotateLeftClockwise, rotateRightClockwise, resetPos = false;
     public bool rot, pos, loadData;
     public float originalSpeed, stopLoader;
     private float originalRotX, originalRotY, originalRotZ;
-    public Texture aTexture;
+    private float manipulatorSpeed, resetCamSpeed;
+
+    //position and rotation variables for loading or saving
+    private Transform originalTransform, preSet1;
+    private Quaternion preSet1Angle;
+    private Quaternion loadQuartRotSet1;
+    private Quaternion targetOriginalRot;
+    private Vector3 loadNewPos;
+
+    //camera vieuwpoint and transforms variables
     private Transform cameraNewtransform;
     private Transform cameraManipulator;
-    private Transform originalTransform, preSet1, preSet2, preSet3;
-    private Quaternion targetOriginalRot;
-    private Quaternion loadQuartRotSet1;
-    private Quaternion preSet1Angle, preSet2Angle, preSet3Angle;
     private Transform targetOriginalPos;
     private Transform lookAtPlayer;
     private GameObject getCamera;
     public GameObject originalCamviewObj;
-    private GameObject playerObj;
-    public GUIStyle CamEdStyle;
-    private Vector3 loadNewPos;
 
-    private float manipulatorSpeed, resetCamSpeed;
+    //UI Layout
+    public Texture aTexture;
+    public GUIStyle CamEdStyle;
+
+
+
 
 
 	// Use this for initialization
@@ -57,8 +67,6 @@ public class CameraEditorScript : MonoBehaviour {
         playerObj = GameObject.Find("Player");
 
         preSet1 = gameObject.transform;
-        preSet2 = gameObject.transform;
-        preSet3 = gameObject.transform;
 
         //  Set original position and rotation
         originalRotX = transform.rotation.x;
@@ -355,38 +363,15 @@ public class CameraEditorScript : MonoBehaviour {
                 Debug.Log("Preset has been temperarly saved.");
             }
 
-            if (GUI.Button(new Rect(65, 265, 49, 20), "Set2"))
+            if (GUI.Button(new Rect(75, 285, 49, 20), "Load1"))
             {
-                preSet2.transform.position = gameObject.transform.position;
-                preSet2.transform.eulerAngles = gameObject.transform.eulerAngles;
-                Debug.Log("Preset has been temperarly saved.");
-            }
-
-            if (GUI.Button(new Rect(115, 265, 49, 20), "Set3"))
-            {
-                preSet3.transform.position = gameObject.transform.position;
-                preSet3.transform.eulerAngles = gameObject.transform.eulerAngles;
-                Debug.Log("Preset has been temperarly saved.");
-            }
-
-            if (GUI.Button(new Rect(15, 285, 49, 20), "Load1"))
-            {
-                Load(1);
-            }
-
-            if (GUI.Button(new Rect(65, 285, 49, 20), "Load2"))
-            {
-                Load(2);
-            }
-
-            if (GUI.Button(new Rect(115, 285, 49, 20), "Load3"))
-            {
-                Load(3);
+                gameObject.transform.position = preSet1.transform.position;
+                gameObject.transform.eulerAngles = preSet1.transform.eulerAngles;
             }
 
             if (GUI.Button(new Rect(115, 300, 49, 20), "Load"))
             {
-                Load(3);
+                Load(1);
             }
 
             if (GUI.Button(new Rect(15, 300, 49, 20), "Save"))
@@ -430,21 +415,20 @@ public class CameraEditorScript : MonoBehaviour {
             data.preSet1RotX = preSet1.eulerAngles.x;
             data.preSet1RotY = preSet1.eulerAngles.y;
             data.preSet1RotZ = preSet1.eulerAngles.z;
-            
 
-            data.preSet2PosX = preSet2.position.x;
-            data.preSet2PosY = preSet2.position.y;
-            data.preSet2PosZ = preSet2.position.z;
-            data.preSet2RotX = preSet2.eulerAngles.x;
-            data.preSet2RotY = preSet2.eulerAngles.y;
-            data.preSet2RotZ = preSet2.eulerAngles.z;
+            //data.preSet2PosX = preSet2.position.x;
+            //data.preSet2PosY = preSet2.position.y;
+            //data.preSet2PosZ = preSet2.position.z;
+            //data.preSet2RotX = preSet2.eulerAngles.x;
+            //data.preSet2RotY = preSet2.eulerAngles.y;
+            //data.preSet2RotZ = preSet2.eulerAngles.z;
 
-            data.preSet3PosX = preSet3.position.x;
-            data.preSet3PosY = preSet3.position.y;
-            data.preSet3PosZ = preSet3.position.z;
-            data.preSet3RotX = preSet3.eulerAngles.x;
-            data.preSet3RotY = preSet3.eulerAngles.y;
-            data.preSet3RotZ = preSet3.eulerAngles.z;
+            //data.preSet3PosX = preSet3.position.x;
+            //data.preSet3PosY = preSet3.position.y;
+            //data.preSet3PosZ = preSet3.position.z;
+            //data.preSet3RotX = preSet3.eulerAngles.x;
+            //data.preSet3RotY = preSet3.eulerAngles.y;
+            //data.preSet3RotZ = preSet3.eulerAngles.z;
 
             bf.Serialize(file, data);
             file.Close();
@@ -458,7 +442,8 @@ public class CameraEditorScript : MonoBehaviour {
         }
     }
 
-    public void Load(int loadPresetNr)
+
+    public void Load(float loadPresetNr)
     {
         if (File.Exists(Application.persistentDataPath + "/cameraInfo.dat"))
         {
@@ -467,13 +452,19 @@ public class CameraEditorScript : MonoBehaviour {
             CameraData data = (CameraData)bf.Deserialize(file);
             file.Close();
 
-            preSet1.transform.position = new Vector3(data.preSet1PosX, data.preSet1PosY, data.preSet1PosZ);
-            preSet2.transform.position = new Vector3(data.preSet2PosX, data.preSet2PosY, data.preSet2PosZ);
-            preSet3.transform.position = new Vector3(data.preSet3PosX, data.preSet3PosY, data.preSet3PosZ);
+            if (loadPresetNr == 1)
+            {
+                var trsX = data.preSet1PosX;
+                var trsY = data.preSet1PosY;
+                var trsZ = data.preSet1PosZ;
+                preSet1.transform.position = new Vector3(trsX, trsY, trsZ);
+                preSet1Angle = Quaternion.Euler(data.preSet1RotX, data.preSet1RotY, data.preSet1RotZ);
+                Debug.Log(preSet1.transform.position);
+            }
 
-            preSet1Angle = Quaternion.Euler(data.preSet1RotX, data.preSet1RotY, data.preSet1RotZ);
-            preSet2Angle = Quaternion.Euler(data.preSet2RotX, data.preSet2RotY, data.preSet2RotZ);
-            preSet3Angle = Quaternion.Euler(data.preSet3RotX, data.preSet3RotY, data.preSet3RotZ);
+            //preSet1.transform.position = new Vector3(data.preSet1PosX, data.preSet1PosY, data.preSet1PosZ);
+
+
 
             /*
             if (loadPresetNr == 1)
@@ -488,31 +479,8 @@ public class CameraEditorScript : MonoBehaviour {
                 loadData = true;
 
                 Debug.Log("Loaded set 1");
-            }
+            } */
 
-            if (loadPresetNr == 2)
-            {
-                //Position
-                transform.position = new Vector3(data.preSet2PosX, data.preSet2PosY, data.preSet2PosZ);
-
-                //Rotation
-                Quaternion newAngle = Quaternion.Euler(data.preSet2RotX, data.preSet2RotY, data.preSet2RotZ);
-                loadQuartRotSet1 = newAngle;
-                loadData = true;
-                Debug.Log("Loaded set 2");
-            }
-
-            if (loadPresetNr == 3)
-            {
-                //Position
-                transform.position = new Vector3(data.preSet3PosX, data.preSet3PosY, data.preSet3PosZ);
-
-                //Rotation
-                Quaternion newAngle = Quaternion.Euler(data.preSet3RotX, data.preSet3RotY, data.preSet3RotZ);
-                loadQuartRotSet1 = newAngle;
-                loadData = true;
-                Debug.Log("Loaded set 3");
-            }*/
         }
     }
 }
@@ -526,19 +494,5 @@ class CameraData
     public float preSet1RotX;
     public float preSet1RotY;
     public float preSet1RotZ;
-
-    public float preSet2PosX;
-    public float preSet2PosY;
-    public float preSet2PosZ;
-    public float preSet2RotX;
-    public float preSet2RotY;
-    public float preSet2RotZ;
-
-    public float preSet3PosX;
-    public float preSet3PosY;
-    public float preSet3PosZ;
-    public float preSet3RotX;
-    public float preSet3RotY;
-    public float preSet3RotZ;
 
 }
