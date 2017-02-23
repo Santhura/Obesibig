@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
         //Keep this object alive between scene changes.
         Object.DontDestroyOnLoad(gameObject);
+        //Object.DontDestroyOnLoad(GameObject.Find("Reporter"));
 
         //setup the signleton instance
         gameManager = this;
